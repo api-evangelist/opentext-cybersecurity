@@ -1,0 +1,132 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the OpenText Core Application Security (Fortify on Demand) API
+  version: 1.0.0
+extends: ../openapi/opentext-cybersecurity-fortify-on-demand-openapi.json
+x-generated: '2026-09-13'
+x-method: generated
+x-source: >-
+  Derived from the provider's own published contract at https://api.ams.fortify.com/swagger/docs/v3 plus
+  the scope vocabulary parsed out of its operation descriptions. Nothing here invents behaviour: every
+  action below either restates something the provider already publishes in prose, or records a
+  measurement this pipeline made. The original document is never mutated.
+actions:
+- target: $.info
+  description: Record the real product name alongside the legacy contract title, and the publisher.
+  update:
+    x-provider: OpenText Cybersecurity
+    x-product: OpenText Core Application Security
+    x-legacy-product-name: Fortify on Demand
+    x-contract-url: https://api.ams.fortify.com/swagger/docs/v3
+    x-observed: '2026-09-13'
+    contact:
+      name: Fortify on Demand Application Support
+      email: fod-application-support@opentext.com
+      url: https://community.opentext.com/cybersec/fortify
+    termsOfService: https://cybersecurity.opentext.com/legal/sdk-and-api-agreement/
+- target: $
+  description: >-
+    Record every regional host the same contract is served from. The published document names only the
+    host it was fetched from, so a client generated in one region silently hard-codes that region.
+  update:
+    x-regional-hosts:
+    - host: api.ams.fortify.com
+      region: Americas
+      verified: '2026-09-13'
+      contract_http_status: 200
+    - host: api.emea.fortify.com
+      region: EMEA
+      verified: '2026-09-13'
+      contract_http_status: 200
+    - host: api.apac.fortify.com
+      region: APAC
+      verified: '2026-09-13'
+      contract_http_status: 200
+    - host: api.fed.fortify.com
+      region: FedRAMP
+      verified: '2026-09-13'
+      contract_http_status: null
+      note: >-
+        Listed as a separate component on https://status.fortify.com/ but did not answer our probe;
+        the FedRAMP boundary is network-restricted.
+- target: $
+  description: >-
+    Declare the OAuth 2.0 security scheme the API actually enforces. The published document declares no
+    securityDefinitions at all, so a generated client has no auth layer; this records what a live probe of
+    /oauth/token proved on 2026-09-13.
+  update:
+    x-securityDefinitions-proposed:
+      fod_oauth2:
+        type: oauth2
+        flow: application
+        tokenUrl: https://api.ams.fortify.com/oauth/token
+        x-scope-parameter-required: true
+        scopes:
+          api-tenant: Tenant administration; present on 150 of 159 operations
+          start-scans: Start static, dynamic, mobile, open-source and DAST-automated scans
+          view-apps: Read applications, releases and scan metadata
+          view-issues: Read vulnerabilities and open-source components
+          manage-apps: Create, update and delete applications, releases and attributes
+          manage-issues: Audit and triage vulnerabilities; manage audit templates
+          view-reports: Read generated reports and scan summaries
+          view-tenant-data: Read entitlements, event logs, lookup items and FoD Connect networks
+          manage-users: Create and modify users, groups and application access
+          view-users: Read users, groups and application access
+          manage-notifications: Manage notification settings
+          manage-reports: Create and delete reports
+          manage-user: Singular variant present on two UserManagement operations
+    x-security-note: >-
+      Proposed, not asserted. Emitted under an x- key so no tooling mistakes it for a declaration the
+      provider made. Each scope is parsed from the "Allowed Scopes:" line the provider writes into the
+      operation's own description.
+- target: $
+  description: Record the runtime semantics an agent needs and the contract does not state.
+  update:
+    x-pagination:
+      style: offset-limit
+      offset_param: offset
+      limit_param: limit
+      max_page_size: 50
+    x-error-envelope:
+      media_type: application/json
+      shape: '{ "responseCode": "<http status>", "errorCode": "<vendor code>", "message": "<text>" }'
+      rfc9457: false
+      observed: '2026-09-13'
+    x-idempotency:
+      coverage: none
+      note: >-
+        No Idempotency-Key, If-Match or ETag anywhere in the contract, across 71 mutating operations.
+        Retrying a scan start after a timeout can consume a second entitlement.
+    x-rate-limit:
+      exhaustion_status: 429
+      declared_on_operations: 143
+      headers_published: []
+      retry_after_published: false
+    x-reversibility:
+      grade: documented
+      cancel_operation: ReleasesV3_PostCancelScan
+      window_published: false
+- target: $.paths['/api/v3/releases/{releaseId}/scans/{scanId}/cancel-scan']
+  description: >-
+    Flag the single reversal path on the contract, so an agent planning a scan start can find the undo
+    before it acts.
+  update:
+    x-reversal-of:
+    - ReleasesV3_PostStartScan
+    x-reversal-window: null
+    x-reversal-window-note: >-
+      The provider does not state how late a cancel is accepted, nor whether a cancelled scan returns the
+      entitlement it consumed. Recorded as unknown rather than guessed.
+- target: $
+  description: Point at the first-party agent surfaces that wrap this contract.
+  update:
+    x-agent-surfaces:
+      mcp_server:
+        mode: local-stdio
+        install: fcli ai-assist mcp start-stdio --module fod
+        manifest: ../mcp/opentext-cybersecurity-mcp.yml
+      agent_skills:
+        source: https://github.com/fortify/skills
+        index: ../skills/_index.yml
+      cli: ../cli/opentext-cybersecurity-cli.yml
+      tool_crosswalk: ../mcp/opentext-cybersecurity-tool-crosswalk.yml

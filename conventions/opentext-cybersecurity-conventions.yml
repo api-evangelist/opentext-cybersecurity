@@ -1,0 +1,168 @@
+generated: '2026-09-13'
+method: derived
+source: >-
+  openapi/opentext-cybersecurity-fortify-on-demand-openapi.json, live probes of
+  https://api.ams.fortify.com on 2026-09-13, and https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide
+scope: >-
+  Cross-cutting runtime semantics for the two OpenText Cybersecurity API surfaces. Where a mechanism is
+  absent it is recorded as absent; nothing here is inferred from a marketing page.
+auth_style:
+  fortify_on_demand: 'OAuth 2.0 client credentials or personal access token, sent as Authorization: Bearer'
+  webroot_unity: 'OAuth 2.0 password / authorization-code / token-exchange, sent as Authorization: Bearer'
+  detail: authentication/opentext-cybersecurity-authentication.yml
+idempotency:
+  coverage: none
+  mechanism: null
+  header: null
+  detail: >-
+    No replay-protection mechanism exists on either surface. The Fortify on Demand contract contains zero
+    occurrences of "Idempotency", "If-Match" or "ETag" across all 159 operations, and the Webroot Unity
+    guide documents none. 71 of 159 Fortify on Demand operations are mutating (28 POST, 29 PUT, 3 PATCH,
+    11 DELETE) and every one of them is replay-unsafe: re-firing ReleasesV3_PostStartScan after a timeout
+    can consume a second scan entitlement. An agent must implement its own de-duplication by reading back
+    state before retrying a write.
+  evidence: 'grep of the published spec: "dempoten" 0 hits, "If-Match" 0 hits, "ETag" 0 hits'
+reversibility:
+  grade: documented
+  detail: >-
+    Fortify on Demand publishes reversal operations but states no window for any of them, which is exactly
+    the difference between a documented and a verified reversibility posture. A scan can be cancelled while
+    it is running; the eleven DELETE operations are the only undo path for the objects they remove, and the
+    documentation does not say whether a deleted application, release, report, user or token can be
+    restored, nor for how long.
+  write_surface_operations: 71
+  reversals:
+  - operation: ReleasesV3_PostCancelScan
+    reverses: ReleasesV3_PostStartScan and the other scan-start operations
+    kind: cancel
+    window: null
+    window_source: null
+    note: >-
+      The contract gives no statement of how late in a scan a cancel is accepted, or whether a cancelled
+      scan refunds the entitlement it consumed. This is the single highest-value undocumented window on the
+      surface, because scan entitlements are the billing unit.
+  - operation: ApplicationsV3_Delete
+    kind: delete
+    restore_operation: null
+    window: null
+  - operation: ReleasesV3_DeleteRelease
+    kind: delete
+    restore_operation: null
+    window: null
+  - operation: ApiKeyManagementV3_DeleteApiKey
+    kind: revoke
+    restore_operation: null
+    window: null
+    note: Revocation of a credential is intentionally irreversible; a new key must be created.
+  - operation: PersonalAccessTokensV3_DeletePersonalAccessToken
+    kind: revoke
+    restore_operation: null
+    window: null
+  irreversible:
+  - AttributesV3_Delete
+  - ReportsV3_Delete
+  - UsersV3_DeleteUser
+  - UserManagementV3_DeleteGroup
+  - UserApplicationAccessV3_DeleteUserApplicationAccess
+  - UserGroupApplicationAccessV3_DeleteUserGroupApplicationAccess
+  - ApplicationsV3_DeleteApplicationMicroservice
+  webroot_unity:
+    note: >-
+      The Console GSM surface documents suspend, resume, deactivate and reactivate for endpoint sites and
+      endpoints — a genuine pairwise reversal set — but the guide states no window for any of them either.
+dry_run_mode:
+  supported: false
+  detail: No preview, validate-only or dry-run parameter exists on either surface.
+pagination:
+  fortify_on_demand:
+    style: offset-limit
+    params:
+      offset: Offset of the starting record. 0 indicates the first record.
+      limit: Maximum records to return. The maximum value allowed is 50.
+    max_page_size: 50
+    response_fields:
+    - items
+    - totalCount
+    coverage: 32 operations accept offset, 22 accept limit
+  webroot_unity:
+    style: documented per operation in the API Reference; not summarised in the guide
+sorting:
+  fortify_on_demand:
+    params:
+    - orderBy
+    - orderByDirection
+    coverage: 22 operations
+filtering:
+  fortify_on_demand:
+    params:
+    - filters
+    - fields
+    detail: >-
+      `filters` is a colon/pipe delimited string documented per operation; `fields` selects a sparse
+      response projection. 19 operations accept filters, 21 accept fields.
+  webroot_unity:
+    style: OpenText Secure Cloud query-string filter grammar
+    form: 'filter[name]=operator:value'
+    operators:
+    - eq — equal
+    - ne — not equal
+    - in — in comma-separated list
+    - ni — not in comma-separated list
+    - lt / le — less than / less than or equal
+    - gt / ge — greater than / greater than or equal
+    - like — matches a regular expression
+    - 'ir — inclusive/exclusive range, e.g. ir:5,10 or ir:(5,10]'
+    docs: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide
+field_expansion:
+  fortify_on_demand: sparse fieldsets via the `fields` query parameter; no expand/include mechanism
+request_id_tracing:
+  fortify_on_demand:
+    supported: false
+    detail: No request identifier is returned in the error envelope or in any response header observed on 2026-09-13.
+  webroot_unity:
+    supported: true
+    field: requestId
+    detail: >-
+      Every error response carries a requestId GUID, plus a correlationId GUID on certain OpenText Secure
+      Cloud methods. Both are documented as quotable to support.
+versioning:
+  fortify_on_demand:
+    style: path
+    current: v3
+    form: /api/v3/...
+    detail: >-
+      The version sits in the path and in the swagger document version ("v3"). Operation ids are suffixed
+      with the version (ApplicationsV3_Get), so a v4 would be visible in generated clients immediately.
+  webroot_unity:
+    style: path prefix per service extension (/service/api/<extension>/<domain>)
+    doc_version: '26.3'
+error_envelope:
+  detail: errors/opentext-cybersecurity-problem-types.yml
+  rfc9457: false
+rate_limit_signaling:
+  detail: rate-limits/opentext-cybersecurity-rate-limits.yml
+  headers_published: false
+  exhaustion_status: 429
+content_negotiation:
+  fortify_on_demand:
+    produces:
+    - application/json
+    - text/json
+    - application/xml
+    - text/xml
+    consumes:
+    - application/json
+    - text/json
+    - application/xml
+    - text/xml
+    - application/x-www-form-urlencoded
+    - multipart/form-data
+  webroot_unity:
+    default: application/json
+    also: application/xml, text/xml via the Accept header
+cross_links:
+  authentication: authentication/opentext-cybersecurity-authentication.yml
+  scopes: scopes/opentext-cybersecurity-scopes.yml
+  errors: errors/opentext-cybersecurity-problem-types.yml
+  lifecycle: lifecycle/opentext-cybersecurity-lifecycle.yml
+  rate_limits: rate-limits/opentext-cybersecurity-rate-limits.yml

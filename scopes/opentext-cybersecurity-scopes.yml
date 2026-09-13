@@ -1,0 +1,115 @@
+generated: '2026-09-13'
+method: derived
+source: >-
+  openapi/opentext-cybersecurity-fortify-on-demand-openapi.json — every operation description carries an
+  "Allowed Scopes:" line; the scope vocabulary below was extracted from all 159 operations. Cross-checked
+  against https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide for the Webroot Unity scope vocabulary,
+  which is documented on a public page.
+note: >-
+  derive-oauth-scopes.py returns nothing for this provider because the Swagger document declares no
+  oauth2 securityDefinition to read the scopes from (see authentication/). The scopes are nevertheless
+  fully published — one per operation, in the operation's own description — so they are recovered here
+  by parsing those descriptions. Counts are operation counts, not guesses.
+apis:
+- api: opentext-cybersecurity:fortify-on-demand-api
+  token_url: https://api.ams.fortify.com/oauth/token
+  scope_parameter_required: true
+  scopes:
+  - name: api-tenant
+    operations: 150
+    description: >-
+      The broad tenant-administration scope. Present on almost every operation in the contract, including
+      all of API key management, attributes, audit templates, DAST/dynamic/static/mobile scans, and tenant
+      summary and heat-map reads.
+  - name: start-scans
+    operations: 28
+    description: Start static, dynamic, mobile, open-source and DAST-automated scans on a release.
+  - name: view-apps
+    operations: 21
+    description: Read applications, releases and scan metadata.
+  - name: view-issues
+    operations: 21
+    description: Read vulnerabilities and open-source components on a release.
+  - name: manage-apps
+    operations: 14
+    description: Create, update and delete applications, releases, attributes and microservices.
+  - name: manage-issues
+    operations: 8
+    description: Audit and triage vulnerabilities; manage audit templates.
+  - name: view-reports
+    operations: 8
+    description: Read generated reports and scan summaries.
+  - name: view-tenant-data
+    operations: 11
+    description: Read tenant entitlements, event logs, lookup items, FoD Connect networks and attributes.
+  - name: manage-users
+    operations: 11
+    description: Create and modify users, user groups and their application access.
+  - name: view-users
+    operations: 4
+    description: Read users, user groups and their application access.
+  - name: manage-notifications
+    operations: 3
+    description: Manage notification settings.
+  - name: manage-reports
+    operations: 3
+    description: Create and delete reports.
+  - name: manage-user
+    operations: 2
+    description: >-
+      Singular variant appearing on two UserManagement operations. Recorded verbatim; the docs do not
+      say whether this is distinct from manage-users or a spelling inconsistency in the contract.
+  findings:
+  - id: scope-string-typo-in-contract
+    detail: >-
+      One Scans operation's description reads "Allowed Scopes: view-apps</remarks>" — a leaked XML doc
+      comment tag. The intended scope is view-apps. Recorded because it shows the scope list is generated
+      from source comments and is not validated.
+- api: opentext-cybersecurity:webroot-unity-api
+  token_url: https://unityapi.webrootcloudav.com/auth/token
+  docs: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide
+  method: searched
+  scope_pattern: '[extensionName].[domain]'
+  wildcards:
+    supported: true
+    forms:
+    - '[extensionName].* — all scopes for an extension, e.g. SkyStatus.*'
+    - '*.[domain] — all scopes for a domain, e.g. *.GSM'
+    - '* — all scopes available to the user'
+    not_supported_for: Identity Provider flows (authorization code and token exchange)
+  scopes:
+  - name: ECom.Shop
+    path_prefix: /service/api/ecom/shop
+    description: Create and modify licenses; retrieve license and license-order information.
+  - name: SkyStatus.GSM
+    path_prefix: /service/api/status/gsm
+    description: Agent and license status across a Global Site Manager console.
+  - name: SkyStatus.Site
+    path_prefix: /service/api/status/site
+    description: Agent and license status for a single site.
+  - name: SkyStatus.Reporting
+    path_prefix: /service/api/status/reporting
+    description: Usage reporting across endpoint, DNS Protection, WSAT, Pillr, Detection and Response, OTSB and CloudAlly.
+  - name: Console.Access
+    path_prefix: /service/api/console/access
+    description: Console access operations.
+  - name: Console.GSM
+    path_prefix: /service/api/console/gsm
+    description: >-
+      Site, user, policy, endpoint, endpoint-group and endpoint-command management on a GSM console.
+      Granted by default to every GSM console user; some operations additionally require the GSM Super
+      Admin account type.
+  - name: Notifications.Subscriptions
+    path_prefix: /service/api/notifications/subscriptions
+    description: >-
+      Event-notification subscriptions. NOT granted automatically — it must be enabled on the client
+      credentials in the GSM console (Settings -> API Access) or requested from a Webroot representative.
+  - name: SecureCloud.Platform
+    path_prefix: /service/api/securecloud/customers
+    description: OpenText Secure Cloud customer records.
+  - name: SecureCloud.Usage
+    path_prefix: /service/api/securecloud/usage/charges
+    description: OpenText Secure Cloud usage and charges.
+  guidance: >-
+    The documentation advises requesting the minimum set of scopes, because there is a per-scope
+    performance overhead on token issuance.

@@ -1,0 +1,252 @@
+generated: '2026-09-13'
+method: derived
+source: >-
+  mcp/opentext-cybersecurity-mcp.yml, skills/_index.yml and the nine verbatim SKILL.md files under skills/,
+  bound to operationIds verified present in
+  openapi/opentext-cybersecurity-fortify-on-demand-openapi.json
+api: opentext-cybersecurity:fortify-on-demand-api
+note: >-
+  This crosswalk is unusual and the shape matters. OpenText does not expose a hand-written MCP tool list.
+  Its MCP server generates tools from fcli command modules at runtime, so the live tool names could not be
+  enumerated without installing fcli and authenticating a session against a customer tenant. What IS
+  published is the fcli command surface and, more usefully, nine first-party Agent Skills that name the
+  exact fcli commands an agent should run. The crosswalk below therefore binds fcli COMMAND FAMILIES —
+  the units the MCP server turns into tools — to the REST operationIds that back them. Confidence is
+  medium throughout for that reason, and it is stated rather than inflated: every operationId below was
+  grepped out of the published spec and exists, but the fcli-command-to-operation mapping is inferred from
+  command semantics, not read from an fcli source map.
+surfaces:
+  openapi:
+    url: https://api.ams.fortify.com/swagger/docs/v3
+    file: openapi/opentext-cybersecurity-fortify-on-demand-openapi.json
+    operations: 159
+    gated: false
+  graphql: null
+  mcp:
+    endpoint: null
+    mode: local-stdio
+    start: fcli ai-assist mcp start-stdio --module fod
+    gated: true
+    gated_reason: >-
+      Tools are generated at server start from the selected fcli module and require an authenticated fcli
+      session, so tools/list cannot be called anonymously. No hosted URL exists to probe.
+  agent_skills:
+    source: https://github.com/fortify/skills
+    gated: false
+  grpc:
+    files: grpc/*.proto
+    services: 6
+    rpcs: 20
+    note: SAST Aviator backend. A separate transport from the REST API; not crosswalked to REST operations because it has no REST equivalent.
+crosswalk:
+- tool: fod application list / get
+  category: applications
+  rest:
+  - ApplicationsV3_GetApplications
+  - ApplicationsV3_GetApplication
+  binding: direct
+  confidence: high
+- tool: fod application create / update / delete
+  category: applications
+  rest:
+  - ApplicationsV3_PostApplication
+  - ApplicationsV3_PutApplication
+  - ApplicationsV3_Delete
+  binding: direct
+  confidence: high
+  note: Mutating. No idempotency mechanism exists; see conventions/.
+- tool: fod microservice list / create / update / delete
+  category: applications
+  rest:
+  - ApplicationsV3_GetApplicationMicroservices
+  - ApplicationsV3_PostApplicationMicroservice
+  - ApplicationsV3_PutApplicationMicroservice
+  - ApplicationsV3_DeleteApplicationMicroservice
+  binding: direct
+  confidence: high
+- tool: fod release list / get / create / update / delete
+  category: releases
+  rest:
+  - ReleasesV3_GetReleases
+  - ReleasesV3_GetRelease
+  - ReleasesV3_PostRelease
+  - ReleasesV3_PutRelease
+  - ReleasesV3_DeleteRelease
+  - ApplicationsV3_GetApplicationReleases
+  binding: direct
+  confidence: high
+- tool: fod sast-scan start
+  category: scans
+  rest:
+  - ReleasesV3_GetStaticScanOptions
+  - ReleasesV3_GetAssessmentTypes
+  - ReleasesV3_GetStaticScanBSIToken
+  binding: composite
+  confidence: medium
+  note: >-
+    Consumes an entitlement. The skill fortify-fod documents the full start-and-monitor flow; the exact
+    start operation is under the StaticScans tag.
+- tool: fod dast-scan start
+  category: scans
+  rest: []
+  binding: composite
+  confidence: medium
+  note: >-
+    Backed by the DynamicScans and DastAutomatedScans tags (16 operations). fcli 3.25.0 records a 422
+    active-scan fallback for this command, which matches the 422 UnprocessableEntity declared on the scan
+    start operations.
+- tool: fod scan list / get / status
+  category: scans
+  rest:
+  - ScansV3_GetScans
+  - ScansV3_GetScanSummary
+  - ReleasesV3_GetScansByReleaseId
+  - ReleasesV3_GetReleaseScan
+  - ReleasesV3_GetReleaseScanByScanId
+  - ApplicationsV3_GetScansByApplicationId
+  binding: direct
+  confidence: high
+- tool: fod scan cancel
+  category: scans
+  rest:
+  - ReleasesV3_PostCancelScan
+  binding: direct
+  confidence: high
+  note: The only reversal path on the contract. No window is published.
+- tool: fod issue list / get
+  category: vulnerabilities
+  rest:
+  - VulnerabilitiesV3_GetVulnerabilities
+  - VulnerabilitiesV3_GetVulnerabilityAllData
+  - VulnerabilitiesV3_GetVulnerabilitySummary
+  - VulnerabilitiesV3_GetVulnerabilityDetails
+  - VulnerabilitiesV3_GetVulnerabilityFilters
+  binding: direct
+  confidence: high
+  note: '`fcli fod issue get` for a single issue was added in fcli 3.24.0 (2026-08-21).'
+- tool: fod issue audit / triage
+  category: vulnerabilities
+  rest:
+  - VulnerabilitiesV3_PostVulnerabilityEdit
+  - VulnerabilitiesV3_GetVulnerabilityAuditOptions
+  - VulnerabilitiesV3_GetVulnerabilityAuditComments
+  - ReleasesV3_PostAuditAction
+  - ReleasesV3_GetAuditOptions
+  binding: direct
+  confidence: high
+- tool: fod aviator apply-remediations
+  category: remediation
+  rest:
+  - VulnerabilitiesV3_GetAviatorRemediationGuidanceForVulneribility
+  binding: partial
+  confidence: medium
+  note: >-
+    The REST API exposes machine-readable Aviator remediation guidance for a vulnerability; the audit and
+    remediation generation itself runs over the Aviator gRPC services in grpc/, not over REST.
+- tool: fod oss list / sbom
+  category: open-source
+  rest:
+  - OpenSourceComponentsV3_GetOpenSourceComponents
+  - OpenSourceComponentsV3_DownloadOpenSourceSbomFile
+  - ReleasesV3_PutImportScan
+  binding: direct
+  confidence: high
+  note: ReleasesV3_PutImportScan imports a CycloneDX SBOM; the download emits one.
+- tool: fod report list / create / download
+  category: reports
+  rest:
+  - ReportsV3_GetReports
+  - ReportsV3_GetReport
+  - ReportsV3_PostReport
+  - ReportsV3_Download
+  - ReportsV3_Delete
+  binding: direct
+  confidence: high
+  note: Asynchronous — create then poll then download. A long-running-job pattern the MCP server explicitly supports.
+- tool: fod data-export create / download
+  category: reports
+  rest:
+  - ReportsV3_PostDataExport
+  - ReportsV3_GetDataExports
+  - ReportsV3_GetDataExport
+  - ReportsV3_DownloadExport
+  - ReportsV3_GetDataExportTemplates
+  binding: direct
+  confidence: high
+- tool: fod entitlement list
+  category: tenant
+  rest:
+  - TenantEntitlementsV3_Get
+  - TenantEntitlementsV3_GetOpenSourceEntitlements
+  binding: direct
+  confidence: high
+- tool: fod user list / create / update / delete
+  category: users
+  rest:
+  - UsersV3_GetUsers
+  - UsersV3_DeleteUser
+  - UserManagementV3_DeleteGroup
+  - UserApplicationAccessV3_DeleteUserApplicationAccess
+  - UserGroupApplicationAccessV3_DeleteUserGroupApplicationAccess
+  binding: direct
+  confidence: medium
+- tool: fod access-control token create / list / delete
+  category: credentials
+  rest:
+  - PersonalAccessTokensV3_DeletePersonalAccessToken
+  - ApiKeyManagementV3_GetApiKeys
+  - ApiKeyManagementV3_PostApiKey
+  - ApiKeyManagementV3_DeleteApiKey
+  binding: direct
+  confidence: medium
+- tool: fod session login / logout
+  category: session
+  rest: []
+  binding: none
+  confidence: high
+  note: Backed by /oauth/token, which is outside the documented /api/v3 contract.
+mcp_only:
+- tool: fcli tool install / definitions update
+  reason: Local tool-chain management. No REST equivalent; it downloads and verifies release artifacts.
+- tool: fcli ai-assist extensions setup
+  reason: Installs Agent Skills into a local assistant directory. Purely local.
+- tool: fcli action run
+  reason: >-
+    Runs a user-authored YAML action, which may compose many REST calls. Not a single operation, and
+    user-defined actions can export their own functions as MCP tools.
+- tool: fcli ssc / sc-sast / sc-dast commands
+  reason: >-
+    Target Software Security Center and ScanCentral, which are customer-hosted. No public OpenAPI exists
+    for those surfaces, so they cannot be crosswalked.
+- tool: fcli aviator
+  reason: Talks to the Aviator backend over the gRPC services in grpc/, not over the REST API.
+rest_only:
+- operations:
+  - TenantHeatMapsV3_Get
+  - TenantSummaryV3_Get
+  - EventLogsV3_GetEventLogs
+  - NotificationsV3_*
+  - AttributesV3_*
+  - LookupItemsV3_GetLookupItems
+  - FortifyOnDemandConnectNetworksV3_*
+  - MultiFactorAuthorizationCodeV3_*
+  - ScansV3_GetSiteTree
+  - ScansV3_GetValidationResults
+  - VulnerabilitiesV3_GetVulnerabilityScreenshots
+  reason: >-
+    Tenant analytics, notification configuration, custom attributes, lookup vocabularies, FoD Connect
+    network configuration, MFA codes and DAST evidence surfaces have no counterpart in the published fcli
+    command families the skills document.
+coverage:
+  rest_operations_total: 159
+  rest_operations_bound: 60
+  rest_operations_unbound_documented: 11
+  tool_families: 18
+  mcp_only_families: 5
+  confidence_distribution:
+    high: 12
+    medium: 6
+    low: 0
+  caveat: >-
+    Bound-operation count is the number of distinct operationIds named in crosswalk[].rest, each verified
+    present in the spec. It is a floor, not a measurement of what the live MCP server exposes.

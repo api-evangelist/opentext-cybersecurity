@@ -1,0 +1,114 @@
+generated: '2026-09-13'
+method: searched
+source: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Notifications
+api: opentext-cybersecurity:webroot-unity-api
+asyncapi_published: false
+asyncapi_note: >-
+  No AsyncAPI document is published for this surface, and none was fabricated. The Webroot Unity API does
+  publish a real, documented event catalogue with two delivery mechanisms, captured below as a webhook
+  surface. The Fortify on Demand API has no event or webhook surface at all — its Notifications tag is
+  in-product notification configuration, not an outbound event stream — so nothing is recorded for it.
+name: Webroot Unity API Event Notifications
+description: >-
+  Subscribe to state transitions across Webroot's eCommerce service, endpoint protection product and
+  Global Site Manager console and receive them in near real time. Subscriptions are created through the
+  Notifications.Subscriptions scope, which is not granted by default: it must be enabled on the client
+  credentials from the GSM console (Settings -> API Access, answering Yes to "Do you plan to use the event
+  notification API?") or requested from a Webroot representative.
+scope_required: Notifications.Subscriptions
+additional_scope_required: >-
+  The token must also carry at least one of the event type's Applicable Scopes. Subscribing to several
+  event types in one subscription requires a scope for each.
+delivery_types:
+- id: fetch
+  description: >-
+    Pull model. The consumer maintains a position value and reads from a server-side mailbox store.
+  operation: GET /service/api/notifications/subscriptions/{subscriptionId}/fetch?position={position}
+- id: webhook
+  description: Push model. Notifications are delivered to a consumer-supplied HTTPS endpoint.
+domains:
+- id: GSM
+  required_values:
+  - GSMKey — the GSM parent keycode
+  description: Events for any site on a given GSM console.
+- id: Site
+  required_values:
+  - GSMKey — the GSM parent keycode
+  - SiteKey — the keycode of the GSM site
+  description: Events for a single GSM site.
+domain_note: >-
+  When several event types are combined in one subscription, every chosen type must support the selected
+  domain level.
+events:
+- name: CRSB.AgentRegistration
+  applicable_scopes:
+  - Console.GSM
+  domains:
+  - GSM
+  - Site
+  description: A new CRSB agent is registered.
+- name: CRSB.AgentSettingsChanged
+  applicable_scopes:
+  - Console.GSM
+  domains:
+  - GSM
+  - Site
+  description: Settings are changed for a CRSB agent.
+- name: CRSB.Backup
+  applicable_scopes:
+  - Console.GSM
+  domains:
+  - GSM
+  - Site
+  description: CRSB runs a backup job.
+- name: CRSB.ResourceDeleted
+  applicable_scopes:
+  - Console.GSM
+  domains:
+  - GSM
+  - Site
+  description: A CRSB agent resource is deleted.
+- name: CRSB.Restore
+  applicable_scopes:
+  - Console.GSM
+  domains:
+  - GSM
+  - Site
+  description: CRSB runs a restore job.
+- name: Endpoint.FileDetection
+  applicable_scopes:
+  - Console.GSM
+  - SkyStatus.GSM
+  - SkyStatus.Site
+  domains:
+  - GSM
+  - Site
+  description: The Webroot SecureAnywhere client detects a potentially malicious file.
+- name: WebThreatShield.UrlAction
+  applicable_scopes:
+  - Console.GSM
+  domains:
+  - GSM
+  - Site
+  description: Web Threat Shield acts on a URL.
+event_count: 7
+subscription_body_example: >-
+  {"Domain": {"Type": "Site", "Values": [{"Name": "GSMKey", "Value": "<gsm keycode>"}, {"Name": "SiteKey",
+  "Value": "<site keycode>"}]}, ...}
+naming_note: >-
+  The CRSB.* event prefix is legacy. The 2026-05-07 service build renamed CRSB to OTSB in usage reports and
+  SkyStatus, and to OSBPB in Console site management, but the event type names in this catalogue still read
+  CRSB. Recorded because an agent matching on product name rather than event name will miss these.
+findings:
+- id: no-asyncapi
+  severity: low
+  detail: >-
+    Seven typed events, two delivery mechanisms, two domain levels and a documented subscription body is
+    more than enough material for an AsyncAPI 3.0 document. Publishing one would make this surface
+    machine-consumable; today it is only readable as prose.
+- id: no-published-payload-schemas
+  severity: medium
+  detail: >-
+    The docs describe the subscription request body but do not publish the schema of the notification
+    payload for any of the seven event types, so a consumer cannot generate a handler ahead of receiving a
+    live event.

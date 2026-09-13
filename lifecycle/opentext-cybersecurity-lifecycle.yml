@@ -1,0 +1,123 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  https://status.fortify.com/, https://status.opentext.com/api/v2/summary.json,
+  https://unityapi.webrootcloudav.com/Docs/en/APIDoc/ChangeHistory,
+  https://cybersecurity.opentext.com/legal/service-level-addendum/, the deprecation notices on
+  github.com/fortify, and openapi/opentext-cybersecurity-fortify-on-demand-openapi.json
+versioning:
+  fortify_on_demand:
+    scheme: path version
+    current: v3
+    detail: >-
+      /api/v3/... with the version also baked into every operationId (ApplicationsV3_Get). The product
+      itself ships on a calendar release train (25.2, 26.2, 26.3) separate from the API version.
+  webroot_unity:
+    scheme: service-extension path prefix
+    doc_version: '26.3'
+status_pages:
+- name: Fortify on Demand Status
+  url: https://status.fortify.com/
+  verified: '2026-09-13'
+  http_status: 200
+  granularity: per region and per surface
+  components:
+  - Fortify on Demand Tenant Portal — AMS / EMEA / APAC / FedRAMP / SGP / EU
+  - Fortify on Demand API — AMS / EMEA / APAC / FedRAMP / SGP / EU
+  - Debricked
+  - Fortify Integration
+  - Fortify on Demand — Vulncat
+  - SAST Aviator (ams-sast-aviator, eu-sast-aviator)
+  features:
+  - per-region subscription to automated notifications
+  - published recent history with uptime percentage (99.296% at time of check)
+  - maintenance windows announced in advance
+  note: >-
+    This is the strongest single operational signal on the provider. The API itself is a separately
+    tracked component per region, not folded into a single product light.
+- name: OpenText Status
+  url: https://status.opentext.com/
+  verified: '2026-09-13'
+  http_status: 200
+  platform: Atlassian Statuspage
+  machine_readable:
+    summary: https://status.opentext.com/api/v2/summary.json
+    components: https://status.opentext.com/api/v2/components.json
+    component_count: 295
+  cybersecurity_components:
+  - Webroot by OpenText
+  - Threat Intelligence (BrightCloud)
+  - Core DNS Protection
+  - Core Security Awareness Training (WSAT)
+  - Core Secure Access
+  - Carbonite Backup for Microsoft 365 Portal
+  - Zix Threat Protection — Email Threat Protection / Zix Protect
+  - Zix Encryption Services (EMP, ESM, Hosted SMB, AEE/ZEE, ZixGateway)
+  - Zix Email Continuity
+  - Zix Archive Services
+  - Secure Messaging Portal (ZixPortal)
+  - XM SendSecure
+  - SecureMail Cloud
+  note: >-
+    Statuspage exposes a public v2 JSON API, so the OpenText Cybersecurity component health is itself
+    machine-readable without credentials.
+sla:
+  published: true
+  url: https://cybersecurity.opentext.com/legal/service-level-addendum/
+  verified: '2026-09-13'
+  http_status: 200
+  note: >-
+    Service Level Addendum published as part of the cloud terms. It is a contract document covering the
+    cloud services rather than an API-specific uptime commitment.
+deprecation_policy:
+  published: partial
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  detail: >-
+    No RFC 8594 Sunset or Deprecation header is documented or observed on either surface, and no operation
+    in the Fortify on Demand contract carries the OpenAPI `deprecated: true` flag. What OpenText does
+    practise, consistently and in public, is repository-level deprecation with a named successor: eight
+    GitHub projects (FortifyVulnerabilityExporter, FortifyToolsInstaller, gha-setup-scancentral-client,
+    gha-setup-fod-uploader, gha-setup-bugtracker-utility, gha-export-vulnerabilities,
+    gha-fod-generate-sarif, gha-ssc-generate-sarif) each carry a description of the form "Deprecated;
+    please use <successor>", and two parser plugins are archived with an explicit EOL reason. That is a
+    real, followed deprecation practice on the tooling; it is not yet expressed on the API contract.
+  deprecated_tooling:
+  - name: FortifyVulnerabilityExporter
+    successor: fcli
+  - name: FortifyToolsInstaller
+    successor: fcli tool * install
+  - name: gha-setup-scancentral-client
+    successor: fortify/github-action (Fortify AST Scan)
+  - name: gha-setup-fod-uploader
+    successor: fortify/github-action (Fortify AST Scan)
+  - name: gha-setup-bugtracker-utility
+    successor: fortify/github-action (Fortify AST Scan)
+  - name: gha-export-vulnerabilities
+    successor: fortify/github-action (Fortify AST Scan)
+  - name: gha-fod-generate-sarif
+    successor: fortify/github-action (Fortify AST Scan)
+  - name: gha-ssc-generate-sarif
+    successor: fortify/github-action (Fortify AST Scan)
+  - name: fortify-ssc-parser-symfony-security-checker
+    reason: Symfony Security Checker considered EOL
+    archived: true
+  - name: fortify-ssc-parser-php-security-checker
+    reason: PHP Security Checker considered EOL
+    archived: true
+deprecated_operations: []
+deprecated_operations_note: >-
+  Zero of the 159 Fortify on Demand operations are flagged deprecated in the published contract.
+support:
+  api_support_email: fod-application-support@opentext.com
+  ticketing: https://support.cyberreshelp.com/hc/en-us
+  community: https://community.opentext.com/cybersec/fortify/f/discussions
+  source: https://status.fortify.com/
+findings:
+- id: no-sunset-header
+  severity: low
+  detail: >-
+    OpenText already deprecates tooling responsibly and names successors. Extending the same discipline to
+    the API — an OpenAPI `deprecated: true` flag plus RFC 8594 Sunset/Deprecation headers — would let an
+    agent detect a retirement at call time rather than by reading a repository description.

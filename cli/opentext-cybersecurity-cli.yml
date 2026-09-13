@@ -1,0 +1,85 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  https://github.com/fortify/fcli, https://fortify.github.io/fcli/, the fcli module layout under
+  fcli-core/, and skills/opentext-cybersecurity-fcli-common.md (OpenText's own published skill for it)
+name: fcli
+full_name: Fortify CLI
+official: true
+vendor: OpenText Cybersecurity (Fortify)
+version: v3.25.0
+released: '2026-08-31'
+repository: https://github.com/fortify/fcli
+docs: https://fortify.github.io/fcli/
+releases: https://github.com/fortify/fcli/releases
+license: OpenText proprietary (LICENSE.txt shipped with each release)
+description: >-
+  A single command-line utility covering Fortify on Demand, Software Security Center, ScanCentral SAST,
+  ScanCentral DAST, Debricked and SAST Aviator. It is the primary programmable surface OpenText points
+  customers at — the published Agent Skills are written against fcli commands rather than raw HTTP, and
+  the first-party MCP server is an fcli subcommand.
+install:
+- method: native binary
+  detail: Signed per-platform archives on GitHub Releases — fcli-linux.tgz, fcli-mac.tgz, fcli-windows.zip
+  url: https://github.com/fortify/fcli/releases
+- method: java
+  detail: fcli.jar, for any platform with a JRE
+- method: docker
+  detail: Images built from github.com/fortify/fcli-docker
+- method: self-install
+  detail: fcli tool * install — fcli installs the rest of the Fortify tool chain itself
+- method: npm bootstrap
+  detail: '@fortify/setup (npm) bootstraps and runs the fcli fortify-setup action in any environment'
+signing:
+  detail: >-
+    Every release asset ships with a .sha256 digest and an .rsa_sha256 signature, and the tool-definitions
+    repository publishes the expected hashes and signatures used for verification.
+  tool_definitions: https://github.com/fortify/tool-definitions
+command_groups:
+- name: fod
+  description: Fortify on Demand — sessions, applications, releases, scans (SAST/DAST/mobile/OSS), issues, reports, users, tokens, entitlements.
+  backing_api: opentext-cybersecurity:fortify-on-demand-api
+- name: ssc
+  description: Software Security Center — application versions, artifacts, issue triage, tokens, reports.
+- name: sc-sast
+  description: ScanCentral SAST — scan submission and status.
+- name: sc-dast
+  description: ScanCentral DAST — scan submission and status.
+- name: aviator
+  description: SAST Aviator — AI audit and remediation. Talks to the Aviator backend over gRPC (see grpc/).
+- name: ai-assist
+  description: >-
+    AI assistant integrations. Two sub-surfaces — `extensions` installs the published Agent Skills, agents
+    and plugins into Claude Code, GitHub Copilot, Codex or Gemini CLI, and `mcp` starts the fcli MCP server
+    (start-stdio, start-http, create-http-config).
+- name: tool
+  description: Install, list and manage Fortify tools and their pinned definitions.
+- name: license
+  description: License and NCD reporting.
+- name: action
+  description: Custom action framework — YAML-defined actions with a documented SpEL expression language.
+- name: config
+  description: Proxy, trust store and general configuration.
+- name: util
+  description: Utilities, including the deprecated mcp-server container command.
+key_flows:
+- name: session-based auth
+  detail: >-
+    `fcli fod session login` / `fcli ssc session login` establish a named session so URLs and credentials
+    are not repeated per invocation. MFA is supported via --code / --totp as of 3.24.0.
+- name: rich output
+  detail: JSON, CSV, XML, plain text and table output, with SpEL `--query` filtering and fcli variables for chaining commands.
+- name: custom actions
+  detail: >-
+    Action YAML files define reusable multi-step workflows; exported action functions can be registered as
+    MCP tools or resources, which is how the MCP server surface is extended.
+- name: mutating-operation safety
+  detail: >-
+    OpenText's own fcli-common skill ships a dedicated references/mutating-operations.md guardrail file
+    telling agents which commands change state. Recorded here because it is the closest thing to a
+    write-safety contract this provider publishes, and it lives in the CLI rather than in the API.
+related:
+  mcp: mcp/opentext-cybersecurity-mcp.yml
+  skills: skills/_index.yml
+  packages: packages/opentext-cybersecurity-packages.yml
+  changelog: changelog/opentext-cybersecurity-changelog.yml

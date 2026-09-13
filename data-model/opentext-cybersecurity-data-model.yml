@@ -1,0 +1,225 @@
+generated: '2026-09-13'
+method: derived
+source: openapi/opentext-cybersecurity-fortify-on-demand-openapi.json — 238 definitions, $ref graph plus
+  <entity>Id reference fields
+api: opentext-cybersecurity:fortify-on-demand-api
+note: The Fortify on Demand data model is a strict four-level containment hierarchy — Tenant owns Applications,
+  an Application owns Releases, a Release owns Scans, and a Scan produces Vulnerabilities and OpenSourceComponents
+  — wrapped in a large lookup vocabulary. Identifiers are integers rather than prefixed strings, so there
+  is no id-prefix scheme an agent can use to tell an applicationId from a releaseId at a glance; almost
+  every 404 on this API is a correct-looking integer pointed at the wrong resource. Relationships below
+  were computed from <entity>Id fields on the definitions, not assumed.
+id_scheme:
+  style: integer
+  prefixed: false
+  risk: An integer id carries no type. applicationId, releaseId, scanId, vulnId and entitlementId are
+    all int32 and mutually substitutable without error until the server rejects them.
+definition_count: 238
+entities:
+- name: Tenant
+  description: The customer account. Owns entitlements, assessment types and the portfolio heat map.
+  operations_tag: Tenants / TenantEntitlements / TenantSummary / TenantHeatMaps
+- name: Application
+  description: A software application under assessment. May be a microservice-style application with child
+    microservices.
+  operations_tag: Applications
+  operations: 22
+- name: Release
+  description: A version/branch of an application. The unit scans and vulnerabilities attach to.
+  operations_tag: Releases
+  operations: 18
+- name: Microservice
+  description: A named component of a microservice application; each has its own releases.
+  operations_tag: Applications
+- name: Scan
+  description: One assessment run. Subtyped as static, dynamic, mobile, open-source or DAST-automated,
+    each with its own start operation and entitlement consumption.
+  operations_tag: Scans / StaticScans / DynamicScans / MobileScans / OpenSourceScans / DastAutomatedScans
+  operations: 36
+- name: Vulnerability
+  description: A finding on a release, carrying severity, analysis status and audit state.
+  operations_tag: Vulnerabilities
+  operations: 20
+- name: OpenSourceComponent
+  description: A third-party component detected on a release, with its CVE/GHSA advisories.
+  operations_tag: OpenSourceComponents
+- name: Report
+  description: A generated report, produced asynchronously and downloaded once ready.
+  operations_tag: Reports
+  operations: 10
+- name: Entitlement
+  description: Purchased assessment capacity. Consumed by starting a scan; the commercial unit of the
+    platform.
+  operations_tag: TenantEntitlements
+- name: AuditTemplate
+  description: Reusable audit rules applied to vulnerabilities of a given scan type and severity.
+  operations_tag: AuditTemplate
+- name: Attribute
+  description: Tenant-defined custom metadata attached to applications and releases.
+  operations_tag: Attributes
+- name: User
+  description: A tenant user.
+  operations_tag: Users / UserManagement
+  operations: 11
+- name: UserGroup
+  description: A group of users; application access is granted to users and to groups.
+  operations_tag: UserManagement / UserGroupApplicationAccess
+- name: ApiKey
+  description: Tenant API credential used to obtain OAuth tokens.
+  operations_tag: ApiKeyManagement
+  operations: 9
+- name: PersonalAccessToken
+  description: Per-user bearer credential with attached scopes.
+  operations_tag: PersonalAccessTokens
+  operations: 6
+- name: Notification
+  description: Notification configuration bound to a trigger type and message.
+  operations_tag: Notifications
+relationships:
+- from: ApiKey
+  to: Application
+  type: belongs_to
+  via: applicationId
+- from: Application
+  to: User
+  type: belongs_to
+  via: userId
+- from: Application
+  to: UserGroup
+  type: belongs_to
+  via: userGroupId
+- from: AuditTemplate
+  to: Application
+  type: belongs_to
+  via: applicationId
+- from: Microservice
+  to: Release
+  type: belongs_to
+  via: releaseId
+- from: OpenSourceComponent
+  to: Application
+  type: belongs_to
+  via: applicationId
+- from: OpenSourceComponent
+  to: Release
+  type: belongs_to
+  via: releaseId
+- from: PersonalAccessToken
+  to: User
+  type: belongs_to
+  via: userId
+- from: Release
+  to: Application
+  type: belongs_to
+  via: applicationId
+- from: Release
+  to: CurrentDynamicScan
+  type: belongs_to
+  via: currentDynamicScanId
+- from: Release
+  to: CurrentMobileScan
+  type: belongs_to
+  via: currentMobileScanId
+- from: Release
+  to: CurrentStaticScan
+  type: belongs_to
+  via: currentStaticScanId
+- from: Release
+  to: Entitlement
+  type: belongs_to
+  via: entitlementId
+- from: Release
+  to: Microservice
+  type: belongs_to
+  via: microserviceId
+- from: Report
+  to: Application
+  type: belongs_to
+  via: applicationId
+- from: Report
+  to: Release
+  type: belongs_to
+  via: releaseId
+- from: Report
+  to: User
+  type: belongs_to
+  via: userId
+- from: Scan
+  to: Application
+  type: belongs_to
+  via: applicationId
+- from: Scan
+  to: Entitlement
+  type: belongs_to
+  via: entitlementId
+- from: Scan
+  to: Release
+  type: belongs_to
+  via: releaseId
+- from: Tenant
+  to: Entitlement
+  type: belongs_to
+  via: entitlementId
+- from: User
+  to: Application
+  type: belongs_to
+  via: applicationId
+- from: User
+  to: UserGroup
+  type: belongs_to
+  via: userGroupId
+- from: Vulnerability
+  to: Release
+  type: belongs_to
+  via: releaseId
+- from: Vulnerability
+  to: Scan
+  type: belongs_to
+  via: scanId
+lookup_vocabularies:
+  note: Targets below are enumerations and reference tables rather than first-class resources. Most are
+    read through LookupItemsV3_GetLookupItems rather than having their own endpoints.
+  entities:
+  - AnalysisStatusType
+  - ApplicationType
+  - AssessmentType
+  - AttributeDataType
+  - AttributeType
+  - BugTrackerType
+  - BusinessCriticality
+  - BusinessCriticalityType
+  - Check
+  - CurrentAnalysisStatusType
+  - DynamicAnalysisStatusType
+  - Email
+  - File
+  - FrequencyType
+  - Instance
+  - Message
+  - MobileAnalysisStatusType
+  - Owner
+  - ParentAssessmentType
+  - ParentAssessmentTypeScanType
+  - PassFailReasonType
+  - ReportStatusType
+  - ReportType
+  - Role
+  - Rule
+  - ScanMethodType
+  - ScanPolicyType
+  - ScanType
+  - SdlcStatusType
+  - Severity
+  - StartedByUser
+  - StaticAnalysisStatusType
+  - TriggerType
+  - Vuln
+containment:
+- Tenant -> Application (has_many)
+- Application -> Microservice (has_many)
+- Application -> Release (has_many)
+- Microservice -> Release (has_many)
+- Release -> Scan (has_many)
+- Release -> Vulnerability (has_many)
+- Release -> OpenSourceComponent (has_many)
+- Scan -> Vulnerability (has_many, via the release the scan belongs to)

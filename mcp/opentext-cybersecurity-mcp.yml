@@ -1,0 +1,59 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  https://github.com/fortify/fcli (fcli-core/fcli-ai-assist/src/main/java/com/fortify/cli/ai_assist/mcp/cli/cmd/
+  and fcli-core/fcli-ai-assist/src/main/resources/com/fortify/cli/ai_assist/i18n/AiAssistMessages.properties),
+  the fcli CHANGELOG, and the OpenText Community announcement
+  https://community.opentext.com/cybersec/b/cybersecurity-blog/posts/fortify-cli-3-9-0-your-appsec-tools-meet-ai-agents
+name: fcli MCP server (OpenText Fortify)
+status: published
+vendor: OpenText Cybersecurity (Fortify)
+deployment:
+  mode: local-stdio
+  install: fcli ai-assist mcp start-stdio --module <fod|ssc|...>
+  package: https://github.com/fortify/fcli/releases
+  auth: api-key
+  verified: searched
+notes: >-
+  OpenText ships the MCP server INSIDE the Fortify CLI rather than as a hosted endpoint. There is no
+  vendor-operated remote MCP URL an agent can POST to: the operator installs fcli, authenticates an
+  fcli session against their own Fortify on Demand tenant or Software Security Center instance, and
+  then starts the server locally. fcli also carries `fcli ai-assist mcp start-http` and
+  `create-http-config`, but that HTTP listener is still started by the operator on their own machine,
+  so the deployment mode remains local-stdio rather than remote or both. The MCP server functionality
+  was introduced in fcli 3.9.0 and carries a preview designation.
+authentication:
+  model: fcli session
+  detail: >-
+    The MCP server inherits whatever fcli session is active. For Fortify on Demand that is an OAuth 2.0
+    client-credentials token or a personal access token scoped per the scopes/ artifact; for Software
+    Security Center it is a token issued by the customer's own SSC instance.
+modules:
+  note: >-
+    Tools are generated from fcli command modules rather than hand-written, so the exposed tool set is
+    the command surface of the selected --module. The modules the functional tests exercise over MCP
+    are fod and ssc.
+  exposed:
+  - id: fod
+    description: Fortify on Demand — applications, releases, scans, issues, reports, users, tokens.
+    backing_contract: openapi/opentext-cybersecurity-fortify-on-demand-openapi.json
+  - id: ssc
+    description: >-
+      Software Security Center — application versions, artifacts, scan jobs, issue triage. Customer-hosted;
+      no public OpenAPI is published for SSC, its REST reference ships with each SSC deployment at
+      /ssc/html/docs/api-reference.
+    backing_contract: null
+capabilities:
+  tools: true
+  resources: true
+  resource_templates: true
+  long_running_jobs: true
+  streaming: true
+related:
+  agent_skills: https://github.com/fortify/skills
+  skills_note: >-
+    OpenText's own guidance in the fcli help text recommends the published Agent Skills over the MCP
+    server for better user experience and lower token usage. Both are first-party.
+  third_party_servers:
+  - url: https://github.com/schwarztim/fortify-mcp
+    note: Community MCP server for Fortify SSC. NOT operated or endorsed by OpenText; recorded only to avoid confusing it with the first-party one.

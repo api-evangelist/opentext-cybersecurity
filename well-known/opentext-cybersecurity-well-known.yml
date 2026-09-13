@@ -1,0 +1,332 @@
+generated: '2026-09-13'
+method: probed
+source: live HTTPS probes on 2026-09-13
+note: >-
+  Every named path was probed on every host this record knows: the registrable domain and www, each API
+  baseURL host, every regional OpenAPI servers[] host, the docs host and the status host. NOTHING was
+  found. No WellKnown, APICatalog or SecurityTxt pointer is emitted in apis.yml, because none of these
+  hosts serves one of these documents — recording the probe is the point, not manufacturing a claim.
+  Two hosts answer 200 to every /.well-known/* path with an HTML single-page-app or bot-interstitial
+  body. Those are catch-alls, not documents, and are marked so below.
+hosts:
+- host: opentext.com
+  note: Apex serves an HTTP 500 error page for every /.well-known/* path.
+  documents:
+  - path: /.well-known/security.txt
+    status: 500
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 500
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 500
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 500
+    file: null
+  - path: /.well-known/api-catalog
+    status: 500
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 500
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 500
+    file: null
+  - path: /.well-known/agent.json
+    status: 500
+    file: null
+- host: www.opentext.com
+  note: >-
+    Returns HTTP 444 with a 100-byte "Access Denied" body to every request, including from a browser
+    User-Agent. This is an edge bot policy, not a missing document — the host is unreadable to us, not
+    proven empty.
+  documents:
+  - path: /.well-known/security.txt
+    status: 444
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 444
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 444
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 444
+    file: null
+  - path: /.well-known/api-catalog
+    status: 444
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 444
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 444
+    file: null
+  - path: /.well-known/agent.json
+    status: 444
+    file: null
+- host: cybersecurity.opentext.com
+  note: Next.js site; clean 404 with an error page on every path.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: api.ams.fortify.com
+  note: >-
+    API baseURL host. Returns a JSON 404 {"Errors":[...]} for the OAuth/catalog paths and an IIS HTML 404
+    for the rest. No discovery document is served even though this host runs the OAuth token endpoint.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: api.emea.fortify.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: api.apac.fortify.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: unityapi.webrootcloudav.com
+  note: API baseURL and docs host for the Webroot Unity API. IIS HTML 404 on every path.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: community.opentext.com
+  note: >-
+    FALSE POSITIVE WARNING. Four paths return HTTP 200 with an 868-980 byte HTML bot-interstitial body, not
+    a document. Treated as a miss.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    content_type: text/html
+    verdict: html-interstitial-not-a-document
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    content_type: text/html
+    verdict: html-interstitial-not-a-document
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    content_type: text/html
+    verdict: html-interstitial-not-a-document
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    content_type: text/html
+    verdict: html-interstitial-not-a-document
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: marketplace.opentext.com
+  note: >-
+    FALSE POSITIVE WARNING. Every path returns HTTP 200 with a ~695KB HTML single-page-app shell. This is
+    the dominant false positive the pipeline warns about; all eight are misses.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    content_type: text/html
+    verdict: spa-shell-not-a-document
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    content_type: text/html
+    verdict: spa-shell-not-a-document
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    content_type: text/html
+    verdict: spa-shell-not-a-document
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    content_type: text/html
+    verdict: spa-shell-not-a-document
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    content_type: text/html
+    verdict: spa-shell-not-a-document
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    content_type: text/html
+    verdict: spa-shell-not-a-document
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    content_type: text/html
+    verdict: spa-shell-not-a-document
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    content_type: text/html
+    verdict: spa-shell-not-a-document
+- host: status.fortify.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+summary:
+  hosts_probed: 10
+  paths_per_host: 8
+  real_documents_found: 0
+  agent_card_found: false
+  security_txt_found: false
+  api_catalog_found: false
+  false_positive_200s: 12
+findings:
+- id: no-security-txt-at-a-security-vendor
+  severity: high
+  detail: >-
+    OpenText Cybersecurity sells vulnerability management and serves no /.well-known/security.txt on any
+    of its ten hosts, including the API hosts. RFC 9116 is a four-line file and it is the single cheapest
+    pointer this provider is missing.
+- id: oauth-metadata-absent-on-a-host-that-runs-oauth
+  severity: medium
+  detail: >-
+    api.ams.fortify.com serves a working OAuth 2.0 token endpoint at /oauth/token but returns 404 for
+    /.well-known/oauth-authorization-server, so a client cannot discover the token endpoint, the supported
+    grants or the scope vocabulary without reading prose.

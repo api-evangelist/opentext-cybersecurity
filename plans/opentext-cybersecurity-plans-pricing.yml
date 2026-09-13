@@ -1,0 +1,36 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  https://cybersecurity.opentext.com/ (no pricing page exists; the site routes every buying path to
+  https://cybersecurity.opentext.com/contact-us/), https://marketplace.opentext.com/cybersecurity, and
+  https://aws.amazon.com/marketplace/pp/prodview-mmgtuyay3hhmk
+plan_count: 0
+note: >-
+  OpenText Cybersecurity publishes no public price list and no self-serve plan tiers for either API-bearing
+  product. There is no /pricing page on cybersecurity.opentext.com (probed 2026-09-13, HTTP 404) and every
+  product page ends in a contact-sales or find-a-partner call to action. Fortify on Demand is sold on
+  assessment entitlements through OpenText sales, an OpenText partner, or the AWS Marketplace private-offer
+  path; the Webroot Unity API carries no separate charge but requires credentials issued by a Webroot
+  representative or created inside an existing Global Site Manager console subscription. API access is
+  therefore a feature of a negotiated contract rather than a purchasable tier, and the honest record is
+  zero published plans rather than an omitted file.
+plans: []
+commercial_units:
+- name: Fortify on Demand assessment entitlements
+  detail: >-
+    The contract exposes TenantEntitlementsV3 operations and scan-start calls take an entitlementId and an
+    assessmentTypeId, so the billing unit is a purchased assessment entitlement consumed per scan. The
+    quantity and price of an entitlement are not published.
+  evidence: openapi/opentext-cybersecurity-fortify-on-demand-openapi.json — TenantEntitlementsV3_GetEntitlements
+- name: Webroot Secure Cloud seats and site keycodes
+  detail: >-
+    Unity API access is scoped by GSM keycode and site keycode; the ECom.Shop scope exposes license creation
+    and license-order retrieval to distribution partners, which is the commercial surface.
+  evidence: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide
+evidence:
+- url: https://cybersecurity.opentext.com/pricing
+  status: 404
+- url: https://cybersecurity.opentext.com/contact-us/
+  status: 200
+- url: https://marketplace.opentext.com/cybersecurity
+  status: 200

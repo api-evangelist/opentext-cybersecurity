@@ -1,20 +1,202 @@
 aid: opentext-cybersecurity
 name: OpenText Cybersecurity
-description: 'OpenText Cybersecurity is a company surfaced via the API Evangelist harvest backlog (source:
-  absent-parent) and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  OpenText Cybersecurity is the security business of OpenText, assembled from the Micro Focus security
+  portfolio (Fortify application security, ArcSight threat detection and response, NetIQ identity and
+  access management, Voltage data privacy) and the SMB/MSP brands OpenText acquired through Webroot,
+  Carbonite and Zix — endpoint protection, DNS protection, EDR/MDR, email threat protection and
+  encryption, security awareness training, backup and disaster recovery. Two product lines expose a
+  public developer surface. OpenText Core Application Security (Fortify on Demand) publishes a live
+  Swagger 2.0 contract with 159 operations across applications, releases, static/dynamic/mobile scans,
+  vulnerabilities, reports and tenant administration, served per region from api.ams / api.emea /
+  api.apac.fortify.com. The Webroot Unity API is the multi-tenant REST platform managed service
+  providers use to run Secure Cloud sites, endpoints, policies, licensing and near-real-time event
+  notifications. Fortify also ships a first-party CLI (fcli), a first-party MCP server inside that CLI,
+  and a published set of Agent Skills for Claude Code, GitHub Copilot, Codex and Gemini CLI.
+image: https://cari01mstrop62eprod.dxcloud.episerver.net/globalassets/smb-media/images/banners/csot-homepage-hero-2.webp
 url: https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:absent-parent
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-09-13'
 modified: '2026-09-13'
+position: Producing
 tags:
-- Company
-apis: []
+- Cybersecurity
+- Application Security
+- Vulnerability Management
+- SAST
+- DAST
+- Endpoint Security
+- Threat Detection
+- Email Security
+- Backup and Recovery
+- Managed Service Providers
+- Identity and Access
+- Data Privacy
+- Enterprise Software
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: opentext-cybersecurity:fortify-on-demand-api
+  name: OpenText Core Application Security (Fortify on Demand) API
+  description: >-
+    The REST API behind OpenText Core Application Security, still branded Fortify on Demand across the
+    contract and the tooling. 159 operations over 125 paths cover applications, releases, static,
+    dynamic, mobile and open-source scans, vulnerability audit and triage, reports, API keys, personal
+    access tokens, users and tenant entitlements. The spec is served live and unauthenticated from
+    every regional API host and every operation declares its required OAuth scope in its description.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Application Security
+  - SAST
+  - DAST
+  - Software Composition Analysis
+  - Vulnerability Management
+  properties:
+  - url: openapi/opentext-cybersecurity-fortify-on-demand-openapi.json
+    type: OpenAPI
+  - url: overlays/opentext-cybersecurity-fortify-on-demand-overlay.yaml
+    type: Overlay
+  - url: https://api.ams.fortify.com/swagger/ui/index
+    type: APIReference
+  - url: https://community.opentext.com/cybersec/fortify/productdocs
+    type: Documentation
+  - url: https://community.opentext.com/cybersec/fortify
+    type: DeveloperPortal
+  - url: https://status.fortify.com/
+    type: StatusPage
+- aid: opentext-cybersecurity:webroot-unity-api
+  name: Webroot Unity API
+  description: >-
+    The Webroot Unity API is the multi-tenant REST platform OpenText Cybersecurity partners and managed
+    service providers use to reach Webroot and Secure Cloud services — endpoint status, Global Site
+    Manager console site/user/policy/endpoint/group management, DNS Protection, Web Threat Shield,
+    security awareness training reporting, usage reporting, eCommerce licensing, and Secure Cloud
+    customers and usage. It also carries a documented event-notification surface with fetch and webhook
+    delivery. Access is OAuth 2.0 and credentials must be issued by a Webroot representative or enabled
+    from a GSM console, so no machine-readable contract is published anonymously.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Endpoint Security
+  - DNS Protection
+  - Managed Service Providers
+  - Licensing
+  - Webhooks
+  properties:
+  - url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/APIReference
+    type: APIReference
+  - url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+    type: Documentation
+  - url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/GettingStarted
+    type: GettingStarted
+  - url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/ChangeHistory
+    type: ChangeLog
+  - url: asyncapi/opentext-cybersecurity-webroot-unity-webhooks.yml
+    type: Webhooks
+common:
+- type: DomainSecurity
+  url: security/opentext-cybersecurity-domain-security.yml
+- url: https://cybersecurity.opentext.com/
+  type: Website
+- url: https://community.opentext.com/cybersec/fortify
+  type: DeveloperPortal
+- url: https://community.opentext.com/cybersec/fortify/productdocs
+  type: Documentation
+- url: https://api.ams.fortify.com/swagger/ui/index
+  type: APIReference
+- url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/GettingStarted
+  type: GettingStarted
+- url: https://cybersecurity.opentext.com/support/
+  type: Support
+- url: https://community.opentext.com/cybersec/fortify/f/discussions
+  type: Community
+- url: https://cybersecurity.opentext.com/blog/
+  type: Blog
+- url: https://github.com/fortify
+  type: GitHubOrganization
+- url: https://status.fortify.com/
+  type: StatusPage
+- url: https://status.opentext.com/
+  type: StatusPage
+- url: https://cybersecurity.opentext.com/account-login/
+  type: SignUp
+- url: https://my.webrootanywhere.com/
+  type: Login
+- url: https://cybersecurity.opentext.com/legal/sdk-and-api-agreement/
+  type: TermsOfService
+- url: https://www.opentext.com/about/privacy
+  type: PrivacyPolicy
+- url: https://cybersecurity.opentext.com/contact-us/
+  type: Pricing
+- url: llms/opentext-cybersecurity-llms.txt
+  type: LLMsTxt
+- url: packages/opentext-cybersecurity-packages.yml
+  type: Packages
+- url: packages/opentext-cybersecurity-packages.yml
+  type: SDKs
+- url: cli/opentext-cybersecurity-cli.yml
+  type: CLI
+- url: mcp/opentext-cybersecurity-mcp.yml
+  type: MCPServer
+- url: mcp/opentext-cybersecurity-tool-crosswalk.yml
+  type: ToolCrosswalk
+- url: skills/_index.yml
+  type: AgentSkill
+- url: authentication/opentext-cybersecurity-authentication.yml
+  type: Authentication
+- url: scopes/opentext-cybersecurity-scopes.yml
+  type: OAuthScopes
+- url: conventions/opentext-cybersecurity-conventions.yml
+  type: Conventions
+- url: errors/opentext-cybersecurity-problem-types.yml
+  type: ErrorCatalog
+- url: lifecycle/opentext-cybersecurity-lifecycle.yml
+  type: Lifecycle
+- url: lifecycle/opentext-cybersecurity-lifecycle.yml
+  type: Deprecation
+- url: data-model/opentext-cybersecurity-data-model.yml
+  type: DataModel
+- url: rate-limits/opentext-cybersecurity-rate-limits.yml
+  type: RateLimits
+- url: plans/opentext-cybersecurity-plans-pricing.yml
+  type: Plans
+- url: changelog/opentext-cybersecurity-changelog.yml
+  type: ChangeLog
+- url: conformance/opentext-cybersecurity-conformance.yml
+  type: Conformance
+- url: conformance/opentext-cybersecurity-conformance.yml
+  type: Compliance
+- url: asyncapi/opentext-cybersecurity-webroot-unity-webhooks.yml
+  type: Webhooks
+- url: grpc/opentext-cybersecurity-aviator-issue.proto
+  type: Protobuf
+- url: grpc/opentext-cybersecurity-aviator-correlation.proto
+  type: Protobuf
+- url: grpc/opentext-cybersecurity-aviator-application.proto
+  type: Protobuf
+- url: grpc/opentext-cybersecurity-aviator-entitlement.proto
+  type: Protobuf
+- url: grpc/opentext-cybersecurity-aviator-dast-entitlement.proto
+  type: Protobuf
+- url: grpc/opentext-cybersecurity-aviator-accesstoken.proto
+  type: Protobuf
+
+x-enrichment:
+  date: '2026-09-13'
+  status: enriched
+  artifacts_added: 40
+  pass: local-v3
+x-coverage:
+  state: covered
+  reason: null
+  detail: >-
+    Live first-party contract found and saved: a Swagger 2.0 document with 159 operations served
+    unauthenticated from every Fortify on Demand regional API host, plus six first-party Aviator .proto
+    service definitions, a provider-published llms.txt, and a provider-published Agent Skills package.
+  checked: '2026-09-13'

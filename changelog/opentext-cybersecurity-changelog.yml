@@ -1,0 +1,144 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  https://unityapi.webrootcloudav.com/Docs/en/APIDoc/ChangeHistory,
+  https://github.com/fortify/fcli/blob/main/CHANGELOG.md,
+  https://github.com/fortify/skills/blob/main/CHANGELOG.md, and
+  https://community.opentext.com/cybersec/fortify/w/tips
+note: >-
+  There is no single OpenText Cybersecurity changelog. Three separate dated streams exist and each is
+  first-party. The Webroot Unity API publishes a versioned service-build history on its own docs host,
+  which is the only changelog attached directly to an API contract. Fortify publishes machine-generated
+  release-please changelogs for its tooling. Fortify on Demand product releases are announced as
+  Community "tips" articles rather than as a changelog feed, which is why no dated entries for the
+  Fortify on Demand API itself are recorded below — an honest gap, not an omission.
+streams:
+- name: Webroot Unity API service builds
+  url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/ChangeHistory
+  scheme: 1.0.<yyddd>.<build>
+  current_version: 1.0.26236.1
+  covers: opentext-cybersecurity:webroot-unity-api
+  cadence: roughly monthly, labelled either Maintenance Update or Feature Update
+  entries:
+  - version: 1.0.26236.1
+    date: '2026-08-26'
+    type: maintenance
+    breaking: false
+    highlights:
+    - Miscellaneous service improvements
+  - version: 1.0.26184.3
+    date: '2026-07-06'
+    type: maintenance
+    breaking: false
+    highlights:
+    - Miscellaneous service improvements
+  - version: 1.0.26169.2
+    date: '2026-07-02'
+    type: feature
+    breaking: false
+    highlights:
+    - Console GSM site management supports the new Managed Detection and Response Complete (OTMDRC) product during site creation and editing
+    - MDR Complete license category introduced in the ECom documentation
+    - Detection and Response usage report methods extended to cover MDR Complete
+  - version: 1.0.26149.1
+    date: '2026-06-15'
+    type: maintenance
+    breaking: false
+  - version: 1.0.26134.1
+    date: '2026-05-19'
+    type: maintenance
+    breaking: false
+  - version: 1.0.26118.2
+    date: '2026-05-07'
+    type: feature
+    breaking: false
+    highlights:
+    - OSBPH (OpenText Server Backup — Public Cloud, OpenText Hosted Cloud) license category introduced in ECom
+    - OSBPH enabled as a module type in Console GSM site management
+    - CRSB module renamed to OSBPB in Console site management
+    - CRSB renamed to OTSB in usage reports and SkyStatus
+    - Schema updates to GSM, site and endpoint response models for additional OTSB usage detail
+    note: >-
+      The CRSB -> OTSB and CRSB -> OSBPB renames are the closest thing to a breaking change in the recent
+      window. The change history does not label them breaking and does not state a compatibility window.
+  - version: 1.0.26063.1
+    date: '2026-04-14'
+    type: maintenance
+    breaking: false
+  - version: 1.0.26034.3
+    date: '2026-02-04'
+    type: maintenance
+    breaking: false
+  - version: 1.0.25349.1
+    date: '2025-12-18'
+    type: maintenance
+    breaking: false
+  - version: 1.0.25335.2
+    date: '2025-12-02'
+    type: feature
+    breaking: false
+    highlights:
+    - CALLY (CloudAlly) license category included in ECom documentation
+    - New API actions added to the SkyStatus.Reporting scope for CloudAlly usage reports
+- name: Fortify CLI (fcli)
+  url: https://github.com/fortify/fcli/blob/main/CHANGELOG.md
+  scheme: semver
+  current_version: 3.25.0
+  current_released: '2026-08-31'
+  generator: release-please
+  covers: cli/opentext-cybersecurity-cli.yml, mcp/opentext-cybersecurity-mcp.yml
+  entries:
+  - version: 3.25.0
+    date: '2026-08-31'
+    breaking: false
+    highlights:
+    - 'fcli aviator ssc audit: --force-reaudit to re-audit Aviator-processed issues without overwriting human triage'
+  - version: 3.24.0
+    date: '2026-08-21'
+    breaking: false
+    highlights:
+    - 'fcli ai-assist mcp start-stdio: --server-name option for a custom MCP server name'
+    - 'fcli fod issue get and fcli ssc issue get: new single-issue retrieval commands'
+    - 'fcli fod session login: --code and --totp for MFA-based logins'
+  - version: 3.23.3
+    date: '2026-07-15'
+    breaking: false
+  - version: 3.23.2
+    date: '2026-07-13'
+    breaking: false
+  - version: 3.23.1
+    date: '2026-07-13'
+    breaking: false
+    highlights:
+    - 'fcli aviator: proxy settings now applied on gRPC calls to the Aviator backend'
+- name: OpenText Fortify Agent Skills
+  url: https://github.com/fortify/skills/blob/main/CHANGELOG.md
+  scheme: semver
+  current_version: 1.3.0
+  current_released: '2026-07-31'
+  generator: release-please
+  covers: skills/_index.yml
+  entries:
+  - version: 1.3.0
+    date: '2026-07-31'
+    breaking: false
+    highlights:
+    - Added the fortify-exploitability-analysis agent
+    - Bumped tested fcli version to 3.23
+    - Improved guardrails within skills
+  - version: 1.2.0
+    date: '2026-06-29'
+    breaking: false
+    highlights:
+    - Added fortify-change-review and fortify-dependency-upgrade skills
+    - Scoped fortify-remediate to SAST/DAST, delegating SCA to fortify-dependency-upgrade
+  - version: 1.1.1
+    date: '2026-05-21'
+    breaking: false
+- name: Fortify product content and release notes
+  url: https://community.opentext.com/cybersec/fortify/w/tips
+  scheme: calendar (26.2, 26.3)
+  cadence: per product release
+  note: >-
+    Announced as Community wiki articles. Not a machine-readable feed and not attached to the API contract,
+    so no structured entries are recorded.

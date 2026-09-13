@@ -1,0 +1,161 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  openapi/opentext-cybersecurity-fortify-on-demand-openapi.json, live probes of
+  https://api.ams.fortify.com/oauth/token and https://unityapi.webrootcloudav.com on 2026-09-13,
+  https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide,
+  https://www.fedramp.gov/marketplace/products/F1301101857/, and
+  https://community.opentext.com/cybersec/b/cybersecurity-blog/posts/fortify-s-fedramp-certification-unlocking-trust-and-efficiency-for-the-public-sector
+note: >-
+  This is a security vendor, so the temptation to over-credit compliance is high. Only two classes are
+  recorded below: protocol conformance this pipeline could verify against the contract or a live response,
+  and certifications published on a named, citable third-party register. OpenText corporate attestations
+  that could not be read without a sales gate are recorded as unverified rather than asserted.
+conformance:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    POST https://api.ams.fortify.com/oauth/token with grant_type=client_credentials returned the RFC 6749
+    error object {"error":"invalid_grant","error_description":"Scope is required"} on 2026-09-13. The
+    Webroot Unity API documents password, authorization-code and token-exchange grants with refresh-token
+    rotation at https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide.
+- id: rfc6750
+  name: OAuth 2.0 Bearer Token Usage
+  conforms: true
+  evidence: >-
+    Both surfaces carry the token in an Authorization: Bearer header. Webroot Unity returns
+    error="invalid_token" on 401 and error="insufficient_scope" on 403, the RFC 6750 error codes; that
+    invalid_token body was observed live at
+    https://unityapi.webrootcloudav.com/service/api/console/gsm/swagger on 2026-09-13.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every OpenText Cybersecurity host probed on 2026-09-13.
+- id: rfc9457
+  name: Problem Details for HTTP APIs
+  conforms: false
+  evidence: >-
+    No application/problem+json anywhere in the Fortify on Demand contract; both surfaces use a proprietary
+    JSON error envelope. See errors/opentext-cybersecurity-problem-types.yml.
+- id: rfc8594
+  name: Sunset HTTP Header
+  conforms: false
+  evidence: No Sunset or Deprecation header documented or observed. See lifecycle/opentext-cybersecurity-lifecycle.yml.
+- id: idempotency
+  conforms: false
+  evidence: >-
+    Zero occurrences of Idempotency, If-Match or ETag in the published contract across 71 mutating
+    operations. See conventions/opentext-cybersecurity-conventions.yml.
+- id: pagination
+  conforms: true
+  style: offset-limit
+  evidence: >-
+    32 operations accept offset and 22 accept limit, with a documented ceiling of 50 records per page, in
+    openapi/opentext-cybersecurity-fortify-on-demand-openapi.json.
+- id: openapi
+  conforms: partial
+  evidence: >-
+    A valid Swagger 2.0 document is served live and unauthenticated at
+    https://api.ams.fortify.com/swagger/docs/v3 with 159 operations, 100% operationId coverage and 100%
+    summary coverage. It is Swagger 2.0 rather than OpenAPI 3.x, and it declares no securityDefinitions,
+    so it is partial rather than full.
+- id: grpc
+  conforms: true
+  evidence: >-
+    Six proto3 service definitions published first-party at
+    github.com/fortify/fcli/tree/main/fcli-core/fcli-aviator-common/src/main/proto, saved to grpc/.
+- id: scim
+  conforms: false
+  evidence: >-
+    No urn:ietf:params:scim:schemas:* URN appears in the contract. User and group provisioning is a
+    proprietary surface (UserManagementV3, UserGroupApplicationAccessV3).
+- id: odata
+  conforms: false
+  evidence: No $metadata surface and no OData query grammar; filtering uses a proprietary `filters` string.
+domain_standards:
+- id: sarif
+  name: OASIS SARIF (Static Analysis Results Interchange Format)
+  conforms: true
+  evidence: >-
+    SARIF is a first-class ingest and export format across the Fortify tool chain — fortify/fortify-ssc-parser-sarif
+    is a published SSC parser plugin for SARIF input, and the Fortify AST Scan GitHub Action emits SARIF to
+    GitHub code scanning. This is the interchange standard of the application-security market and Fortify
+    speaks it natively rather than requiring a bespoke connector.
+  artifacts:
+  - https://github.com/fortify/fortify-ssc-parser-sarif
+  - https://github.com/fortify/github-action
+- id: cyclonedx
+  name: OWASP CycloneDX (SBOM and VEX)
+  conforms: true
+  evidence: >-
+    CycloneDX SBOM ingest is published as fortify/fortify-ssc-parser-generic-cyclonedx and
+    fortify/fortify-ssc-parser-debricked-cyclonedx, and OpenText's own published
+    fortify-exploitability-analysis skill emits a combined CycloneDX VEX document plus per-CVE reports
+    (skills/opentext-cybersecurity-fortify-exploitability-analysis.md, references/cyclonedx-sbom.md).
+  artifacts:
+  - https://github.com/fortify/fortify-ssc-parser-generic-cyclonedx
+  - skills/opentext-cybersecurity-agent-fortify-exploitability-analysis.md
+- id: cve-ghsa
+  name: CVE / GHSA advisory identifiers
+  conforms: true
+  evidence: >-
+    The open-source component and exploitability surfaces are keyed on CVE and GHSA identifiers throughout
+    the contract's OpenSourceComponents tag and the published skills.
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  evidence: >-
+    First-party MCP server implemented against io.modelcontextprotocol in fcli 3.9.0+; see
+    mcp/opentext-cybersecurity-mcp.yml.
+- id: agent-skills
+  name: Agent Skills packaging
+  conforms: true
+  evidence: >-
+    github.com/fortify/skills ships a content-manifest.yaml, a Claude plugin manifest, a Codex plugin
+    manifest and a Gemini extension manifest from one source tree — a multi-runtime packaging posture very
+    few providers in this catalog have.
+certifications:
+- name: FedRAMP
+  status: authorized
+  scope: OpenText Core Application Security (Fortify on Demand)
+  register: https://www.fedramp.gov/marketplace/products/F1301101857/
+  verified: '2026-09-13'
+  http_status: 200
+  note: >-
+    Verified on the FedRAMP Marketplace itself, not on an OpenText page. The Fortify on Demand status page
+    lists dedicated "Tenant Portal — FedRAMP" and "API — FedRAMP" components, so the authorized boundary
+    has its own separately monitored API surface.
+- name: ISO/IEC 27001
+  status: claimed
+  verified: false
+  note: >-
+    Asserted in OpenText corporate security material. Not independently verified by this pass — every
+    www.opentext.com URL returned HTTP 444 to our crawler (Akamai bot deny), so no OpenText-hosted
+    attestation page could be read. Recorded as claimed, not as evidence.
+- name: SOC 1 Type II / SOC 2 Type II
+  status: claimed
+  verified: false
+  note: Same basis and same caveat as the ISO 27001 entry.
+- name: ISO/IEC 27017, ISO/IEC 27018
+  status: claimed
+  verified: false
+  note: Same basis and same caveat as the ISO 27001 entry.
+trust_center:
+  published: false
+  evidence: >-
+    trust.opentext.com does not resolve (DNS failure, 2026-09-13) and trust.cybersecurity.opentext.com does
+    not resolve. No Vanta/Drata/SafeBase-style trust portal was found for the cybersecurity business.
+  probes:
+  - url: https://trust.opentext.com
+    status: 000
+  - url: https://trust.cybersecurity.opentext.com/
+    status: 000
+findings:
+- id: compliance-behind-a-bot-wall
+  severity: medium
+  detail: >-
+    OpenText's compliance attestations live on www.opentext.com, which returns HTTP 444 to non-browser
+    clients on every path including /.well-known/*. The effect is that a company whose product is
+    cybersecurity publishes compliance evidence a machine cannot read, while its FedRAMP authorization is
+    only independently verifiable because the US government publishes it. A trust page on the reachable
+    cybersecurity.opentext.com host, or a /.well-known/security.txt with a Policy: line, would fix this at
+    no cost to the bot policy.

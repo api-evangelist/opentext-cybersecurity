@@ -1,0 +1,66 @@
+generated: '2026-09-13'
+method: searched
+source: https://github.com/fortify/skills
+license: MIT
+note: >-
+  These are NOT API Evangelist generations. OpenText Fortify publishes its own Agent Skills package at
+  github.com/fortify/skills (release v1.3.0, 2026-07-31) and the files below are saved verbatim from
+  that repository. The package registers nine skills and two multi-skill agents, is installable as a
+  Claude Code plugin (claude plugin marketplace add fortify/skills), an OpenAI Codex plugin, a Gemini
+  CLI extension and a GitHub Copilot skills directory, and can also be installed by fcli itself via
+  `fcli ai-assist extensions setup`. Every skill is grounded in the fcli command surface rather than in
+  raw HTTP calls, so the operations they invoke reach the Fortify on Demand REST API through fcli.
+upstream:
+  repository: https://github.com/fortify/skills
+  release: v1.3.0
+  released: '2026-07-31'
+  homepage: https://www.opentext.com/products/application-security
+  plugin_name: fortify
+  install:
+  - claude plugin marketplace add fortify/skills
+  - claude plugin install fortify-skills@fortify
+  - fcli ai-assist extensions setup --assistants claude,copilot
+skills:
+- name: fortify-fod
+  file: opentext-cybersecurity-fortify-fod.md
+  version: 1.2.2
+  api: opentext-cybersecurity:fortify-on-demand-api
+  description: Fortify on Demand (SaaS) — applications, releases, scans, issues, OSS analysis, portfolio reporting.
+- name: fortify-ssc
+  file: opentext-cybersecurity-fortify-ssc.md
+  version: 1.2.2
+  description: Software Security Center (customer-hosted) — application versions, artifacts, scan jobs, issue triage.
+- name: fortify-remediate
+  file: opentext-cybersecurity-fortify-remediate.md
+  version: 1.1.1
+  description: Fix SAST and DAST vulnerabilities already detected by Fortify; apply SAST Aviator remediations.
+- name: fortify-dependency-upgrade
+  file: opentext-cybersecurity-fortify-dependency-upgrade.md
+  version: 1.0.1
+  description: Remediate SCA / open-source findings by upgrading versions and fixing the resulting breakage.
+- name: fortify-exploitability-analysis
+  file: opentext-cybersecurity-fortify-exploitability-analysis.md
+  description: Triage whether a known CVE/GHSA is actually reachable in a project, as opposed to merely present.
+- name: fortify-change-review
+  file: opentext-cybersecurity-fortify-change-review.md
+  version: 1.0.0
+  description: AI security review of a diff/PR without a scan engine; 15 category references plus IaC for AWS, Azure, GCP and Kubernetes.
+- name: fortify-create-app
+  file: opentext-cybersecurity-fortify-create-app.md
+  version: 1.0.3
+  description: Create new Fortify applications in FoD or SSC with validation and naming defaults.
+- name: fortify-cicd-integration
+  file: opentext-cybersecurity-fortify-cicd-integration.md
+  version: 1.0.2
+  description: Add Fortify scanning to GitHub Actions, GitLab CI, Azure DevOps and Jenkins pipelines.
+- name: fcli-common
+  file: opentext-cybersecurity-fcli-common.md
+  version: 1.0.4
+  description: Fortify CLI reference — install, authenticate, output formats, SpEL queries, custom actions, mutating-operation safety.
+agents:
+- name: fortify-onboard
+  file: opentext-cybersecurity-agent-fortify-onboard.md
+  description: Onboard new applications into FoD or SSC — single repo, bulk list, or an entire GitHub/GitLab/Azure DevOps organization.
+- name: fortify-exploitability-analysis
+  file: opentext-cybersecurity-agent-fortify-exploitability-analysis.md
+  description: Batch-triage CVEs/GHSAs for reachability from an SBOM, an FoD release or an SSC application version; emits per-CVE reports plus a combined CycloneDX VEX.

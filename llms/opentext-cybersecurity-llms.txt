@@ -1,0 +1,68 @@
+# OpenText Cybersecurity
+
+> OpenText Cybersecurity (cybersecurity.opentext.com) delivers cybersecurity without the complexity: endpoint protection, email security, and data resilience built for growing businesses and the managed service providers (MSPs) who support them. Backed by 25+ years of experience, 150K+ customers, and 15K+ partners, our integrated solutions are designed to be easy to deploy and to scale with the business.
+
+This site provides authoritative, high-level information about OpenText Cybersecurity products, platforms, and solutions. It is intended for security decision-makers, IT teams, and managed service providers evaluating enterprise and SMB cybersecurity. The scope is product and solution overviews, core capabilities, use cases, and deployment context; marketing CTAs, partner recruitment, and pricing flows are secondary.
+
+Primary audience: Managed Service Providers (MSPs); CISOs and security leaders; IT and security operations teams; and SMB IT administrators.
+
+## Products
+
+- [Endpoint Security](https://cybersecurity.opentext.com/products/endpoint-security/): AI-powered threat detection and prevention across devices.
+  - [Endpoint Protection](https://cybersecurity.opentext.com/products/endpoint-security/endpoint-protection/): Multi-vector malware and ransomware prevention for endpoints.
+  - [Endpoint Detection & Response (EDR)](https://cybersecurity.opentext.com/products/endpoint-security/endpoint-detection-response/): Detection, investigation, and response for endpoint threats.
+  - [Managed Detection & Response (MDR)](https://cybersecurity.opentext.com/products/endpoint-security/managed-detection-response/): 24/7 threat monitoring and response delivered as a managed service.
+  - [DNS Protection](https://cybersecurity.opentext.com/products/endpoint-security/dns-protection/): DNS-layer filtering to block malicious domains and web threats.
+- [Email Security](https://cybersecurity.opentext.com/products/email-security/): Protect, encrypt, and retain business email.
+  - [Email Threat Protection](https://cybersecurity.opentext.com/products/email-security/email-threat-protection/): Filtering against phishing, malware, and spam.
+  - [Email Encryption](https://cybersecurity.opentext.com/products/email-security/email-encryption/): Policy-based encryption for sensitive email.
+  - [Email Continuity](https://cybersecurity.opentext.com/products/email-security/email-continuity/): Continued email access during outages.
+  - [Email Message Privacy](https://cybersecurity.opentext.com/products/email-security/email-message-privacy/): Privacy and data-loss controls for outbound mail.
+  - [Security Awareness Training](https://cybersecurity.opentext.com/products/email-security/security-awareness-training/): Phishing simulation and end-user training.
+- [Data Backup and Recovery](https://cybersecurity.opentext.com/products/data-backup-recovery/): Automated backup with fast recovery to keep businesses running.
+  - [Server Backup](https://cybersecurity.opentext.com/products/data-backup-recovery/server-backup/): Backup and recovery for physical and virtual servers.
+  - [Endpoint Backup](https://cybersecurity.opentext.com/products/data-backup-recovery/endpoint-backup/): Backup and recovery for laptops and desktops.
+- [SaaS Backup](https://cybersecurity.opentext.com/products/saas-backup/): Backup and recovery for SaaS application data.
+  - [Microsoft 365 Backup](https://cybersecurity.opentext.com/products/saas-backup/microsoft-365-backup/): Backup for Exchange, OneDrive, SharePoint, and Teams.
+  - [Google Workspace Backup](https://cybersecurity.opentext.com/products/saas-backup/google-workspace-backup/): Backup for Gmail, Drive, and Calendar.
+  - [Salesforce Backup](https://cybersecurity.opentext.com/products/saas-backup/salesforce-backup/): Backup and recovery for Salesforce data and metadata.
+  - [Box Backup](https://cybersecurity.opentext.com/products/saas-backup/box-backup/): Backup for Box content.
+  - [Dropbox Backup](https://cybersecurity.opentext.com/products/saas-backup/dropbox-backup/): Backup for Dropbox content.
+- [Continuity and Compliance](https://cybersecurity.opentext.com/products/continuity-compliance/): Minimize downtime, data loss, and compliance risk.
+  - [Availability](https://cybersecurity.opentext.com/products/continuity-compliance/availability/): High availability and failover to keep systems running.
+  - [Recover](https://cybersecurity.opentext.com/products/continuity-compliance/recover/): Cloud disaster recovery for critical workloads.
+  - [Migrate](https://cybersecurity.opentext.com/products/continuity-compliance/migrate/): Workload migration across physical, virtual, and cloud.
+  - [Business Communication Archive](https://cybersecurity.opentext.com/products/continuity-compliance/business-communication-archive/): Archiving of email and messaging for compliance and e-discovery.
+
+## Platform
+
+- [OpenText Cybersecurity Cloud (Secure Cloud)](https://cybersecurity.opentext.com/platform/secure-cloud/): A single pane of glass to manage your — or your customers' — cybersecurity services, licensing, and billing.
+
+## Solutions
+
+- [Microsoft Solutions](https://cybersecurity.opentext.com/solutions/microsoft/): Security and data protection that complement and extend Microsoft 365 and Azure environments, including Azure migration and Modern Work.
+- [MSP Solutions](https://cybersecurity.opentext.com/solutions/msp/): Multi-tenant security and backup tooling for managed service providers, delivered through Secure Cloud with third-party integrations.
+
+## Use Cases
+
+- [Ransomware Protection](https://cybersecurity.opentext.com/products/endpoint-security/): Endpoint Protection, EDR, MDR, and Backup & Recovery. Buyers: CISOs, security operations, IT administrators.
+- [Phishing & Email Threat Defense](https://cybersecurity.opentext.com/products/email-security/): Email Threat Protection and DNS Protection. Buyers: security teams, SMB IT.
+- [Endpoint Security & Visibility](https://cybersecurity.opentext.com/products/endpoint-security/): Endpoint Protection and EDR. Buyers: IT operations, security operations.
+- [Business Continuity & Disaster Recovery](https://cybersecurity.opentext.com/products/continuity-compliance/): Recover, Availability, Server Backup, and SaaS Backup. Buyers: IT leaders, compliance officers.
+- [Regulatory Compliance & Data Retention](https://cybersecurity.opentext.com/products/continuity-compliance/business-communication-archive/): Business Communication Archive and Backup & Recovery. Buyers: compliance, legal IT, regulated industries.
+- [Secure IT Operations for MSPs](https://cybersecurity.opentext.com/solutions/msp/): MDR, Endpoint Protection, and SaaS Backup delivered via Secure Cloud. Buyers: managed service providers.
+
+## Resources
+
+- [Resource Center](https://cybersecurity.opentext.com/resources/): Guides, data sheets, reports, e-books, and webinars on cybersecurity and data protection.
+- [Blog](https://cybersecurity.opentext.com/blog/): Articles on threats, cyber resilience, and MSP growth.
+- [Support](https://cybersecurity.opentext.com/support/): Product support, documentation, management consoles, and contact options.
+
+## Optional
+
+- [Partner Program](https://cybersecurity.opentext.com/partners/partner-program-overview/): Overview of the OpenText Cybersecurity partner program.
+- [MSP Program](https://cybersecurity.opentext.com/partners/msp-program/): Program details for managed service providers.
+- [Become a Partner](https://cybersecurity.opentext.com/partners/become-a-partner/): Partner sign-up.
+- [Sitemap](https://cybersecurity.opentext.com/sitemap.xml): Full list of published site URLs.
+
+_Last updated: July 2026._

@@ -64,4 +64,27 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-OpenText Cybersecurity is a company surfaced via the API Evangelist harvest backlog (source: absent-parent) and added to the network as a stub for full-pipeline profiling.
+OpenText Cybersecurity is the security business of OpenText, assembled from the Micro Focus security
+portfolio (Fortify, ArcSight, NetIQ, Voltage) and the SMB/MSP brands acquired through Webroot, Carbonite
+and Zix.
+
+## What this profile found
+
+Two of the product lines expose a public developer surface, and both are captured here.
+
+| Surface | What is published | Where |
+|---|---|---|
+| OpenText Core Application Security (Fortify on Demand) | Swagger 2.0, 159 operations over 125 paths, 238 definitions. Served live and unauthenticated from `api.ams` / `api.emea` / `api.apac.fortify.com`. 100% operationId and summary coverage. | `openapi/` |
+| SAST Aviator | Six first-party proto3 service definitions, 6 gRPC services, 20 RPCs | `grpc/` |
+| Webroot Unity API | Public HTML API reference, OAuth 2.0 with a nine-scope vocabulary, a documented seven-event notification catalogue with fetch and webhook delivery, and a dated service-build change history | `asyncapi/`, `scopes/`, `changelog/` |
+| Agent surfaces | A provider-published `llms.txt`, a provider-published Agent Skills package (nine skills, two agents, four assistant runtimes), and a first-party MCP server shipped inside the Fortify CLI | `llms/`, `skills/`, `mcp/`, `cli/` |
+
+## Gaps worth a provider conversation
+
+- **No `/.well-known/security.txt` on any of ten hosts**, at a company that sells vulnerability management. Eighty well-known probes returned zero documents.
+- **No idempotency mechanism** across 71 mutating Fortify on Demand operations. Re-firing a scan start after a timeout can consume a second entitlement.
+- **No published rate limit.** HTTP 429 is declared on 143 of 159 operations, with no number, no window and no `Retry-After` or `RateLimit-*` header.
+- **No `securityDefinitions` in the contract.** The OAuth scopes are real and published — one per operation, in free text inside each operation's own description — so a generated client gets no auth layer at all.
+- **No AsyncAPI** for the Webroot Unity event surface, and no published payload schema for any of its seven event types.
+- **Compliance evidence is behind a bot wall.** Every `www.opentext.com` URL returns HTTP 444 to non-browser clients. The FedRAMP authorization was verifiable only because the US government publishes it.
+

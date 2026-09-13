@@ -1,0 +1,103 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  registry.npmjs.org, search.maven.org, github.com/fortify releases and the OpenText Fortify
+  documentation. Every entry below was read from the registry metadata endpoint or the GitHub
+  Releases API on 2026-09-13.
+note: >-
+  OpenText Cybersecurity distributes its first-party developer tooling out of the github.com/fortify
+  organization. There is no first-party SDK for the Webroot Unity API, and no PyPI, RubyGems,
+  crates.io, NuGet, Packagist or pkg.go.dev package was found under any OpenText/Fortify/Webroot
+  namespace. The primary distribution channel for fcli is a signed GitHub Release asset rather than a
+  language registry, so it is recorded with registry: github-releases.
+packages:
+- name: fcli
+  official: true
+  registry: github-releases
+  language: java
+  url: https://github.com/fortify/fcli/releases
+  docs: https://fortify.github.io/fcli/
+  version: v3.25.0
+  published: '2026-08-31'
+  description: >-
+    Fortify CLI. Single binary (Linux/macOS/Windows native images plus a fat jar) covering Fortify on
+    Demand, Software Security Center, ScanCentral SAST/DAST, Debricked, SAST Aviator, licensing and
+    tool installation. Also hosts the first-party MCP server (fcli ai-assist mcp start-stdio).
+  license: OpenText proprietary (see LICENSE.txt in each release)
+- name: '@fortify/setup'
+  official: true
+  registry: npm
+  language: javascript
+  url: https://www.npmjs.com/package/@fortify/setup
+  version: 2.1.3
+  published: '2026-02-23'
+  description: Bootstrap and run the fcli fortify-setup action in any environment.
+  source: https://github.com/fortify/fortify-setup-js
+- name: com.fortify:ssc-restapi-client
+  official: true
+  registry: maven
+  language: java
+  url: https://central.sonatype.com/artifact/com.fortify/ssc-restapi-client
+  version: '25.2'
+  published: '2025-06-30'
+  description: >-
+    Generated Java client for the Fortify Software Security Center REST API. Source at
+    github.com/fortify/ssc-restapi-client.
+- name: com.fortify.client.api:client-api-fod
+  official: true
+  registry: maven
+  language: java
+  url: https://central.sonatype.com/artifact/com.fortify.client.api/client-api-fod
+  version: 6.1.8.RELEASE
+  published: '2024-03-22'
+  description: >-
+    Fortify on Demand client library. The repository README states these libraries are used by
+    various Fortify tools and are not meant for third-party use; they are published to Maven Central
+    all the same.
+  note: Last release predates fcli 3.x by well over two years; treat as maintenance-only.
+- name: com.fortify.client.api:client-api-ssc
+  official: true
+  registry: maven
+  language: java
+  url: https://central.sonatype.com/artifact/com.fortify.client.api/client-api-ssc
+  version: 6.1.8.RELEASE
+  published: '2024-03-22'
+  description: Fortify Software Security Center client library (internal-use, published publicly).
+- name: com.fortify.plugin:plugin-api
+  official: true
+  registry: maven
+  language: java
+  url: https://central.sonatype.com/artifact/com.fortify.plugin/plugin-api
+  version: 1.2.2320.0
+  published: '2023-12-08'
+  description: Plugin API for developing Fortify Software Security Center parser plugins.
+- name: com.fortify.ssc.parser.util:fortify-ssc-parser-util
+  official: true
+  registry: maven
+  language: java
+  url: https://central.sonatype.com/artifact/com.fortify.ssc.parser.util/fortify-ssc-parser-util
+  version: 2.1.0.RELEASE
+  published: '2025-01-20'
+  description: Shared utility classes for implementing Fortify SSC parser plugins.
+- name: fortify/github-action
+  official: true
+  registry: github-marketplace
+  language: typescript
+  url: https://github.com/fortify/github-action
+  version: v3.1.1
+  published: '2026-05-15'
+  description: >-
+    Fortify AST Scan GitHub Action — the supported replacement for the deprecated
+    gha-setup-* / gha-*-generate-sarif actions.
+- name: fortifyvsts.fortify-code-security
+  official: true
+  registry: vscode-marketplace
+  language: typescript
+  url: https://marketplace.visualstudio.com/items?itemName=fortifyvsts.fortify-code-security
+  version: null
+  published: null
+  note: >-
+    Fortify Code Security for VS Code. Bundles the Fortify Agent Skills, can install fcli, and can
+    start the optional local fcli MCP server. Version not recorded: the Visual Studio Marketplace
+    has no unauthenticated metadata endpoint equivalent to registry.npmjs.org, so nothing reliable
+    could be read on 2026-09-13.

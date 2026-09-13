@@ -1,0 +1,107 @@
+generated: '2026-09-13'
+method: searched
+source: >-
+  https://api.ams.fortify.com/swagger/docs/v3 (operation descriptions), a live unauthenticated probe of
+  https://api.ams.fortify.com/oauth/token and https://api.ams.fortify.com/api/v3/applications on
+  2026-09-13, and https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide
+docs:
+- https://unityapi.webrootcloudav.com/Docs/en/APIDoc/GettingStarted
+- https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide
+note: >-
+  The published Fortify on Demand Swagger 2.0 document declares NO securityDefinitions and applies no
+  security to any operation, so derive-authentication.py finds nothing to read. The authentication model
+  is real and documented, it is simply outside the contract: every operation description carries an
+  "Allowed Scopes:" line, and the token endpoint is served alongside the API at /oauth/token. That gap
+  is recorded as a finding below rather than papered over.
+apis:
+- api: opentext-cybersecurity:fortify-on-demand-api
+  schemes:
+  - id: oauth2-client-credentials
+    type: oauth2
+    flow: client_credentials
+    token_url: https://api.ams.fortify.com/oauth/token
+    scope_parameter_required: true
+    in: header
+    header: 'Authorization: Bearer {access_token}'
+    evidence: >-
+      POST https://api.ams.fortify.com/oauth/token with grant_type=client_credentials and no scope
+      returned HTTP 401 {"error":"invalid_grant","error_description":"Scope is required"} on 2026-09-13.
+    scopes_artifact: scopes/opentext-cybersecurity-scopes.yml
+  - id: personal-access-token
+    type: apiKey
+    in: header
+    header: 'Authorization: Bearer {token}'
+    description: >-
+      Personal access tokens are issued and revoked through the API itself
+      (PersonalAccessTokensV3_* operations) and through the tenant portal. Scopes are attached at
+      issuance from the same scope vocabulary as the OAuth client-credentials grant.
+  - id: api-key
+    type: apiKey
+    description: >-
+      Tenant API keys, managed through the ApiKeyManagement tag (api-tenant scope). Used to obtain an
+      OAuth token rather than sent directly on data-plane calls.
+  multi_factor:
+    supported: true
+    evidence: >-
+      MultiFactorAuthorizationCodeV3 operation in the spec, and `fcli fod session login --code/--totp`
+      added in fcli 3.24.0.
+  unauthenticated_error:
+    status: 401
+    body: '{ "responseCode": "401", "errorCode": "1000", "message": "authorization failure" }'
+    evidence: live GET https://api.ams.fortify.com/api/v3/applications on 2026-09-13
+  regional_hosts:
+  - https://api.ams.fortify.com
+  - https://api.emea.fortify.com
+  - https://api.apac.fortify.com
+  findings:
+  - id: no-security-schemes-in-spec
+    severity: medium
+    detail: >-
+      The Swagger document defines no securityDefinitions and no operation-level security, so a client
+      generated straight from the spec produces no auth layer at all and every scope requirement is
+      buried in free-text operation descriptions. Declaring an oauth2 securityDefinition with the
+      thirteen scopes, and applying it per operation, would make the contract self-describing.
+- api: opentext-cybersecurity:webroot-unity-api
+  schemes:
+  - id: oauth2-password
+    type: oauth2
+    flow: password
+    token_url: https://unityapi.webrootcloudav.com/auth/token
+    in: header
+    header: 'Authorization: Bearer {access_token}'
+    description: >-
+      Username (email), password, client id and client secret, plus a scope field. Credentials must be
+      issued by a Webroot representative or created under Settings -> API Access in a Global Site
+      Manager console.
+  - id: oauth2-authorization-code
+    type: oauth2
+    flow: authorization_code
+    authorization_url: https://unityapi.webrootcloudav.com/auth/authorize
+    token_url: https://unityapi.webrootcloudav.com/auth/token
+    description: >-
+      Supported only against the OpenText Secure Cloud IDP and the Webroot IDP. Scope wildcards are not
+      supported on IDP flows.
+  - id: oauth2-token-exchange
+    type: oauth2
+    flow: token_exchange
+    token_url: https://unityapi.webrootcloudav.com/auth/token
+    description: Exchange an IDP access token for a Unity access/refresh token pair.
+  token_lifetimes:
+    access_token: 5 minutes
+    refresh_token: 14 days
+    refresh_token_rotation: true
+    note: Issuing a new refresh token invalidates the previous one. A console password change revokes all issued tokens.
+  errors:
+  - status: 401
+    body_field: '"error": "invalid_token"'
+    meaning: access token expired or invalid
+  - status: 403
+    body_field: '"error": "insufficient_scope"'
+    meaning: token does not carry the scope the operation requires
+  - status: 400
+    body_field: '"error": "invalid_grant"'
+    meaning: refresh token expired or invalidated; restart at the initial token request
+  evidence: >-
+    POST/GET https://unityapi.webrootcloudav.com/service/api/console/gsm/swagger returned HTTP 401
+    {"statusCode":401,...,"error":"invalid_token","error_description":"Access was denied due to invalid
+    token."} on 2026-09-13, matching the documented envelope exactly.

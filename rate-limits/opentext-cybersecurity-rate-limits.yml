@@ -1,0 +1,56 @@
+generated: '2026-09-13'
+method: derived
+source: >-
+  openapi/opentext-cybersecurity-fortify-on-demand-openapi.json (429 responses on 143 of 159 operations,
+  and the documented limit parameter ceiling), https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide
+  (status code table), and header inspection of a live unauthenticated response from
+  https://api.ams.fortify.com/api/v3/applications on 2026-09-13.
+limit_count: 0
+note: >-
+  Neither surface publishes a numeric rate limit, a window, a burst allowance, or any RateLimit-* /
+  X-RateLimit-* / Retry-After response header. Both document that exhaustion returns HTTP 429. That is a
+  real but thin signal: an agent can detect throttling but cannot budget against it, cannot know how long
+  to wait, and has no way to tell a per-key limit from a per-tenant one. limit_count is an honest zero.
+rate_limits: []
+signals:
+- api: opentext-cybersecurity:fortify-on-demand-api
+  exhaustion_status: 429
+  exhaustion_title: TooManyRequests
+  declared_on_operations: 143
+  total_operations: 159
+  headers_published: []
+  headers_observed: []
+  headers_observed_note: >-
+    A live 401 response from https://api.ams.fortify.com/api/v3/applications on 2026-09-13 returned only
+    x-ua-compatible, strict-transport-security and x-content-type-options. No rate-limit header was present
+    on that response; a 429 could not be provoked without credentials, so absence on a 429 specifically is
+    unconfirmed.
+  retry_after_published: false
+  hard_ceilings:
+  - scope: per-request page size
+    parameter: limit
+    limit: 50
+    detail: 'Documented in the contract as "Maximum records to return. The maximum value allowed is 50."'
+    operations: 22
+- api: opentext-cybersecurity:webroot-unity-api
+  exhaustion_status: 429
+  exhaustion_title: Too Many Requests
+  documented_as: >-
+    "The request was rejected because the user has sent too many requests in a given amount of time
+    (rate limiting)." — no quantity, window or header is given.
+  docs: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide
+  headers_published: []
+  retry_after_published: false
+  hard_ceilings:
+  - scope: batch request body
+    limit: 1000
+    detail: >-
+      The documented error example is "Batch size must be between 1 and 1000", so batch operations cap at
+      1000 items. Recorded because it is the only published quantitative limit on this surface.
+findings:
+- id: no-published-rate-limit
+  severity: medium
+  detail: >-
+    429 is declared on 90% of the Fortify on Demand contract but no limit, window or Retry-After is
+    published anywhere. Publishing RateLimit-Limit / RateLimit-Remaining / RateLimit-Reset (RFC 9239 draft
+    shape) or even a documented number would move this from "throttling exists" to "throttling is budgetable".

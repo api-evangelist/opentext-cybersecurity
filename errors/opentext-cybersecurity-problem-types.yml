@@ -1,0 +1,108 @@
+generated: '2026-09-13'
+method: derived
+source: >-
+  openapi/opentext-cybersecurity-fortify-on-demand-openapi.json (4xx/5xx responses across all 159
+  operations), a live unauthenticated GET of https://api.ams.fortify.com/api/v3/applications on
+  2026-09-13, and https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide for the Webroot Unity envelope.
+format: vendor-specific
+rfc9457: false
+note: >-
+  Neither surface uses application/problem+json. Both publish a stable, documented JSON error envelope
+  instead, and both envelopes carry a correlation identifier an agent can quote to support — which is the
+  substantive part of RFC 9457 even without the media type.
+envelopes:
+- api: opentext-cybersecurity:fortify-on-demand-api
+  media_type: application/json
+  shape:
+    responseCode: HTTP status code, repeated as a string
+    errorCode: vendor error code, e.g. "1000"
+    message: human-readable message
+  observed_example: '{ "responseCode": "401", "errorCode": "1000", "message": "authorization failure" }'
+  observed_at: '2026-09-13'
+  observed_url: https://api.ams.fortify.com/api/v3/applications
+  oauth_envelope:
+    note: The token endpoint uses the RFC 6749 OAuth error shape, not the API envelope.
+    observed_example: '{"error":"invalid_grant","error_description":"Scope is required"}'
+    observed_url: https://api.ams.fortify.com/oauth/token
+  alternate_envelope:
+    note: >-
+      The /.well-known/* 404 handler on the same host returns a third shape,
+      {"Errors":[{"ErrorCode":null,"Message":"..."}]}. Recorded as an inconsistency, not as a documented
+      contract.
+- api: opentext-cybersecurity:webroot-unity-api
+  media_type: application/json (application/xml also supported via Accept)
+  docs: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide
+  shape:
+    statusCode: number — the HTTP status code returned by the API server
+    requestId: string — GUID uniquely identifying the request, quotable to Webroot support
+    error: string — OAuth error code on OAuth failures, null otherwise
+    error_description: string — descriptive text, or null
+    AdditionalInformation: array of objects — error-type-dependent detail
+    correlationId: string — GUID shared by OpenText Secure Cloud, present only on certain Secure Cloud methods
+  documented_example: >-
+    {"statusCode": 400, "requestId": "a0946d06-fad9-4b01-bc66-f685f04c7899", "error": null,
+    "error_description": "Batch size must be between 1 and 1000", "AdditionalInformation": {}}
+  observed_example: '{"statusCode":401,"requestId":"...","error":"invalid_token","error_description":"Access was denied due to invalid token.","AdditionalInformation":{...}}'
+  observed_at: '2026-09-13'
+problem_types:
+- status: 400
+  title: BadRequest
+  api: fortify-on-demand
+  operations: 90
+  remediation: The request could not be understood due to malformed syntax or an invalid parameter. Do not retry unchanged.
+- status: 401
+  title: Unauthorized
+  api: fortify-on-demand
+  operations: 159
+  errorCode: '1000'
+  remediation: >-
+    Obtain a new bearer token from /oauth/token with grant_type=client_credentials and an explicit scope,
+    then retry. Declared on every operation in the contract.
+- status: 403
+  title: Forbidden
+  api: fortify-on-demand
+  operations: 86
+  remediation: >-
+    The token authenticated but lacks the operation's Allowed Scope, or the user lacks the tenant role.
+    See scopes/opentext-cybersecurity-scopes.yml. Re-issuing the token with the right scope is the fix;
+    retrying is not.
+- status: 404
+  title: NotFound
+  api: fortify-on-demand
+  operations: 110
+  remediation: The application, release, scan or vulnerability id does not exist or is not visible to this tenant.
+- status: 422
+  title: UnprocessableEntity
+  api: fortify-on-demand
+  operations: 43
+  remediation: >-
+    Validation failed on an otherwise well-formed body — commonly a scan start where entitlement,
+    assessment type or an in-progress scan blocks the request.
+- status: 429
+  title: TooManyRequests
+  api: fortify-on-demand
+  operations: 143
+  remediation: >-
+    Back off and retry. No numeric rate limit and no RateLimit-* or Retry-After response header is
+    published; see rate-limits/opentext-cybersecurity-rate-limits.yml.
+- status: 500
+  title: InternalServerError
+  api: fortify-on-demand
+  operations: 159
+  remediation: Server-side failure. Check https://status.fortify.com/ for the affected region before retrying.
+- status: 405
+  title: Method Not Allowed
+  api: webroot-unity
+  remediation: Documented as often used interchangeably with 501 Not Implemented on this surface.
+- status: 409
+  title: Conflict
+  api: webroot-unity
+  remediation: The request conflicts with the current state of the resource.
+- status: 501
+  title: Not Implemented
+  api: webroot-unity
+  remediation: The server does not support the functionality required to fulfill the request.
+- status: 503
+  title: Service Unavailable
+  api: webroot-unity
+  remediation: Temporary overload or maintenance. Retry with backoff.
