@@ -41,48 +41,25 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 apis:
-- aid: opentext-cybersecurity:fortify-on-demand-api
-  name: OpenText Core Application Security (Fortify on Demand) API
-  description: >-
-    The REST API behind OpenText Core Application Security, still branded Fortify on Demand across the
-    contract and the tooling. 159 operations over 125 paths cover applications, releases, static,
-    dynamic, mobile and open-source scans, vulnerability audit and triage, reports, API keys, personal
-    access tokens, users and tenant entitlements. The spec is served live and unauthenticated from
-    every regional API host and every operation declares its required OAuth scope in its description.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - Application Security
-  - SAST
-  - DAST
-  - Software Composition Analysis
-  - Vulnerability Management
-  properties:
-  - url: openapi/opentext-cybersecurity-fortify-on-demand-openapi.json
-    type: OpenAPI
-  - url: overlays/opentext-cybersecurity-fortify-on-demand-overlay.yaml
-    type: Overlay
-  - url: https://api.ams.fortify.com/swagger/ui/index
-    type: APIReference
-  - url: https://community.opentext.com/cybersec/fortify/productdocs
-    type: Documentation
-  - url: https://community.opentext.com/cybersec/fortify
-    type: DeveloperPortal
-  - url: https://status.fortify.com/
-    type: StatusPage
 - aid: opentext-cybersecurity:webroot-unity-api
   name: Webroot Unity API
   description: >-
     The Webroot Unity API is the multi-tenant REST platform OpenText Cybersecurity partners and managed
-    service providers use to reach Webroot and Secure Cloud services — endpoint status, Global Site
-    Manager console site/user/policy/endpoint/group management, DNS Protection, Web Threat Shield,
-    security awareness training reporting, usage reporting, eCommerce licensing, and Secure Cloud
-    customers and usage. It also carries a documented event-notification surface with fetch and webhook
-    delivery. Access is OAuth 2.0 and credentials must be issued by a Webroot representative or enabled
-    from a GSM console, so no machine-readable contract is published anonymously.
+    service providers use to reach Webroot and Secure Cloud services — endpoint status, Global Site Manager
+    console site/user/policy/endpoint/group management, DNS Protection, Web Threat Shield, security awareness
+    training reporting, usage reporting, eCommerce licensing, and Secure Cloud customers and usage. It
+    also carries a documented event-notification surface with fetch and webhook delivery. Access is OAuth
+    2.0 and credentials must be issued by a Webroot representative or enabled from a GSM console, so no
+    machine-readable contract is published anonymously.
   humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
   baseURL: https://unityapi.webrootcloudav.com
   tags:
+  - Endpoint Security
+  - DNS Protection
+  - Managed Service Providers
+  - Licensing
+  - Webhook
+  tags_raw:
   - Endpoint Security
   - DNS Protection
   - Managed Service Providers
@@ -99,7 +76,524 @@ apis:
     type: ChangeLog
   - url: asyncapi/opentext-cybersecurity-webroot-unity-webhooks.yml
     type: Webhooks
+- aid: opentext-cybersecurity:opentext-cybersecurity-apikeymanagement-api
+  name: OpenText Cybersecurity API Key Management API
+  description: >-
+    The ApiKeyManagement API from OpenText Cybersecurity — 5 operation(s) for apikeymanagement.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - ApiKeyManagement
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-apikeymanagement-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-applications-api
+  name: OpenText Cybersecurity Applications API
+  description: The Applications API from OpenText Cybersecurity — 15 operation(s) for applications.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-applications-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-attributes-api
+  name: OpenText Cybersecurity Attributes API
+  description: The Attributes API from OpenText Cybersecurity — 2 operation(s) for attributes.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Attributes
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-attributes-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-audittemplate-api
+  name: OpenText Cybersecurity Audit Template API
+  description: The AuditTemplate API from OpenText Cybersecurity — 1 operation(s) for audittemplate.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - AuditTemplate
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-audittemplate-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-dastautomatedscans-api
+  name: OpenText Cybersecurity Dast Automated Scans API
+  description: >-
+    The DastAutomatedScans API from OpenText Cybersecurity — 9 operation(s) for dastautomatedscans.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - DastAutomatedScans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-dastautomatedscans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-dynamicscans-api
+  name: OpenText Cybersecurity Dynamic Scans API
+  description: The DynamicScans API from OpenText Cybersecurity — 6 operation(s) for dynamicscans.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - DynamicScans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-dynamicscans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-eventlogs-api
+  name: OpenText Cybersecurity Event Logs API
+  description: The EventLogs API from OpenText Cybersecurity — 1 operation(s) for eventlogs.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - EventLogs
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-eventlogs-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-fortifyondemandconnectnetworks-api
+  name: OpenText Cybersecurity Fortify On Demand Connect Networks API
+  description: >-
+    The FortifyOnDemandConnectNetworks API from OpenText Cybersecurity — 1 operation(s) for fortifyondemandconnectnetworks.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - FortifyOnDemandConnectNetworks
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-fortifyondemandconnectnetworks-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-lookupitems-api
+  name: OpenText Cybersecurity Lookup Items API
+  description: The LookupItems API from OpenText Cybersecurity — 1 operation(s) for lookupitems.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - LookupItems
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-lookupitems-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-mobilescans-api
+  name: OpenText Cybersecurity Mobile Scans API
+  description: The MobileScans API from OpenText Cybersecurity — 3 operation(s) for mobilescans.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - MobileScans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-mobilescans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-multifactorauthorizationcode-api
+  name: OpenText Cybersecurity Multi Factor Authorization Code API
+  description: >-
+    The MultiFactorAuthorizationCode API from OpenText Cybersecurity — 1 operation(s) for multifactorauthorizationcode.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - MultiFactorAuthorizationCode
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-multifactorauthorizationcode-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-notifications-api
+  name: OpenText Cybersecurity Notifications API
+  description: The Notifications API from OpenText Cybersecurity — 3 operation(s) for notifications.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-notifications-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-opensourcecomponents-api
+  name: OpenText Cybersecurity Open Source Components API
+  description: >-
+    The OpenSourceComponents API from OpenText Cybersecurity — 2 operation(s) for opensourcecomponents.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - OpenSourceComponents
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-opensourcecomponents-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-opensourcescans-api
+  name: OpenText Cybersecurity Open Source Scans API
+  description: >-
+    The OpenSourceScans API from OpenText Cybersecurity — 1 operation(s) for opensourcescans.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - OpenSourceScans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-opensourcescans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-personalaccesstokens-api
+  name: OpenText Cybersecurity Personal Access Tokens API
+  description: >-
+    The PersonalAccessTokens API from OpenText Cybersecurity — 3 operation(s) for personalaccesstokens.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - PersonalAccessTokens
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-personalaccesstokens-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-releases-api
+  name: OpenText Cybersecurity Releases API
+  description: The Releases API from OpenText Cybersecurity — 15 operation(s) for releases.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Releases
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-releases-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-reports-api
+  name: OpenText Cybersecurity Reports API
+  description: The Reports API from OpenText Cybersecurity — 7 operation(s) for reports.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-reports-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-scans-api
+  name: OpenText Cybersecurity Scans API
+  description: The Scans API from OpenText Cybersecurity — 8 operation(s) for scans.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-scans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-staticscans-api
+  name: OpenText Cybersecurity Static Scans API
+  description: The StaticScans API from OpenText Cybersecurity — 6 operation(s) for staticscans.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - StaticScans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-staticscans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-tenantentitlements-api
+  name: OpenText Cybersecurity Tenant Entitlements API
+  description: >-
+    The TenantEntitlements API from OpenText Cybersecurity — 2 operation(s) for tenantentitlements.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - TenantEntitlements
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-tenantentitlements-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-tenantheatmaps-api
+  name: OpenText Cybersecurity Tenant Heat Maps API
+  description: The TenantHeatMaps API from OpenText Cybersecurity — 1 operation(s) for tenantheatmaps.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - TenantHeatMaps
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-tenantheatmaps-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-tenants-api
+  name: OpenText Cybersecurity Tenants API
+  description: The Tenants API from OpenText Cybersecurity — 2 operation(s) for tenants.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Tenants
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-tenants-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-tenantsummary-api
+  name: OpenText Cybersecurity Tenant Summary API
+  description: The TenantSummary API from OpenText Cybersecurity — 1 operation(s) for tenantsummary.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - TenantSummary
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-tenantsummary-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-userapplicationaccess-api
+  name: OpenText Cybersecurity User Application Access API
+  description: >-
+    The UserApplicationAccess API from OpenText Cybersecurity — 2 operation(s) for userapplicationaccess.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - UserApplicationAccess
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-userapplicationaccess-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-usergroupapplicationaccess-api
+  name: OpenText Cybersecurity User Group Application Access API
+  description: >-
+    The UserGroupApplicationAccess API from OpenText Cybersecurity — 2 operation(s) for usergroupapplicationaccess.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - UserGroupApplicationAccess
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-usergroupapplicationaccess-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-usermanagement-api
+  name: OpenText Cybersecurity User Management API
+  description: The UserManagement API from OpenText Cybersecurity — 3 operation(s) for usermanagement.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - UserManagement
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-usermanagement-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-users-api
+  name: OpenText Cybersecurity Users API
+  description: The Users API from OpenText Cybersecurity — 2 operation(s) for users.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-users-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-vulnerabilities-api
+  name: OpenText Cybersecurity Vulnerabilities API
+  description: >-
+    The Vulnerabilities API from OpenText Cybersecurity — 20 operation(s) for vulnerabilities.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Vulnerabilities
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-vulnerabilities-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
 common:
+- type: Overlay
+  url: overlays/opentext-cybersecurity-fortify-on-demand-overlay.yaml
 - type: DomainSecurity
   url: security/opentext-cybersecurity-domain-security.yml
 - url: https://cybersecurity.opentext.com/
