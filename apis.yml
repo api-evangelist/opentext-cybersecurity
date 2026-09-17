@@ -76,25 +76,6 @@ apis:
     type: ChangeLog
   - url: asyncapi/opentext-cybersecurity-webroot-unity-webhooks.yml
     type: Webhooks
-- aid: opentext-cybersecurity:opentext-cybersecurity-apikeymanagement-api
-  name: OpenText Cybersecurity API Key Management API
-  description: >-
-    The ApiKeyManagement API from OpenText Cybersecurity — 5 operation(s) for apikeymanagement.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - ApiKeyManagement
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-apikeymanagement-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
 - aid: opentext-cybersecurity:opentext-cybersecurity-applications-api
   name: OpenText Cybersecurity Applications API
   description: The Applications API from OpenText Cybersecurity — 15 operation(s) for applications.
@@ -149,61 +130,6 @@ apis:
     url: https://community.opentext.com/cybersec/fortify
   - type: StatusPage
     url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-dastautomatedscans-api
-  name: OpenText Cybersecurity Dast Automated Scans API
-  description: >-
-    The DastAutomatedScans API from OpenText Cybersecurity — 9 operation(s) for dastautomatedscans.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - DastAutomatedScans
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-dastautomatedscans-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-dynamicscans-api
-  name: OpenText Cybersecurity Dynamic Scans API
-  description: The DynamicScans API from OpenText Cybersecurity — 6 operation(s) for dynamicscans.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - DynamicScans
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-dynamicscans-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-eventlogs-api
-  name: OpenText Cybersecurity Event Logs API
-  description: The EventLogs API from OpenText Cybersecurity — 1 operation(s) for eventlogs.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - EventLogs
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-eventlogs-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
 - aid: opentext-cybersecurity:opentext-cybersecurity-fortifyondemandconnectnetworks-api
   name: OpenText Cybersecurity Fortify On Demand Connect Networks API
   description: >-
@@ -215,42 +141,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/opentext-cybersecurity-fortifyondemandconnectnetworks-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-lookupitems-api
-  name: OpenText Cybersecurity Lookup Items API
-  description: The LookupItems API from OpenText Cybersecurity — 1 operation(s) for lookupitems.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - LookupItems
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-lookupitems-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-mobilescans-api
-  name: OpenText Cybersecurity Mobile Scans API
-  description: The MobileScans API from OpenText Cybersecurity — 3 operation(s) for mobilescans.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - MobileScans
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-mobilescans-api-openapi.yml
   - type: APIReference
     url: https://api.ams.fortify.com/swagger/ui/index
   - type: Documentation
@@ -288,63 +178,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/opentext-cybersecurity-notifications-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-opensourcecomponents-api
-  name: OpenText Cybersecurity Open Source Components API
-  description: >-
-    The OpenSourceComponents API from OpenText Cybersecurity — 2 operation(s) for opensourcecomponents.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - OpenSourceComponents
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-opensourcecomponents-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-opensourcescans-api
-  name: OpenText Cybersecurity Open Source Scans API
-  description: >-
-    The OpenSourceScans API from OpenText Cybersecurity — 1 operation(s) for opensourcescans.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - OpenSourceScans
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-opensourcescans-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-personalaccesstokens-api
-  name: OpenText Cybersecurity Personal Access Tokens API
-  description: >-
-    The PersonalAccessTokens API from OpenText Cybersecurity — 3 operation(s) for personalaccesstokens.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - PersonalAccessTokens
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-personalaccesstokens-api-openapi.yml
   - type: APIReference
     url: https://api.ams.fortify.com/swagger/ui/index
   - type: Documentation
@@ -399,24 +232,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/opentext-cybersecurity-scans-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-staticscans-api
-  name: OpenText Cybersecurity Static Scans API
-  description: The StaticScans API from OpenText Cybersecurity — 6 operation(s) for staticscans.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - StaticScans
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-staticscans-api-openapi.yml
   - type: APIReference
     url: https://api.ams.fortify.com/swagger/ui/index
   - type: Documentation
@@ -536,24 +351,6 @@ apis:
     url: https://community.opentext.com/cybersec/fortify
   - type: StatusPage
     url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-usermanagement-api
-  name: OpenText Cybersecurity User Management API
-  description: The UserManagement API from OpenText Cybersecurity — 3 operation(s) for usermanagement.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - UserManagement
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-usermanagement-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
 - aid: opentext-cybersecurity:opentext-cybersecurity-users-api
   name: OpenText Cybersecurity Users API
   description: The Users API from OpenText Cybersecurity — 2 operation(s) for users.
@@ -583,6 +380,210 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/opentext-cybersecurity-vulnerabilities-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-api-key-management-api
+  name: OpenText Cybersecurity API Key Management API
+  description: >-
+    The API Key Management API from OpenText Cybersecurity — 5 operation(s) for api key management.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - API Key Management
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-dast-automated-scans-api
+  name: OpenText Cybersecurity DAST Automated Scans API
+  description: >-
+    The DAST Automated Scans API from OpenText Cybersecurity — 9 operation(s) for dast automated scans.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - DAST Automated Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-dynamic-scans-api
+  name: OpenText Cybersecurity Dynamic Scans API
+  description: The Dynamic Scans API from OpenText Cybersecurity — 6 operation(s) for dynamic scans.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Dynamic Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-dynamic-scans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-event-logs-api
+  name: OpenText Cybersecurity Event Logs API
+  description: The Event Logs API from OpenText Cybersecurity — 1 operation(s) for event logs.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Event Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-event-logs-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-lookup-items-api
+  name: OpenText Cybersecurity Lookup Items API
+  description: The Lookup Items API from OpenText Cybersecurity — 1 operation(s) for lookup items.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Lookup Items
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-lookup-items-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-mobile-scans-api
+  name: OpenText Cybersecurity Mobile Scans API
+  description: The Mobile Scans API from OpenText Cybersecurity — 3 operation(s) for mobile scans.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Mobile Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-mobile-scans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-open-source-components-api
+  name: OpenText Cybersecurity Open Source Components API
+  description: >-
+    The Open Source Components API from OpenText Cybersecurity — 2 operation(s) for open source components.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Open Source Components
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-open-source-components-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-open-source-scans-api
+  name: OpenText Cybersecurity Open Source Scans API
+  description: >-
+    The Open Source Scans API from OpenText Cybersecurity — 1 operation(s) for open source scans.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Open Source Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-open-source-scans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-personal-access-tokens-api
+  name: OpenText Cybersecurity Personal Access Tokens API
+  description: >-
+    The Personal Access Tokens API from OpenText Cybersecurity — 3 operation(s) for personal access tokens.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Personal Access Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-personal-access-tokens-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-static-scans-api
+  name: OpenText Cybersecurity Static Scans API
+  description: The Static Scans API from OpenText Cybersecurity — 6 operation(s) for static scans.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Static Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-static-scans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+- aid: opentext-cybersecurity:opentext-cybersecurity-user-management-api
+  name: OpenText Cybersecurity User Management API
+  description: >-
+    The User Management API from OpenText Cybersecurity — 3 operation(s) for user management.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - User Management
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-user-management-api-openapi.yml
   - type: APIReference
     url: https://api.ams.fortify.com/swagger/ui/index
   - type: Documentation
