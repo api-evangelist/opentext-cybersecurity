@@ -82,6 +82,8 @@ apis:
   humanURL: https://api.ams.fortify.com/swagger/ui/index
   baseURL: https://api.ams.fortify.com
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -174,6 +176,8 @@ apis:
   humanURL: https://api.ams.fortify.com/swagger/ui/index
   baseURL: https://api.ams.fortify.com
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -357,6 +361,8 @@ apis:
   humanURL: https://api.ams.fortify.com/swagger/ui/index
   baseURL: https://api.ams.fortify.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
