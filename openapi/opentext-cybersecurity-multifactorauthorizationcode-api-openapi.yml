@@ -1,0 +1,118 @@
+openapi: 3.2.0
+info:
+  version: v3
+  title: Fortify on Demand Web API Explorer Multi Factor…
+servers:
+- url: https://api.ams.fortify.com
+tags:
+- name: MultiFactorAuthorizationCode
+paths:
+  /api/v3/multi-factor-authorization-code:
+    post:
+      tags:
+      - MultiFactorAuthorizationCode
+      summary: Send an Authorization code
+      operationId: MultiFactorAuthorizationCodeV3_Post
+      responses:
+        '204':
+          description: NoContent
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostMultiFactorAuthorizationCodeRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostMultiFactorAuthorizationCodeRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PostMultiFactorAuthorizationCodeRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PostMultiFactorAuthorizationCodeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PostMultiFactorAuthorizationCodeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostMultiFactorAuthorizationCodeRequest'
+        description: the username, password, and authorization method
+        required: true
+components:
+  schemas:
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    PostMultiFactorAuthorizationCodeRequest:
+      description: Post Multi Factor Authorization Code Request
+      required:
+      - multiFactorAuthorizationType
+      - username
+      - password
+      type: object
+      properties:
+        multiFactorAuthorizationType:
+          description: Type of Authorization (sms or email)
+          enum:
+          - SMSDelivery
+          - EmailDelivery
+          type: string
+        username:
+          description: Tenant Code / Username
+          type: string
+        password:
+          description: Password
+          type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'

@@ -1,0 +1,556 @@
+openapi: 3.2.0
+info:
+  version: v3
+  title: Fortify on Demand Web API Explorer Users API
+servers:
+- url: https://api.ams.fortify.com
+tags:
+- name: Users
+paths:
+  /api/v3/users/{userId}:
+    get:
+      tags:
+      - Users
+      summary: Get a specific user
+      description: 'Allowed Scopes: api-tenant, view-users'
+      operationId: UsersV3_GetUser
+      parameters:
+      - name: userId
+        in: path
+        description: The user id can be obtained by calling GET /api/v3/users
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+    put:
+      tags:
+      - Users
+      summary: Update an existing user
+      description: 'Allowed Scopes: api-tenant, manage-users'
+      operationId: UsersV3_PutUser
+      parameters:
+      - name: userId
+        in: path
+        description: The user id can be obtained by calling GET /api/v3/users
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutUserResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PutUserResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PutUserResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/PutUserResponse'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutUserRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PutUserRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PutUserRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PutUserRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PutUserRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PutUserRequest'
+        description: PutUserRequest model
+        required: true
+    delete:
+      tags:
+      - Users
+      summary: Delete a specific user
+      description: 'Allowed Scopes: api-tenant, manage-users'
+      operationId: UsersV3_DeleteUser
+      parameters:
+      - name: userId
+        in: path
+        description: The user id can be obtained by calling GET /api/v3/users
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteUserResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DeleteUserResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeleteUserResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/DeleteUserResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/users:
+    get:
+      tags:
+      - Users
+      summary: Get a list of users
+      description: 'Allowed Scopes: api-tenant, view-users'
+      operationId: UsersV3_GetUsers
+      parameters:
+      - name: filters
+        in: query
+        description: 'A delimited list of field filters.
+
+          <br /><br />Field name and value should be separated by a colon (:).
+
+          <br /><br />Multiple fields should be separated by a plus (+). Multiple fields are treated as an AND condition. Example, fieldname1:value+fieldname2:value
+
+          <br /><br />Multiple values for a field should be separated by a pipe (|). Mulitple values for a field are treated as an OR condition. Example, fieldname1:value1|value2'
+        required: false
+        schema:
+          type: string
+      - name: orderBy
+        in: query
+        description: The field name to order the results by.
+        required: false
+        schema:
+          type: string
+      - name: orderByDirection
+        in: query
+        description: The direction to order the results by. ASC and DESC are valid values.
+        required: false
+        schema:
+          type: string
+      - name: fields
+        in: query
+        description: Comma separated list of fields to return.
+        required: false
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Offset of the starting record. 0 indicates the first record.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: Maximum records to return. The maximum value allowed is 50.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+    post:
+      tags:
+      - Users
+      summary: Create a new user
+      description: 'Allowed Scopes: api-tenant, manage-users'
+      operationId: UsersV3_PostUser
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostUserResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PostUserResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PostUserResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/PostUserResponse'
+        '401':
+          description: Unauthorized
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostUserRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostUserRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PostUserRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PostUserRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PostUserRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostUserRequest'
+        description: PostUserRequest model
+        required: true
+components:
+  schemas:
+    UserListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    PostUserResponse:
+      description: Post User Response
+      type: object
+      properties:
+        userId:
+          format: int32
+          description: The id of the user
+          type: integer
+    PutUserRequest:
+      description: Put User Request
+      required:
+      - email
+      - firstName
+      - lastName
+      - roleId
+      type: object
+      properties:
+        email:
+          description: The user's email address
+          type: string
+        firstName:
+          description: The user's first name
+          type: string
+        lastName:
+          description: The user's last name
+          type: string
+        phoneNumber:
+          description: The user's phone number
+          type: string
+        roleId:
+          format: int32
+          description: The user's role id
+          type: integer
+        passwordNeverExpires:
+          description: Indicates if the password never expires
+          type: boolean
+        isSuspended:
+          description: Indicates if the user's account is suspended
+          type: boolean
+        mustChange:
+          description: Indicates if the user must change the password on the next login
+          type: boolean
+        password:
+          description: The user's password
+          type: string
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    PostUserRequest:
+      description: Post User Request
+      required:
+      - userName
+      - email
+      - firstName
+      - lastName
+      - roleId
+      type: object
+      properties:
+        userName:
+          description: The username
+          type: string
+        email:
+          description: The user's email address
+          type: string
+        firstName:
+          description: The user's first name
+          type: string
+        lastName:
+          description: The user's last name
+          type: string
+        phoneNumber:
+          description: The user's phone number
+          type: string
+        roleId:
+          format: int32
+          description: The The user's role id
+          type: integer
+        passwordNeverExpires:
+          description: Indicates if the password never expires
+          type: boolean
+        isSuspended:
+          description: Indicates if the user's account is suspended
+          type: boolean
+    DeleteUserResponse:
+      description: Delete User Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the user was deleted
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    User:
+      description: User
+      type: object
+      properties:
+        userId:
+          format: int32
+          description: The users's id
+          type: integer
+        userName:
+          description: The users's username
+          type: string
+        firstName:
+          description: The users's first name
+          type: string
+        lastName:
+          description: The users's last name
+          type: string
+        email:
+          description: The users's email address
+          type: string
+        phoneNumber:
+          description: The users's phone number
+          type: string
+        isVerified:
+          description: Indicates if the user has been verified
+          type: boolean
+        roleId:
+          format: int32
+          description: The users's role id
+          type: integer
+        roleName:
+          description: The users's role name
+          type: string
+        isSuspended:
+          description: Indicates if the user's account is suspended
+          type: boolean
+        mustChange:
+          description: Indicates if the user must change the password on the next login
+          type: boolean
+        passwordNeverExpires:
+          description: Indicates if the password never expires
+          type: boolean
+        modifiedDate:
+          format: date-time
+          description: The users's modified date
+          type: string
+        lastLoginDate:
+          format: date-time
+          description: The users's last login date
+          type: string
+        createdVia:
+          description: How the user was created
+          type: string
+    PutUserResponse:
+      description: Put Release Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the user was updated
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string

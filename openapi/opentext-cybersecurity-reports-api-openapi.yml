@@ -1,0 +1,949 @@
+openapi: 3.2.0
+info:
+  version: v3
+  title: Fortify on Demand Web API Explorer Reports API
+servers:
+- url: https://api.ams.fortify.com
+tags:
+- name: Reports
+paths:
+  /api/v3/reports/{reportId}:
+    get:
+      tags:
+      - Reports
+      summary: Get report summary data for the given report
+      description: 'Allowed Scopes: api-tenant, view-reports'
+      operationId: ReportsV3_GetReport
+      parameters:
+      - name: reportId
+        in: path
+        description: The report id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Report'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+    delete:
+      tags:
+      - Reports
+      summary: Delete a report
+      description: 'Allowed Scopes: api-tenant, manage-reports'
+      operationId: ReportsV3_Delete
+      parameters:
+      - name: reportId
+        in: path
+        description: The report id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteReportResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DeleteReportResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeleteReportResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/DeleteReportResponse'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/reports:
+    get:
+      tags:
+      - Reports
+      summary: Get a list of report summary data
+      description: 'Allowed Scopes: api-tenant, view-reports'
+      operationId: ReportsV3_GetReports
+      parameters:
+      - name: filters
+        in: query
+        description: 'A delimited list of field filters.
+
+          <br /><br />Field name and value should be separated by a colon (:).
+
+          <br /><br />Multiple fields should be separated by a plus (+). Multiple fields are treated as an AND condition. Example, fieldname1:value+fieldname2:value
+
+          <br /><br />Multiple values for a field should be separated by a pipe (|). Mulitple values for a field are treated as an OR condition. Example, fieldname1:value1|value2'
+        required: false
+        schema:
+          type: string
+      - name: orderBy
+        in: query
+        description: The field name to order the results by.
+        required: false
+        schema:
+          type: string
+      - name: orderByDirection
+        in: query
+        description: The direction to order the results by. ASC and DESC are valid values.
+        required: false
+        schema:
+          type: string
+      - name: fields
+        in: query
+        description: Comma separated list of fields to return.
+        required: false
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Offset of the starting record. 0 indicates the first record.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: Maximum records to return. The maximum value allowed is 50.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReportListResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ReportListResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ReportListResponse'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+    post:
+      tags:
+      - Reports
+      summary: Create a new report
+      description: 'Allowed Scopes: api-tenant, manage-reports'
+      operationId: ReportsV3_PostReport
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostReportResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PostReportResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PostReportResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/PostReportResponse'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostReportRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostReportRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PostReportRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PostReportRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PostReportRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostReportRequest'
+        description: PostReportRequest model
+        required: true
+  /api/v3/reports/{reportId}/download:
+    get:
+      tags:
+      - Reports
+      summary: Download the report in binary format
+      description: 'Allowed Scopes: api-tenant, view-reports'
+      operationId: ReportsV3_Download
+      parameters:
+      - name: reportId
+        in: path
+        description: The report id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/reports/dataexports:
+    get:
+      tags:
+      - Reports
+      summary: Get a list of export report summary data
+      description: 'Allowed Scopes: api-tenant, view-reports'
+      operationId: ReportsV3_GetDataExports
+      parameters:
+      - name: filters
+        in: query
+        description: 'A delimited list of field filters.
+
+          <br /><br />Field name and value should be separated by a colon (:).
+
+          <br /><br />Multiple fields should be separated by a plus (+). Multiple fields are treated as an AND condition. Example, fieldname1:value+fieldname2:value
+
+          <br /><br />Multiple values for a field should be separated by a pipe (|). Mulitple values for a field are treated as an OR condition. Example, fieldname1:value1|value2'
+        required: false
+        schema:
+          type: string
+      - name: orderBy
+        in: query
+        description: The field name to order the results by.
+        required: false
+        schema:
+          type: string
+      - name: orderByDirection
+        in: query
+        description: The direction to order the results by. ASC and DESC are valid values.
+        required: false
+        schema:
+          type: string
+      - name: fields
+        in: query
+        description: Comma separated list of fields to return.
+        required: false
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Offset of the starting record. 0 indicates the first record.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: Maximum records to return. The maximum value allowed is 50.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataExportListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DataExportListResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DataExportListResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/DataExportListResponse'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+    post:
+      tags:
+      - Reports
+      summary: Create a new data export
+      description: 'Allowed Scopes: api-tenant, manage-reports'
+      operationId: ReportsV3_PostDataExport
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostDataExportResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PostDataExportResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PostDataExportResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/PostDataExportResponse'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostDataExportRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostDataExportRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PostDataExportRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PostDataExportRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PostDataExportRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostDataExportRequest'
+        description: PostDataExportRequest model
+        required: true
+  /api/v3/reports/dataexports/{dataExportId}/download:
+    get:
+      tags:
+      - Reports
+      summary: Download the export report in binary format
+      description: 'Allowed Scopes: api-tenant, view-reports'
+      operationId: ReportsV3_DownloadExport
+      parameters:
+      - name: dataExportId
+        in: path
+        description: The data export id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/reports/dataexports/templates:
+    get:
+      tags:
+      - Reports
+      summary: Get a list of data export templates
+      description: 'Allowed Scopes: api-tenant, view-reports'
+      operationId: ReportsV3_GetDataExportTemplates
+      parameters:
+      - name: filters
+        in: query
+        description: 'A delimited list of field filters.
+
+          <br /><br />Field name and value should be separated by a colon (:).
+
+          <br /><br />Multiple fields should be separated by a plus (+). Multiple fields are treated as an AND condition. Example, fieldname1:value+fieldname2:value
+
+          <br /><br />Multiple values for a field should be separated by a pipe (|). Mulitple values for a field are treated as an OR condition. Example, fieldname1:value1|value2'
+        required: false
+        schema:
+          type: string
+      - name: orderBy
+        in: query
+        description: The field name to order the results by.
+        required: false
+        schema:
+          type: string
+      - name: orderByDirection
+        in: query
+        description: The direction to order the results by. ASC and DESC are valid values.
+        required: false
+        schema:
+          type: string
+      - name: fields
+        in: query
+        description: Comma separated list of fields to return.
+        required: false
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Offset of the starting record. 0 indicates the first record.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: Maximum records to return. The maximum value allowed is 50.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataExportTemplateListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DataExportTemplateListResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DataExportTemplateListResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/DataExportTemplateListResponse'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/reports/dataexports/{dataExportId}:
+    get:
+      tags:
+      - Reports
+      summary: Get data export details
+      description: 'Allowed Scopes: api-tenant, view-reports'
+      operationId: ReportsV3_GetDataExport
+      parameters:
+      - name: dataExportId
+        in: path
+        description: The data export id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataExport'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DataExport'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DataExport'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/DataExport'
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+components:
+  schemas:
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    DataExport:
+      description: DataExport
+      type: object
+      properties:
+        dataExportId:
+          format: int32
+          description: The data export id
+          type: integer
+        dataExportName:
+          description: The data export name
+          type: string
+        dataExportType:
+          description: The data export type
+          enum:
+          - IssuesExport
+          - ScansExport
+          - ReleasesExport
+          - ApplicationsExport
+          - EntitlementConsumptionExport
+          type: string
+        createdBy:
+          description: The username that created the data export
+          type: string
+        createdDate:
+          format: date-time
+          description: The created date
+          type: string
+        dataExportStatusType:
+          description: The data export status type
+          enum:
+          - Started
+          - Completed
+          - Failed
+          - Queued
+          - Canceled
+          type: string
+    DataExportTemplateListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/DataExportTemplate'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    ReportListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    DataExportLinks:
+      description: Links for data export
+      type: object
+      properties:
+        status:
+          description: URL for checking the status of the data export
+          type: string
+        download:
+          description: URL for downloading the completed data export
+          type: string
+    PostDataExportResponse:
+      description: Response model for creating a new data export
+      type: object
+      properties:
+        dataExportId:
+          format: int32
+          description: The data export id
+          type: integer
+        links:
+          $ref: '#/components/schemas/DataExportLinks'
+          description: Links for tracking and downloading the export
+    PostDataExportRequest:
+      description: Request model for creating a new data export
+      type: object
+      properties:
+        dataExportTemplateId:
+          format: int32
+          description: The data export template id
+          type: integer
+    PostReportRequest:
+      description: Post Report Request
+      required:
+      - applicationId
+      - releaseId
+      - reportTemplateTypeId
+      - reportFormat
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          description: The application id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+        reportTemplateTypeId:
+          format: int32
+          description: The report template type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportTemplateTypes
+          type: integer
+        reportName:
+          description: The report name
+          type: string
+        reportFormat:
+          description: The report format
+          enum:
+          - Pdf
+          - Html
+          type: string
+        notes:
+          description: The report notes
+          type: string
+    Report:
+      description: Report
+      type: object
+      properties:
+        reportId:
+          format: int32
+          description: The report id
+          type: integer
+        reportName:
+          description: The report name
+          type: string
+        reportNotes:
+          description: The report notes
+          type: string
+        reportStatusTypeId:
+          format: int32
+          description: The report status type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportStatusType
+          type: integer
+        reportStatusType:
+          description: The report status type. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportStatusType
+          type: string
+        reportTypeId:
+          format: int32
+          description: The report type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportTypes
+          type: integer
+        reportType:
+          description: The report type. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportTypes
+          type: string
+        customReportTypeName:
+          description: The custom report type name
+          type: string
+        isReceived:
+          description: Is received
+          type: boolean
+        language:
+          description: The report language
+          type: string
+        applicationId:
+          format: int32
+          description: The application id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+        userId:
+          format: int32
+          description: The user id
+          type: integer
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    DataExportListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/DataExport'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    PostReportResponse:
+      description: Post Report Response
+      type: object
+      properties:
+        reportId:
+          format: int32
+          description: The id of the report that was created
+          type: integer
+        success:
+          description: Indicates if the application was created
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    DataExportTemplate:
+      description: DataExportTemplate
+      type: object
+      properties:
+        dataExportTemplateId:
+          format: int32
+          description: The data export template id
+          type: integer
+        dataExportTemplateName:
+          description: The data export template name
+          type: string
+        dataExportTemplateType:
+          description: The data export template type
+          enum:
+          - IssuesExport
+          - ScansExport
+          - ReleasesExport
+          - ApplicationsExport
+          - EntitlementConsumptionExport
+          type: string
+    DeleteReportResponse:
+      description: Delete Application Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the report was deleted
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string

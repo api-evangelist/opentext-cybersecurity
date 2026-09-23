@@ -1,0 +1,2318 @@
+openapi: 3.2.0
+info:
+  version: v3
+  title: Fortify on Demand Web API Explorer Vulnerabilities API
+servers:
+- url: https://api.ams.fortify.com
+tags:
+- name: Vulnerabilities
+paths:
+  /api/v3/releases/{releaseId}/vulnerabilities:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns a list of vulnerabilities
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilities
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: filters
+        in: query
+        description: 'A delimited list of field filters.
+
+          <br /><br />Field name and value should be separated by a colon (:).
+
+          <br /><br />Multiple fields should be separated by a plus (+). Multiple fields are treated as an AND condition. Example, fieldname1:value+fieldname2:value
+
+          <br /><br />Multiple values for a field should be separated by a pipe (|). Mulitple values for a field are treated as an OR condition. Example, fieldname1:value1|value2
+
+          <br /><br />Filtering is not supported for the following fields: auditPendingAuditorStatus, auditPendingSuppression, checkId, closedDate, closedStatus, falsePositiveChallenge, instanceId, pci1_2, sink, source, stig6, suppressedBy, timeToFixDays'
+        required: false
+        schema:
+          type: string
+      - name: orderBy
+        in: query
+        description: The field name to order the results by.
+        required: false
+        schema:
+          type: string
+      - name: orderByDirection
+        in: query
+        description: The direction to order the results by. ASC and DESC are valid values.
+        required: false
+        schema:
+          type: string
+      - name: fields
+        in: query
+        description: Comma separated list of fields to return.
+        required: false
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Offset of the starting record. 0 indicates the first record.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: Maximum records to return. The maximum value allowed is in Tenant's 'Max Number of Vulnerabilities Records Per API Call'.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: excludeFilters
+        in: query
+        description: Indicates if filter data should be excluded in the return value. Value defaults to false if not specified.
+        required: false
+        schema:
+          type: boolean
+      - name: includeFixed
+        in: query
+        description: Indicates if items that have been fixed should be included in the return value. Value defaults to false if not specified.
+        required: false
+        schema:
+          type: boolean
+      - name: includeSuppressed
+        in: query
+        description: Indicates if items that have been suppressed should be included in the return value. Value defaults to false if not specified.
+        required: false
+        schema:
+          type: boolean
+      - name: fortifyAviator
+        in: query
+        description: Indicates if Fortify Remediation Aviator audited items should be included in the return value. Value defaults to null if not specified.
+        required: false
+        schema:
+          type: boolean
+      - name: keywordSearch
+        in: query
+        description: Used for keyword searches
+        required: false
+        schema:
+          type: string
+      - name: lastModifiedDate
+        in: query
+        description: Indicates the last modified date of the vulnerability. The format of the date is YYYY/MM/DD.
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetVulnerabilitiesResponseVulnerabilityListItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetVulnerabilitiesResponseVulnerabilityListItem'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetVulnerabilitiesResponseVulnerabilityListItem'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/GetVulnerabilitiesResponseVulnerabilityListItem'
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/all-data:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns all of the data for the vulnerability
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityAllData
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      - name: includeSystemEvents
+        in: query
+        description: Include system events in the return data. Value defaults to false if not specified.
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityAllData'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityAllData'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityAllData'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityAllData'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/summary:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the vulnerability summary
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilitySummary
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilitySummary'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilitySummary'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilitySummary'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilitySummary'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/details:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the vulnerability details
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityDetails
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityDetails'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityDetails'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityDetails'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/recommendations:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the vulnerability recommendations
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityRecommendations
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityRecommendations'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityRecommendations'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityRecommendations'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityRecommendations'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/history:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the vulnerability history
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityHistory
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      - name: includeSystemEvents
+        in: query
+        description: Include system events in the return data. Value defaults to false if not specified.
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityHistory'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityHistory'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityHistory'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityHistory'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/screenshots:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the vulnerability screenshots
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityScreenshots
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityScreenshot'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityScreenshot'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityScreenshot'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityScreenshot'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/screenshot/{screenshotId}:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns a screenshot
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetScreenshot
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      - name: screenshotId
+        in: path
+        description: The screenshot id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/request-response:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the vulnerability request and response
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityRequestResponse
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityRequestResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityRequestResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityRequestResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityRequestResponse'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/headers:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the vulnerability headers
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityHeaders
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityHeaders'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityHeaders'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityHeaders'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityHeaders'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/parameters:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the vulnerability parameters
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityParameters
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityParameters'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityParameters'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityParameters'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityParameters'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/traces:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the vulnerability traces
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityTraces
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityTrace'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityTrace'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityTrace'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityTrace'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/traces/{traceIndex}/{traceEntryIndex}/code:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the trace code for the specific index
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityTraceCode
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      - name: traceIndex
+        in: path
+        description: The trace index can be obtained by calling GET/api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/all-data
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: traceEntryIndex
+        in: path
+        description: The trace entry index can be obtained by calling GET/api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/all-data
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityTraceCode'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityTraceCode'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityTraceCode'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityTraceCode'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/traces/{traceIndex}/{traceEntryIndex}/snippet:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the trace snippet for the specific index
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityTraceSnippet
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      - name: traceIndex
+        in: path
+        description: The trace index can be obtained by calling GET/api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/all-data
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: traceEntryIndex
+        in: path
+        description: The trace entry index can be obtained by calling GET/api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/all-data
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityTraceCodeSnippet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityTraceCodeSnippet'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityTraceCodeSnippet'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityTraceCodeSnippet'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/audit-options:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the vulnerability audit options
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityAuditOptions
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityAuditOptions'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityAuditOptions'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityAuditOptions'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityAuditOptions'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/bulk-edit:
+    post:
+      tags:
+      - Vulnerabilities
+      summary: Saves audit data for the vulnerabilities
+      description: 'Allowed Scopes: api-tenant, manage-issues'
+      operationId: VulnerabilitiesV3_PostVulnerabilityEdit
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostVulnerabilityBulkEditResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PostVulnerabilityBulkEditResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PostVulnerabilityBulkEditResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/PostVulnerabilityBulkEditResponse'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostVulnerabilityBulkEditRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostVulnerabilityBulkEditRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PostVulnerabilityBulkEditRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PostVulnerabilityBulkEditRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PostVulnerabilityBulkEditRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostVulnerabilityBulkEditRequest'
+        description: PostVulnerabilityBulkEditRequest model
+        required: true
+  /api/v3/releases/{releaseId}/vulnerability-filters:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Get available vulnerability filters
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityFilters
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: filters
+        in: query
+        description: 'A delimited list of field filters.
+
+          <br /><br />Field name and value should be separated by a colon (:).
+
+          <br /><br />Multiple fields should be separated by a plus (+). Multiple fields are treated as an AND condition. Example, fieldname1:value+fieldname2:value
+
+          <br /><br />Multiple values for a field should be separated by a pipe (|). Mulitple values for a field are treated as an OR condition. Example, fieldname1:value1|value2
+
+          <br /><br />Filtering is not supported for the following fields: auditPendingAuditorStatus, auditPendingSuppression, checkId, closedDate, closedStatus, falsePositiveChallenge, instanceId, pci1_2, sink, source, stig6, suppressedBy, timeToFixDays'
+        required: false
+        schema:
+          type: string
+      - name: fieldName
+        in: query
+        description: The specific field to return
+        required: false
+        schema:
+          type: string
+      - name: includeFixed
+        in: query
+        description: Indicates if items that have been fixed should be included in the return value. Value defaults to false if not specified.
+        required: false
+        schema:
+          type: boolean
+      - name: includeSuppressed
+        in: query
+        description: Indicates if items that have been suppressed should be included in the return value. Value defaults to false if not specified.
+        required: false
+        schema:
+          type: boolean
+      - name: keywordSearch
+        in: query
+        description: Used for keyword searches
+        required: false
+        schema:
+          type: string
+      - name: fields
+        in: query
+        description: Comma separated list of fields to return.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FieldFilterListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FieldFilterListResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/FieldFilterListResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/FieldFilterListResponse'
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/bug-link:
+    post:
+      tags:
+      - Vulnerabilities
+      summary: Saves bug tracker url for the vulnerabilities
+      description: 'Allowed Scopes: api-tenant, manage-issues'
+      operationId: VulnerabilitiesV3_PostVulnerabilityBugLink
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '204':
+          description: NoContent
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostVulnerabilityBugLinkRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostVulnerabilityBugLinkRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PostVulnerabilityBugLinkRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PostVulnerabilityBugLinkRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PostVulnerabilityBugLinkRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostVulnerabilityBugLinkRequest'
+        description: PostVulnerabilityBugLinkRequest model
+        required: true
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/comments:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns the vulnerability audit comments
+      description: 'Allowed Scopes: api-tenant, view-issues'
+      operationId: VulnerabilitiesV3_GetVulnerabilityAuditComments
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      - name: userName
+        in: query
+        description: The username to get user specific comments
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityAuditCommentsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityAuditCommentsResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityAuditCommentsResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityAuditCommentsResponse'
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/releases/{releaseId}/vulnerabilities/{vulnId}/aviator-remediation-guidance:
+    get:
+      tags:
+      - Vulnerabilities
+      summary: Returns machine readable aviator remediation details in json format for each…
+      operationId: VulnerabilitiesV3_GetAviatorRemediationGuidanceForVulneribility
+      parameters:
+      - name: releaseId
+        in: path
+        description: The release id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: vulnId
+        in: path
+        description: Field accepts "id" or "vulnId". To obtain the vulnId or Id call GET /api/v3/vulnerabilities. Id is also available through portal.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+            text/xml:
+              schema:
+                type: object
+        '400':
+          description: BadRequest
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+components:
+  schemas:
+    VulnerabilityBulkUpdateResult:
+      description: Vulnerability Bulk Update Result
+      type: object
+      properties:
+        vulnerabilityId:
+          description: The vulnerability id
+          type: string
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+    VulnerabilityAuditOptions:
+      description: Vulnerability Audit Options
+      type: object
+      properties:
+        canAudit:
+          description: Indicates if the current user can audit the vulnerability
+          type: boolean
+        canChallenge:
+          description: Indicates if the current user can challenge the vulnerability
+          type: boolean
+        canEdit:
+          description: Indicates if the current user can edit the vulnerability
+          type: boolean
+        inAuditMode:
+          description: Indicates if the release is in audit mode
+          type: boolean
+        auditProcessing:
+          description: Indicates if the audit is processing for the release
+          type: boolean
+        auditActions:
+          description: List of available audit actions
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditAction'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    AuditAction:
+      description: Audit Action
+      type: object
+      properties:
+        auditActionType:
+          description: The audit action type
+          enum:
+          - AuditorStatus
+          - DeveloperStatus
+          - Severity
+          - User
+          type: string
+        auditActionTypeName:
+          description: The audit action type name
+          type: string
+        items:
+          description: List of audit action items
+          type: array
+          items:
+            $ref: '#/components/schemas/LookupItem'
+    SecureCodeWarriorModel:
+      type: object
+      properties:
+        url:
+          type: string
+        videoUrls:
+          type: array
+          items:
+            type: string
+        cweTrainings:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrainingLinks'
+    GetVulnerabilitiesResponseVulnerabilityListItem:
+      description: Get Vulnerabilities Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityListItem'
+        filters:
+          description: The list of filters
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldFilter'
+        totalCount:
+          format: int32
+          description: The total count of items
+          type: integer
+        isRepositoryUpdating:
+          description: Indicates if the repository is being updated
+          type: boolean
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    VulnerabilityComplianceItem:
+      description: Vulnerability compliance item.
+      type: object
+      properties:
+        complianceRule:
+          description: The compliance rule.
+          type: string
+    VulnerabilityScreenshotItem:
+      description: Vulnerability Screenshot Item
+      type: object
+      properties:
+        id:
+          format: int32
+          description: Id
+          type: integer
+        name:
+          description: Name
+          type: string
+        description:
+          description: Description
+          type: string
+        uploadDate:
+          format: date-time
+          description: Upload date
+          type: string
+    FieldFilterValue:
+      description: Field Filter Value
+      type: object
+      properties:
+        value:
+          description: The value property
+          type: string
+        count:
+          format: int32
+          description: Count of items in the filter
+          type: integer
+    LookupItem:
+      description: Lookup Item
+      type: object
+      properties:
+        value:
+          description: The value property
+          type: string
+        text:
+          description: The text property
+          type: string
+        group:
+          description: The group property
+          type: string
+    VulnerabilityTraceEntry:
+      description: Vulnerability Trace Entry
+      type: object
+      properties:
+        index:
+          format: int32
+          description: Index
+          type: integer
+        lineNumber:
+          format: int32
+          description: Line number
+          type: integer
+        displayText:
+          description: Display text
+          type: string
+        location:
+          description: Location
+          type: string
+        actionType:
+          description: Action type
+          type: string
+    VulnerabilityTrace:
+      description: Vulnerability Trace
+      type: object
+      properties:
+        items:
+          description: List of trace items
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityTraceItem'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityListItem:
+      description: Vulnerability List Item
+      type: object
+      properties:
+        id:
+          format: int32
+          description: Id
+          type: integer
+        releaseId:
+          format: int32
+          description: Release id
+          type: integer
+        fisma:
+          description: FISMA
+          type: string
+        nistsp800_53rev5:
+          description: NIST SP 800-53 Rev.5
+          type: string
+        severityString:
+          description: Severity string
+          type: string
+        severity:
+          format: int32
+          description: Severity numeric value
+          type: integer
+        category:
+          description: Category
+          type: string
+        kingdom:
+          description: Kingdom
+          type: string
+        owasp2017:
+          description: OWASP 2017
+          type: string
+        owasp2021:
+          description: OWASP 2021
+          type: string
+        owasp2023:
+          description: OWASP 2023
+          type: string
+        owaspAsvs4_0:
+          description: OWASP ASVS 4.0
+          type: string
+        OWASP_ASVS_4_0:
+          type: string
+        owaspAsvs5_0:
+          description: OWASP ASVS 5.0
+          type: string
+        owaspTop10_2025:
+          description: OWASP Top 10 2025
+          type: string
+        owaspTop10_LLMApplications_2025:
+          description: OWASP Top 10 2025
+          type: string
+        cwe:
+          description: CWE
+          type: string
+        cwetop25_2023:
+          description: CWE Top 25 2023
+          type: string
+        cwetop25_2024:
+          description: CWE Top 25 2024
+          type: string
+        cwetop25_2025:
+          description: CWE Top 25 2025
+          type: string
+        package:
+          description: Package
+          type: string
+        primaryLocation:
+          description: Primary location
+          type: string
+        vulnId:
+          description: Vulnerability id
+          type: string
+        analysisType:
+          description: Analysis type
+          type: string
+        lineNumber:
+          format: int32
+          description: Line number
+          type: integer
+        hasComments:
+          description: Has Comments
+          type: boolean
+        assignedUser:
+          description: Assigned user
+          type: string
+        scantype:
+          description: Scan type. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanTypes
+          type: string
+        subtype:
+          description: Sub type
+          type: string
+        primaryLocationFull:
+          description: Primary location full
+          type: string
+        hasAttachments:
+          description: Has attachments
+          type: boolean
+        pci1_2:
+          description: PCI 1.2
+          type: string
+        pci2:
+          description: PCI 2.0
+          type: string
+        wasc24_2:
+          description: WASC242
+          type: string
+        isSuppressed:
+          description: Is suppressed
+          type: boolean
+        suppressedBy:
+          description: Is suppressed
+          type: string
+        scanId:
+          format: int32
+          description: Scan id
+          type: integer
+        pci3:
+          description: PCI 3.0
+          type: string
+        pci4:
+          description: PCI 4.0
+          type: string
+        pci401:
+          description: PCI 4.0.1
+          type: string
+        pcissf1:
+          description: PCI SSF 1.0
+          type: string
+        stig6:
+          description: STIG 6.x
+          type: string
+        instanceId:
+          description: Instance id
+          type: string
+        auditPendingAuditorStatus:
+          description: Audit Pending - Auditor Status
+          type: string
+        auditorStatus:
+          description: Auditor Status
+          type: string
+        checkId:
+          description: Check Id
+          type: string
+        closedDate:
+          format: date-time
+          description: Closed Date
+          type: string
+        closedStatus:
+          description: Closed Status
+          type: boolean
+        developerStatus:
+          description: Developer Status
+          type: string
+        falsePositiveChallenge:
+          description: False Positive Challenge
+          type: string
+        introducedDate:
+          description: Introduced Date
+          type: string
+        scanStartedDate:
+          format: date-time
+          description: Scan Started Date
+          type: string
+        scanCompletedDate:
+          format: date-time
+          description: Scan Completed Date
+          type: string
+        status:
+          description: Status
+          type: string
+        bugSubmitted:
+          description: Bug Submitted
+          type: boolean
+        bugLink:
+          description: Bug Link
+          type: string
+        auditPendingSuppression:
+          description: Audit Pending Suppression
+          type: string
+        source:
+          description: Source
+          type: string
+        sink:
+          description: Sink
+          type: string
+        timeToFixDays:
+          format: int32
+          description: Sink
+          type: integer
+        fortifyAviator:
+          description: Fortify Aviator
+          type: boolean
+        lastModifiedDate:
+          format: date-time
+          type: string
+        aviatorRemediationGuidanceAvailable:
+          type: boolean
+        exploited:
+          description: Exploited (CISA)
+          type: boolean
+        malware:
+          description: Malware
+          type: boolean
+    VulnerabilityTraceCodeSnippet:
+      type: object
+      properties:
+        endLine:
+          format: int32
+          description: Source file extension
+          type: integer
+        file:
+          description: File
+          type: string
+        startLine:
+          format: int32
+          description: Source file content
+          type: integer
+        text:
+          description: Source start line number
+          type: string
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    FieldFilter:
+      description: Field Filter
+      type: object
+      properties:
+        fieldName:
+          description: The field name
+          type: string
+        fieldFilterValues:
+          description: List of field filter values
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldFilterValue'
+        displayName:
+          description: The display name
+          type: string
+    VulnerabilityRecommendations:
+      description: Vulnerability Recommendations
+      type: object
+      properties:
+        isStatic:
+          description: Is static
+          type: boolean
+        recommendations:
+          description: Recommendations
+          type: string
+        tips:
+          description: Tips
+          type: string
+        references:
+          description: References
+          type: string
+        sonatype:
+          $ref: '#/components/schemas/SonatypeRecommendations'
+        secureCodeWarrior:
+          $ref: '#/components/schemas/SecureCodeWarriorModel'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    SonatypeRecommendations:
+      description: Sonatype Recommendations
+      type: object
+      properties:
+        explanation:
+          description: Explanation
+          type: string
+        detection:
+          description: Detection
+          type: string
+        recommendation:
+          description: Recommendations
+          type: string
+        nextNonVulnerableVersion:
+          description: Next non vulnerable version
+          type: string
+        greatestNonVulnerableVersion:
+          description: Greatest non vulnerable version
+          type: string
+        links:
+          description: An array of links
+          type: array
+          items:
+            type: string
+    ItemAttribute:
+      type: object
+      properties:
+        id:
+          format: int32
+          description: Id of the attribute
+          type: integer
+        Value:
+          description: Value of the attribute
+          type: string
+    VulnerabilityHeader:
+      description: Vulnerability Header
+      type: object
+      properties:
+        name:
+          description: The header name
+          type: string
+        value:
+          description: The header value
+          type: string
+        cookieHeaders:
+          description: The list of cookie headers
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityHeader'
+    VulnerabilityDetails:
+      description: Vulnerability Details
+      type: object
+      properties:
+        isStatic:
+          description: Indicates if the vulnerability is static
+          type: boolean
+        summary:
+          description: The vulnerability summary
+          type: string
+        explanation:
+          description: The vulnerability explanation
+          type: string
+        instanceId:
+          description: The vulnerability instance id
+          type: string
+        ruleId:
+          description: The vulnerability rule id
+          type: string
+        impact:
+          description: The vulnerability impact
+          type: string
+        probability:
+          description: The vulnerability probability
+          type: string
+        severity:
+          description: The vulnerability severity
+          type: string
+        confidence:
+          description: The vulnerability confidence
+          type: string
+        analyzerName:
+          description: The vulnerability analyzer name
+          type: string
+        source:
+          description: The vulnerability source name
+          type: string
+        sink:
+          description: The vulnerability sink name
+          type: string
+        complianceCategories:
+          description: The compliance rules which pertain to this vulnerability, grouped by category.
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityComplianceCategory'
+        remainingRemediationGracePeriodDays:
+          format: int32
+          description: 'The number of days remaining in the remediation grace period
+
+            This will be negative if the grace period has expired'
+          type: integer
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilitySummary:
+      description: Vulnerability Summary
+      type: object
+      properties:
+        lineNumber:
+          format: int32
+          description: Line number
+          type: integer
+        primaryLocation:
+          description: Primary location
+          type: string
+        primaryLocationFull:
+          description: The full Primary location
+          type: string
+        severity:
+          description: Severity
+          type: string
+        isSuppressed:
+          description: Is suppressed
+          type: boolean
+        assignedUser:
+          description: Assigned user
+          type: string
+        developerStatus:
+          description: Developer status
+          type: string
+        auditorStatus:
+          description: Auditor status
+          type: string
+        auditPending:
+          description: Audit pending
+          type: boolean
+        auditPendingAuditorStatus:
+          description: Audit pending auditor status
+          type: string
+        auditPendingSeverity:
+          description: Audit pending severity
+          type: string
+        auditPendingSuppression:
+          description: Audit pending suppression
+          type: string
+        comments:
+          description: Comments
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditComment'
+        notes:
+          description: Notes
+          type: string
+        bugSubmitted:
+          description: Bug Submitted
+          type: boolean
+        bugLink:
+          description: Bug Link
+          type: string
+        fileLocations:
+          description: File locations for open source vulnerabilities
+          type: array
+          items:
+            type: string
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityAllData:
+      description: All data for the vulnerability
+      type: object
+      properties:
+        summary:
+          $ref: '#/components/schemas/VulnerabilitySummary'
+          description: The vulnerability summary
+        details:
+          $ref: '#/components/schemas/VulnerabilityDetails'
+          description: The vulnerability details
+        recommendations:
+          $ref: '#/components/schemas/VulnerabilityRecommendations'
+          description: The vulnerability recommendations
+        screenshots:
+          description: List of vulnerability screenshots
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityScreenshotItem'
+        history:
+          description: List of vulnerability history
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityHistoryItem'
+        requestResponse:
+          $ref: '#/components/schemas/VulnerabilityRequestResponse'
+          description: The vulnerability request and response
+        headers:
+          $ref: '#/components/schemas/VulnerabilityHeaders'
+          description: The vulnerability headers
+        parameters:
+          $ref: '#/components/schemas/VulnerabilityParameters'
+          description: The vulnerability parameters
+        traces:
+          description: The vulnerability traces
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityTraceItem'
+        auditOptions:
+          $ref: '#/components/schemas/VulnerabilityAuditOptions'
+          description: The vulnerability audit options
+        attributes:
+          description: The vulnerability attribute
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeItemModel'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityHistoryItem:
+      description: Vulnerability History Item
+      type: object
+      properties:
+        content:
+          description: The history content
+          type: string
+        historyDateTime:
+          format: date-time
+          description: The history date time
+          type: string
+        user:
+          description: The user that created the history item
+          type: string
+        historyType:
+          description: The history type of the item
+          type: string
+    VulnerabilityScreenshot:
+      description: Vulnerability Screenshot
+      type: object
+      properties:
+        items:
+          description: List of screenshots
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityScreenshotItem'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityAuditCommentsResponse:
+      description: Get the Audit Comments for given Vulnerability Id
+      type: object
+      properties:
+        items:
+          description: List of comments
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditComment'
+        releaseId:
+          format: int32
+          description: The ID of the release that the vulnerability belongs to.
+          type: integer
+        vulnId:
+          description: The Vulnerability ID associated with the release.
+          type: string
+        id:
+          format: int32
+          description: The issue ID.
+          type: integer
+    VulnerabilityTraceCode:
+      description: Vulnerability Trace Code
+      type: object
+      properties:
+        sourceFileContent:
+          description: Source file content
+          type: string
+        sourceFileExtension:
+          description: Source file extension
+          type: string
+        sourceStartLineNumber:
+          format: int32
+          description: Source start line number
+          type: integer
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    PostVulnerabilityBulkEditResponse:
+      description: Post Vulnerability Bulk Edit Response
+      type: object
+      properties:
+        results:
+          description: List of results
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityBulkUpdateResult'
+        attributeerrors:
+          description: Attribute validation message
+          type: array
+          items:
+            type: string
+    VulnerabilityTraceItem:
+      description: Vulnerability Trace Item
+      type: object
+      properties:
+        traceIndex:
+          format: int32
+          description: Trace index
+          type: integer
+        traceEntries:
+          description: List of trace entries
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityTraceEntry'
+    AttributeItemModel:
+      type: object
+      properties:
+        attributeName:
+          description: The attribute name
+          type: string
+        attributeValue:
+          description: The attribute value
+          type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    VulnerabilityComplianceCategory:
+      description: Vulnerability compliance category.
+      type: object
+      properties:
+        categoryName:
+          description: The compliance category name.
+          type: string
+        complianceItems:
+          description: The compliance items for the current category.
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityComplianceItem'
+    VulnerabilityParameter:
+      description: Vulnerability Parameter
+      type: object
+      properties:
+        name:
+          description: Name
+          type: string
+        value:
+          description: Value
+          type: string
+        decodedValue:
+          description: Decoded value
+          type: string
+    FieldFilterListResponse:
+      description: FieldFilterListResponse
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldFilter'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        isRepositoryUpdating:
+          description: Indicates if the repository is being updated
+          type: boolean
+    PostVulnerabilityBugLinkRequest:
+      description: Post Vulnerability Bug Link Request
+      required:
+      - bugLink
+      - vulnerabilityIds
+      type: object
+      properties:
+        bugLink:
+          description: The bug link
+          type: string
+        vulnerabilityIds:
+          description: The list of vulnerability ids to edit
+          type: array
+          items:
+            type: string
+    AuditComment:
+      description: Audit Comment
+      type: object
+      properties:
+        username:
+          description: The user name
+          type: string
+        commentDate:
+          format: date-time
+          description: The comment date
+          type: string
+        comment:
+          description: The audit comment
+          type: string
+    PostVulnerabilityBulkEditRequest:
+      description: Post Vulnerability Bulk Edit Request
+      type: object
+      properties:
+        userId:
+          description: The id of the user
+          type: string
+        developerStatus:
+          description: The developer status
+          type: string
+        auditorStatus:
+          description: The auditor status
+          type: string
+        severity:
+          description: The severity
+          type: string
+        comment:
+          description: The comment
+          type: string
+        vulnerabilityIds:
+          description: The list of vulnerability ids to edit
+          type: array
+          items:
+            type: string
+        includeAllVulnerabilities:
+          description: Include all vulnerabilities for the release
+          type: boolean
+        attributes:
+          description: 'Application attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemAttribute'
+    TrainingLinks:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    VulnerabilityRequestResponse:
+      description: Vulnerability Request Response
+      type: object
+      properties:
+        requestContent:
+          description: Request content
+          type: string
+        responseContent:
+          description: Response content
+          type: string
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityParameters:
+      description: Vulnerability Parameters
+      type: object
+      properties:
+        queryParameters:
+          description: Query parameters
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityParameter'
+        postParameters:
+          description: Post parameters
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityParameter'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityHeaders:
+      description: Vulnerability Headers
+      type: object
+      properties:
+        requestHeaders:
+          description: The request headers
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityHeader'
+        responseHeaders:
+          description: The response headers
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityHeader'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityHistory:
+      description: Vulnerability History
+      type: object
+      properties:
+        items:
+          description: The list of history items
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityHistoryItem'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer

@@ -1,0 +1,116 @@
+openapi: 3.2.0
+info:
+  version: v3
+  title: Fortify on Demand Web API Explorer Tenants API
+servers:
+- url: https://api.ams.fortify.com
+tags:
+- name: Tenants
+paths:
+  /api/v3/tenants/features:
+    get:
+      tags:
+      - Tenants
+      summary: Get tenant features
+      description: 'Allowed Scopes: api-tenant, view-tenant-data'
+      operationId: TenantsV3_GetFeatures
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantFeatureListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TenantFeatureListResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TenantFeatureListResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/TenantFeatureListResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/tenants:
+    get:
+      tags:
+      - Tenants
+      summary: Get tenant data
+      description: 'Allowed Scopes: api-tenant, view-tenant-data'
+      operationId: TenantsV3_GetTenant
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTenantResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetTenantResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetTenantResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/GetTenantResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+components:
+  schemas:
+    GetTenantResponse:
+      description: Get Tenant Response
+      type: object
+      properties:
+        tenantName:
+          description: The tenant name
+          type: string
+        tenantCode:
+          description: The tenant code
+          type: string
+        timeZone:
+          description: The tenant timezone. Values can be obtained by calling GET /api/v3/lookup-items?type=TimeZones
+          type: string
+    TenantFeatureListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantFeature'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    TenantFeature:
+      description: Tenant Feature
+      type: object
+      properties:
+        id:
+          format: int32
+          description: The tenant feature id
+          type: integer
+        name:
+          description: The tenant feature name
+          type: string

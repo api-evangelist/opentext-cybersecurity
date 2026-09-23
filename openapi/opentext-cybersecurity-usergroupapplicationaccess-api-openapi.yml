@@ -1,0 +1,179 @@
+openapi: 3.2.0
+info:
+  version: v3
+  title: Fortify on Demand Web API Explorer User Group Application…
+servers:
+- url: https://api.ams.fortify.com
+tags:
+- name: UserGroupApplicationAccess
+paths:
+  /api/v3/user-group-application-access/{userGroupId}:
+    get:
+      tags:
+      - UserGroupApplicationAccess
+      summary: Get a list of applications a user group has access to
+      description: 'Allowed Scopes: api-tenant, view-users'
+      operationId: UserGroupApplicationAccessV3_GetUserGroupApplicationAccess
+      parameters:
+      - name: userGroupId
+        in: path
+        description: The user group id can be obtained by calling GET/api/v3/user-management/user-groups
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGroupApplicationAccessListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserGroupApplicationAccessListResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserGroupApplicationAccessListResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/UserGroupApplicationAccessListResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+    post:
+      tags:
+      - UserGroupApplicationAccess
+      summary: Create user group access for the given user group and application
+      description: 'Allowed Scopes: api-tenant, manage-users'
+      operationId: UserGroupApplicationAccessV3_PostUserGroupApplicationAccess
+      parameters:
+      - name: userGroupId
+        in: path
+        description: The user group id can be obtained by calling GET/api/v3/user-management/user-groups
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '202':
+          description: Accepted
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostUserGroupApplicationAccessRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostUserGroupApplicationAccessRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PostUserGroupApplicationAccessRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PostUserGroupApplicationAccessRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PostUserGroupApplicationAccessRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostUserGroupApplicationAccessRequest'
+        description: PostUserGroupApplicationAccessRequest model
+        required: true
+  /api/v3/user-group-application-access/{userGroupId}/{applicationId}:
+    delete:
+      tags:
+      - UserGroupApplicationAccess
+      summary: Delete user group access for the given user group and application
+      description: 'Allowed Scopes: api-tenant, manage-users'
+      operationId: UserGroupApplicationAccessV3_DeleteUserGroupApplicationAccess
+      parameters:
+      - name: userGroupId
+        in: path
+        description: The user group id can be obtained by calling GET/api/v3/user-management/user-groups
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: applicationId
+        in: path
+        description: The application id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '202':
+          description: Accepted
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+components:
+  schemas:
+    PostUserGroupApplicationAccessRequest:
+      description: Post User Group Application Access Request
+      required:
+      - applicationId
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          description: The application id
+          type: integer
+    UserGroupApplicationAccessListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/UserGroupApplicationAccess'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    UserGroupApplicationAccess:
+      description: User Group Application Access
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          description: The application id
+          type: integer
+        applicationName:
+          description: The application name
+          type: string
+        userGroupId:
+          format: int32
+          description: The user group id
+          type: integer
+        userGroupName:
+          description: The user group name
+          type: string

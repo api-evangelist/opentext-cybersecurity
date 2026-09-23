@@ -1,0 +1,678 @@
+openapi: 3.2.0
+info:
+  version: v3
+  title: Fortify on Demand Web API Explorer User Management API
+servers:
+- url: https://api.ams.fortify.com
+tags:
+- name: User Management
+paths:
+  /api/v3/user-management/user-groups:
+    get:
+      tags:
+      - User Management
+      summary: Get a list of user groups
+      description: 'Allowed Scopes: api-tenant, manage-users'
+      operationId: UserManagementV3_GetUserGroups
+      parameters:
+      - name: filters
+        in: query
+        description: 'A delimited list of field filters.
+
+          <br /><br />Field name and value should be separated by a colon (:).
+
+          <br /><br />Multiple fields should be separated by a plus (+). Multiple fields are treated as an AND condition. Example, fieldname1:value+fieldname2:value
+
+          <br /><br />Multiple values for a field should be separated by a pipe (|). Mulitple values for a field are treated as an OR condition. Example, fieldname1:value1|value2
+
+          <br /><br />Filtering is not supported for the following fields: description'
+        required: false
+        schema:
+          type: string
+      - name: orderBy
+        in: query
+        description: The field name to order the results by.
+        required: false
+        schema:
+          type: string
+      - name: orderByDirection
+        in: query
+        description: The direction to order the results by. ASC and DESC are valid values.
+        required: false
+        schema:
+          type: string
+      - name: fields
+        in: query
+        description: Comma separated list of fields to return.
+        required: false
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Offset of the starting record. 0 indicates the first record.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: Maximum records to return. The maximum value allowed is 50.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGroupListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserGroupListResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserGroupListResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/UserGroupListResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+    post:
+      tags:
+      - User Management
+      summary: Create a user group
+      description: 'Allowed Scopes: api-tenant, manage-users'
+      operationId: UserManagementV3_PostUserGroup
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostUserGroupResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PostUserGroupResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PostUserGroupResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/PostUserGroupResponse'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostUserGroupRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostUserGroupRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PostUserGroupRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PostUserGroupRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PostUserGroupRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostUserGroupRequest'
+        description: '<p>name: user group name</p>
+
+          <p></p>
+
+          <p>addAllUsers: Optional - if true add all tenant users to the group. Default is false</p>
+
+          <p></p>
+
+          <p>users: Optional - list of users to add to the group. If addAllUsers is true this list is ignored</p>'
+        required: true
+  /api/v3/user-management/user-groups/{groupId}:
+    put:
+      tags:
+      - User Management
+      summary: Update a user group
+      description: 'Allowed Scopes: api-tenant, manage-users'
+      operationId: UserManagementV3_PutGroup
+      parameters:
+      - name: groupId
+        in: path
+        description: The user group id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+        '422':
+          description: UnprocessableEntity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutUserGroupRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PutUserGroupRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PutUserGroupRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PutUserGroupRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PutUserGroupRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PutUserGroupRequest'
+        description: '<p>name: new user group name</p>
+
+          <p></p>
+
+          <p>removeAllUsers: Optional - if true remove all users from the group. Default is false</p>
+
+          <p></p>
+
+          <p>addAllUsers: Optional - if true add all tenant users to the group. Default is false</p>
+
+          <p></p>
+
+          <p>Note, addAllUsers will take priority over removeAllUsers when both are set to true.</p>'
+        required: true
+    delete:
+      tags:
+      - User Management
+      summary: Delete a user group
+      description: 'Allowed Scopes: api-tenant, manage-user'
+      operationId: UserManagementV3_DeleteGroup
+      parameters:
+      - name: groupId
+        in: path
+        description: The user group id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+  /api/v3/user-management/user-groups/{groupId}/members:
+    get:
+      tags:
+      - User Management
+      summary: Get a list of user group members
+      description: 'Allowed Scopes: api-tenant, manage-users'
+      operationId: UserManagementV3_GetGroupmembers
+      parameters:
+      - name: groupId
+        in: path
+        description: The user group id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: filters
+        in: query
+        description: 'A delimited list of field filters.
+
+          <br /><br />Field name and value should be separated by a colon (:).
+
+          <br /><br />Multiple fields should be separated by a plus (+). Multiple fields are treated as an AND condition. Example, fieldname1:value+fieldname2:value
+
+          <br /><br />Multiple values for a field should be separated by a pipe (|). Mulitple values for a field are treated as an OR condition. Example, fieldname1:value1|value2
+
+          <br /><br />Filtering is not supported for the following fields: description'
+        required: false
+        schema:
+          type: string
+      - name: orderBy
+        in: query
+        description: The field name to order the results by.
+        required: false
+        schema:
+          type: string
+      - name: orderByDirection
+        in: query
+        description: The direction to order the results by. ASC and DESC are valid values.
+        required: false
+        schema:
+          type: string
+      - name: fields
+        in: query
+        description: Comma separated list of fields to return.
+        required: false
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Offset of the starting record. 0 indicates the first record.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: Maximum records to return. The maximum value allowed is 50.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+        '401':
+          description: Unauthorized
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+    patch:
+      tags:
+      - User Management
+      summary: Update user group membership
+      description: 'Allowed Scopes: api-tenant, manage-user'
+      operationId: UserManagementV3_UpdateGroupMembership
+      parameters:
+      - name: groupId
+        in: path
+        description: The user group id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: NotFound
+        '429':
+          description: TooManyRequests
+        '500':
+          description: InternalServerError
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchUserGroupMembershipRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PatchUserGroupMembershipRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/PatchUserGroupMembershipRequest'
+          text/xml:
+            schema:
+              $ref: '#/components/schemas/PatchUserGroupMembershipRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchUserGroupMembershipRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchUserGroupMembershipRequest'
+        description: '<p>removeUsers: list of users'' Id to remove from the group</p>
+
+          <p></p>
+
+          <p>addUsers: list of users'' Id to add to the group</p>'
+        required: true
+components:
+  schemas:
+    UserListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    PutUserGroupRequest:
+      description: Put Group Request
+      type: object
+      properties:
+        name:
+          description: The group name
+          type: string
+        removeAllUsers:
+          description: Optional - if true remove all users from the group. Default is false
+          type: boolean
+        addAllUsers:
+          description: Optional - if true add all tenant users to the group. Default is false
+          type: boolean
+    PostUserGroupResponse:
+      description: Post User Group Response
+      type: object
+      properties:
+        id:
+          format: int32
+          description: The id of the group
+          type: integer
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    PostUserGroupRequest:
+      description: Post user group Request
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          description: The group name
+          type: string
+        description:
+          description: The group description
+          type: string
+        addAllUsers:
+          description: Optional - if true add all tenant users to the group. Default is false
+          type: boolean
+        users:
+          description: Optional - list of users to add to the group. If addAllUsers is true this list is ignored
+          type: array
+          items:
+            format: int32
+            type: integer
+    GenericResponse:
+      description: Generic Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the object was updated
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    PatchUserGroupMembershipRequest:
+      description: Post group Request
+      type: object
+      properties:
+        removeUsers:
+          description: Optional - list of users' Id to remove from the group
+          type: array
+          items:
+            format: int32
+            type: integer
+        addUsers:
+          description: Optional - list of users' Id to add to the group
+          type: array
+          items:
+            format: int32
+            type: integer
+    UserGroup:
+      description: User Group
+      type: object
+      properties:
+        id:
+          format: int32
+          description: The user group id
+          type: integer
+        name:
+          description: The user group name
+          type: string
+        description:
+          description: The user group description
+          type: string
+        assignedUsersCount:
+          format: int32
+          description: The assigned users count
+          type: integer
+        assignedApplicationsCount:
+          format: int32
+          description: The assigned applications count
+          type: integer
+        createdVia:
+          description: How the user was created
+          type: string
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    UserGroupListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/UserGroup'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    User:
+      description: User
+      type: object
+      properties:
+        userId:
+          format: int32
+          description: The users's id
+          type: integer
+        userName:
+          description: The users's username
+          type: string
+        firstName:
+          description: The users's first name
+          type: string
+        lastName:
+          description: The users's last name
+          type: string
+        email:
+          description: The users's email address
+          type: string
+        phoneNumber:
+          description: The users's phone number
+          type: string
+        isVerified:
+          description: Indicates if the user has been verified
+          type: boolean
+        roleId:
+          format: int32
+          description: The users's role id
+          type: integer
+        roleName:
+          description: The users's role name
+          type: string
+        isSuspended:
+          description: Indicates if the user's account is suspended
+          type: boolean
+        mustChange:
+          description: Indicates if the user must change the password on the next login
+          type: boolean
+        passwordNeverExpires:
+          description: Indicates if the password never expires
+          type: boolean
+        modifiedDate:
+          format: date-time
+          description: The users's modified date
+          type: string
+        lastLoginDate:
+          format: date-time
+          description: The users's last login date
+          type: string
+        createdVia:
+          description: How the user was created
+          type: string
