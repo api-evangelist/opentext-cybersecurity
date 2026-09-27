@@ -461,40 +461,6 @@ paths:
         required: true
 components:
   schemas:
-    UserListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    PutUserGroupRequest:
-      description: Put Group Request
-      type: object
-      properties:
-        name:
-          description: The group name
-          type: string
-        removeAllUsers:
-          description: Optional - if true remove all users from the group. Default is false
-          type: boolean
-        addAllUsers:
-          description: Optional - if true add all tenant users to the group. Default is false
-          type: boolean
     PostUserGroupResponse:
       description: Post User Group Response
       type: object
@@ -508,15 +474,67 @@ components:
           type: array
           items:
             type: string
-    ErrorResponse:
-      description: Error Response
+    UserGroupListResponse:
+      description: Generic List Response
       type: object
       properties:
-        errors:
-          description: List of errors
+        items:
+          description: The list of items
           type: array
           items:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/UserGroup'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    PatchUserGroupMembershipRequest:
+      description: Post group Request
+      type: object
+      properties:
+        removeUsers:
+          description: Optional - list of users' Id to remove from the group
+          type: array
+          items:
+            format: int32
+            type: integer
+        addUsers:
+          description: Optional - list of users' Id to add to the group
+          type: array
+          items:
+            format: int32
+            type: integer
+    PutUserGroupRequest:
+      description: Put Group Request
+      type: object
+      properties:
+        name:
+          description: The group name
+          type: string
+        removeAllUsers:
+          description: Optional - if true remove all users from the group. Default is false
+          type: boolean
+        addAllUsers:
+          description: Optional - if true add all tenant users to the group. Default is false
+          type: boolean
     PostUserGroupRequest:
       description: Post user group Request
       required:
@@ -538,34 +556,15 @@ components:
           items:
             format: int32
             type: integer
-    GenericResponse:
-      description: Generic Response
+    ErrorResponse:
+      description: Error Response
       type: object
       properties:
-        success:
-          description: Indicates if the object was updated
-          type: boolean
         errors:
-          description: A list of errors encountered
+          description: List of errors
           type: array
           items:
-            type: string
-    PatchUserGroupMembershipRequest:
-      description: Post group Request
-      type: object
-      properties:
-        removeUsers:
-          description: Optional - list of users' Id to remove from the group
-          type: array
-          items:
-            format: int32
-            type: integer
-        addUsers:
-          description: Optional - list of users' Id to add to the group
-          type: array
-          items:
-            format: int32
-            type: integer
+            $ref: '#/components/schemas/Error'
     UserGroup:
       description: User Group
       type: object
@@ -591,38 +590,6 @@ components:
         createdVia:
           description: How the user was created
           type: string
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
-        message:
-          description: The error message
-          type: string
-    UserGroupListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/UserGroup'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
     User:
       description: User
       type: object
@@ -676,3 +643,36 @@ components:
         createdVia:
           description: How the user was created
           type: string
+    UserListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    GenericResponse:
+      description: Generic Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the object was updated
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string

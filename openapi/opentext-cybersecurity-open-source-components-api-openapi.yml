@@ -191,49 +191,6 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    OpenSourceComponentRelease:
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          type: integer
-        applicationName:
-          type: string
-        releaseId:
-          format: int32
-          type: integer
-        releaseName:
-          type: string
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    OpenSourceComponentListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/OpenSourceComponent'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
     OpenSourceComponent:
       type: object
       properties:
@@ -259,6 +216,11 @@ components:
           type: string
         scanTool:
           type: string
+    OpenSourceComponentLicense:
+      type: object
+      properties:
+        name:
+          type: string
     Error:
       description: Error
       type: object
@@ -270,6 +232,49 @@ components:
         message:
           description: The error message
           type: string
+    OpenSourceComponentRelease:
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          type: integer
+        applicationName:
+          type: string
+        releaseId:
+          format: int32
+          type: integer
+        releaseName:
+          type: string
+    OpenSourceComponentListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/OpenSourceComponent'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     VulnerabilityCount:
       type: object
       properties:
@@ -283,8 +288,3 @@ components:
         count:
           format: int32
           type: integer
-    OpenSourceComponentLicense:
-      type: object
-      properties:
-        name:
-          type: string

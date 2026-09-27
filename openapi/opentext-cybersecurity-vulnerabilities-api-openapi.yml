@@ -1262,6 +1262,310 @@ paths:
           description: InternalServerError
 components:
   schemas:
+    PostVulnerabilityBulkEditResponse:
+      description: Post Vulnerability Bulk Edit Response
+      type: object
+      properties:
+        results:
+          description: List of results
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityBulkUpdateResult'
+        attributeerrors:
+          description: Attribute validation message
+          type: array
+          items:
+            type: string
+    VulnerabilityAllData:
+      description: All data for the vulnerability
+      type: object
+      properties:
+        summary:
+          $ref: '#/components/schemas/VulnerabilitySummary'
+          description: The vulnerability summary
+        details:
+          $ref: '#/components/schemas/VulnerabilityDetails'
+          description: The vulnerability details
+        recommendations:
+          $ref: '#/components/schemas/VulnerabilityRecommendations'
+          description: The vulnerability recommendations
+        screenshots:
+          description: List of vulnerability screenshots
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityScreenshotItem'
+        history:
+          description: List of vulnerability history
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityHistoryItem'
+        requestResponse:
+          $ref: '#/components/schemas/VulnerabilityRequestResponse'
+          description: The vulnerability request and response
+        headers:
+          $ref: '#/components/schemas/VulnerabilityHeaders'
+          description: The vulnerability headers
+        parameters:
+          $ref: '#/components/schemas/VulnerabilityParameters'
+          description: The vulnerability parameters
+        traces:
+          description: The vulnerability traces
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityTraceItem'
+        auditOptions:
+          $ref: '#/components/schemas/VulnerabilityAuditOptions'
+          description: The vulnerability audit options
+        attributes:
+          description: The vulnerability attribute
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeItemModel'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    ItemAttribute:
+      type: object
+      properties:
+        id:
+          format: int32
+          description: Id of the attribute
+          type: integer
+        Value:
+          description: Value of the attribute
+          type: string
+    VulnerabilityTraceCodeSnippet:
+      type: object
+      properties:
+        endLine:
+          format: int32
+          description: Source file extension
+          type: integer
+        file:
+          description: File
+          type: string
+        startLine:
+          format: int32
+          description: Source file content
+          type: integer
+        text:
+          description: Source start line number
+          type: string
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityScreenshot:
+      description: Vulnerability Screenshot
+      type: object
+      properties:
+        items:
+          description: List of screenshots
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityScreenshotItem'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityDetails:
+      description: Vulnerability Details
+      type: object
+      properties:
+        isStatic:
+          description: Indicates if the vulnerability is static
+          type: boolean
+        summary:
+          description: The vulnerability summary
+          type: string
+        explanation:
+          description: The vulnerability explanation
+          type: string
+        instanceId:
+          description: The vulnerability instance id
+          type: string
+        ruleId:
+          description: The vulnerability rule id
+          type: string
+        impact:
+          description: The vulnerability impact
+          type: string
+        probability:
+          description: The vulnerability probability
+          type: string
+        severity:
+          description: The vulnerability severity
+          type: string
+        confidence:
+          description: The vulnerability confidence
+          type: string
+        analyzerName:
+          description: The vulnerability analyzer name
+          type: string
+        source:
+          description: The vulnerability source name
+          type: string
+        sink:
+          description: The vulnerability sink name
+          type: string
+        complianceCategories:
+          description: The compliance rules which pertain to this vulnerability, grouped by category.
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityComplianceCategory'
+        remainingRemediationGracePeriodDays:
+          format: int32
+          description: 'The number of days remaining in the remediation grace period
+
+            This will be negative if the grace period has expired'
+          type: integer
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityTrace:
+      description: Vulnerability Trace
+      type: object
+      properties:
+        items:
+          description: List of trace items
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityTraceItem'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityParameters:
+      description: Vulnerability Parameters
+      type: object
+      properties:
+        queryParameters:
+          description: Query parameters
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityParameter'
+        postParameters:
+          description: Post parameters
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityParameter'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    LookupItem:
+      description: Lookup Item
+      type: object
+      properties:
+        value:
+          description: The value property
+          type: string
+        text:
+          description: The text property
+          type: string
+        group:
+          description: The group property
+          type: string
+    FieldFilterListResponse:
+      description: FieldFilterListResponse
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldFilter'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        isRepositoryUpdating:
+          description: Indicates if the repository is being updated
+          type: boolean
+    VulnerabilityHeader:
+      description: Vulnerability Header
+      type: object
+      properties:
+        name:
+          description: The header name
+          type: string
+        value:
+          description: The header value
+          type: string
+        cookieHeaders:
+          description: The list of cookie headers
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityHeader'
+    VulnerabilityHeaders:
+      description: Vulnerability Headers
+      type: object
+      properties:
+        requestHeaders:
+          description: The request headers
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityHeader'
+        responseHeaders:
+          description: The response headers
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityHeader'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
     VulnerabilityBulkUpdateResult:
       description: Vulnerability Bulk Update Result
       type: object
@@ -1273,6 +1577,23 @@ components:
           format: int32
           description: The error code
           type: integer
+    VulnerabilityHistoryItem:
+      description: Vulnerability History Item
+      type: object
+      properties:
+        content:
+          description: The history content
+          type: string
+        historyDateTime:
+          format: date-time
+          description: The history date time
+          type: string
+        user:
+          description: The user that created the history item
+          type: string
+        historyType:
+          description: The history type of the item
+          type: string
     VulnerabilityAuditOptions:
       description: Vulnerability Audit Options
       type: object
@@ -1308,39 +1629,263 @@ components:
           format: int32
           description: The release id
           type: integer
-    AuditAction:
-      description: Audit Action
+    PostVulnerabilityBugLinkRequest:
+      description: Post Vulnerability Bug Link Request
+      required:
+      - bugLink
+      - vulnerabilityIds
       type: object
       properties:
-        auditActionType:
-          description: The audit action type
-          enum:
-          - AuditorStatus
-          - DeveloperStatus
-          - Severity
-          - User
+        bugLink:
+          description: The bug link
           type: string
-        auditActionTypeName:
-          description: The audit action type name
-          type: string
-        items:
-          description: List of audit action items
-          type: array
-          items:
-            $ref: '#/components/schemas/LookupItem'
-    SecureCodeWarriorModel:
-      type: object
-      properties:
-        url:
-          type: string
-        videoUrls:
+        vulnerabilityIds:
+          description: The list of vulnerability ids to edit
           type: array
           items:
             type: string
-        cweTrainings:
+    VulnerabilityHistory:
+      description: Vulnerability History
+      type: object
+      properties:
+        items:
+          description: The list of history items
           type: array
           items:
-            $ref: '#/components/schemas/TrainingLinks'
+            $ref: '#/components/schemas/VulnerabilityHistoryItem'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    FieldFilter:
+      description: Field Filter
+      type: object
+      properties:
+        fieldName:
+          description: The field name
+          type: string
+        fieldFilterValues:
+          description: List of field filter values
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldFilterValue'
+        displayName:
+          description: The display name
+          type: string
+    SonatypeRecommendations:
+      description: Sonatype Recommendations
+      type: object
+      properties:
+        explanation:
+          description: Explanation
+          type: string
+        detection:
+          description: Detection
+          type: string
+        recommendation:
+          description: Recommendations
+          type: string
+        nextNonVulnerableVersion:
+          description: Next non vulnerable version
+          type: string
+        greatestNonVulnerableVersion:
+          description: Greatest non vulnerable version
+          type: string
+        links:
+          description: An array of links
+          type: array
+          items:
+            type: string
+    VulnerabilityScreenshotItem:
+      description: Vulnerability Screenshot Item
+      type: object
+      properties:
+        id:
+          format: int32
+          description: Id
+          type: integer
+        name:
+          description: Name
+          type: string
+        description:
+          description: Description
+          type: string
+        uploadDate:
+          format: date-time
+          description: Upload date
+          type: string
+    AttributeItemModel:
+      type: object
+      properties:
+        attributeName:
+          description: The attribute name
+          type: string
+        attributeValue:
+          description: The attribute value
+          type: string
+    PostVulnerabilityBulkEditRequest:
+      description: Post Vulnerability Bulk Edit Request
+      type: object
+      properties:
+        userId:
+          description: The id of the user
+          type: string
+        developerStatus:
+          description: The developer status
+          type: string
+        auditorStatus:
+          description: The auditor status
+          type: string
+        severity:
+          description: The severity
+          type: string
+        comment:
+          description: The comment
+          type: string
+        vulnerabilityIds:
+          description: The list of vulnerability ids to edit
+          type: array
+          items:
+            type: string
+        includeAllVulnerabilities:
+          description: Include all vulnerabilities for the release
+          type: boolean
+        attributes:
+          description: 'Application attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemAttribute'
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    VulnerabilityTraceCode:
+      description: Vulnerability Trace Code
+      type: object
+      properties:
+        sourceFileContent:
+          description: Source file content
+          type: string
+        sourceFileExtension:
+          description: Source file extension
+          type: string
+        sourceStartLineNumber:
+          format: int32
+          description: Source start line number
+          type: integer
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityRecommendations:
+      description: Vulnerability Recommendations
+      type: object
+      properties:
+        isStatic:
+          description: Is static
+          type: boolean
+        recommendations:
+          description: Recommendations
+          type: string
+        tips:
+          description: Tips
+          type: string
+        references:
+          description: References
+          type: string
+        sonatype:
+          $ref: '#/components/schemas/SonatypeRecommendations'
+        secureCodeWarrior:
+          $ref: '#/components/schemas/SecureCodeWarriorModel'
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    VulnerabilityAuditCommentsResponse:
+      description: Get the Audit Comments for given Vulnerability Id
+      type: object
+      properties:
+        items:
+          description: List of comments
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditComment'
+        releaseId:
+          format: int32
+          description: The ID of the release that the vulnerability belongs to.
+          type: integer
+        vulnId:
+          description: The Vulnerability ID associated with the release.
+          type: string
+        id:
+          format: int32
+          description: The issue ID.
+          type: integer
+    VulnerabilityTraceEntry:
+      description: Vulnerability Trace Entry
+      type: object
+      properties:
+        index:
+          format: int32
+          description: Index
+          type: integer
+        lineNumber:
+          format: int32
+          description: Line number
+          type: integer
+        displayText:
+          description: Display text
+          type: string
+        location:
+          description: Location
+          type: string
+        actionType:
+          description: Action type
+          type: string
+    VulnerabilityComplianceItem:
+      description: Vulnerability compliance item.
+      type: object
+      properties:
+        complianceRule:
+          description: The compliance rule.
+          type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     GetVulnerabilitiesResponseVulnerabilityListItem:
       description: Get Vulnerabilities Response
       type: object
@@ -1370,85 +1915,79 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
-    VulnerabilityComplianceItem:
-      description: Vulnerability compliance item.
+    VulnerabilityTraceItem:
+      description: Vulnerability Trace Item
       type: object
       properties:
-        complianceRule:
-          description: The compliance rule.
-          type: string
-    VulnerabilityScreenshotItem:
-      description: Vulnerability Screenshot Item
-      type: object
-      properties:
-        id:
+        traceIndex:
           format: int32
-          description: Id
+          description: Trace index
           type: integer
-        name:
-          description: Name
-          type: string
-        description:
-          description: Description
-          type: string
-        uploadDate:
-          format: date-time
-          description: Upload date
-          type: string
-    FieldFilterValue:
-      description: Field Filter Value
+        traceEntries:
+          description: List of trace entries
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityTraceEntry'
+    VulnerabilitySummary:
+      description: Vulnerability Summary
       type: object
       properties:
-        value:
-          description: The value property
-          type: string
-        count:
-          format: int32
-          description: Count of items in the filter
-          type: integer
-    LookupItem:
-      description: Lookup Item
-      type: object
-      properties:
-        value:
-          description: The value property
-          type: string
-        text:
-          description: The text property
-          type: string
-        group:
-          description: The group property
-          type: string
-    VulnerabilityTraceEntry:
-      description: Vulnerability Trace Entry
-      type: object
-      properties:
-        index:
-          format: int32
-          description: Index
-          type: integer
         lineNumber:
           format: int32
           description: Line number
           type: integer
-        displayText:
-          description: Display text
+        primaryLocation:
+          description: Primary location
           type: string
-        location:
-          description: Location
+        primaryLocationFull:
+          description: The full Primary location
           type: string
-        actionType:
-          description: Action type
+        severity:
+          description: Severity
           type: string
-    VulnerabilityTrace:
-      description: Vulnerability Trace
-      type: object
-      properties:
-        items:
-          description: List of trace items
+        isSuppressed:
+          description: Is suppressed
+          type: boolean
+        assignedUser:
+          description: Assigned user
+          type: string
+        developerStatus:
+          description: Developer status
+          type: string
+        auditorStatus:
+          description: Auditor status
+          type: string
+        auditPending:
+          description: Audit pending
+          type: boolean
+        auditPendingAuditorStatus:
+          description: Audit pending auditor status
+          type: string
+        auditPendingSeverity:
+          description: Audit pending severity
+          type: string
+        auditPendingSuppression:
+          description: Audit pending suppression
+          type: string
+        comments:
+          description: Comments
           type: array
           items:
-            $ref: '#/components/schemas/VulnerabilityTraceItem'
+            $ref: '#/components/schemas/AuditComment'
+        notes:
+          description: Notes
+          type: string
+        bugSubmitted:
+          description: Bug Submitted
+          type: boolean
+        bugLink:
+          description: Bug Link
+          type: string
+        fileLocations:
+          description: File locations for open source vulnerabilities
+          type: array
+          items:
+            type: string
         vulnId:
           description: The vulnerability id
           type: string
@@ -1459,6 +1998,70 @@ components:
         releaseId:
           format: int32
           description: The release id
+          type: integer
+    VulnerabilityRequestResponse:
+      description: Vulnerability Request Response
+      type: object
+      properties:
+        requestContent:
+          description: Request content
+          type: string
+        responseContent:
+          description: Response content
+          type: string
+        vulnId:
+          description: The vulnerability id
+          type: string
+        Id:
+          format: int32
+          description: The issue id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+    SecureCodeWarriorModel:
+      type: object
+      properties:
+        url:
+          type: string
+        videoUrls:
+          type: array
+          items:
+            type: string
+        cweTrainings:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrainingLinks'
+    TrainingLinks:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+    VulnerabilityComplianceCategory:
+      description: Vulnerability compliance category.
+      type: object
+      properties:
+        categoryName:
+          description: The compliance category name.
+          type: string
+        complianceItems:
+          description: The compliance items for the current category.
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityComplianceItem'
+    FieldFilterValue:
+      description: Field Filter Value
+      type: object
+      properties:
+        value:
+          description: The value property
+          type: string
+        count:
+          format: int32
+          description: Count of items in the filter
           type: integer
     VulnerabilityListItem:
       description: Vulnerability List Item
@@ -1666,501 +2269,26 @@ components:
         malware:
           description: Malware
           type: boolean
-    VulnerabilityTraceCodeSnippet:
+    AuditAction:
+      description: Audit Action
       type: object
       properties:
-        endLine:
-          format: int32
-          description: Source file extension
-          type: integer
-        file:
-          description: File
+        auditActionType:
+          description: The audit action type
+          enum:
+          - AuditorStatus
+          - DeveloperStatus
+          - Severity
+          - User
           type: string
-        startLine:
-          format: int32
-          description: Source file content
-          type: integer
-        text:
-          description: Source start line number
+        auditActionTypeName:
+          description: The audit action type name
           type: string
-        vulnId:
-          description: The vulnerability id
-          type: string
-        Id:
-          format: int32
-          description: The issue id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-    FieldFilter:
-      description: Field Filter
-      type: object
-      properties:
-        fieldName:
-          description: The field name
-          type: string
-        fieldFilterValues:
-          description: List of field filter values
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldFilterValue'
-        displayName:
-          description: The display name
-          type: string
-    VulnerabilityRecommendations:
-      description: Vulnerability Recommendations
-      type: object
-      properties:
-        isStatic:
-          description: Is static
-          type: boolean
-        recommendations:
-          description: Recommendations
-          type: string
-        tips:
-          description: Tips
-          type: string
-        references:
-          description: References
-          type: string
-        sonatype:
-          $ref: '#/components/schemas/SonatypeRecommendations'
-        secureCodeWarrior:
-          $ref: '#/components/schemas/SecureCodeWarriorModel'
-        vulnId:
-          description: The vulnerability id
-          type: string
-        Id:
-          format: int32
-          description: The issue id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-    SonatypeRecommendations:
-      description: Sonatype Recommendations
-      type: object
-      properties:
-        explanation:
-          description: Explanation
-          type: string
-        detection:
-          description: Detection
-          type: string
-        recommendation:
-          description: Recommendations
-          type: string
-        nextNonVulnerableVersion:
-          description: Next non vulnerable version
-          type: string
-        greatestNonVulnerableVersion:
-          description: Greatest non vulnerable version
-          type: string
-        links:
-          description: An array of links
-          type: array
-          items:
-            type: string
-    ItemAttribute:
-      type: object
-      properties:
-        id:
-          format: int32
-          description: Id of the attribute
-          type: integer
-        Value:
-          description: Value of the attribute
-          type: string
-    VulnerabilityHeader:
-      description: Vulnerability Header
-      type: object
-      properties:
-        name:
-          description: The header name
-          type: string
-        value:
-          description: The header value
-          type: string
-        cookieHeaders:
-          description: The list of cookie headers
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityHeader'
-    VulnerabilityDetails:
-      description: Vulnerability Details
-      type: object
-      properties:
-        isStatic:
-          description: Indicates if the vulnerability is static
-          type: boolean
-        summary:
-          description: The vulnerability summary
-          type: string
-        explanation:
-          description: The vulnerability explanation
-          type: string
-        instanceId:
-          description: The vulnerability instance id
-          type: string
-        ruleId:
-          description: The vulnerability rule id
-          type: string
-        impact:
-          description: The vulnerability impact
-          type: string
-        probability:
-          description: The vulnerability probability
-          type: string
-        severity:
-          description: The vulnerability severity
-          type: string
-        confidence:
-          description: The vulnerability confidence
-          type: string
-        analyzerName:
-          description: The vulnerability analyzer name
-          type: string
-        source:
-          description: The vulnerability source name
-          type: string
-        sink:
-          description: The vulnerability sink name
-          type: string
-        complianceCategories:
-          description: The compliance rules which pertain to this vulnerability, grouped by category.
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityComplianceCategory'
-        remainingRemediationGracePeriodDays:
-          format: int32
-          description: 'The number of days remaining in the remediation grace period
-
-            This will be negative if the grace period has expired'
-          type: integer
-        vulnId:
-          description: The vulnerability id
-          type: string
-        Id:
-          format: int32
-          description: The issue id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-    VulnerabilitySummary:
-      description: Vulnerability Summary
-      type: object
-      properties:
-        lineNumber:
-          format: int32
-          description: Line number
-          type: integer
-        primaryLocation:
-          description: Primary location
-          type: string
-        primaryLocationFull:
-          description: The full Primary location
-          type: string
-        severity:
-          description: Severity
-          type: string
-        isSuppressed:
-          description: Is suppressed
-          type: boolean
-        assignedUser:
-          description: Assigned user
-          type: string
-        developerStatus:
-          description: Developer status
-          type: string
-        auditorStatus:
-          description: Auditor status
-          type: string
-        auditPending:
-          description: Audit pending
-          type: boolean
-        auditPendingAuditorStatus:
-          description: Audit pending auditor status
-          type: string
-        auditPendingSeverity:
-          description: Audit pending severity
-          type: string
-        auditPendingSuppression:
-          description: Audit pending suppression
-          type: string
-        comments:
-          description: Comments
-          type: array
-          items:
-            $ref: '#/components/schemas/AuditComment'
-        notes:
-          description: Notes
-          type: string
-        bugSubmitted:
-          description: Bug Submitted
-          type: boolean
-        bugLink:
-          description: Bug Link
-          type: string
-        fileLocations:
-          description: File locations for open source vulnerabilities
-          type: array
-          items:
-            type: string
-        vulnId:
-          description: The vulnerability id
-          type: string
-        Id:
-          format: int32
-          description: The issue id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-    VulnerabilityAllData:
-      description: All data for the vulnerability
-      type: object
-      properties:
-        summary:
-          $ref: '#/components/schemas/VulnerabilitySummary'
-          description: The vulnerability summary
-        details:
-          $ref: '#/components/schemas/VulnerabilityDetails'
-          description: The vulnerability details
-        recommendations:
-          $ref: '#/components/schemas/VulnerabilityRecommendations'
-          description: The vulnerability recommendations
-        screenshots:
-          description: List of vulnerability screenshots
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityScreenshotItem'
-        history:
-          description: List of vulnerability history
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityHistoryItem'
-        requestResponse:
-          $ref: '#/components/schemas/VulnerabilityRequestResponse'
-          description: The vulnerability request and response
-        headers:
-          $ref: '#/components/schemas/VulnerabilityHeaders'
-          description: The vulnerability headers
-        parameters:
-          $ref: '#/components/schemas/VulnerabilityParameters'
-          description: The vulnerability parameters
-        traces:
-          description: The vulnerability traces
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityTraceItem'
-        auditOptions:
-          $ref: '#/components/schemas/VulnerabilityAuditOptions'
-          description: The vulnerability audit options
-        attributes:
-          description: The vulnerability attribute
-          type: array
-          items:
-            $ref: '#/components/schemas/AttributeItemModel'
-        vulnId:
-          description: The vulnerability id
-          type: string
-        Id:
-          format: int32
-          description: The issue id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-    VulnerabilityHistoryItem:
-      description: Vulnerability History Item
-      type: object
-      properties:
-        content:
-          description: The history content
-          type: string
-        historyDateTime:
-          format: date-time
-          description: The history date time
-          type: string
-        user:
-          description: The user that created the history item
-          type: string
-        historyType:
-          description: The history type of the item
-          type: string
-    VulnerabilityScreenshot:
-      description: Vulnerability Screenshot
-      type: object
-      properties:
         items:
-          description: List of screenshots
+          description: List of audit action items
           type: array
           items:
-            $ref: '#/components/schemas/VulnerabilityScreenshotItem'
-        vulnId:
-          description: The vulnerability id
-          type: string
-        Id:
-          format: int32
-          description: The issue id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-    VulnerabilityAuditCommentsResponse:
-      description: Get the Audit Comments for given Vulnerability Id
-      type: object
-      properties:
-        items:
-          description: List of comments
-          type: array
-          items:
-            $ref: '#/components/schemas/AuditComment'
-        releaseId:
-          format: int32
-          description: The ID of the release that the vulnerability belongs to.
-          type: integer
-        vulnId:
-          description: The Vulnerability ID associated with the release.
-          type: string
-        id:
-          format: int32
-          description: The issue ID.
-          type: integer
-    VulnerabilityTraceCode:
-      description: Vulnerability Trace Code
-      type: object
-      properties:
-        sourceFileContent:
-          description: Source file content
-          type: string
-        sourceFileExtension:
-          description: Source file extension
-          type: string
-        sourceStartLineNumber:
-          format: int32
-          description: Source start line number
-          type: integer
-        vulnId:
-          description: The vulnerability id
-          type: string
-        Id:
-          format: int32
-          description: The issue id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-    PostVulnerabilityBulkEditResponse:
-      description: Post Vulnerability Bulk Edit Response
-      type: object
-      properties:
-        results:
-          description: List of results
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityBulkUpdateResult'
-        attributeerrors:
-          description: Attribute validation message
-          type: array
-          items:
-            type: string
-    VulnerabilityTraceItem:
-      description: Vulnerability Trace Item
-      type: object
-      properties:
-        traceIndex:
-          format: int32
-          description: Trace index
-          type: integer
-        traceEntries:
-          description: List of trace entries
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityTraceEntry'
-    AttributeItemModel:
-      type: object
-      properties:
-        attributeName:
-          description: The attribute name
-          type: string
-        attributeValue:
-          description: The attribute value
-          type: string
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    VulnerabilityComplianceCategory:
-      description: Vulnerability compliance category.
-      type: object
-      properties:
-        categoryName:
-          description: The compliance category name.
-          type: string
-        complianceItems:
-          description: The compliance items for the current category.
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityComplianceItem'
-    VulnerabilityParameter:
-      description: Vulnerability Parameter
-      type: object
-      properties:
-        name:
-          description: Name
-          type: string
-        value:
-          description: Value
-          type: string
-        decodedValue:
-          description: Decoded value
-          type: string
-    FieldFilterListResponse:
-      description: FieldFilterListResponse
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldFilter'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        isRepositoryUpdating:
-          description: Indicates if the repository is being updated
-          type: boolean
-    PostVulnerabilityBugLinkRequest:
-      description: Post Vulnerability Bug Link Request
-      required:
-      - bugLink
-      - vulnerabilityIds
-      type: object
-      properties:
-        bugLink:
-          description: The bug link
-          type: string
-        vulnerabilityIds:
-          description: The list of vulnerability ids to edit
-          type: array
-          items:
-            type: string
+            $ref: '#/components/schemas/LookupItem'
     AuditComment:
       description: Audit Comment
       type: object
@@ -2175,144 +2303,16 @@ components:
         comment:
           description: The audit comment
           type: string
-    PostVulnerabilityBulkEditRequest:
-      description: Post Vulnerability Bulk Edit Request
-      type: object
-      properties:
-        userId:
-          description: The id of the user
-          type: string
-        developerStatus:
-          description: The developer status
-          type: string
-        auditorStatus:
-          description: The auditor status
-          type: string
-        severity:
-          description: The severity
-          type: string
-        comment:
-          description: The comment
-          type: string
-        vulnerabilityIds:
-          description: The list of vulnerability ids to edit
-          type: array
-          items:
-            type: string
-        includeAllVulnerabilities:
-          description: Include all vulnerabilities for the release
-          type: boolean
-        attributes:
-          description: 'Application attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
-          type: array
-          items:
-            $ref: '#/components/schemas/ItemAttribute'
-    TrainingLinks:
+    VulnerabilityParameter:
+      description: Vulnerability Parameter
       type: object
       properties:
         name:
+          description: Name
           type: string
-        url:
+        value:
+          description: Value
           type: string
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
-        message:
-          description: The error message
+        decodedValue:
+          description: Decoded value
           type: string
-    VulnerabilityRequestResponse:
-      description: Vulnerability Request Response
-      type: object
-      properties:
-        requestContent:
-          description: Request content
-          type: string
-        responseContent:
-          description: Response content
-          type: string
-        vulnId:
-          description: The vulnerability id
-          type: string
-        Id:
-          format: int32
-          description: The issue id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-    VulnerabilityParameters:
-      description: Vulnerability Parameters
-      type: object
-      properties:
-        queryParameters:
-          description: Query parameters
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityParameter'
-        postParameters:
-          description: Post parameters
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityParameter'
-        vulnId:
-          description: The vulnerability id
-          type: string
-        Id:
-          format: int32
-          description: The issue id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-    VulnerabilityHeaders:
-      description: Vulnerability Headers
-      type: object
-      properties:
-        requestHeaders:
-          description: The request headers
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityHeader'
-        responseHeaders:
-          description: The response headers
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityHeader'
-        vulnId:
-          description: The vulnerability id
-          type: string
-        Id:
-          format: int32
-          description: The issue id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-    VulnerabilityHistory:
-      description: Vulnerability History
-      type: object
-      properties:
-        items:
-          description: The list of history items
-          type: array
-          items:
-            $ref: '#/components/schemas/VulnerabilityHistoryItem'
-        vulnId:
-          description: The vulnerability id
-          type: string
-        Id:
-          format: int32
-          description: The issue id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer

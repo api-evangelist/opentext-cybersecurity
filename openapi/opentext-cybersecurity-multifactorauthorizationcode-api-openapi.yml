@@ -87,6 +87,15 @@ components:
         message:
           description: The error message
           type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     PostMultiFactorAuthorizationCodeRequest:
       description: Post Multi Factor Authorization Code Request
       required:
@@ -107,12 +116,3 @@ components:
         password:
           description: Password
           type: string
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'

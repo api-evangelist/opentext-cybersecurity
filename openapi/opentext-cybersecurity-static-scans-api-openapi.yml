@@ -937,55 +937,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ImportSarifScanResponse:
-      type: object
-      properties:
-        referenceId:
-          description: Reference Id
-          type: string
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    PutStaticScanSetupResponse:
-      description: Put Static Scan Setup Response
-      type: object
-      properties:
-        success:
-          description: Indicates if the static scan settings were updated
-          type: boolean
-        bsiToken:
-          description: The build server integration token
-          type: string
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
-        messages:
-          description: List of informational messages
-          type: array
-          items:
-            type: string
-        legalMessage:
-          description: Legal messages
-          type: string
-    PutImportScanResponse:
-      description: PutImportScanResponse
-      type: object
-      properties:
-        referenceId:
-          description: Reference Id
-          type: string
-        scanId:
-          format: int32
-          description: The scan id
-          type: integer
     Error:
       description: Error
       type: object
@@ -996,60 +947,6 @@ components:
           type: integer
         message:
           description: The error message
-          type: string
-    PutStaticScanSetupRequest:
-      description: PutStaticScanSetupRequest
-      type: object
-      properties:
-        assessmentTypeId:
-          format: int32
-          description: The AssessmentTypeId. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
-          type: integer
-        entitlementFrequencyType:
-          description: The EntitlementFrequencyType
-          enum:
-          - SingleScan
-          - Subscription
-          type: string
-        EntitlementId:
-          format: int32
-          description: The EntitlementId.
-          type: integer
-        technologyStackId:
-          format: int32
-          description: The TechnologyStackId. Values can be obtained by calling GET /api/v3/lookup-items?type=TechnologyTypes
-          type: integer
-        languageLevelId:
-          format: int32
-          description: The LanguageLevelId. Values can be obtained by calling GET /api/v3/lookup-items?type=LanguageLevels
-          type: integer
-        performOpenSourceAnalysis:
-          description: Indicates if open source analysis should be performed
-          type: boolean
-        auditPreferenceType:
-          description: The AuditPreferenceType
-          enum:
-          - Manual
-          - Automated
-          type: string
-        includeThirdPartyLibraries:
-          description: Indicates if third party libraries should be included
-          type: boolean
-        useSourceControl:
-          description: Indicates if source control should be used
-          type: boolean
-        scanBinary:
-          description: Indicates if source control should be used
-          type: boolean
-        includeFortifyAviator:
-          type: boolean
-        scanPolicy:
-          description: The Scan Policy. Values can be obtained by calling GET /api/v3/scan-policies
-          enum:
-          - Security
-          - DevOps
-          - Classic
-          - FoD_Legacy
           type: string
     StaticScanSetup:
       description: StaticScanSetup
@@ -1114,6 +1011,80 @@ components:
         scanPolicy:
           description: The Scan Policy.
           type: string
+    PutStaticScanSetupRequest:
+      description: PutStaticScanSetupRequest
+      type: object
+      properties:
+        assessmentTypeId:
+          format: int32
+          description: The AssessmentTypeId. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
+          type: integer
+        entitlementFrequencyType:
+          description: The EntitlementFrequencyType
+          enum:
+          - SingleScan
+          - Subscription
+          type: string
+        EntitlementId:
+          format: int32
+          description: The EntitlementId.
+          type: integer
+        technologyStackId:
+          format: int32
+          description: The TechnologyStackId. Values can be obtained by calling GET /api/v3/lookup-items?type=TechnologyTypes
+          type: integer
+        languageLevelId:
+          format: int32
+          description: The LanguageLevelId. Values can be obtained by calling GET /api/v3/lookup-items?type=LanguageLevels
+          type: integer
+        performOpenSourceAnalysis:
+          description: Indicates if open source analysis should be performed
+          type: boolean
+        auditPreferenceType:
+          description: The AuditPreferenceType
+          enum:
+          - Manual
+          - Automated
+          type: string
+        includeThirdPartyLibraries:
+          description: Indicates if third party libraries should be included
+          type: boolean
+        useSourceControl:
+          description: Indicates if source control should be used
+          type: boolean
+        scanBinary:
+          description: Indicates if source control should be used
+          type: boolean
+        includeFortifyAviator:
+          type: boolean
+        scanPolicy:
+          description: The Scan Policy. Values can be obtained by calling GET /api/v3/scan-policies
+          enum:
+          - Security
+          - DevOps
+          - Classic
+          - FoD_Legacy
+          type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    PutImportScanResponse:
+      description: PutImportScanResponse
+      type: object
+      properties:
+        referenceId:
+          description: Reference Id
+          type: string
+        scanId:
+          format: int32
+          description: The scan id
+          type: integer
     PostStartScanResponse:
       description: Post Start Scan Response
       type: object
@@ -1129,4 +1100,33 @@ components:
             type: string
         legalMessage:
           description: Legal Disclaimer Message
+          type: string
+    PutStaticScanSetupResponse:
+      description: Put Static Scan Setup Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the static scan settings were updated
+          type: boolean
+        bsiToken:
+          description: The build server integration token
+          type: string
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+        messages:
+          description: List of informational messages
+          type: array
+          items:
+            type: string
+        legalMessage:
+          description: Legal messages
+          type: string
+    ImportSarifScanResponse:
+      type: object
+      properties:
+        referenceId:
+          description: Reference Id
           type: string

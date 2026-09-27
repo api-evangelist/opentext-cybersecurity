@@ -128,6 +128,27 @@ paths:
           description: InternalServerError
 components:
   schemas:
+    UserApplicationAccessListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/UserApplicationAccess'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
     PostUserApplicationAccessRequest:
       description: Post User Application Access Request
       required:
@@ -156,24 +177,3 @@ components:
         accessMethod:
           description: The access method
           type: string
-    UserApplicationAccessListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/UserApplicationAccess'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer

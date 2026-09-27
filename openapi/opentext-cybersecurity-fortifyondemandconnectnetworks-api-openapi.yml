@@ -38,13 +38,6 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    FortifyConnectApiNetwork:
-      type: object
-      properties:
-        networkName:
-          type: string
-        userName:
-          type: string
     FortifyConnectApiNetworkListResponse:
       description: Generic List Response
       type: object
@@ -66,3 +59,10 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
+    FortifyConnectApiNetwork:
+      type: object
+      properties:
+        networkName:
+          type: string
+        userName:
+          type: string

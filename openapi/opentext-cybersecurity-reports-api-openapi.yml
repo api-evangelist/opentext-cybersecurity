@@ -669,15 +669,6 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
     DataExport:
       description: DataExport
       type: object
@@ -735,56 +726,18 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
-    ReportListResponse:
-      description: Generic List Response
+    DeleteReportResponse:
+      description: Delete Application Response
       type: object
       properties:
-        items:
-          description: The list of items
+        success:
+          description: Indicates if the report was deleted
+          type: boolean
+        errors:
+          description: A list of errors encountered
           type: array
           items:
-            $ref: '#/components/schemas/Report'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    DataExportLinks:
-      description: Links for data export
-      type: object
-      properties:
-        status:
-          description: URL for checking the status of the data export
-          type: string
-        download:
-          description: URL for downloading the completed data export
-          type: string
-    PostDataExportResponse:
-      description: Response model for creating a new data export
-      type: object
-      properties:
-        dataExportId:
-          format: int32
-          description: The data export id
-          type: integer
-        links:
-          $ref: '#/components/schemas/DataExportLinks'
-          description: Links for tracking and downloading the export
-    PostDataExportRequest:
-      description: Request model for creating a new data export
-      type: object
-      properties:
-        dataExportTemplateId:
-          format: int32
-          description: The data export template id
-          type: integer
+            type: string
     PostReportRequest:
       description: Post Report Request
       required:
@@ -817,6 +770,17 @@ components:
           type: string
         notes:
           description: The report notes
+          type: string
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
           type: string
     Report:
       description: Report
@@ -867,17 +831,33 @@ components:
           format: int32
           description: The user id
           type: integer
-    Error:
-      description: Error
+    PostDataExportResponse:
+      description: Response model for creating a new data export
       type: object
       properties:
-        errorCode:
+        dataExportId:
           format: int32
-          description: The error code
+          description: The data export id
           type: integer
-        message:
-          description: The error message
-          type: string
+        links:
+          $ref: '#/components/schemas/DataExportLinks'
+          description: Links for tracking and downloading the export
+    PostReportResponse:
+      description: Post Report Response
+      type: object
+      properties:
+        reportId:
+          format: int32
+          description: The id of the report that was created
+          type: integer
+        success:
+          description: Indicates if the application was created
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
     DataExportListResponse:
       description: Generic List Response
       type: object
@@ -899,22 +879,6 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
-    PostReportResponse:
-      description: Post Report Response
-      type: object
-      properties:
-        reportId:
-          format: int32
-          description: The id of the report that was created
-          type: integer
-        success:
-          description: Indicates if the application was created
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
     DataExportTemplate:
       description: DataExportTemplate
       type: object
@@ -935,15 +899,51 @@ components:
           - ApplicationsExport
           - EntitlementConsumptionExport
           type: string
-    DeleteReportResponse:
-      description: Delete Application Response
+    ErrorResponse:
+      description: Error Response
       type: object
       properties:
-        success:
-          description: Indicates if the report was deleted
-          type: boolean
         errors:
-          description: A list of errors encountered
+          description: List of errors
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Error'
+    DataExportLinks:
+      description: Links for data export
+      type: object
+      properties:
+        status:
+          description: URL for checking the status of the data export
+          type: string
+        download:
+          description: URL for downloading the completed data export
+          type: string
+    PostDataExportRequest:
+      description: Request model for creating a new data export
+      type: object
+      properties:
+        dataExportTemplateId:
+          format: int32
+          description: The data export template id
+          type: integer
+    ReportListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer

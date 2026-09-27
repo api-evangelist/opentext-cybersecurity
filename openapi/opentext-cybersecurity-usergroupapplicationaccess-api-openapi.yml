@@ -128,16 +128,6 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    PostUserGroupApplicationAccessRequest:
-      description: Post User Group Application Access Request
-      required:
-      - applicationId
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          description: The application id
-          type: integer
     UserGroupApplicationAccessListResponse:
       description: Generic List Response
       type: object
@@ -177,3 +167,13 @@ components:
         userGroupName:
           description: The user group name
           type: string
+    PostUserGroupApplicationAccessRequest:
+      description: Post User Group Application Access Request
+      required:
+      - applicationId
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          description: The application id
+          type: integer

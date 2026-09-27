@@ -425,23 +425,18 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      description: Error Response
+    PutMobileScanSetupResponse:
+      description: Put Mobile Scan Setup Response
       type: object
       properties:
+        success:
+          description: Indicates if the mobile scan was updated
+          type: boolean
         errors:
-          description: List of errors
+          description: A list of errors encountered
           type: array
           items:
-            $ref: '#/components/schemas/Error'
-    PostMobileScanResponse:
-      description: Post Mobile Scan Response
-      type: object
-      properties:
-        scanId:
-          format: int32
-          description: The id of the scan that was created
-          type: integer
+            type: string
     Error:
       description: Error
       type: object
@@ -480,18 +475,23 @@ components:
         timeZone:
           description: The timeZone.
           type: string
-    PutMobileScanSetupResponse:
-      description: Put Mobile Scan Setup Response
+    PostMobileScanResponse:
+      description: Post Mobile Scan Response
       type: object
       properties:
-        success:
-          description: Indicates if the mobile scan was updated
-          type: boolean
+        scanId:
+          format: int32
+          description: The id of the scan that was created
+          type: integer
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
         errors:
-          description: A list of errors encountered
+          description: List of errors
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Error'
     PutMobileScanSetupRequest:
       description: Put Mobile Scan Setup Request
       required:
@@ -563,6 +563,17 @@ components:
           - Manual
           - None
           type: string
+    PutImportScanResponse:
+      description: PutImportScanResponse
+      type: object
+      properties:
+        referenceId:
+          description: Reference Id
+          type: string
+        scanId:
+          format: int32
+          description: The scan id
+          type: integer
     MobileScanUserAccount:
       description: Mobile Scan User Account
       type: object
@@ -584,14 +595,3 @@ components:
         oneTimePassword:
           description: The one time password
           type: string
-    PutImportScanResponse:
-      description: PutImportScanResponse
-      type: object
-      properties:
-        referenceId:
-          description: Reference Id
-          type: string
-        scanId:
-          format: int32
-          description: The scan id
-          type: integer

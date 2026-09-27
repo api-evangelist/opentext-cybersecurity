@@ -356,44 +356,6 @@ paths:
         required: true
 components:
   schemas:
-    UserListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    PostUserResponse:
-      description: Post User Response
-      type: object
-      properties:
-        userId:
-          format: int32
-          description: The id of the user
-          type: integer
     PutUserRequest:
       description: Put User Request
       required:
@@ -442,6 +404,38 @@ components:
         message:
           description: The error message
           type: string
+    PutUserResponse:
+      description: Put Release Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the user was updated
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    PostUserResponse:
+      description: Post User Response
+      type: object
+      properties:
+        userId:
+          format: int32
+          description: The id of the user
+          type: integer
+    DeleteUserResponse:
+      description: Delete User Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the user was deleted
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
     PostUserRequest:
       description: Post User Request
       required:
@@ -477,18 +471,15 @@ components:
         isSuspended:
           description: Indicates if the user's account is suspended
           type: boolean
-    DeleteUserResponse:
-      description: Delete User Response
+    ErrorResponse:
+      description: Error Response
       type: object
       properties:
-        success:
-          description: Indicates if the user was deleted
-          type: boolean
         errors:
-          description: A list of errors encountered
+          description: List of errors
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Error'
     User:
       description: User
       type: object
@@ -542,15 +533,24 @@ components:
         createdVia:
           description: How the user was created
           type: string
-    PutUserResponse:
-      description: Put Release Response
+    UserListResponse:
+      description: Generic List Response
       type: object
       properties:
-        success:
-          description: Indicates if the user was updated
-          type: boolean
-        errors:
-          description: A list of errors encountered
+        items:
+          description: The list of items
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/User'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer

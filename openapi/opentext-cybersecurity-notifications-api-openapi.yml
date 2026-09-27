@@ -225,37 +225,6 @@ paths:
         required: true
 components:
   schemas:
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    MarkNotificaitonsAsReadRequest:
-      required:
-      - messageIds
-      type: object
-      properties:
-        messageIds:
-          description: The list of message ids to mark as read
-          type: array
-          items:
-            format: int32
-            type: integer
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
-        message:
-          description: The error message
-          type: string
     Notification:
       description: Notification
       type: object
@@ -284,6 +253,37 @@ components:
         read:
           description: Indicates if the message has been marked read
           type: boolean
+    MarkNotificaitonsAsReadRequest:
+      required:
+      - messageIds
+      type: object
+      properties:
+        messageIds:
+          description: The list of message ids to mark as read
+          type: array
+          items:
+            format: int32
+            type: integer
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     NotificationListResponse:
       description: Generic List Response
       type: object

@@ -616,18 +616,47 @@ paths:
         required: true
 components:
   schemas:
-    PostApiKeyResponse:
+    ApiKeyApplication:
       type: object
       properties:
-        apiKeyId:
+        applicationId:
           format: int32
-          description: API Key Id
+          description: Assigned Application Id
           type: integer
-        apiKey:
-          description: API Key
+        applicationName:
+          description: Assigned Application name
           type: string
-        secret:
-          description: API Secret
+    ApiKeyListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKey'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
           type: string
     ApiKeyApplicationAccessRequest:
       type: object
@@ -641,6 +670,48 @@ components:
           items:
             format: int32
             type: integer
+    ApiKeyUnassignApplicationsRequest:
+      type: object
+      properties:
+        unassignAllApplications:
+          description: Unassigns all applications
+          type: boolean
+        applicationId:
+          description: List of Application ids to be unassigned
+          type: array
+          items:
+            format: int32
+            type: integer
+    ApiKeyResponse:
+      type: object
+      properties:
+        message:
+          description: Task Queued Message
+          type: string
+        success:
+          description: Success
+          type: boolean
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    DeleteApiKeyResponse:
+      description: Delete ApiKey Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the apikey was deleted
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
     ApiKeyApplicationListResponse:
       description: Generic List Response
       type: object
@@ -662,58 +733,39 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
-    ErrorResponse:
-      description: Error Response
+    ApiKeyRequest:
+      required:
+      - name
+      - roleId
       type: object
       properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    ApiKeyResponse:
-      type: object
-      properties:
-        message:
-          description: Task Queued Message
+        name:
+          description: API Key Name
           type: string
-        success:
-          description: Success
+        isAuthorized:
+          description: Authorized app to use API
           type: boolean
-    DeleteApiKeyResponse:
-      description: Delete ApiKey Response
+        roleId:
+          description: The role id. Values can be obtained by calling GET /api/v3/lookup-items?type=ApiRoles
+          enum:
+          - Read_Only
+          - Start_Scans
+          - Manage_Applications
+          - Security_Lead
+          - Manage_Users
+          type: string
+    PostApiKeyResponse:
       type: object
       properties:
-        success:
-          description: Indicates if the apikey was deleted
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
-    ApiKeyUnassignApplicationsRequest:
-      type: object
-      properties:
-        unassignAllApplications:
-          description: Unassigns all applications
-          type: boolean
-        applicationId:
-          description: List of Application ids to be unassigned
-          type: array
-          items:
-            format: int32
-            type: integer
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
+        apiKeyId:
           format: int32
-          description: The error code
+          description: API Key Id
           type: integer
-        message:
-          description: The error message
+        apiKey:
+          description: API Key
+          type: string
+        secret:
+          description: API Secret
           type: string
     ApiKey:
       type: object
@@ -749,55 +801,3 @@ components:
           format: date-time
           description: The last Successful Login Date
           type: string
-    ApiKeyRequest:
-      required:
-      - name
-      - roleId
-      type: object
-      properties:
-        name:
-          description: API Key Name
-          type: string
-        isAuthorized:
-          description: Authorized app to use API
-          type: boolean
-        roleId:
-          description: The role id. Values can be obtained by calling GET /api/v3/lookup-items?type=ApiRoles
-          enum:
-          - Read_Only
-          - Start_Scans
-          - Manage_Applications
-          - Security_Lead
-          - Manage_Users
-          type: string
-    ApiKeyApplication:
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          description: Assigned Application Id
-          type: integer
-        applicationName:
-          description: Assigned Application name
-          type: string
-    ApiKeyListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiKey'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer

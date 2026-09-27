@@ -69,6 +69,17 @@ paths:
           description: InternalServerError
 components:
   schemas:
+    TenantFeature:
+      description: Tenant Feature
+      type: object
+      properties:
+        id:
+          format: int32
+          description: The tenant feature id
+          type: integer
+        name:
+          description: The tenant feature name
+          type: string
     GetTenantResponse:
       description: Get Tenant Response
       type: object
@@ -103,14 +114,3 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
-    TenantFeature:
-      description: Tenant Feature
-      type: object
-      properties:
-        id:
-          format: int32
-          description: The tenant feature id
-          type: integer
-        name:
-          description: The tenant feature name
-          type: string
