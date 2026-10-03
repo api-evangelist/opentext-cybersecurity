@@ -122,6 +122,58 @@ paths:
         required: true
 components:
   schemas:
+    AuditTemplateCondition:
+      type: object
+      properties:
+        field:
+          type: string
+        conditionType:
+          type: string
+        fieldValue:
+          type: string
+        operationType:
+          type: string
+    AuditTemplateAction:
+      type: object
+      properties:
+        actionType:
+          type: string
+        severity:
+          type: string
+        severityId:
+          format: int32
+          type: integer
+        suppressedStatus:
+          type: string
+    PutAuditTemplateFilterRequest:
+      required:
+      - scanType
+      - action
+      type: object
+      properties:
+        scanType:
+          description: The scan type
+          enum:
+          - Static
+          - Dynamic
+          - Mobile
+          - Monitoring
+          - Network
+          - OpenSource
+          - SASTAviator
+          type: string
+        scanTypeId:
+          format: int32
+          description: Scan Type Id. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanTypes
+          type: integer
+        action:
+          $ref: '#/components/schemas/PutAuditTemplateAction'
+          description: The action
+        conditions:
+          description: The conditions
+          type: array
+          items:
+            $ref: '#/components/schemas/PutAuditTemplateCondition'
     PutAuditTemplateAction:
       description: AuditTemplateAction
       required:
@@ -173,35 +225,6 @@ components:
           - And
           - Or
           type: string
-    PutAuditTemplateFilterRequest:
-      required:
-      - scanType
-      - action
-      type: object
-      properties:
-        scanType:
-          description: The scan type
-          enum:
-          - Static
-          - Dynamic
-          - Mobile
-          - Monitoring
-          - Network
-          - OpenSource
-          - SASTAviator
-          type: string
-        scanTypeId:
-          format: int32
-          description: Scan Type Id. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanTypes
-          type: integer
-        action:
-          $ref: '#/components/schemas/PutAuditTemplateAction'
-          description: The action
-        conditions:
-          description: The conditions
-          type: array
-          items:
-            $ref: '#/components/schemas/PutAuditTemplateCondition'
     AuditTemplateListResponse:
       description: Generic List Response
       type: object
@@ -255,26 +278,3 @@ components:
             $ref: '#/components/schemas/AuditTemplateCondition'
         action:
           $ref: '#/components/schemas/AuditTemplateAction'
-    AuditTemplateCondition:
-      type: object
-      properties:
-        field:
-          type: string
-        conditionType:
-          type: string
-        fieldValue:
-          type: string
-        operationType:
-          type: string
-    AuditTemplateAction:
-      type: object
-      properties:
-        actionType:
-          type: string
-        severity:
-          type: string
-        severityId:
-          format: int32
-          type: integer
-        suppressedStatus:
-          type: string

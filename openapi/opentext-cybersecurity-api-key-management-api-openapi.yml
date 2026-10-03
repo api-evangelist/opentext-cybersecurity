@@ -626,27 +626,19 @@ components:
         applicationName:
           description: Assigned Application name
           type: string
-    ApiKeyListResponse:
-      description: Generic List Response
+    PostApiKeyResponse:
       type: object
       properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiKey'
-        totalCount:
+        apiKeyId:
           format: int32
-          description: Total count of items
+          description: API Key Id
           type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
+        apiKey:
+          description: API Key
+          type: string
+        secret:
+          description: API Secret
+          type: string
     Error:
       description: Error
       type: object
@@ -658,60 +650,6 @@ components:
         message:
           description: The error message
           type: string
-    ApiKeyApplicationAccessRequest:
-      type: object
-      properties:
-        assignAllApplications:
-          description: Assign all applications
-          type: boolean
-        applicationId:
-          description: List of Application ids to be assigned
-          type: array
-          items:
-            format: int32
-            type: integer
-    ApiKeyUnassignApplicationsRequest:
-      type: object
-      properties:
-        unassignAllApplications:
-          description: Unassigns all applications
-          type: boolean
-        applicationId:
-          description: List of Application ids to be unassigned
-          type: array
-          items:
-            format: int32
-            type: integer
-    ApiKeyResponse:
-      type: object
-      properties:
-        message:
-          description: Task Queued Message
-          type: string
-        success:
-          description: Success
-          type: boolean
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    DeleteApiKeyResponse:
-      description: Delete ApiKey Response
-      type: object
-      properties:
-        success:
-          description: Indicates if the apikey was deleted
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
     ApiKeyApplicationListResponse:
       description: Generic List Response
       type: object
@@ -754,19 +692,81 @@ components:
           - Security_Lead
           - Manage_Users
           type: string
-    PostApiKeyResponse:
+    DeleteApiKeyResponse:
+      description: Delete ApiKey Response
       type: object
       properties:
-        apiKeyId:
+        success:
+          description: Indicates if the apikey was deleted
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    ApiKeyApplicationAccessRequest:
+      type: object
+      properties:
+        assignAllApplications:
+          description: Assign all applications
+          type: boolean
+        applicationId:
+          description: List of Application ids to be assigned
+          type: array
+          items:
+            format: int32
+            type: integer
+    ApiKeyListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKey'
+        totalCount:
           format: int32
-          description: API Key Id
+          description: Total count of items
           type: integer
-        apiKey:
-          description: API Key
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    ApiKeyResponse:
+      type: object
+      properties:
+        message:
+          description: Task Queued Message
           type: string
-        secret:
-          description: API Secret
-          type: string
+        success:
+          description: Success
+          type: boolean
+    ApiKeyUnassignApplicationsRequest:
+      type: object
+      properties:
+        unassignAllApplications:
+          description: Unassigns all applications
+          type: boolean
+        applicationId:
+          description: List of Application ids to be unassigned
+          type: array
+          items:
+            format: int32
+            type: integer
     ApiKey:
       type: object
       properties:

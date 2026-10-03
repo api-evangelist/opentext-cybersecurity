@@ -343,22 +343,9 @@ paths:
         required: true
 components:
   schemas:
-    PostPersonalAccessTokenRequest:
-      required:
-      - name
-      - isAuthorized
-      - allowedScopes
+    PutPersonalAccessTokenSecretRequest:
       type: object
       properties:
-        name:
-          description: The name of the personal access token
-          type: string
-        isAuthorized:
-          description: Flag indicating if the token is authorized to use the API
-          type: boolean
-        allowedScopes:
-          description: Comma delimited list of tenant API scopes the token can be used for
-          type: string
         secretLifetimeDays:
           format: int32
           description: Number of days the token's secret is valid for
@@ -378,18 +365,6 @@ components:
         message:
           description: The error message
           type: string
-    PutPersonalAccessTokenRequest:
-      type: object
-      properties:
-        name:
-          description: The name of the personal access token
-          type: string
-        isAuthorized:
-          description: Flag indicating if the token is authorized to use the API
-          type: boolean
-        allowedScopes:
-          description: Comma delimited list of tenant API scopes the token can be used for
-          type: string
     CreatePersonalAccessTokenResult:
       type: object
       properties:
@@ -398,47 +373,6 @@ components:
           type: integer
         secret:
           type: string
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    PutPersonalAccessTokenSecretRequest:
-      type: object
-      properties:
-        secretLifetimeDays:
-          format: int32
-          description: Number of days the token's secret is valid for
-          type: integer
-        secretExpirationDate:
-          format: date-time
-          description: Date in MM/dd/yyyy format on which the secret should expire and after which will no longer be valid
-          type: string
-    PersonalAccessTokenModelListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/PersonalAccessTokenModel'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
     PersonalAccessTokenModel:
       type: object
       properties:
@@ -466,4 +400,70 @@ components:
           format: int32
           type: integer
         userName:
+          type: string
+    PersonalAccessTokenModelListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonalAccessTokenModel'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    PostPersonalAccessTokenRequest:
+      required:
+      - name
+      - isAuthorized
+      - allowedScopes
+      type: object
+      properties:
+        name:
+          description: The name of the personal access token
+          type: string
+        isAuthorized:
+          description: Flag indicating if the token is authorized to use the API
+          type: boolean
+        allowedScopes:
+          description: Comma delimited list of tenant API scopes the token can be used for
+          type: string
+        secretLifetimeDays:
+          format: int32
+          description: Number of days the token's secret is valid for
+          type: integer
+        secretExpirationDate:
+          format: date-time
+          description: Date in MM/dd/yyyy format on which the secret should expire and after which will no longer be valid
+          type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    PutPersonalAccessTokenRequest:
+      type: object
+      properties:
+        name:
+          description: The name of the personal access token
+          type: string
+        isAuthorized:
+          description: Flag indicating if the token is authorized to use the API
+          type: boolean
+        allowedScopes:
+          description: Comma delimited list of tenant API scopes the token can be used for
           type: string

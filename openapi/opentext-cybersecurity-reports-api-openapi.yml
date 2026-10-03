@@ -669,119 +669,6 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    DataExport:
-      description: DataExport
-      type: object
-      properties:
-        dataExportId:
-          format: int32
-          description: The data export id
-          type: integer
-        dataExportName:
-          description: The data export name
-          type: string
-        dataExportType:
-          description: The data export type
-          enum:
-          - IssuesExport
-          - ScansExport
-          - ReleasesExport
-          - ApplicationsExport
-          - EntitlementConsumptionExport
-          type: string
-        createdBy:
-          description: The username that created the data export
-          type: string
-        createdDate:
-          format: date-time
-          description: The created date
-          type: string
-        dataExportStatusType:
-          description: The data export status type
-          enum:
-          - Started
-          - Completed
-          - Failed
-          - Queued
-          - Canceled
-          type: string
-    DataExportTemplateListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/DataExportTemplate'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    DeleteReportResponse:
-      description: Delete Application Response
-      type: object
-      properties:
-        success:
-          description: Indicates if the report was deleted
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
-    PostReportRequest:
-      description: Post Report Request
-      required:
-      - applicationId
-      - releaseId
-      - reportTemplateTypeId
-      - reportFormat
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          description: The application id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-        reportTemplateTypeId:
-          format: int32
-          description: The report template type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportTemplateTypes
-          type: integer
-        reportName:
-          description: The report name
-          type: string
-        reportFormat:
-          description: The report format
-          enum:
-          - Pdf
-          - Html
-          type: string
-        notes:
-          description: The report notes
-          type: string
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
-        message:
-          description: The error message
-          type: string
     Report:
       description: Report
       type: object
@@ -831,33 +718,6 @@ components:
           format: int32
           description: The user id
           type: integer
-    PostDataExportResponse:
-      description: Response model for creating a new data export
-      type: object
-      properties:
-        dataExportId:
-          format: int32
-          description: The data export id
-          type: integer
-        links:
-          $ref: '#/components/schemas/DataExportLinks'
-          description: Links for tracking and downloading the export
-    PostReportResponse:
-      description: Post Report Response
-      type: object
-      properties:
-        reportId:
-          format: int32
-          description: The id of the report that was created
-          type: integer
-        success:
-          description: Indicates if the application was created
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
     DataExportListResponse:
       description: Generic List Response
       type: object
@@ -879,6 +739,17 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
     DataExportTemplate:
       description: DataExportTemplate
       type: object
@@ -899,6 +770,71 @@ components:
           - ApplicationsExport
           - EntitlementConsumptionExport
           type: string
+    PostDataExportResponse:
+      description: Response model for creating a new data export
+      type: object
+      properties:
+        dataExportId:
+          format: int32
+          description: The data export id
+          type: integer
+        links:
+          $ref: '#/components/schemas/DataExportLinks'
+          description: Links for tracking and downloading the export
+    PostReportRequest:
+      description: Post Report Request
+      required:
+      - applicationId
+      - releaseId
+      - reportTemplateTypeId
+      - reportFormat
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          description: The application id
+          type: integer
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+        reportTemplateTypeId:
+          format: int32
+          description: The report template type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportTemplateTypes
+          type: integer
+        reportName:
+          description: The report name
+          type: string
+        reportFormat:
+          description: The report format
+          enum:
+          - Pdf
+          - Html
+          type: string
+        notes:
+          description: The report notes
+          type: string
+    DataExportTemplateListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/DataExportTemplate'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
     ErrorResponse:
       description: Error Response
       type: object
@@ -908,6 +844,78 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
+    PostDataExportRequest:
+      description: Request model for creating a new data export
+      type: object
+      properties:
+        dataExportTemplateId:
+          format: int32
+          description: The data export template id
+          type: integer
+    DataExport:
+      description: DataExport
+      type: object
+      properties:
+        dataExportId:
+          format: int32
+          description: The data export id
+          type: integer
+        dataExportName:
+          description: The data export name
+          type: string
+        dataExportType:
+          description: The data export type
+          enum:
+          - IssuesExport
+          - ScansExport
+          - ReleasesExport
+          - ApplicationsExport
+          - EntitlementConsumptionExport
+          type: string
+        createdBy:
+          description: The username that created the data export
+          type: string
+        createdDate:
+          format: date-time
+          description: The created date
+          type: string
+        dataExportStatusType:
+          description: The data export status type
+          enum:
+          - Started
+          - Completed
+          - Failed
+          - Queued
+          - Canceled
+          type: string
+    PostReportResponse:
+      description: Post Report Response
+      type: object
+      properties:
+        reportId:
+          format: int32
+          description: The id of the report that was created
+          type: integer
+        success:
+          description: Indicates if the application was created
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    DeleteReportResponse:
+      description: Delete Application Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the report was deleted
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
     DataExportLinks:
       description: Links for data export
       type: object
@@ -918,14 +926,6 @@ components:
         download:
           description: URL for downloading the completed data export
           type: string
-    PostDataExportRequest:
-      description: Request model for creating a new data export
-      type: object
-      properties:
-        dataExportTemplateId:
-          format: int32
-          description: The data export template id
-          type: integer
     ReportListResponse:
       description: Generic List Response
       type: object

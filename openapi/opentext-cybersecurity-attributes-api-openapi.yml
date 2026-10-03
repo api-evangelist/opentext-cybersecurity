@@ -281,45 +281,26 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    AttributeItem:
-      description: Attribute Item
+    PutAttributeResponse:
+      description: Put Attrbute Response
       type: object
       properties:
-        id:
-          format: int32
-          description: The attribute id
-          type: integer
-        name:
-          description: The attribute name
-          type: string
-        attributeTypeId:
-          format: int32
-          description: The attribute type id. Values can be obtained by calling GET /api/v3/lookup-items?type=AttributeTypes
-          type: integer
-        attributeType:
-          description: The attribute type. Values can be obtained by calling GET /api/v3/lookup-items?type=AttributeTypes
-          type: string
-        attributeDataTypeId:
-          format: int32
-          description: The attribute data type id. Values can be obtained by calling GET /api/v3/lookup-items?type=AttributeDataTypes
-          type: integer
-        attributeDataType:
-          description: The attribute data type. Values can be obtained by calling GET /api/v3/lookup-items?type=AttributeDataTypes
-          type: string
-        isRequired:
-          description: Indicates if the attribute is required
+        success:
+          description: Indicates if the attribute was updated
           type: boolean
-        isRestricted:
-          description: Indicates if the attribute is editable only by Security Leads
-          type: boolean
-        defaultValue:
-          description: Default value for the attribute when both isRequired and isRestricted are true
-          type: string
-        picklistValues:
-          description: A list of attribute item values
+        errors:
+          description: A list of errors encountered
           type: array
           items:
-            $ref: '#/components/schemas/AttributeItemValue'
+            type: string
+    AttributeValueItem:
+      type: object
+      properties:
+        Name:
+          type: string
+        SortOrder:
+          format: int32
+          type: integer
     Error:
       description: Error
       type: object
@@ -342,15 +323,24 @@ components:
         name:
           description: The name of the attribute item value
           type: string
-    DeleteApplicationResponse:
-      description: Delete Application Response
+    PutAttributeRequest:
+      description: Put Attrbute Request
       type: object
       properties:
-        success:
-          description: Indicates if the application was deleted
+        isRequired:
+          description: Is attribute required
           type: boolean
-        errors:
-          description: A list of errors encountered
+        isRestricted:
+          description: Is attribute editable only by SecLeads
+          type: boolean
+        defaultValue:
+          description: Default value for the attribute. Required when both isRequired and isRestricted are true.
+          type: string
+        overwriteExistingValues:
+          description: Overwrite existing picklist values
+          type: boolean
+        picklistValues:
+          description: Picklist Values
           type: array
           items:
             type: string
@@ -391,72 +381,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AttributeValueItem'
-    PutAttributeResponse:
-      description: Put Attrbute Response
-      type: object
-      properties:
-        success:
-          description: Indicates if the attribute was updated
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    AttributeValueItem:
-      type: object
-      properties:
-        Name:
-          type: string
-        SortOrder:
-          format: int32
-          type: integer
-    PutAttributeRequest:
-      description: Put Attrbute Request
-      type: object
-      properties:
-        isRequired:
-          description: Is attribute required
-          type: boolean
-        isRestricted:
-          description: Is attribute editable only by SecLeads
-          type: boolean
-        defaultValue:
-          description: Default value for the attribute. Required when both isRequired and isRestricted are true.
-          type: string
-        overwriteExistingValues:
-          description: Overwrite existing picklist values
-          type: boolean
-        picklistValues:
-          description: Picklist Values
-          type: array
-          items:
-            type: string
-    PostAttributeResponse:
-      description: Post Attrbute Response
-      type: object
-      properties:
-        attributeId:
-          format: int32
-          description: The id of the attribute that was created
-          type: integer
-        success:
-          description: Indicates if the application was created
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
     AttributeItemListResponse:
       description: Generic List Response
       type: object
@@ -478,3 +402,79 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
+    AttributeItem:
+      description: Attribute Item
+      type: object
+      properties:
+        id:
+          format: int32
+          description: The attribute id
+          type: integer
+        name:
+          description: The attribute name
+          type: string
+        attributeTypeId:
+          format: int32
+          description: The attribute type id. Values can be obtained by calling GET /api/v3/lookup-items?type=AttributeTypes
+          type: integer
+        attributeType:
+          description: The attribute type. Values can be obtained by calling GET /api/v3/lookup-items?type=AttributeTypes
+          type: string
+        attributeDataTypeId:
+          format: int32
+          description: The attribute data type id. Values can be obtained by calling GET /api/v3/lookup-items?type=AttributeDataTypes
+          type: integer
+        attributeDataType:
+          description: The attribute data type. Values can be obtained by calling GET /api/v3/lookup-items?type=AttributeDataTypes
+          type: string
+        isRequired:
+          description: Indicates if the attribute is required
+          type: boolean
+        isRestricted:
+          description: Indicates if the attribute is editable only by Security Leads
+          type: boolean
+        defaultValue:
+          description: Default value for the attribute when both isRequired and isRestricted are true
+          type: string
+        picklistValues:
+          description: A list of attribute item values
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeItemValue'
+    DeleteApplicationResponse:
+      description: Delete Application Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the application was deleted
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    PostAttributeResponse:
+      description: Post Attrbute Response
+      type: object
+      properties:
+        attributeId:
+          format: int32
+          description: The id of the attribute that was created
+          type: integer
+        success:
+          description: Indicates if the application was created
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string

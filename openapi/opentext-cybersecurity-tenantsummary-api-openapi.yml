@@ -72,17 +72,6 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
-        message:
-          description: The error message
-          type: string
     ErrorResponse:
       description: Error Response
       type: object
@@ -92,27 +81,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
-    TenantSummaryListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/TenantSummary'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
     TenantSummary:
       description: Tenant Summary
       type: object
@@ -224,4 +192,36 @@ components:
         fiveStarRatingDVIdx:
           format: int64
           description: The five star rating dvidx
+          type: integer
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    TenantSummaryListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/TenantSummary'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
           type: integer

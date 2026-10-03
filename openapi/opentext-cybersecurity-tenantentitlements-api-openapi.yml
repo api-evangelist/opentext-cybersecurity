@@ -71,15 +71,37 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    GetTenantOpenSourceEntitlementsResponse:
-      description: Tenant OpenSource entitlements response
+    TenantEntitlementExtendedProperties:
+      description: Extended properties
       type: object
       properties:
-        entitlementTypeId:
+        assessmentTypeId:
           format: int32
-          description: The entitlement type id
+          description: The assessment type id. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
           type: integer
-        tenant-Oss-Entitlements:
+        frequencyTypeId:
+          format: int32
+          description: The frequency type id
+          type: integer
+        frequencyType:
+          description: The frequency type
+          type: string
+        subscriptionLength:
+          description: The subscription lenght
+          type: string
+    GetTenantEntitlementResponse:
+      description: Tenant entitlements response
+      type: object
+      properties:
+        subscriptionTypeId:
+          format: int32
+          description: The subscription type id
+          type: integer
+        subscriptionType:
+          description: The subscription type
+          type: string
+        tenantEntitlements:
+          description: The list of tenant entitlements
           type: array
           items:
             $ref: '#/components/schemas/TenantEntitlement'
@@ -123,37 +145,15 @@ components:
         extendedProperties:
           $ref: '#/components/schemas/TenantEntitlementExtendedProperties'
           description: Extended properties for the entitlement
-    GetTenantEntitlementResponse:
-      description: Tenant entitlements response
+    GetTenantOpenSourceEntitlementsResponse:
+      description: Tenant OpenSource entitlements response
       type: object
       properties:
-        subscriptionTypeId:
+        entitlementTypeId:
           format: int32
-          description: The subscription type id
+          description: The entitlement type id
           type: integer
-        subscriptionType:
-          description: The subscription type
-          type: string
-        tenantEntitlements:
-          description: The list of tenant entitlements
+        tenant-Oss-Entitlements:
           type: array
           items:
             $ref: '#/components/schemas/TenantEntitlement'
-    TenantEntitlementExtendedProperties:
-      description: Extended properties
-      type: object
-      properties:
-        assessmentTypeId:
-          format: int32
-          description: The assessment type id. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
-          type: integer
-        frequencyTypeId:
-          format: int32
-          description: The frequency type id
-          type: integer
-        frequencyType:
-          description: The frequency type
-          type: string
-        subscriptionLength:
-          description: The subscription lenght
-          type: string

@@ -425,6 +425,28 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    PutImportScanResponse:
+      description: PutImportScanResponse
+      type: object
+      properties:
+        referenceId:
+          description: Reference Id
+          type: string
+        scanId:
+          format: int32
+          description: The scan id
+          type: integer
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
     PutMobileScanSetupResponse:
       description: Put Mobile Scan Setup Response
       type: object
@@ -437,61 +459,6 @@ components:
           type: array
           items:
             type: string
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
-        message:
-          description: The error message
-          type: string
-    MobileScanSetup:
-      description: StaticScanSetup
-      type: object
-      properties:
-        assessmentTypeId:
-          format: int32
-          description: The AssessmentTypeId. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
-          type: integer
-        entitlementId:
-          format: int32
-          description: The assigned entitlementId
-          type: integer
-        entitlementFrequencyType:
-          description: The EntitlementFrequencyType.
-          enum:
-          - SingleScan
-          - Subscription
-          type: string
-        frameworkType:
-          description: The framework type
-          type: string
-        auditPreferenceType:
-          description: The AuditPreferenceType.
-          type: string
-        timeZone:
-          description: The timeZone.
-          type: string
-    PostMobileScanResponse:
-      description: Post Mobile Scan Response
-      type: object
-      properties:
-        scanId:
-          format: int32
-          description: The id of the scan that was created
-          type: integer
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
     PutMobileScanSetupRequest:
       description: Put Mobile Scan Setup Request
       required:
@@ -563,17 +530,50 @@ components:
           - Manual
           - None
           type: string
-    PutImportScanResponse:
-      description: PutImportScanResponse
+    PostMobileScanResponse:
+      description: Post Mobile Scan Response
       type: object
       properties:
-        referenceId:
-          description: Reference Id
-          type: string
         scanId:
           format: int32
-          description: The scan id
+          description: The id of the scan that was created
           type: integer
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    MobileScanSetup:
+      description: StaticScanSetup
+      type: object
+      properties:
+        assessmentTypeId:
+          format: int32
+          description: The AssessmentTypeId. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
+          type: integer
+        entitlementId:
+          format: int32
+          description: The assigned entitlementId
+          type: integer
+        entitlementFrequencyType:
+          description: The EntitlementFrequencyType.
+          enum:
+          - SingleScan
+          - Subscription
+          type: string
+        frameworkType:
+          description: The framework type
+          type: string
+        auditPreferenceType:
+          description: The AuditPreferenceType.
+          type: string
+        timeZone:
+          description: The timeZone.
+          type: string
     MobileScanUserAccount:
       description: Mobile Scan User Account
       type: object

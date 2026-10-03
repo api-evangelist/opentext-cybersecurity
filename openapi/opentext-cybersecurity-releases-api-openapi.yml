@@ -1231,6 +1231,182 @@ paths:
           description: InternalServerError
 components:
   schemas:
+    ReleaseAssessmentTypeListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/ReleaseAssessmentType'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    ScanPauseDetailPolling:
+      type: object
+      properties:
+        Reason:
+          type: string
+        Notes:
+          type: string
+    ApplicationAttribute:
+      description: Attribute
+      type: object
+      properties:
+        id:
+          format: int32
+          description: Id of the attribute
+          type: integer
+        value:
+          description: Value of the attribute
+          type: string
+    PostReleaseRequest:
+      description: Post Release Request
+      required:
+      - applicationId
+      - releaseName
+      - sdlcStatusType
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          description: The application id
+          type: integer
+        releaseName:
+          description: The release name
+          type: string
+        releaseDescription:
+          description: The release description
+          type: string
+        copyState:
+          description: Indicates if copy state is used
+          type: boolean
+        copyStateReleaseId:
+          format: int32
+          description: The release id to use if CopyState is trueS
+          type: integer
+        sdlcStatusType:
+          description: The release SDLC status type
+          enum:
+          - Production
+          - QA
+          - Development
+          - Retired
+          type: string
+        microserviceId:
+          format: int32
+          description: The id of the Microservice to be associated with this version
+          type: integer
+        attributes:
+          description: 'Release attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+    PutReleaseResponse:
+      description: Put Release Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the release was updated
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    GetAuditOptionsResponse:
+      description: Get Audit Options Response
+      type: object
+      properties:
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+        auditProcessing:
+          description: Indicates if an audit is current processing
+          type: boolean
+        canAudit:
+          description: Indicates if the user can audit
+          type: boolean
+        canChallenge:
+          description: Indicates if the user can challenge
+          type: boolean
+        canEdit:
+          description: Indicates if the user can edit
+          type: boolean
+        inAuditMode:
+          description: Indicates if the release is in audit mode
+          type: boolean
+    DeleteReleaseResponse:
+      description: Delete Release Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the release was deleted
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    GetImportScanSessionIdResponse:
+      description: Get Import Scan Session Id Response
+      type: object
+      properties:
+        importScanSessionId:
+          description: The unique importId to use for the session
+          type: string
+    CategoryCount:
+      description: Category Count
+      type: object
+      properties:
+        category:
+          description: The category name
+          type: string
+        count:
+          format: int32
+          description: The count for the category
+          type: integer
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    ScanListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
     ScanPauseDetail:
       description: Scan Pause Details
       type: object
@@ -1245,6 +1421,85 @@ components:
         notes:
           description: Optional notes regarding the scan paused.
           type: string
+    PutImportScanResponse:
+      description: PutImportScanResponse
+      type: object
+      properties:
+        referenceId:
+          description: Reference Id
+          type: string
+        scanId:
+          format: int32
+          description: The scan id
+          type: integer
+    PutReleaseRequest:
+      description: Put Release Request
+      required:
+      - releaseName
+      - sdlcStatusType
+      type: object
+      properties:
+        releaseName:
+          description: The release name
+          type: string
+        releaseDescription:
+          description: The release description
+          type: string
+        sdlcStatusType:
+          description: The release SDLC status type
+          enum:
+          - Production
+          - QA
+          - Development
+          - Retired
+          type: string
+        ownerId:
+          format: int32
+          description: The owner id for the release
+          type: integer
+        microserviceId:
+          format: int32
+          description: The ID of the microservice
+          type: integer
+        attributes:
+          description: 'Release attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    GetStaticScanBSITokenResponse:
+      description: Get Static Scan BSI Token Response
+      type: object
+      properties:
+        bsiToken:
+          description: The build server integration token
+          type: string
+    PostReleaseResponse:
+      description: Post Release Response
+      type: object
+      properties:
+        releaseId:
+          format: int32
+          description: The id of the release that was created
+          type: integer
+        success:
+          description: Indicates if the application was created
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
     ReleaseListResponse:
       description: Generic List Response
       type: object
@@ -1254,149 +1509,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Release'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    LookupItem:
-      description: Lookup Item
-      type: object
-      properties:
-        value:
-          description: The value property
-          type: string
-        text:
-          description: The text property
-          type: string
-        group:
-          description: The group property
-          type: string
-    ReleaseAssessmentType:
-      description: Release Assessment Type
-      type: object
-      properties:
-        assessmentTypeId:
-          format: int32
-          description: The assessment type id. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
-          type: integer
-        name:
-          description: The assessment type name
-          type: string
-        scanType:
-          description: The scan type name. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanTypes
-          type: string
-        scanTypeId:
-          format: int32
-          description: The scan type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanTypes
-          type: integer
-        entitlementId:
-          format: int32
-          description: The entitlement id. -1 indicates the assessment type is available for purchase
-          type: integer
-        frequencyType:
-          description: The entitlement frequency type id
-          type: string
-        frequencyTypeId:
-          format: int32
-          description: The entitlement frequency type id
-          type: integer
-        units:
-          format: int32
-          description: The number of units the scan will consume
-          type: integer
-        unitsAvailable:
-          format: int32
-          description: The number of units available
-          type: integer
-        subscriptionEndDate:
-          format: date-time
-          description: The subscription end date for the entitlement
-          type: string
-        isRemediation:
-          description: Indicates if a remediation scan is available for the assessment type
-          type: boolean
-        remediationScansAvailable:
-          format: int32
-          description: The number of remediation scans available for the release and assessment type
-          type: integer
-        isBundledAssessment:
-          description: Indicates if the assessment type is a bundled assessment
-          type: boolean
-        parentAssessmentTypeId:
-          format: int32
-          description: The parent assessment type id for the bundled assessment
-          type: integer
-        parentAssessmentTypeName:
-          description: The parent assessment type name
-          type: string
-        parentAssessmentTypeScanType:
-          description: The parent assessment type scan type name
-          type: string
-        parentAssessmentTypeScanTypeId:
-          format: int32
-          description: The parent assessment type scan type id
-          type: integer
-        entitlementDescription:
-          description: The entitlement description
-          type: string
-        assessmentCategory:
-          type: string
-    CategoryRollupsResponse:
-      description: Category Rollups Response
-      type: object
-      properties:
-        items:
-          description: List of category count items
-          type: array
-          items:
-            $ref: '#/components/schemas/CategoryCount'
-    DeleteReleaseResponse:
-      description: Delete Release Response
-      type: object
-      properties:
-        success:
-          description: Indicates if the release was deleted
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
-    CategoryCount:
-      description: Category Count
-      type: object
-      properties:
-        category:
-          description: The category name
-          type: string
-        count:
-          format: int32
-          description: The count for the category
-          type: integer
-    GetImportScanSessionIdResponse:
-      description: Get Import Scan Session Id Response
-      type: object
-      properties:
-        importScanSessionId:
-          description: The unique importId to use for the session
-          type: string
-    ReleaseAssessmentTypeListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/ReleaseAssessmentType'
         totalCount:
           format: int32
           description: Total count of items
@@ -1419,34 +1531,114 @@ components:
         message:
           description: Message returned for the request
           type: string
-    PostReleaseResponse:
-      description: Post Release Response
+    CategoryRollupsResponse:
+      description: Category Rollups Response
       type: object
       properties:
-        releaseId:
+        items:
+          description: List of category count items
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoryCount'
+    ScanOption:
+      description: Scan Option
+      type: object
+      properties:
+        id:
           format: int32
-          description: The id of the release that was created
+          description: The scan option id
           type: integer
-        success:
-          description: Indicates if the application was created
-          type: boolean
-        errors:
-          description: A list of errors encountered
+        name:
+          description: The scan option name
+          type: string
+        lastSelectedOption:
+          description: The last selected option
+          type: string
+        options:
+          description: List of options
           type: array
           items:
-            type: string
-    PutReleaseResponse:
-      description: Put Release Response
+            $ref: '#/components/schemas/LookupItem'
+    ApplicationAttributeExtended:
+      description: Application Attribute Extended
       type: object
       properties:
-        success:
-          description: Indicates if the release was updated
+        name:
+          description: Name of the attribute
+          type: string
+        id:
+          format: int32
+          description: Id of the attribute
+          type: integer
+        value:
+          description: Value of the attribute
+          type: string
+    PollingScanSummary:
+      type: object
+      properties:
+        ScanId:
+          format: int32
+          type: integer
+        OpenSourceScanId:
+          format: int32
+          type: integer
+        TenantId:
+          format: int32
+          type: integer
+        AnalysisStatusId:
+          format: int32
+          type: integer
+        OpenSourceStatusId:
+          format: int32
+          type: integer
+        QueuePositionWithinApplication:
+          format: int32
+          type: integer
+        AnalysisStatusTypeValue:
+          type: string
+        AnalysisStatusReasonId:
+          format: int32
+          type: integer
+        AnalysisStatusReason:
+          type: string
+        AnalysisStatusReasonNotes:
+          type: string
+        IssueCountCritical:
+          format: int32
+          type: integer
+        IssueCountHigh:
+          format: int32
+          type: integer
+        IssueCountMedium:
+          format: int32
+          type: integer
+        IssueCountLow:
+          format: int32
+          type: integer
+        PassFailStatus:
           type: boolean
-        errors:
-          description: A list of errors encountered
+        PassFailReasonType:
+          type: string
+        PauseDetails:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ScanPauseDetailPolling'
+        ScanType:
+          format: int32
+          type: integer
+    PostAuditActionRequest:
+      description: Post Audit Action Request
+      required:
+      - auditAction
+      type: object
+      properties:
+        auditAction:
+          description: The audit action
+          enum:
+          - Cancel
+          - Start
+          - Submit
+          type: string
     Scan:
       description: Scan
       type: object
@@ -1578,90 +1770,89 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApplicationAttributeExtended'
-    PostReleaseRequest:
-      description: Post Release Request
-      required:
-      - applicationId
-      - releaseName
-      - sdlcStatusType
+    LookupItem:
+      description: Lookup Item
       type: object
       properties:
-        applicationId:
+        value:
+          description: The value property
+          type: string
+        text:
+          description: The text property
+          type: string
+        group:
+          description: The group property
+          type: string
+    ReleaseAssessmentType:
+      description: Release Assessment Type
+      type: object
+      properties:
+        assessmentTypeId:
           format: int32
-          description: The application id
+          description: The assessment type id. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
           type: integer
-        releaseName:
-          description: The release name
+        name:
+          description: The assessment type name
           type: string
-        releaseDescription:
-          description: The release description
+        scanType:
+          description: The scan type name. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanTypes
           type: string
-        copyState:
-          description: Indicates if copy state is used
+        scanTypeId:
+          format: int32
+          description: The scan type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanTypes
+          type: integer
+        entitlementId:
+          format: int32
+          description: The entitlement id. -1 indicates the assessment type is available for purchase
+          type: integer
+        frequencyType:
+          description: The entitlement frequency type id
+          type: string
+        frequencyTypeId:
+          format: int32
+          description: The entitlement frequency type id
+          type: integer
+        units:
+          format: int32
+          description: The number of units the scan will consume
+          type: integer
+        unitsAvailable:
+          format: int32
+          description: The number of units available
+          type: integer
+        subscriptionEndDate:
+          format: date-time
+          description: The subscription end date for the entitlement
+          type: string
+        isRemediation:
+          description: Indicates if a remediation scan is available for the assessment type
           type: boolean
-        copyStateReleaseId:
+        remediationScansAvailable:
           format: int32
-          description: The release id to use if CopyState is trueS
+          description: The number of remediation scans available for the release and assessment type
           type: integer
-        sdlcStatusType:
-          description: The release SDLC status type
-          enum:
-          - Production
-          - QA
-          - Development
-          - Retired
-          type: string
-        microserviceId:
+        isBundledAssessment:
+          description: Indicates if the assessment type is a bundled assessment
+          type: boolean
+        parentAssessmentTypeId:
           format: int32
-          description: The id of the Microservice to be associated with this version
+          description: The parent assessment type id for the bundled assessment
           type: integer
-        attributes:
-          description: 'Release attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationAttribute'
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
+        parentAssessmentTypeName:
+          description: The parent assessment type name
+          type: string
+        parentAssessmentTypeScanType:
+          description: The parent assessment type scan type name
+          type: string
+        parentAssessmentTypeScanTypeId:
           format: int32
-          description: The error code
+          description: The parent assessment type scan type id
           type: integer
-        message:
-          description: The error message
+        entitlementDescription:
+          description: The entitlement description
           type: string
-    PostAuditActionRequest:
-      description: Post Audit Action Request
-      required:
-      - auditAction
-      type: object
-      properties:
-        auditAction:
-          description: The audit action
-          enum:
-          - Cancel
-          - Start
-          - Submit
+        assessmentCategory:
           type: string
-    GetStaticScanOptionsResponse:
-      description: Get Static Scan Options Response
-      type: object
-      properties:
-        items:
-          description: List of scan option items
-          type: array
-          items:
-            $ref: '#/components/schemas/ScanOption'
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
     Release:
       description: Release
       type: object
@@ -1866,203 +2057,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApplicationAttributeExtended'
-    PutImportScanResponse:
-      description: PutImportScanResponse
-      type: object
-      properties:
-        referenceId:
-          description: Reference Id
-          type: string
-        scanId:
-          format: int32
-          description: The scan id
-          type: integer
-    PollingScanSummary:
-      type: object
-      properties:
-        ScanId:
-          format: int32
-          type: integer
-        OpenSourceScanId:
-          format: int32
-          type: integer
-        TenantId:
-          format: int32
-          type: integer
-        AnalysisStatusId:
-          format: int32
-          type: integer
-        OpenSourceStatusId:
-          format: int32
-          type: integer
-        QueuePositionWithinApplication:
-          format: int32
-          type: integer
-        AnalysisStatusTypeValue:
-          type: string
-        AnalysisStatusReasonId:
-          format: int32
-          type: integer
-        AnalysisStatusReason:
-          type: string
-        AnalysisStatusReasonNotes:
-          type: string
-        IssueCountCritical:
-          format: int32
-          type: integer
-        IssueCountHigh:
-          format: int32
-          type: integer
-        IssueCountMedium:
-          format: int32
-          type: integer
-        IssueCountLow:
-          format: int32
-          type: integer
-        PassFailStatus:
-          type: boolean
-        PassFailReasonType:
-          type: string
-        PauseDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScanPauseDetailPolling'
-        ScanType:
-          format: int32
-          type: integer
-    ScanOption:
-      description: Scan Option
-      type: object
-      properties:
-        id:
-          format: int32
-          description: The scan option id
-          type: integer
-        name:
-          description: The scan option name
-          type: string
-        lastSelectedOption:
-          description: The last selected option
-          type: string
-        options:
-          description: List of options
-          type: array
-          items:
-            $ref: '#/components/schemas/LookupItem'
-    GetAuditOptionsResponse:
-      description: Get Audit Options Response
-      type: object
-      properties:
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-        auditProcessing:
-          description: Indicates if an audit is current processing
-          type: boolean
-        canAudit:
-          description: Indicates if the user can audit
-          type: boolean
-        canChallenge:
-          description: Indicates if the user can challenge
-          type: boolean
-        canEdit:
-          description: Indicates if the user can edit
-          type: boolean
-        inAuditMode:
-          description: Indicates if the release is in audit mode
-          type: boolean
-    ApplicationAttributeExtended:
-      description: Application Attribute Extended
-      type: object
-      properties:
-        name:
-          description: Name of the attribute
-          type: string
-        id:
-          format: int32
-          description: Id of the attribute
-          type: integer
-        value:
-          description: Value of the attribute
-          type: string
-    ApplicationAttribute:
-      description: Attribute
-      type: object
-      properties:
-        id:
-          format: int32
-          description: Id of the attribute
-          type: integer
-        value:
-          description: Value of the attribute
-          type: string
-    PutReleaseRequest:
-      description: Put Release Request
-      required:
-      - releaseName
-      - sdlcStatusType
-      type: object
-      properties:
-        releaseName:
-          description: The release name
-          type: string
-        releaseDescription:
-          description: The release description
-          type: string
-        sdlcStatusType:
-          description: The release SDLC status type
-          enum:
-          - Production
-          - QA
-          - Development
-          - Retired
-          type: string
-        ownerId:
-          format: int32
-          description: The owner id for the release
-          type: integer
-        microserviceId:
-          format: int32
-          description: The ID of the microservice
-          type: integer
-        attributes:
-          description: 'Release attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationAttribute'
-    ScanPauseDetailPolling:
-      type: object
-      properties:
-        Reason:
-          type: string
-        Notes:
-          type: string
-    ScanListResponse:
-      description: Generic List Response
+    GetStaticScanOptionsResponse:
+      description: Get Static Scan Options Response
       type: object
       properties:
         items:
-          description: The list of items
+          description: List of scan option items
           type: array
           items:
-            $ref: '#/components/schemas/Scan'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    GetStaticScanBSITokenResponse:
-      description: Get Static Scan BSI Token Response
-      type: object
-      properties:
-        bsiToken:
-          description: The build server integration token
-          type: string
+            $ref: '#/components/schemas/ScanOption'

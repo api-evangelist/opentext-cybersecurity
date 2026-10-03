@@ -225,45 +225,6 @@ paths:
         required: true
 components:
   schemas:
-    Notification:
-      description: Notification
-      type: object
-      properties:
-        messageId:
-          format: int32
-          description: The message id
-          type: integer
-        subject:
-          description: The subject
-          type: string
-        message:
-          description: The message
-          type: string
-        triggerType:
-          description: The NotificationTriggerType. Values can be obtained by calling GET /api/v3/lookup-items?type=NotificationTriggerTypes
-          type: string
-        triggerTypeId:
-          format: int32
-          description: The NotificationTriggerType id. Values can be obtained by calling GET /api/v3/lookup-items?type=NotificationTriggerTypes
-          type: integer
-        createdDate:
-          format: date-time
-          description: The created date
-          type: string
-        read:
-          description: Indicates if the message has been marked read
-          type: boolean
-    MarkNotificaitonsAsReadRequest:
-      required:
-      - messageIds
-      type: object
-      properties:
-        messageIds:
-          description: The list of message ids to mark as read
-          type: array
-          items:
-            format: int32
-            type: integer
     Error:
       description: Error
       type: object
@@ -305,3 +266,42 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
+    MarkNotificaitonsAsReadRequest:
+      required:
+      - messageIds
+      type: object
+      properties:
+        messageIds:
+          description: The list of message ids to mark as read
+          type: array
+          items:
+            format: int32
+            type: integer
+    Notification:
+      description: Notification
+      type: object
+      properties:
+        messageId:
+          format: int32
+          description: The message id
+          type: integer
+        subject:
+          description: The subject
+          type: string
+        message:
+          description: The message
+          type: string
+        triggerType:
+          description: The NotificationTriggerType. Values can be obtained by calling GET /api/v3/lookup-items?type=NotificationTriggerTypes
+          type: string
+        triggerTypeId:
+          format: int32
+          description: The NotificationTriggerType id. Values can be obtained by calling GET /api/v3/lookup-items?type=NotificationTriggerTypes
+          type: integer
+        createdDate:
+          format: date-time
+          description: The created date
+          type: string
+        read:
+          description: Indicates if the message has been marked read
+          type: boolean

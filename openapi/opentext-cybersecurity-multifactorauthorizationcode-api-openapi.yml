@@ -76,6 +76,15 @@ paths:
         required: true
 components:
   schemas:
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     Error:
       description: Error
       type: object
@@ -87,15 +96,6 @@ components:
         message:
           description: The error message
           type: string
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
     PostMultiFactorAuthorizationCodeRequest:
       description: Post Multi Factor Authorization Code Request
       required:
