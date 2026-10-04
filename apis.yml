@@ -1,14 +1,17 @@
 aid: opentext-cybersecurity
 name: OpenText Cybersecurity
-description: OpenText Cybersecurity is the security business of OpenText, assembled from the Micro Focus security portfolio (Fortify application
-  security, ArcSight threat detection and response, NetIQ identity and access management, Voltage data privacy) and the SMB/MSP brands OpenText
-  acquired through Webroot, Carbonite and Zix — endpoint protection, DNS protection, EDR/MDR, email threat protection and encryption, security
-  awareness training, backup and disaster recovery. Two product lines expose a public developer surface. OpenText Core Application Security (Fortify
-  on Demand) publishes a live Swagger 2.0 contract with 159 operations across applications, releases, static/dynamic/mobile scans, vulnerabilities,
-  reports and tenant administration, served per region from api.ams / api.emea / api.apac.fortify.com. The Webroot Unity API is the multi-tenant
-  REST platform managed service providers use to run Secure Cloud sites, endpoints, policies, licensing and near-real-time event notifications.
-  Fortify also ships a first-party CLI (fcli), a first-party MCP server inside that CLI, and a published set of Agent Skills for Claude Code,
-  GitHub Copilot, Codex and Gemini CLI.
+description: OpenText Cybersecurity is the security business of OpenText, assembled from the Micro Focus
+  security portfolio (Fortify application security, ArcSight threat detection and response, NetIQ identity
+  and access management, Voltage data privacy) and the SMB/MSP brands OpenText acquired through Webroot,
+  Carbonite and Zix — endpoint protection, DNS protection, EDR/MDR, email threat protection and encryption,
+  security awareness training, backup and disaster recovery. Two product lines expose a public developer
+  surface. OpenText Core Application Security (Fortify on Demand) publishes a live Swagger 2.0 contract
+  with 159 operations across applications, releases, static/dynamic/mobile scans, vulnerabilities, reports
+  and tenant administration, served per region from api.ams / api.emea / api.apac.fortify.com. The Webroot
+  Unity API is the multi-tenant REST platform managed service providers use to run Secure Cloud sites,
+  endpoints, policies, licensing and near-real-time event notifications. Fortify also ships a first-party
+  CLI (fcli), a first-party MCP server inside that CLI, and a published set of Agent Skills for Claude
+  Code, GitHub Copilot, Codex and Gemini CLI.
 image: https://cari01mstrop62eprod.dxcloud.episerver.net/globalassets/smb-media/images/banners/csot-homepage-hero-2.webp
 website: https://cybersecurity.opentext.com
 url: https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/refs/heads/main/apis.yml
@@ -156,17 +159,19 @@ common:
   type: Protobuf
 - url: grpc/opentext-cybersecurity-aviator-accesstoken.proto
   type: Protobuf
+- type: CapabilityMap
+  url: capabilities/opentext-cybersecurity-capability-edges.yml
+  name: OpenText Cybersecurity Business Capability Map
 apis:
 - aid: opentext-cybersecurity:webroot-unity-api
   name: Webroot Unity API
-  description: >-
-    The Webroot Unity API is the multi-tenant REST platform OpenText Cybersecurity partners and managed
-    service providers use to reach Webroot and Secure Cloud services — endpoint status, Global Site Manager
-    console site/user/policy/endpoint/group management, DNS Protection, Web Threat Shield, security awareness
-    training reporting, usage reporting, eCommerce licensing, and Secure Cloud customers and usage. It
-    also carries a documented event-notification surface with fetch and webhook delivery. Access is OAuth
-    2.0 and credentials must be issued by a Webroot representative or enabled from a GSM console, so no
-    machine-readable contract is published anonymously.
+  description: The Webroot Unity API is the multi-tenant REST platform OpenText Cybersecurity partners
+    and managed service providers use to reach Webroot and Secure Cloud services — endpoint status, Global
+    Site Manager console site/user/policy/endpoint/group management, DNS Protection, Web Threat Shield,
+    security awareness training reporting, usage reporting, eCommerce licensing, and Secure Cloud customers
+    and usage. It also carries a documented event-notification surface with fetch and webhook delivery.
+    Access is OAuth 2.0 and credentials must be issued by a Webroot representative or enabled from a GSM
+    console, so no machine-readable contract is published anonymously.
   humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
   baseURL: https://unityapi.webrootcloudav.com
   tags:
@@ -223,8 +228,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-post-auto-report-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-get-vulnerabilities-response-vulnerability-dtolight-schema.json
+    url: json-schema/opentext-cybersecurity-get-vulnerabilities-response-vulnerability-dtolight-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-attributes-api
   name: OpenText Cybersecurity Attributes API
   description: The Attributes API from OpenText Cybersecurity — 2 operation(s) for attributes.
@@ -281,8 +285,8 @@ apis:
     url: json-schema/opentext-cybersecurity-audit-template-response-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-fortifyondemandconnectnetworks-api
   name: OpenText Cybersecurity Fortify On Demand Connect Networks API
-  description: >-
-    The FortifyOnDemandConnectNetworks API from OpenText Cybersecurity — 1 operation(s) for fortifyondemandconnectnetworks.
+  description: The FortifyOnDemandConnectNetworks API from OpenText Cybersecurity — 1 operation(s) for
+    fortifyondemandconnectnetworks.
   humanURL: https://api.ams.fortify.com/swagger/ui/index
   baseURL: https://api.ams.fortify.com
   tags:
@@ -302,8 +306,7 @@ apis:
     url: json-schema/opentext-cybersecurity-fortify-connect-api-network-list-response-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-multifactorauthorizationcode-api
   name: OpenText Cybersecurity Multi Factor Authorization Code API
-  description: >-
-    The MultiFactorAuthorizationCode API from OpenText Cybersecurity — 1 operation(s) for multifactorauthorizationcode.
+  description: The MultiFactorAuthorizationCode API from OpenText Cybersecurity — 1 operation(s) for multifactorauthorizationcode.
   humanURL: https://api.ams.fortify.com/swagger/ui/index
   baseURL: https://api.ams.fortify.com
   tags:
@@ -320,8 +323,7 @@ apis:
   - type: StatusPage
     url: https://status.fortify.com/
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-post-multi-factor-authorization-code-request-schema.json
+    url: json-schema/opentext-cybersecurity-post-multi-factor-authorization-code-request-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-notifications-api
   name: OpenText Cybersecurity Notifications API
   description: The Notifications API from OpenText Cybersecurity — 3 operation(s) for notifications.
@@ -438,8 +440,7 @@ apis:
     url: json-schema/opentext-cybersecurity-put-scan-response-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-tenantentitlements-api
   name: OpenText Cybersecurity Tenant Entitlements API
-  description: >-
-    The TenantEntitlements API from OpenText Cybersecurity — 2 operation(s) for tenantentitlements.
+  description: The TenantEntitlements API from OpenText Cybersecurity — 2 operation(s) for tenantentitlements.
   humanURL: https://api.ams.fortify.com/swagger/ui/index
   baseURL: https://api.ams.fortify.com
   tags:
@@ -458,8 +459,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-tenant-entitlement-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-get-tenant-open-source-entitlements-response-schema.json
+    url: json-schema/opentext-cybersecurity-get-tenant-open-source-entitlements-response-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-tenantheatmaps-api
   name: OpenText Cybersecurity Tenant Heat Maps API
   description: The TenantHeatMaps API from OpenText Cybersecurity — 1 operation(s) for tenantheatmaps.
@@ -524,8 +524,7 @@ apis:
     url: json-schema/opentext-cybersecurity-tenant-summary-list-response-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-userapplicationaccess-api
   name: OpenText Cybersecurity User Application Access API
-  description: >-
-    The UserApplicationAccess API from OpenText Cybersecurity — 2 operation(s) for userapplicationaccess.
+  description: The UserApplicationAccess API from OpenText Cybersecurity — 2 operation(s) for userapplicationaccess.
   humanURL: https://api.ams.fortify.com/swagger/ui/index
   baseURL: https://api.ams.fortify.com
   tags:
@@ -547,8 +546,7 @@ apis:
     url: json-schema/opentext-cybersecurity-post-user-application-access-request-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-usergroupapplicationaccess-api
   name: OpenText Cybersecurity User Group Application Access API
-  description: >-
-    The UserGroupApplicationAccess API from OpenText Cybersecurity — 2 operation(s) for usergroupapplicationaccess.
+  description: The UserGroupApplicationAccess API from OpenText Cybersecurity — 2 operation(s) for usergroupapplicationaccess.
   humanURL: https://api.ams.fortify.com/swagger/ui/index
   baseURL: https://api.ams.fortify.com
   tags:
@@ -565,11 +563,9 @@ apis:
   - type: StatusPage
     url: https://status.fortify.com/
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-user-group-application-access-list-response-schema.json
+    url: json-schema/opentext-cybersecurity-user-group-application-access-list-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-post-user-group-application-access-request-schema.json
+    url: json-schema/opentext-cybersecurity-post-user-group-application-access-request-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-users-api
   name: OpenText Cybersecurity Users API
   description: The Users API from OpenText Cybersecurity — 2 operation(s) for users.
@@ -604,8 +600,7 @@ apis:
     url: json-schema/opentext-cybersecurity-put-user-response-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-vulnerabilities-api
   name: OpenText Cybersecurity Vulnerabilities API
-  description: >-
-    The Vulnerabilities API from OpenText Cybersecurity — 20 operation(s) for vulnerabilities.
+  description: The Vulnerabilities API from OpenText Cybersecurity — 20 operation(s) for vulnerabilities.
   humanURL: https://api.ams.fortify.com/swagger/ui/index
   baseURL: https://api.ams.fortify.com
   tags:
@@ -632,12 +627,10 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-post-vulnerability-bulk-edit-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-get-vulnerabilities-response-vulnerability-list-item-schema.json
+    url: json-schema/opentext-cybersecurity-get-vulnerabilities-response-vulnerability-list-item-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-api-key-management-api
   name: OpenText Cybersecurity API Key Management API
-  description: >-
-    The API Key Management API from OpenText Cybersecurity — 5 operation(s) for api key management.
+  description: The API Key Management API from OpenText Cybersecurity — 5 operation(s) for api key management.
   humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
   baseURL: https://unityapi.webrootcloudav.com
   tags:
@@ -658,20 +651,15 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
@@ -681,8 +669,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+    url: json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
   - type: JSONSchema
@@ -733,8 +720,8 @@ apis:
     url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-dast-automated-scans-api
   name: OpenText Cybersecurity DAST Automated Scans API
-  description: >-
-    The DAST Automated Scans API from OpenText Cybersecurity — 9 operation(s) for dast automated scans.
+  description: The DAST Automated Scans API from OpenText Cybersecurity — 9 operation(s) for dast automated
+    scans.
   humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
   baseURL: https://unityapi.webrootcloudav.com
   tags:
@@ -755,20 +742,15 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
@@ -778,8 +760,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+    url: json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
   - type: JSONSchema
@@ -851,20 +832,15 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
@@ -874,8 +850,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+    url: json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
   - type: JSONSchema
@@ -947,20 +922,15 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
@@ -970,8 +940,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+    url: json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
   - type: JSONSchema
@@ -1043,20 +1012,15 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
@@ -1066,8 +1030,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+    url: json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
   - type: JSONSchema
@@ -1139,20 +1102,15 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
@@ -1162,8 +1120,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+    url: json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
   - type: JSONSchema
@@ -1214,8 +1171,8 @@ apis:
     url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-open-source-components-api
   name: OpenText Cybersecurity Open Source Components API
-  description: >-
-    The Open Source Components API from OpenText Cybersecurity — 2 operation(s) for open source components.
+  description: The Open Source Components API from OpenText Cybersecurity — 2 operation(s) for open source
+    components.
   humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
   baseURL: https://unityapi.webrootcloudav.com
   tags:
@@ -1236,20 +1193,15 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
@@ -1259,8 +1211,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+    url: json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
   - type: JSONSchema
@@ -1311,8 +1262,8 @@ apis:
     url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-open-source-scans-api
   name: OpenText Cybersecurity Open Source Scans API
-  description: >-
-    The Open Source Scans API from OpenText Cybersecurity — 1 operation(s) for open source scans.
+  description: The Open Source Scans API from OpenText Cybersecurity — 1 operation(s) for open source
+    scans.
   humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
   baseURL: https://unityapi.webrootcloudav.com
   tags:
@@ -1333,20 +1284,15 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
@@ -1356,8 +1302,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+    url: json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
   - type: JSONSchema
@@ -1408,8 +1353,8 @@ apis:
     url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-personal-access-tokens-api
   name: OpenText Cybersecurity Personal Access Tokens API
-  description: >-
-    The Personal Access Tokens API from OpenText Cybersecurity — 3 operation(s) for personal access tokens.
+  description: The Personal Access Tokens API from OpenText Cybersecurity — 3 operation(s) for personal
+    access tokens.
   humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
   baseURL: https://unityapi.webrootcloudav.com
   tags:
@@ -1430,20 +1375,15 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
@@ -1453,8 +1393,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+    url: json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
   - type: JSONSchema
@@ -1526,20 +1465,15 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
@@ -1549,8 +1483,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+    url: json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
   - type: JSONSchema
@@ -1601,8 +1534,7 @@ apis:
     url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
 - aid: opentext-cybersecurity:opentext-cybersecurity-user-management-api
   name: OpenText Cybersecurity User Management API
-  description: >-
-    The User Management API from OpenText Cybersecurity — 3 operation(s) for user management.
+  description: The User Management API from OpenText Cybersecurity — 3 operation(s) for user management.
   humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
   baseURL: https://unityapi.webrootcloudav.com
   tags:
@@ -1623,20 +1555,15 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+    url: json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
@@ -1646,8 +1573,7 @@ apis:
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
   - type: JSONSchema
-    url: >-
-      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+    url: json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
   - type: JSONSchema
     url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
   - type: JSONSchema
@@ -1699,9 +1625,9 @@ apis:
 x-coverage:
   state: covered
   reason: null
-  detail: 'Live first-party contract found and saved: a Swagger 2.0 document with 159 operations served unauthenticated from every Fortify on
-    Demand regional API host, plus six first-party Aviator .proto service definitions, a provider-published llms.txt, and a provider-published
-    Agent Skills package.'
+  detail: 'Live first-party contract found and saved: a Swagger 2.0 document with 159 operations served
+    unauthenticated from every Fortify on Demand regional API host, plus six first-party Aviator .proto
+    service definitions, a provider-published llms.txt, and a provider-published Agent Skills package.'
   checked: '2026-09-13'
 x-enrichment:
   date: '2026-10-03'
