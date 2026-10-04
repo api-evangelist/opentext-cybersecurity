@@ -1,0 +1,121 @@
+slug: opentext-cybersecurity
+provider: OpenText Cybersecurity
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 11
+edges:
+- tag: Vulnerabilities
+  spec_file: opentext-cybersecurity-vulnerabilities-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.95
+  evidence: '"VulnerabilitiesV3_GetVulnerabilities  Returns a list of vulnerabilities"; "Returns the vulnerability
+    recommendations"; schema "VulnerabilityComplianceCategory"'
+  reason: Listing, triaging, auditing and remediating application vulnerabilities found by scans — plainly
+    Vulnerability Management.
+- tag: DAST Automated Scans
+  spec_file: opentext-cybersecurity-dast-automated-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.85
+  evidence: '"Starts a DAST Automated scan using the current scan setup settings" with website/workflow/GraphQL/gRPC
+    scan setup endpoints'
+  reason: Fortify on Demand dynamic application security testing — configuring and launching automated
+    vulnerability scans against web applications and APIs, which is vulnerability scanning under Cybersecurity
+    Management.
+- tag: Dynamic Scans
+  spec_file: opentext-cybersecurity-dynamic-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.85
+  evidence: '"Starts a dynamic scan using the current scan setup settings"; schemas GetDynamicScanSetupResponse,
+    StartDynamicScanRequest'
+  reason: Dynamic application security scan setup and execution — security vulnerability scanning of running
+    applications.
+- tag: Mobile Scans
+  spec_file: opentext-cybersecurity-mobile-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.85
+  evidence: '"Starts a mobile scan for the given release"; schemas MobileScanSetup, MobileScanUserAccount'
+  reason: Mobile application security scanning setup and execution — vulnerability scanning of application
+    binaries.
+- tag: Static Scans
+  spec_file: opentext-cybersecurity-static-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.85
+  evidence: '"StaticScansV3_StartScan  Start a static scan"; "Imports a Static Analysis Resource Interchange
+    Format (SARIF) file"'
+  reason: Starting and configuring static application security analysis (SAST) scans — vulnerability scanning/detection,
+    the core of Vulnerability Management.
+- tag: Scans
+  spec_file: opentext-cybersecurity-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.82
+  evidence: '"ScansV3_GetScanSummary  Returns summary information for the requested scan id"; schemas
+    "StaticScanSummaryDetails", "DynamicScanSummaryDetails", "ScanPauseDetail"'
+  reason: Fortify on Demand application security testing scans (static/dynamic/mobile) — the execution
+    and reporting of security scanning is vulnerability scanning within Cybersecurity Management.
+- tag: UserApplicationAccess
+  spec_file: opentext-cybersecurity-userapplicationaccess-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: '"Create user access for the given user and application(s)"; "Delete user access for the given
+    user and application"'
+  reason: Granting and revoking a user's access rights to applications — directly access management.
+- tag: UserGroupApplicationAccess
+  spec_file: opentext-cybersecurity-usergroupapplicationaccess-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: '"Create user group access for the given user group and application"'
+  reason: Group-based authorisation grants to applications — access management (role/group to resource
+    entitlement).
+- tag: Open Source Scans
+  spec_file: opentext-cybersecurity-open-source-scans-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.75
+  evidence: '"Start an open source scan"'
+  reason: Initiates software composition analysis scans to detect vulnerable open-source dependencies
+    — vulnerability scanning.
+- tag: User Management
+  spec_file: opentext-cybersecurity-user-management-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: '"UserManagementV3_PostUserGroup  Create a user group"; "UserManagementV3_UpdateGroupMembership  Update
+    user group membership"'
+  reason: Administration of user groups and group membership used to govern access in the security platform
+    — identity and access administration.
+- tag: Users
+  spec_file: opentext-cybersecurity-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '"UsersV3_PostUser  Create a new user"; "UsersV3_DeleteUser  Delete a specific user"'
+  reason: User account lifecycle CRUD in the security platform — identity administration (joiner/mover/leaver
+    style account management).

@@ -613,6 +613,9 @@ apis:
   - type: StatusPage
     url: https://status.fortify.com/
 common:
+- type: CapabilityMap
+  url: capabilities/opentext-cybersecurity-capability-edges.yml
+  name: OpenText Cybersecurity Business Capability Map
 - type: Overlay
   url: overlays/opentext-cybersecurity-fortify-on-demand-overlay.yaml
 - type: DomainSecurity
