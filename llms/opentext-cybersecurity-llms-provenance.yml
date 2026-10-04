@@ -1,0 +1,6 @@
+generated: '2026-10-03'
+method: probed
+generator: harvest-llms.py
+source: https://cybersecurity.opentext.com/llms.txt
+bytes: 7692
+note: saved verbatim; the provider's own document

@@ -191,30 +191,6 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    OpenSourceComponentRelease:
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          type: integer
-        applicationName:
-          type: string
-        releaseId:
-          format: int32
-          type: integer
-        releaseName:
-          type: string
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
-        message:
-          description: The error message
-          type: string
     OpenSourceComponentListResponse:
       description: Generic List Response
       type: object
@@ -236,6 +212,57 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
+    VulnerabilityCount:
+      type: object
+      properties:
+        severityId:
+          format: int32
+          type: integer
+          readOnly: true
+        severity:
+          type: string
+          readOnly: true
+        count:
+          format: int32
+          type: integer
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    OpenSourceComponentRelease:
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          type: integer
+        applicationName:
+          type: string
+        releaseId:
+          format: int32
+          type: integer
+        releaseName:
+          type: string
+    OpenSourceComponentLicense:
+      type: object
+      properties:
+        name:
+          type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     OpenSourceComponent:
       type: object
       properties:
@@ -261,30 +288,3 @@ components:
           type: string
         scanTool:
           type: string
-    OpenSourceComponentLicense:
-      type: object
-      properties:
-        name:
-          type: string
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    VulnerabilityCount:
-      type: object
-      properties:
-        severityId:
-          format: int32
-          type: integer
-          readOnly: true
-        severity:
-          type: string
-          readOnly: true
-        count:
-          format: int32
-          type: integer

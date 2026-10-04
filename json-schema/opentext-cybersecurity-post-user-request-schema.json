@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-post-user-request-schema.json",
+  "title": "PostUserRequest",
+  "description": "Post User Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-users-api-openapi.yml#/components/schemas/PostUserRequest",
+  "required": [
+    "userName",
+    "email",
+    "firstName",
+    "lastName",
+    "roleId"
+  ],
+  "type": "object",
+  "properties": {
+    "userName": {
+      "description": "The username",
+      "type": "string"
+    },
+    "email": {
+      "description": "The user's email address",
+      "type": "string"
+    },
+    "firstName": {
+      "description": "The user's first name",
+      "type": "string"
+    },
+    "lastName": {
+      "description": "The user's last name",
+      "type": "string"
+    },
+    "phoneNumber": {
+      "description": "The user's phone number",
+      "type": "string"
+    },
+    "roleId": {
+      "format": "int32",
+      "description": "The The user's role id",
+      "type": "integer"
+    },
+    "passwordNeverExpires": {
+      "description": "Indicates if the password never expires",
+      "type": "boolean"
+    },
+    "isSuspended": {
+      "description": "Indicates if the user's account is suspended",
+      "type": "boolean"
+    }
+  }
+}

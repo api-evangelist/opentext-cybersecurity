@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-put-application-request-schema.json",
+  "title": "PutApplicationRequest",
+  "description": "Put Application Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PutApplicationRequest",
+  "required": [
+    "applicationName",
+    "businessCriticalityType"
+  ],
+  "type": "object",
+  "properties": {
+    "applicationName": {
+      "description": "The application title",
+      "type": "string"
+    },
+    "applicationDescription": {
+      "description": "Description of the application that will help you manage multiple applications",
+      "type": "string"
+    },
+    "emailList": {
+      "description": "List the email addresses of additional people who should be informed of activity related to this release. Separate multiple email addresses with a semicolon or comma",
+      "type": "string"
+    },
+    "attributes": {
+      "description": "Application attributes. This is an array of key/value objects. Example, [{\"Attribute 1\": \"value 1\"}, {\"Attribute 2\": \"value 2\"}, {\"Attribute 3\": \"value 3\"} ]",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ApplicationAttribute"
+      }
+    },
+    "businessCriticalityType": {
+      "description": "The business criticality type",
+      "enum": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "ApplicationAttribute": {
+      "description": "Attribute",
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "description": "Id of the attribute",
+          "type": "integer"
+        },
+        "value": {
+          "description": "Value of the attribute",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

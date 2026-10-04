@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-fortify-connect-api-network-list-response-schema.json",
+  "title": "FortifyConnectApiNetworkListResponse",
+  "description": "Generic List Response",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-fortifyondemandconnectnetworks-api-openapi.yml#/components/schemas/FortifyConnectApiNetworkListResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "description": "The list of items",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/FortifyConnectApiNetwork"
+      }
+    },
+    "totalCount": {
+      "format": "int32",
+      "description": "Total count of items",
+      "type": "integer"
+    },
+    "offset": {
+      "format": "int32",
+      "description": "Offset of the starting record. 0 indicates the first record.",
+      "type": "integer"
+    },
+    "limit": {
+      "format": "int32",
+      "description": "Maximum records to return.",
+      "type": "integer"
+    }
+  },
+  "$defs": {
+    "FortifyConnectApiNetwork": {
+      "type": "object",
+      "properties": {
+        "networkName": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

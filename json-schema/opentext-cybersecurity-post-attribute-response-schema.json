@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-post-attribute-response-schema.json",
+  "title": "PostAttributeResponse",
+  "description": "Post Attrbute Response",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-attributes-api-openapi.yml#/components/schemas/PostAttributeResponse",
+  "type": "object",
+  "properties": {
+    "attributeId": {
+      "format": "int32",
+      "description": "The id of the attribute that was created",
+      "type": "integer"
+    },
+    "success": {
+      "description": "Indicates if the application was created",
+      "type": "boolean"
+    },
+    "errors": {
+      "description": "A list of errors encountered",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

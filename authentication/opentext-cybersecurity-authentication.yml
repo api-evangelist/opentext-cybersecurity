@@ -4,9 +4,7 @@ source: >-
   https://api.ams.fortify.com/swagger/docs/v3 (operation descriptions), a live unauthenticated probe of
   https://api.ams.fortify.com/oauth/token and https://api.ams.fortify.com/api/v3/applications on
   2026-09-13, and https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide
-docs:
-- https://unityapi.webrootcloudav.com/Docs/en/APIDoc/GettingStarted
-- https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Guide
+docs: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/GettingStarted
 note: >-
   The published Fortify on Demand Swagger 2.0 document declares NO securityDefinitions and applies no
   security to any operation, so derive-authentication.py finds nothing to read. The authentication model

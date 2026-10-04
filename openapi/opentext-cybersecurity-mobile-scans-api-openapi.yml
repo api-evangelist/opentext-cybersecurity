@@ -425,17 +425,27 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    PutImportScanResponse:
-      description: PutImportScanResponse
+    MobileScanUserAccount:
+      description: Mobile Scan User Account
       type: object
       properties:
-        referenceId:
-          description: Reference Id
+        username:
+          description: The username
           type: string
-        scanId:
-          format: int32
-          description: The scan id
-          type: integer
+        password:
+          description: The password
+          type: string
+        roleType:
+          description: The role type
+          enum:
+          - User
+          - Guest
+          - Admin
+          - Other
+          type: string
+        oneTimePassword:
+          description: The one time password
+          type: string
     Error:
       description: Error
       type: object
@@ -447,18 +457,6 @@ components:
         message:
           description: The error message
           type: string
-    PutMobileScanSetupResponse:
-      description: Put Mobile Scan Setup Response
-      type: object
-      properties:
-        success:
-          description: Indicates if the mobile scan was updated
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
     PutMobileScanSetupRequest:
       description: Put Mobile Scan Setup Request
       required:
@@ -530,23 +528,6 @@ components:
           - Manual
           - None
           type: string
-    PostMobileScanResponse:
-      description: Post Mobile Scan Response
-      type: object
-      properties:
-        scanId:
-          format: int32
-          description: The id of the scan that was created
-          type: integer
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
     MobileScanSetup:
       description: StaticScanSetup
       type: object
@@ -574,24 +555,43 @@ components:
         timeZone:
           description: The timeZone.
           type: string
-    MobileScanUserAccount:
-      description: Mobile Scan User Account
+    PutMobileScanSetupResponse:
+      description: Put Mobile Scan Setup Response
       type: object
       properties:
-        username:
-          description: The username
+        success:
+          description: Indicates if the mobile scan was updated
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    PostMobileScanResponse:
+      description: Post Mobile Scan Response
+      type: object
+      properties:
+        scanId:
+          format: int32
+          description: The id of the scan that was created
+          type: integer
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    PutImportScanResponse:
+      description: PutImportScanResponse
+      type: object
+      properties:
+        referenceId:
+          description: Reference Id
           type: string
-        password:
-          description: The password
-          type: string
-        roleType:
-          description: The role type
-          enum:
-          - User
-          - Guest
-          - Admin
-          - Other
-          type: string
-        oneTimePassword:
-          description: The one time password
-          type: string
+        scanId:
+          format: int32
+          description: The scan id
+          type: integer

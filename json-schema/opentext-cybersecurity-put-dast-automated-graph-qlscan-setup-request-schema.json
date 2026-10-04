@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json",
+  "title": "PutDastAutomatedGraphQLScanSetupRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/PutDastAutomatedGraphQLScanSetupRequest",
+  "required": [
+    "sourceType",
+    "sourceUrn",
+    "assessmentTypeId",
+    "entitlementId",
+    "entitlementFrequencyType",
+    "dynamicScanEnvironmentFacingType",
+    "timeZone"
+  ],
+  "type": "object",
+  "properties": {
+    "sourceType": {
+      "description": "Specifies whether source is file ID or URL",
+      "enum": [
+        "FileId",
+        "Url"
+      ],
+      "type": "string"
+    },
+    "sourceUrn": {
+      "description": "File ID or URL",
+      "type": "string"
+    },
+    "schemeType": {
+      "description": "Api scheme type (Http, Https, or HttpHttps)",
+      "type": "string"
+    },
+    "host": {
+      "description": "API host name or IP address with port number",
+      "type": "string"
+    },
+    "servicePath": {
+      "description": "Directory path for the API service",
+      "type": "string"
+    },
+    "timeBoxInHours": {
+      "format": "int32",
+      "description": "Time limit in hours for Automated scan duration",
+      "type": "integer"
+    },
+    "assessmentTypeId": {
+      "format": "int32",
+      "description": "Assessment type ID. Values are obtained by calling GET /api/v3/releases/{releaseId}/assessment-types",
+      "type": "integer"
+    },
+    "entitlementId": {
+      "format": "int32",
+      "description": "Entitlement ID. Values are obtained by calling GET /api/v3/tenant-entitlements",
+      "type": "integer"
+    },
+    "entitlementFrequencyType": {
+      "description": "Entitlement frequency type",
+      "enum": [
+        "SingleScan",
+        "Subscription"
+      ],
+      "type": "string"
+    },
+    "dynamicScanEnvironmentFacingType": {
+      "description": "Type of environment the server is running in",
+      "enum": [
+        "Internal",
+        "External"
+      ],
+      "type": "string"
+    },
+    "timeZone": {
+      "description": "Timezone. Values are obtained by calling GET /api/v3/lookup-items?type=TimeZones",
+      "type": "string"
+    },
+    "requiresNetworkAuthentication": {
+      "description": "True if network connection is required to scan the site, otherwise false",
+      "type": "boolean"
+    },
+    "networkAuthenticationSettings": {
+      "$ref": "#/$defs/NetworkAuthenticationSettings",
+      "description": "Network authentication settings"
+    },
+    "requestFalsePositiveRemoval": {
+      "description": "True if requesting one-time false positive removal, otherwise false",
+      "type": "boolean"
+    },
+    "networkName": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "NetworkAuthenticationSettings": {
+      "type": "object",
+      "properties": {
+        "networkAuthenticationType": {
+          "description": "Network authentication type. Values are obtained by calling GET /api/v3/lookup-items?type=NetworkAuthenticationType",
+          "enum": [
+            "Basic",
+            "NTLM",
+            "Kerberos",
+            "Digest",
+            "Automatic",
+            "ADFS_CBT"
+          ],
+          "type": "string"
+        },
+        "userName": {
+          "description": "Network username",
+          "type": "string"
+        },
+        "password": {
+          "description": "Network password",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

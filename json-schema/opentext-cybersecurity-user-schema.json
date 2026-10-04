@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-user-schema.json",
+  "title": "User",
+  "description": "User",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-users-api-openapi.yml#/components/schemas/User",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "format": "int32",
+      "description": "The users's id",
+      "type": "integer"
+    },
+    "userName": {
+      "description": "The users's username",
+      "type": "string"
+    },
+    "firstName": {
+      "description": "The users's first name",
+      "type": "string"
+    },
+    "lastName": {
+      "description": "The users's last name",
+      "type": "string"
+    },
+    "email": {
+      "description": "The users's email address",
+      "type": "string"
+    },
+    "phoneNumber": {
+      "description": "The users's phone number",
+      "type": "string"
+    },
+    "isVerified": {
+      "description": "Indicates if the user has been verified",
+      "type": "boolean"
+    },
+    "roleId": {
+      "format": "int32",
+      "description": "The users's role id",
+      "type": "integer"
+    },
+    "roleName": {
+      "description": "The users's role name",
+      "type": "string"
+    },
+    "isSuspended": {
+      "description": "Indicates if the user's account is suspended",
+      "type": "boolean"
+    },
+    "mustChange": {
+      "description": "Indicates if the user must change the password on the next login",
+      "type": "boolean"
+    },
+    "passwordNeverExpires": {
+      "description": "Indicates if the password never expires",
+      "type": "boolean"
+    },
+    "modifiedDate": {
+      "format": "date-time",
+      "description": "The users's modified date",
+      "type": "string"
+    },
+    "lastLoginDate": {
+      "format": "date-time",
+      "description": "The users's last login date",
+      "type": "string"
+    },
+    "createdVia": {
+      "description": "How the user was created",
+      "type": "string"
+    }
+  }
+}

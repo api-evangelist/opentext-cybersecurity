@@ -734,7 +734,86 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    PutDastAutomatedOpenApiScanSetupRequest:
+    FileDetails:
+      type: object
+      properties:
+        fileId:
+          format: int32
+          description: 'Uploaded file details: file Id'
+          type: integer
+        fileName:
+          description: 'Uploaded file details: file Name'
+          type: string
+        fileType:
+          description: 'Uploaded file details: file Type'
+          type: string
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    LoginMacroFileCreationDetails:
+      type: object
+      properties:
+        primaryUsername:
+          description: 'Login macro settings: primary username to login with'
+          type: string
+        primaryPassword:
+          description: 'Login macro settings: primary account password to login with'
+          type: string
+        secondaryUsername:
+          description: 'Login macro settings: secondary username to login with'
+          type: string
+        secondaryPassword:
+          description: 'Login macro settings: secondary account password to login with'
+          type: string
+    Grpc:
+      type: object
+      properties:
+        fileId:
+          format: int32
+          description: gRPC file ID. Value is obtained by uploading proto file
+          type: integer
+        schemeType:
+          description: API scheme type (Http, Https, or HttpHttps)
+          type: string
+        host:
+          description: API host name or IP address with port number
+          type: string
+        servicePath:
+          description: Directory path for the API service
+          type: string
+    API:
+      type: object
+      properties:
+        apiType:
+          description: Api type
+          enum:
+          - NotSet
+          - OpenApi
+          - GRPC
+          - GraphQL
+          - Postman
+          type: string
+        openAPI:
+          $ref: '#/components/schemas/OpenApi'
+          description: OpenApi scan details
+        graphQL:
+          $ref: '#/components/schemas/GraphQl'
+          description: GraphQL Api scan details
+        gRPC:
+          $ref: '#/components/schemas/Grpc'
+          description: gRPC Api scan details
+        postman:
+          $ref: '#/components/schemas/Postman'
+          description: Postman Api scan details
+    PutDastAutomatedGraphQLScanSetupRequest:
       required:
       - sourceType
       - sourceUrn
@@ -754,8 +833,14 @@ components:
         sourceUrn:
           description: File ID or URL
           type: string
-        apiKey:
-          description: API key
+        schemeType:
+          description: Api scheme type (Http, Https, or HttpHttps)
+          type: string
+        host:
+          description: API host name or IP address with port number
+          type: string
+        servicePath:
+          description: Directory path for the API service
           type: string
         timeBoxInHours:
           format: int32
@@ -795,30 +880,83 @@ components:
           type: boolean
         networkName:
           type: string
-    OpenApi:
+    Website:
       type: object
       properties:
-        sourceType:
-          description: Specifies whether source is file ID or URL
-          enum:
-          - FileId
-          - Url
+        dynamicSiteUrl:
+          description: The dynamic site url
           type: string
-        sourceUrn:
-          description: File ID or URL
-          type: string
-        apiKey:
-          description: API key
-          type: string
-    WorkflowDriven:
-      type: object
-      properties:
-        workflowDrivenMacro:
-          description: Workflow driven macro fileIds
+        requestLoginMacroFileCreation:
+          description: True if requesting one-time creation of login macro file by testing team, otherwise false
+          type: boolean
+        loginMacroFileCreationDetails:
+          $ref: '#/components/schemas/LoginMacroFileCreationDetails'
+          description: Login macro file creation details
+        enableRedundantPageDetection:
+          description: True to enable comparison of page structure to identify and exclude processing of redundant resources, otherwise false
+          type: boolean
+        exclusionsList:
+          description: List of exclusions.
           type: array
           items:
-            $ref: '#/components/schemas/WorkflowDrivenMacrosResponse'
-    Grpc:
+            $ref: '#/components/schemas/Exclusion'
+    Postman:
+      type: object
+      properties:
+        collectionFileIds:
+          description: Postman collection file ID. Value is obtained by uploading Postman collection
+          type: array
+          items:
+            format: int32
+            type: integer
+    PatchDastAutomatedScanManifestResponse:
+      type: object
+      properties:
+        fileId:
+          format: int32
+          type: integer
+        hosts:
+          type: array
+          items:
+            type: string
+    WorkflowDrivenMacrosResponse:
+      type: object
+      properties:
+        fileId:
+          format: int32
+          description: Workflow-driven macro file ID. Value is obtained by uploading workflow-driven macro
+          type: integer
+        allowedHosts:
+          description: Hostname or IP address with port number. Value is obtained by uploading workflow-driven macro
+          type: array
+          items:
+            type: string
+    WorkflowDrivenMacrosRequest:
+      required:
+      - fileId
+      - allowedHosts
+      type: object
+      properties:
+        fileId:
+          format: int32
+          description: Workflow-driven macro file ID. Value is obtained by uploading workflow-driven macro
+          type: integer
+        allowedHosts:
+          description: Hostname or IP address with port number. Value is obtained by uploading workflow-driven macro
+          type: array
+          items:
+            type: string
+    PutDastAutomatedGrpcScanSetupRequest:
+      required:
+      - fileId
+      - schemeType
+      - host
+      - servicePath
+      - assessmentTypeId
+      - entitlementId
+      - entitlementFrequencyType
+      - dynamicScanEnvironmentFacingType
+      - timeZone
       type: object
       properties:
         fileId:
@@ -834,20 +972,64 @@ components:
         servicePath:
           description: Directory path for the API service
           type: string
-    LoginMacroFileCreationDetails:
+        timeBoxInHours:
+          format: int32
+          description: Time limit in hours for Automated scan duration
+          type: integer
+        assessmentTypeId:
+          format: int32
+          description: Assessment type ID. Values are obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
+          type: integer
+        entitlementId:
+          format: int32
+          description: Entitlement ID. Values are obtained by calling GET /api/v3/tenant-entitlements
+          type: integer
+        entitlementFrequencyType:
+          description: Entitlement frequency type
+          enum:
+          - SingleScan
+          - Subscription
+          type: string
+        dynamicScanEnvironmentFacingType:
+          description: Type of environment the server is running in
+          enum:
+          - Internal
+          - External
+          type: string
+        timeZone:
+          description: Timezone. Values are obtained by calling GET /api/v3/lookup-items?type=TimeZones
+          type: string
+        requiresNetworkAuthentication:
+          description: True if network connection is required to scan the site, otherwise false
+          type: boolean
+        networkAuthenticationSettings:
+          $ref: '#/components/schemas/NetworkAuthenticationSettings'
+          description: Network authentication settings
+        requestFalsePositiveRemoval:
+          description: True if requesting one-time false positive removal, otherwise false
+          type: boolean
+        networkName:
+          type: string
+    GraphQl:
       type: object
       properties:
-        primaryUsername:
-          description: 'Login macro settings: primary username to login with'
+        sourceType:
+          description: Specifies whether source is file ID or URL
+          enum:
+          - FileId
+          - Url
           type: string
-        primaryPassword:
-          description: 'Login macro settings: primary account password to login with'
+        sourceUrn:
+          description: File ID or URL
           type: string
-        secondaryUsername:
-          description: 'Login macro settings: secondary username to login with'
+        schemeType:
+          description: Api scheme type (Http, Https, or HttpHttps)
           type: string
-        secondaryPassword:
-          description: 'Login macro settings: secondary account password to login with'
+        host:
+          description: API host name or IP address with port number
+          type: string
+        servicePath:
+          description: Directory path for the API service
           type: string
     PutDastAutomatedWebsiteScanSetupRequest:
       required:
@@ -898,60 +1080,6 @@ components:
         loginMacroFileCreationDetails:
           $ref: '#/components/schemas/LoginMacroFileCreationDetails'
           description: Login macro file creation details
-        assessmentTypeId:
-          format: int32
-          description: Assessment type ID. Values are obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
-          type: integer
-        entitlementId:
-          format: int32
-          description: Entitlement ID. Values are obtained by calling GET /api/v3/tenant-entitlements
-          type: integer
-        entitlementFrequencyType:
-          description: Entitlement frequency type
-          enum:
-          - SingleScan
-          - Subscription
-          type: string
-        dynamicScanEnvironmentFacingType:
-          description: Type of environment the server is running in
-          enum:
-          - Internal
-          - External
-          type: string
-        timeZone:
-          description: Timezone. Values are obtained by calling GET /api/v3/lookup-items?type=TimeZones
-          type: string
-        requiresNetworkAuthentication:
-          description: True if network connection is required to scan the site, otherwise false
-          type: boolean
-        networkAuthenticationSettings:
-          $ref: '#/components/schemas/NetworkAuthenticationSettings'
-          description: Network authentication settings
-        requestFalsePositiveRemoval:
-          description: True if requesting one-time false positive removal, otherwise false
-          type: boolean
-        networkName:
-          type: string
-    PutDastAutomatedPostmanScanSetupRequest:
-      required:
-      - collectionFileIds
-      - assessmentTypeId
-      - entitlementId
-      - entitlementFrequencyType
-      - dynamicScanEnvironmentFacingType
-      - timeZone
-      type: object
-      properties:
-        collectionFileIds:
-          description: Postman collection file ID. Value is obtained by uploading Postman collection
-          type: array
-          items:
-            format: int32
-            type: integer
-        timeBoxInHours:
-          format: int32
-          description: Time limit in hours for Automated scan duration
-          type: integer
         assessmentTypeId:
           format: int32
           description: Assessment type ID. Values are obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
@@ -1071,71 +1199,15 @@ components:
           type: boolean
         networkName:
           type: string
-    PutDastAutomatedGrpcScanSetupRequest:
-      required:
-      - fileId
-      - schemeType
-      - host
-      - servicePath
-      - assessmentTypeId
-      - entitlementId
-      - entitlementFrequencyType
-      - dynamicScanEnvironmentFacingType
-      - timeZone
+    StartDastAutomatedScanResponse:
+      description: Start DAST Automated scan response
       type: object
       properties:
-        fileId:
+        scanId:
           format: int32
-          description: gRPC file ID. Value is obtained by uploading proto file
+          description: The id of the scan that was started
           type: integer
-        schemeType:
-          description: API scheme type (Http, Https, or HttpHttps)
-          type: string
-        host:
-          description: API host name or IP address with port number
-          type: string
-        servicePath:
-          description: Directory path for the API service
-          type: string
-        timeBoxInHours:
-          format: int32
-          description: Time limit in hours for Automated scan duration
-          type: integer
-        assessmentTypeId:
-          format: int32
-          description: Assessment type ID. Values are obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
-          type: integer
-        entitlementId:
-          format: int32
-          description: Entitlement ID. Values are obtained by calling GET /api/v3/tenant-entitlements
-          type: integer
-        entitlementFrequencyType:
-          description: Entitlement frequency type
-          enum:
-          - SingleScan
-          - Subscription
-          type: string
-        dynamicScanEnvironmentFacingType:
-          description: Type of environment the server is running in
-          enum:
-          - Internal
-          - External
-          type: string
-        timeZone:
-          description: Timezone. Values are obtained by calling GET /api/v3/lookup-items?type=TimeZones
-          type: string
-        requiresNetworkAuthentication:
-          description: True if network connection is required to scan the site, otherwise false
-          type: boolean
-        networkAuthenticationSettings:
-          $ref: '#/components/schemas/NetworkAuthenticationSettings'
-          description: Network authentication settings
-        requestFalsePositiveRemoval:
-          description: True if requesting one-time false positive removal, otherwise false
-          type: boolean
-        networkName:
-          type: string
-    GraphQl:
+    OpenApi:
       type: object
       properties:
         sourceType:
@@ -1147,52 +1219,9 @@ components:
         sourceUrn:
           description: File ID or URL
           type: string
-        schemeType:
-          description: Api scheme type (Http, Https, or HttpHttps)
+        apiKey:
+          description: API key
           type: string
-        host:
-          description: API host name or IP address with port number
-          type: string
-        servicePath:
-          description: Directory path for the API service
-          type: string
-    Postman:
-      type: object
-      properties:
-        collectionFileIds:
-          description: Postman collection file ID. Value is obtained by uploading Postman collection
-          type: array
-          items:
-            format: int32
-            type: integer
-    NetworkAuthenticationSettings:
-      type: object
-      properties:
-        networkAuthenticationType:
-          description: Network authentication type. Values are obtained by calling GET /api/v3/lookup-items?type=NetworkAuthenticationType
-          enum:
-          - Basic
-          - NTLM
-          - Kerberos
-          - Digest
-          - Automatic
-          - ADFS_CBT
-          type: string
-        userName:
-          description: Network username
-          type: string
-        password:
-          description: Network password
-          type: string
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
     PutDastAutomatedWorkflowScanSetupRequest:
       required:
       - workflowDrivenMacro
@@ -1256,18 +1285,69 @@ components:
         value:
           description: URL fragment to exclude from scanning.
           type: string
-    Error:
-      description: Error
+    PutDastAutomatedPostmanScanSetupRequest:
+      required:
+      - collectionFileIds
+      - assessmentTypeId
+      - entitlementId
+      - entitlementFrequencyType
+      - dynamicScanEnvironmentFacingType
+      - timeZone
       type: object
       properties:
-        errorCode:
+        collectionFileIds:
+          description: Postman collection file ID. Value is obtained by uploading Postman collection
+          type: array
+          items:
+            format: int32
+            type: integer
+        timeBoxInHours:
           format: int32
-          description: The error code
+          description: Time limit in hours for Automated scan duration
           type: integer
-        message:
-          description: The error message
+        assessmentTypeId:
+          format: int32
+          description: Assessment type ID. Values are obtained by calling GET /api/v3/releases/{releaseId}/assessment-types
+          type: integer
+        entitlementId:
+          format: int32
+          description: Entitlement ID. Values are obtained by calling GET /api/v3/tenant-entitlements
+          type: integer
+        entitlementFrequencyType:
+          description: Entitlement frequency type
+          enum:
+          - SingleScan
+          - Subscription
           type: string
-    PutDastAutomatedGraphQLScanSetupRequest:
+        dynamicScanEnvironmentFacingType:
+          description: Type of environment the server is running in
+          enum:
+          - Internal
+          - External
+          type: string
+        timeZone:
+          description: Timezone. Values are obtained by calling GET /api/v3/lookup-items?type=TimeZones
+          type: string
+        requiresNetworkAuthentication:
+          description: True if network connection is required to scan the site, otherwise false
+          type: boolean
+        networkAuthenticationSettings:
+          $ref: '#/components/schemas/NetworkAuthenticationSettings'
+          description: Network authentication settings
+        requestFalsePositiveRemoval:
+          description: True if requesting one-time false positive removal, otherwise false
+          type: boolean
+        networkName:
+          type: string
+    WorkflowDriven:
+      type: object
+      properties:
+        workflowDrivenMacro:
+          description: Workflow driven macro fileIds
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowDrivenMacrosResponse'
+    PutDastAutomatedOpenApiScanSetupRequest:
       required:
       - sourceType
       - sourceUrn
@@ -1287,14 +1367,8 @@ components:
         sourceUrn:
           description: File ID or URL
           type: string
-        schemeType:
-          description: Api scheme type (Http, Https, or HttpHttps)
-          type: string
-        host:
-          description: API host name or IP address with port number
-          type: string
-        servicePath:
-          description: Directory path for the API service
+        apiKey:
+          description: API key
           type: string
         timeBoxInHours:
           format: int32
@@ -1334,105 +1408,31 @@ components:
           type: boolean
         networkName:
           type: string
-    PatchDastAutomatedScanManifestResponse:
+    ErrorResponse:
+      description: Error Response
       type: object
       properties:
-        fileId:
-          format: int32
-          type: integer
-        hosts:
+        errors:
+          description: List of errors
           type: array
           items:
-            type: string
-    Website:
+            $ref: '#/components/schemas/Error'
+    NetworkAuthenticationSettings:
       type: object
       properties:
-        dynamicSiteUrl:
-          description: The dynamic site url
-          type: string
-        requestLoginMacroFileCreation:
-          description: True if requesting one-time creation of login macro file by testing team, otherwise false
-          type: boolean
-        loginMacroFileCreationDetails:
-          $ref: '#/components/schemas/LoginMacroFileCreationDetails'
-          description: Login macro file creation details
-        enableRedundantPageDetection:
-          description: True to enable comparison of page structure to identify and exclude processing of redundant resources, otherwise false
-          type: boolean
-        exclusionsList:
-          description: List of exclusions.
-          type: array
-          items:
-            $ref: '#/components/schemas/Exclusion'
-    FileDetails:
-      type: object
-      properties:
-        fileId:
-          format: int32
-          description: 'Uploaded file details: file Id'
-          type: integer
-        fileName:
-          description: 'Uploaded file details: file Name'
-          type: string
-        fileType:
-          description: 'Uploaded file details: file Type'
-          type: string
-    StartDastAutomatedScanResponse:
-      description: Start DAST Automated scan response
-      type: object
-      properties:
-        scanId:
-          format: int32
-          description: The id of the scan that was started
-          type: integer
-    API:
-      type: object
-      properties:
-        apiType:
-          description: Api type
+        networkAuthenticationType:
+          description: Network authentication type. Values are obtained by calling GET /api/v3/lookup-items?type=NetworkAuthenticationType
           enum:
-          - NotSet
-          - OpenApi
-          - GRPC
-          - GraphQL
-          - Postman
+          - Basic
+          - NTLM
+          - Kerberos
+          - Digest
+          - Automatic
+          - ADFS_CBT
           type: string
-        openAPI:
-          $ref: '#/components/schemas/OpenApi'
-          description: OpenApi scan details
-        graphQL:
-          $ref: '#/components/schemas/GraphQl'
-          description: GraphQL Api scan details
-        gRPC:
-          $ref: '#/components/schemas/Grpc'
-          description: gRPC Api scan details
-        postman:
-          $ref: '#/components/schemas/Postman'
-          description: Postman Api scan details
-    WorkflowDrivenMacrosResponse:
-      type: object
-      properties:
-        fileId:
-          format: int32
-          description: Workflow-driven macro file ID. Value is obtained by uploading workflow-driven macro
-          type: integer
-        allowedHosts:
-          description: Hostname or IP address with port number. Value is obtained by uploading workflow-driven macro
-          type: array
-          items:
-            type: string
-    WorkflowDrivenMacrosRequest:
-      required:
-      - fileId
-      - allowedHosts
-      type: object
-      properties:
-        fileId:
-          format: int32
-          description: Workflow-driven macro file ID. Value is obtained by uploading workflow-driven macro
-          type: integer
-        allowedHosts:
-          description: Hostname or IP address with port number. Value is obtained by uploading workflow-driven macro
-          type: array
-          items:
-            type: string
+        userName:
+          description: Network username
+          type: string
+        password:
+          description: Network password
+          type: string

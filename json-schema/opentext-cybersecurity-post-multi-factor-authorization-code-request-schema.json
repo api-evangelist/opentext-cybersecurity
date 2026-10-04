@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-post-multi-factor-authorization-code-request-schema.json",
+  "title": "PostMultiFactorAuthorizationCodeRequest",
+  "description": "Post Multi Factor Authorization Code Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-multifactorauthorizationcode-api-openapi.yml#/components/schemas/PostMultiFactorAuthorizationCodeRequest",
+  "required": [
+    "multiFactorAuthorizationType",
+    "username",
+    "password"
+  ],
+  "type": "object",
+  "properties": {
+    "multiFactorAuthorizationType": {
+      "description": "Type of Authorization (sms or email)",
+      "enum": [
+        "SMSDelivery",
+        "EmailDelivery"
+      ],
+      "type": "string"
+    },
+    "username": {
+      "description": "Tenant Code / Username",
+      "type": "string"
+    },
+    "password": {
+      "description": "Password",
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json",
+  "title": "PutDastAutomatedWorkflowScanSetupRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/PutDastAutomatedWorkflowScanSetupRequest",
+  "required": [
+    "workflowDrivenMacro",
+    "policy",
+    "assessmentTypeId",
+    "entitlementId",
+    "entitlementFrequencyType",
+    "dynamicScanEnvironmentFacingType",
+    "timeZone"
+  ],
+  "type": "object",
+  "properties": {
+    "workflowDrivenMacro": {
+      "description": "Workflow driven macro fileIds",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/WorkflowDrivenMacrosRequest"
+      }
+    },
+    "policy": {
+      "description": "Policy type to scan the website. Values are obtained by calling api/v3/lookup-items?type=DastAutomatedScanPolicies",
+      "enum": [
+        "Standard",
+        "CriticalsAndHighs",
+        "PassiveScan"
+      ],
+      "type": "string"
+    },
+    "assessmentTypeId": {
+      "format": "int32",
+      "description": "Assessment type ID. Values are obtained by calling GET /api/v3/releases/{releaseId}/assessment-types",
+      "type": "integer"
+    },
+    "entitlementId": {
+      "format": "int32",
+      "description": "Entitlement ID. Values are obtained by calling GET /api/v3/tenant-entitlements",
+      "type": "integer"
+    },
+    "entitlementFrequencyType": {
+      "description": "Entitlement frequency type",
+      "enum": [
+        "SingleScan",
+        "Subscription"
+      ],
+      "type": "string"
+    },
+    "dynamicScanEnvironmentFacingType": {
+      "description": "Type of environment the server is running in",
+      "enum": [
+        "Internal",
+        "External"
+      ],
+      "type": "string"
+    },
+    "timeZone": {
+      "description": "Timezone. Values are obtained by calling GET /api/v3/lookup-items?type=TimeZones",
+      "type": "string"
+    },
+    "requiresNetworkAuthentication": {
+      "description": "True if network connection is required to scan the site, otherwise false",
+      "type": "boolean"
+    },
+    "networkAuthenticationSettings": {
+      "$ref": "#/$defs/NetworkAuthenticationSettings",
+      "description": "Network authentication settings"
+    },
+    "requestFalsePositiveRemoval": {
+      "description": "True if requesting one-time false positive removal, otherwise false",
+      "type": "boolean"
+    },
+    "networkName": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "NetworkAuthenticationSettings": {
+      "type": "object",
+      "properties": {
+        "networkAuthenticationType": {
+          "description": "Network authentication type. Values are obtained by calling GET /api/v3/lookup-items?type=NetworkAuthenticationType",
+          "enum": [
+            "Basic",
+            "NTLM",
+            "Kerberos",
+            "Digest",
+            "Automatic",
+            "ADFS_CBT"
+          ],
+          "type": "string"
+        },
+        "userName": {
+          "description": "Network username",
+          "type": "string"
+        },
+        "password": {
+          "description": "Network password",
+          "type": "string"
+        }
+      }
+    },
+    "WorkflowDrivenMacrosRequest": {
+      "required": [
+        "fileId",
+        "allowedHosts"
+      ],
+      "type": "object",
+      "properties": {
+        "fileId": {
+          "format": "int32",
+          "description": "Workflow-driven macro file ID. Value is obtained by uploading workflow-driven macro",
+          "type": "integer"
+        },
+        "allowedHosts": {
+          "description": "Hostname or IP address with port number. Value is obtained by uploading workflow-driven macro",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

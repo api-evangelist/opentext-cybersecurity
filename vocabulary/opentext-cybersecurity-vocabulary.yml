@@ -1,0 +1,426 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/opentext-cybersecurity-api-key-management-api-openapi.yml
+- openapi/opentext-cybersecurity-applications-api-openapi.yml
+- openapi/opentext-cybersecurity-attributes-api-openapi.yml
+- openapi/opentext-cybersecurity-audittemplate-api-openapi.yml
+- openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml
+vocabulary:
+  name: OpenText Cybersecurity Domain Vocabulary
+  description: 'Terms declared by OpenText Cybersecurity''s own API contract: its resource groups, objects and enumerations, with the contract''s
+    definitions. Derived, not authored.'
+  version: '2026-10-03'
+  terms:
+  - term: ApiKeyApplication
+    definition: 'Object declared by the contract with fields: applicationId, applicationName.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/ApiKeyApplication
+  - term: PostApiKeyResponse
+    definition: 'Object declared by the contract with fields: apiKeyId, apiKey, secret.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/PostApiKeyResponse
+  - term: Error
+    definition: Error
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/Error
+  - term: ApiKeyApplicationListResponse
+    definition: Generic List Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/ApiKeyApplicationListResponse
+  - term: ApiKeyRequest
+    definition: 'Object declared by the contract with fields: name, isAuthorized, roleId.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/ApiKeyRequest
+  - term: DeleteApiKeyResponse
+    definition: Delete ApiKey Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/DeleteApiKeyResponse
+  - term: ApiKeyApplicationAccessRequest
+    definition: 'Object declared by the contract with fields: assignAllApplications, applicationId.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/ApiKeyApplicationAccessRequest
+  - term: ApiKeyListResponse
+    definition: Generic List Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/ApiKeyListResponse
+  - term: ErrorResponse
+    definition: Error Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/ErrorResponse
+  - term: ApiKeyResponse
+    definition: 'Object declared by the contract with fields: message, success.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/ApiKeyResponse
+  - term: ApiKeyUnassignApplicationsRequest
+    definition: 'Object declared by the contract with fields: unassignAllApplications, applicationId.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/ApiKeyUnassignApplicationsRequest
+  - term: ApiKey
+    definition: 'Object declared by the contract with fields: apiKeyId, name, isAuthorized, apiKey, grantType, role, lastLoginIpAddress, lastLoginDate.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/ApiKey
+  - term: AuditTemplateCondition
+    definition: 'Object declared by the contract with fields: field, conditionType, fieldValue, operationType.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/AuditTemplateCondition
+  - term: GetApplicationUserGroupsResponse
+    definition: Get Application User Groups Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/GetApplicationUserGroupsResponse
+  - term: Microservice
+    definition: Microservice
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/Microservice
+  - term: ApplicationUserPermissions
+    definition: Application User Permissions
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ApplicationUserPermissions
+  - term: AuditTemplateAction
+    definition: 'Object declared by the contract with fields: actionType, severity, severityId, suppressedStatus.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/AuditTemplateAction
+  - term: ApplicationUserListResponse
+    definition: Generic List Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ApplicationUserListResponse
+  - term: ApplicationUser
+    definition: Application User
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ApplicationUser
+  - term: PutApplicationResponse
+    definition: Put Application Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PutApplicationResponse
+  - term: DeleteApplicationResponse
+    definition: Delete Application Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/DeleteApplicationResponse
+  - term: AuditTemplateResponse
+    definition: 'Object declared by the contract with fields: applicationId, success, errors.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/AuditTemplateResponse
+  - term: MicroserviceListResponse
+    definition: Generic List Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/MicroserviceListResponse
+  - term: PostApplicationResponse
+    definition: Post Application Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PostApplicationResponse
+  - term: ApplicationAttribute
+    definition: Attribute
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ApplicationAttribute
+  - term: PostMicroserviceResponse
+    definition: Post Microservice Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PostMicroserviceResponse
+  - term: GetAutoReportResponse
+    definition: Get Auto Report Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/GetAutoReportResponse
+  - term: PostAutoReportRequest
+    definition: Post Auto Report Request
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PostAutoReportRequest
+  - term: PutAuditTemplateFilterRequest
+    definition: 'Object declared by the contract with fields: scanType, scanTypeId, action, conditions.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PutAuditTemplateFilterRequest
+  - term: ApplicationUserGroup
+    definition: Application User
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ApplicationUserGroup
+  - term: GetApplicationUsersResponse
+    definition: Get Application Users Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/GetApplicationUsersResponse
+  - term: FieldFilterValue
+    definition: Field Filter Value
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/FieldFilterValue
+  - term: PutApplicationRequest
+    definition: Put Application Request
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PutApplicationRequest
+  - term: ScanListResponse
+    definition: Generic List Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ScanListResponse
+  - term: ScanPauseDetail
+    definition: Scan Pause Details
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ScanPauseDetail
+  - term: ApplicationListResponse
+    definition: Generic List Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ApplicationListResponse
+  - term: PostApplicationRequest
+    definition: Post Application Request
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PostApplicationRequest
+  - term: VulnerabilityDTOLight
+    definition: 'Object declared by the contract with fields: id, vulnId, releaseId, releaseName.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/VulnerabilityDTOLight
+  - term: ReleaseListResponse
+    definition: Generic List Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ReleaseListResponse
+  - term: AuditTemplateListResponse
+    definition: Generic List Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/AuditTemplateListResponse
+  - term: ApplicationIssueCountListResponse
+    definition: Generic List Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ApplicationIssueCountListResponse
+  - term: PostMicroserviceRequest
+    definition: Post Microservice Request
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PostMicroserviceRequest
+  - term: ApplicationAttributeExtended
+    definition: Application Attribute Extended
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ApplicationAttributeExtended
+  - term: ApplicationBugTracker
+    definition: Application Bug Tracker Settings
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ApplicationBugTracker
+  - term: AuditTemplate
+    definition: 'Object declared by the contract with fields: applicationId, scanType, scanTypeId, conditions, action.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/AuditTemplate
+  - term: ApplicationIssueCount
+    definition: 'Object declared by the contract with fields: applicationId, applicationName, applicationDescription, applicationCreatedDate,
+      businessCriticalityTypeId, businessCriticalityType, critical, high, medium, low.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ApplicationIssueCount
+  - term: Scan
+    definition: Scan
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/Scan
+  - term: PutAuditTemplateAction
+    definition: AuditTemplateAction
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PutAuditTemplateAction
+  - term: GetVulnerabilitiesResponseVulnerabilityDTOLight
+    definition: Get Vulnerabilities Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/GetVulnerabilitiesResponseVulnerabilityDTOLight
+  - term: PutAuditTemplateCondition
+    definition: AuditTemplateCondition
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PutAuditTemplateCondition
+  - term: PostAutoReportResponse
+    definition: Post Auto Report Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PostAutoReportResponse
+  - term: Release
+    definition: Release
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/Release
+  - term: FieldFilter
+    definition: Field Filter
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/FieldFilter
+  - term: Application
+    definition: Application
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/Application
+  - term: PutAttributeResponse
+    definition: Put Attrbute Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-attributes-api-openapi.yml#/components/schemas/PutAttributeResponse
+  - term: AttributeValueItem
+    definition: 'Object declared by the contract with fields: Name, SortOrder.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-attributes-api-openapi.yml#/components/schemas/AttributeValueItem
+  - term: AttributeItemValue
+    definition: Attribute Item Value
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-attributes-api-openapi.yml#/components/schemas/AttributeItemValue
+  - term: PutAttributeRequest
+    definition: Put Attrbute Request
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-attributes-api-openapi.yml#/components/schemas/PutAttributeRequest
+  - term: PostAttributeRequest
+    definition: Post Attrbute Request
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-attributes-api-openapi.yml#/components/schemas/PostAttributeRequest
+  - term: AttributeItemListResponse
+    definition: Generic List Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-attributes-api-openapi.yml#/components/schemas/AttributeItemListResponse
+  - term: AttributeItem
+    definition: Attribute Item
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-attributes-api-openapi.yml#/components/schemas/AttributeItem
+  - term: PostAttributeResponse
+    definition: Post Attrbute Response
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-attributes-api-openapi.yml#/components/schemas/PostAttributeResponse
+  - term: PutDastAutomatedOpenApiScanSetupRequest
+    definition: 'Object declared by the contract with fields: sourceType, sourceUrn, apiKey, timeBoxInHours, assessmentTypeId, entitlementId,
+      entitlementFrequencyType, dynamicScanEnvironmentFacingType, timeZone, requiresNetworkAuthentication, networkAuthenticationSettings, requestFalsePositiveRemoval.
+      (1 more)'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/PutDastAutomatedOpenApiScanSetupRequest
+  - term: OpenApi
+    definition: 'Object declared by the contract with fields: sourceType, sourceUrn, apiKey.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/OpenApi
+  - term: WorkflowDriven
+    definition: 'Object declared by the contract with fields: workflowDrivenMacro.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/WorkflowDriven
+  - term: Grpc
+    definition: 'Object declared by the contract with fields: fileId, schemeType, host, servicePath.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/Grpc
+  - term: LoginMacroFileCreationDetails
+    definition: 'Object declared by the contract with fields: primaryUsername, primaryPassword, secondaryUsername, secondaryPassword.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/LoginMacroFileCreationDetails
+  - term: PutDastAutomatedWebsiteScanSetupRequest
+    definition: 'Object declared by the contract with fields: dynamicSiteUrl, enableRedundantPageDetection, loginMacroFileId, requiresSiteAuthentication,
+      exclusionsList, restrictToDirectoryAndSubdirectories, policy, timeBoxInHours, requestLoginMacroFileCreation, loginMacroFileCreationDetails,
+      assessmentTypeId, entitlementId. (7 more)'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/PutDastAutomatedWebsiteScanSetupRequest
+  - term: PutDastAutomatedPostmanScanSetupRequest
+    definition: 'Object declared by the contract with fields: collectionFileIds, timeBoxInHours, assessmentTypeId, entitlementId, entitlementFrequencyType,
+      dynamicScanEnvironmentFacingType, timeZone, requiresNetworkAuthentication, networkAuthenticationSettings, requestFalsePositiveRemoval, networkName.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/PutDastAutomatedPostmanScanSetupRequest
+  - term: GetDastAutomatedScanSetupResponse
+    definition: 'Object declared by the contract with fields: assessmentTypeId, timeZone, dynamicScanEnvironmentFacingType, entitlementId, entitlementFrequencyType,
+      scanType, policy, websiteAssessment, apiAssessment, timeBoxInHours, workflowdrivenAssessment, loginMacroFileId. (10 more)'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/GetDastAutomatedScanSetupResponse
+  - term: PutDastAutomatedGrpcScanSetupRequest
+    definition: 'Object declared by the contract with fields: fileId, schemeType, host, servicePath, timeBoxInHours, assessmentTypeId, entitlementId,
+      entitlementFrequencyType, dynamicScanEnvironmentFacingType, timeZone, requiresNetworkAuthentication, networkAuthenticationSettings. (2 more)'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/PutDastAutomatedGrpcScanSetupRequest
+  - term: GraphQl
+    definition: 'Object declared by the contract with fields: sourceType, sourceUrn, schemeType, host, servicePath.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/GraphQl
+  - term: Postman
+    definition: 'Object declared by the contract with fields: collectionFileIds.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/Postman
+  - term: NetworkAuthenticationSettings
+    definition: 'Object declared by the contract with fields: networkAuthenticationType, userName, password.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/NetworkAuthenticationSettings
+  - term: PutDastAutomatedWorkflowScanSetupRequest
+    definition: 'Object declared by the contract with fields: workflowDrivenMacro, policy, assessmentTypeId, entitlementId, entitlementFrequencyType,
+      dynamicScanEnvironmentFacingType, timeZone, requiresNetworkAuthentication, networkAuthenticationSettings, requestFalsePositiveRemoval, networkName.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/PutDastAutomatedWorkflowScanSetupRequest
+  - term: Exclusion
+    definition: 'Object declared by the contract with fields: value.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/Exclusion
+  - term: PutDastAutomatedGraphQLScanSetupRequest
+    definition: 'Object declared by the contract with fields: sourceType, sourceUrn, schemeType, host, servicePath, timeBoxInHours, assessmentTypeId,
+      entitlementId, entitlementFrequencyType, dynamicScanEnvironmentFacingType, timeZone, requiresNetworkAuthentication. (3 more)'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/PutDastAutomatedGraphQLScanSetupRequest
+  - term: PatchDastAutomatedScanManifestResponse
+    definition: 'Object declared by the contract with fields: fileId, hosts.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/PatchDastAutomatedScanManifestResponse
+  - term: Website
+    definition: 'Object declared by the contract with fields: dynamicSiteUrl, requestLoginMacroFileCreation, loginMacroFileCreationDetails, enableRedundantPageDetection,
+      exclusionsList.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/Website
+  - term: FileDetails
+    definition: 'Object declared by the contract with fields: fileId, fileName, fileType.'
+    tags:
+    - Object
+    source: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml#/components/schemas/FileDetails

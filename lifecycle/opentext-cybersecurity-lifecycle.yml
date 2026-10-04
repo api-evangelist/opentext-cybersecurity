@@ -109,6 +109,8 @@ deprecation_policy:
 deprecated_operations: []
 deprecated_operations_note: >-
   Zero of the 159 Fortify on Demand operations are flagged deprecated in the published contract.
+deprecation: {}
+status_page: ''
 support:
   api_support_email: fod-application-support@opentext.com
   ticketing: https://support.cyberreshelp.com/hc/en-us

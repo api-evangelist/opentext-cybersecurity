@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-tenant-heat-map-schema.json",
+  "title": "TenantHeatMap",
+  "description": "Tenant Heat Map",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-tenantheatmaps-api-openapi.yml#/components/schemas/TenantHeatMap",
+  "type": "object",
+  "properties": {
+    "starRating": {
+      "format": "int32",
+      "description": "Star rating of application",
+      "type": "integer"
+    },
+    "businessCriticalityId": {
+      "format": "int32",
+      "description": "Business Criticality Id of application",
+      "type": "integer"
+    },
+    "businessCriticality": {
+      "description": "Business Criticality of application",
+      "type": "string"
+    },
+    "projectCountText": {
+      "description": "The project count text",
+      "type": "string"
+    },
+    "url": {
+      "description": "Url to the heat map",
+      "type": "string"
+    }
+  }
+}

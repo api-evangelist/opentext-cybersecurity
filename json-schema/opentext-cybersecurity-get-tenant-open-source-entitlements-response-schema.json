@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-get-tenant-open-source-entitlements-response-schema.json",
+  "title": "GetTenantOpenSourceEntitlementsResponse",
+  "description": "Tenant OpenSource entitlements response",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-tenantentitlements-api-openapi.yml#/components/schemas/GetTenantOpenSourceEntitlementsResponse",
+  "type": "object",
+  "properties": {
+    "entitlementTypeId": {
+      "format": "int32",
+      "description": "The entitlement type id",
+      "type": "integer"
+    },
+    "tenant-Oss-Entitlements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TenantEntitlement"
+      }
+    }
+  },
+  "$defs": {
+    "TenantEntitlement": {
+      "description": "Tenant entitlement",
+      "type": "object",
+      "properties": {
+        "entitlementId": {
+          "format": "int32",
+          "description": "The entitlement id",
+          "type": "integer"
+        },
+        "entitlementType": {
+          "description": "The entitlement type",
+          "type": "string"
+        },
+        "analysisType": {
+          "description": "The Analysis type",
+          "type": "string"
+        },
+        "entitlementDescription": {
+          "description": "The entitlement description",
+          "type": "string"
+        },
+        "unitsPurchased": {
+          "format": "int32",
+          "description": "The units purchased",
+          "type": "integer"
+        },
+        "unitsConsumed": {
+          "format": "int32",
+          "description": "The units consumed",
+          "type": "integer"
+        },
+        "developerCount": {
+          "format": "int32",
+          "description": "The developers purchased",
+          "type": "integer"
+        },
+        "startDate": {
+          "format": "date-time",
+          "description": "The start date of the entitlement",
+          "type": "string"
+        },
+        "endDate": {
+          "format": "date-time",
+          "description": "The end date of the entitlement",
+          "type": "string"
+        },
+        "extendedProperties": {
+          "$ref": "#/$defs/TenantEntitlementExtendedProperties",
+          "description": "Extended properties for the entitlement"
+        }
+      }
+    },
+    "TenantEntitlementExtendedProperties": {
+      "description": "Extended properties",
+      "type": "object",
+      "properties": {
+        "assessmentTypeId": {
+          "format": "int32",
+          "description": "The assessment type id. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types",
+          "type": "integer"
+        },
+        "frequencyTypeId": {
+          "format": "int32",
+          "description": "The frequency type id",
+          "type": "integer"
+        },
+        "frequencyType": {
+          "description": "The frequency type",
+          "type": "string"
+        },
+        "subscriptionLength": {
+          "description": "The subscription lenght",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

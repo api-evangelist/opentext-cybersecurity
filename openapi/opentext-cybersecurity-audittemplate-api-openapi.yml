@@ -133,6 +133,64 @@ components:
           type: string
         operationType:
           type: string
+    AuditTemplate:
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          type: integer
+        scanType:
+          type: string
+        scanTypeId:
+          format: int32
+          type: integer
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditTemplateCondition'
+        action:
+          $ref: '#/components/schemas/AuditTemplateAction'
+    AuditTemplateResponse:
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          description: The id of the application that was created
+          type: integer
+        success:
+          description: Indicates if the application was created
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    PutAuditTemplateAction:
+      description: AuditTemplateAction
+      required:
+      - actionType
+      type: object
+      properties:
+        actionType:
+          description: The Action type
+          enum:
+          - Suppress
+          - SetSeverity
+          type: string
+        severity:
+          description: Severity Needs to be set if the Action is Set Severity
+          enum:
+          - Critical
+          - High
+          - Medium
+          - Low
+          type: string
+        severityId:
+          format: int32
+          description: Severity Id
+          type: integer
+        suppressedStatus:
+          type: string
     AuditTemplateAction:
       type: object
       properties:
@@ -174,32 +232,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PutAuditTemplateCondition'
-    PutAuditTemplateAction:
-      description: AuditTemplateAction
-      required:
-      - actionType
-      type: object
-      properties:
-        actionType:
-          description: The Action type
-          enum:
-          - Suppress
-          - SetSeverity
-          type: string
-        severity:
-          description: Severity Needs to be set if the Action is Set Severity
-          enum:
-          - Critical
-          - High
-          - Medium
-          - Low
-          type: string
-        severityId:
-          format: int32
-          description: Severity Id
-          type: integer
-        suppressedStatus:
-          type: string
     PutAuditTemplateCondition:
       description: AuditTemplateCondition
       type: object
@@ -246,35 +278,3 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
-    AuditTemplateResponse:
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          description: The id of the application that was created
-          type: integer
-        success:
-          description: Indicates if the application was created
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
-    AuditTemplate:
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          type: integer
-        scanType:
-          type: string
-        scanTypeId:
-          format: int32
-          type: integer
-        conditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuditTemplateCondition'
-        action:
-          $ref: '#/components/schemas/AuditTemplateAction'

@@ -461,75 +461,6 @@ paths:
         required: true
 components:
   schemas:
-    GenericResponse:
-      description: Generic Response
-      type: object
-      properties:
-        success:
-          description: Indicates if the object was updated
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
-    PatchUserGroupMembershipRequest:
-      description: Post group Request
-      type: object
-      properties:
-        removeUsers:
-          description: Optional - list of users' Id to remove from the group
-          type: array
-          items:
-            format: int32
-            type: integer
-        addUsers:
-          description: Optional - list of users' Id to add to the group
-          type: array
-          items:
-            format: int32
-            type: integer
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
-        message:
-          description: The error message
-          type: string
-    PostUserGroupRequest:
-      description: Post user group Request
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          description: The group name
-          type: string
-        description:
-          description: The group description
-          type: string
-        addAllUsers:
-          description: Optional - if true add all tenant users to the group. Default is false
-          type: boolean
-        users:
-          description: Optional - list of users to add to the group. If addAllUsers is true this list is ignored
-          type: array
-          items:
-            format: int32
-            type: integer
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
     UserGroupListResponse:
       description: Generic List Response
       type: object
@@ -551,6 +482,48 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
+    UserListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    PostUserGroupRequest:
+      description: Post user group Request
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          description: The group name
+          type: string
+        description:
+          description: The group description
+          type: string
+        addAllUsers:
+          description: Optional - if true add all tenant users to the group. Default is false
+          type: boolean
+        users:
+          description: Optional - list of users to add to the group. If addAllUsers is true this list is ignored
+          type: array
+          items:
+            format: int32
+            type: integer
     User:
       description: User
       type: object
@@ -604,6 +577,17 @@ components:
         createdVia:
           description: How the user was created
           type: string
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
     UserGroup:
       description: User Group
       type: object
@@ -629,19 +613,6 @@ components:
         createdVia:
           description: How the user was created
           type: string
-    PostUserGroupResponse:
-      description: Post User Group Response
-      type: object
-      properties:
-        id:
-          format: int32
-          description: The id of the group
-          type: integer
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
     PutUserGroupRequest:
       description: Put Group Request
       type: object
@@ -655,24 +626,53 @@ components:
         addAllUsers:
           description: Optional - if true add all tenant users to the group. Default is false
           type: boolean
-    UserListResponse:
-      description: Generic List Response
+    PostUserGroupResponse:
+      description: Post User Group Response
       type: object
       properties:
-        items:
-          description: The list of items
+        id:
+          format: int32
+          description: The id of the group
+          type: integer
+        errors:
+          description: A list of errors encountered
           type: array
           items:
-            $ref: '#/components/schemas/User'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
+            type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    PatchUserGroupMembershipRequest:
+      description: Post group Request
+      type: object
+      properties:
+        removeUsers:
+          description: Optional - list of users' Id to remove from the group
+          type: array
+          items:
+            format: int32
+            type: integer
+        addUsers:
+          description: Optional - list of users' Id to add to the group
+          type: array
+          items:
+            format: int32
+            type: integer
+    GenericResponse:
+      description: Generic Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the object was updated
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string

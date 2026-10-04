@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-post-user-application-access-request-schema.json",
+  "title": "PostUserApplicationAccessRequest",
+  "description": "Post User Application Access Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-userapplicationaccess-api-openapi.yml#/components/schemas/PostUserApplicationAccessRequest",
+  "required": [
+    "applicationId"
+  ],
+  "type": "object",
+  "properties": {
+    "applicationId": {
+      "format": "int32",
+      "description": "The application id",
+      "type": "integer"
+    }
+  }
+}

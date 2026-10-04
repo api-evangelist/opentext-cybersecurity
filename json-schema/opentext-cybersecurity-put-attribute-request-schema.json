@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-put-attribute-request-schema.json",
+  "title": "PutAttributeRequest",
+  "description": "Put Attrbute Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-attributes-api-openapi.yml#/components/schemas/PutAttributeRequest",
+  "type": "object",
+  "properties": {
+    "isRequired": {
+      "description": "Is attribute required",
+      "type": "boolean"
+    },
+    "isRestricted": {
+      "description": "Is attribute editable only by SecLeads",
+      "type": "boolean"
+    },
+    "defaultValue": {
+      "description": "Default value for the attribute. Required when both isRequired and isRestricted are true.",
+      "type": "string"
+    },
+    "overwriteExistingValues": {
+      "description": "Overwrite existing picklist values",
+      "type": "boolean"
+    },
+    "picklistValues": {
+      "description": "Picklist Values",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

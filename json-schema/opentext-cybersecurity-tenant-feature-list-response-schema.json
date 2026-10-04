@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-tenant-feature-list-response-schema.json",
+  "title": "TenantFeatureListResponse",
+  "description": "Generic List Response",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-tenants-api-openapi.yml#/components/schemas/TenantFeatureListResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "description": "The list of items",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TenantFeature"
+      }
+    },
+    "totalCount": {
+      "format": "int32",
+      "description": "Total count of items",
+      "type": "integer"
+    },
+    "offset": {
+      "format": "int32",
+      "description": "Offset of the starting record. 0 indicates the first record.",
+      "type": "integer"
+    },
+    "limit": {
+      "format": "int32",
+      "description": "Maximum records to return.",
+      "type": "integer"
+    }
+  },
+  "$defs": {
+    "TenantFeature": {
+      "description": "Tenant Feature",
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "description": "The tenant feature id",
+          "type": "integer"
+        },
+        "name": {
+          "description": "The tenant feature name",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

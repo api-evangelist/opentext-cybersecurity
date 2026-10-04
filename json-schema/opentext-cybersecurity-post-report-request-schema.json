@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-post-report-request-schema.json",
+  "title": "PostReportRequest",
+  "description": "Post Report Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-reports-api-openapi.yml#/components/schemas/PostReportRequest",
+  "required": [
+    "applicationId",
+    "releaseId",
+    "reportTemplateTypeId",
+    "reportFormat"
+  ],
+  "type": "object",
+  "properties": {
+    "applicationId": {
+      "format": "int32",
+      "description": "The application id",
+      "type": "integer"
+    },
+    "releaseId": {
+      "format": "int32",
+      "description": "The release id",
+      "type": "integer"
+    },
+    "reportTemplateTypeId": {
+      "format": "int32",
+      "description": "The report template type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportTemplateTypes",
+      "type": "integer"
+    },
+    "reportName": {
+      "description": "The report name",
+      "type": "string"
+    },
+    "reportFormat": {
+      "description": "The report format",
+      "enum": [
+        "Pdf",
+        "Html"
+      ],
+      "type": "string"
+    },
+    "notes": {
+      "description": "The report notes",
+      "type": "string"
+    }
+  }
+}

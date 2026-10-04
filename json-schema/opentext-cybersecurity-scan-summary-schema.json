@@ -1,0 +1,502 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-scan-summary-schema.json",
+  "title": "ScanSummary",
+  "description": "ScanSummary",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-scans-api-openapi.yml#/components/schemas/ScanSummary",
+  "type": "object",
+  "properties": {
+    "startedByUserId": {
+      "format": "int32",
+      "description": "The id of the user that started the scan",
+      "type": "integer"
+    },
+    "startedByUserName": {
+      "description": "The user name of the user that started the scan",
+      "type": "string"
+    },
+    "dynamicScanSummaryDetails": {
+      "$ref": "#/$defs/DynamicScanSummaryDetails",
+      "description": "DynamicScanSummaryDetails"
+    },
+    "mobileScanSummaryDetails": {
+      "$ref": "#/$defs/MobileScanSummaryDetails",
+      "description": "MobileScanSummaryDetails"
+    },
+    "staticScanSummaryDetails": {
+      "$ref": "#/$defs/StaticScanSummaryDetails",
+      "description": "StaticScanSummaryDetails"
+    },
+    "applicationId": {
+      "format": "int32",
+      "description": "The application id",
+      "type": "integer"
+    },
+    "applicationName": {
+      "description": "The application name",
+      "type": "string"
+    },
+    "releaseId": {
+      "format": "int32",
+      "description": "The release id",
+      "type": "integer"
+    },
+    "releaseName": {
+      "description": "The release name",
+      "type": "string"
+    },
+    "scanId": {
+      "format": "int32",
+      "description": "The scan id",
+      "type": "integer"
+    },
+    "scanTypeId": {
+      "format": "int32",
+      "description": "The scan type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanTypes",
+      "type": "integer"
+    },
+    "scanType": {
+      "description": "The scan type. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanTypes",
+      "type": "string"
+    },
+    "assessmentTypeId": {
+      "format": "int32",
+      "description": "The assessment type id. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types",
+      "type": "integer"
+    },
+    "assessmentTypeName": {
+      "description": "The assessment type name. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types",
+      "type": "string"
+    },
+    "analysisStatusTypeId": {
+      "format": "int32",
+      "description": "The analysis status type id. Values can be obtained by calling GET /api/v3/lookup-items?type=AnalysisStatusTypes",
+      "type": "integer"
+    },
+    "analysisStatusType": {
+      "description": "The analysis status type. Values can be obtained by calling GET /api/v3/lookup-items?type=AnalysisStatusTypes",
+      "type": "string"
+    },
+    "startedDateTime": {
+      "format": "date-time",
+      "description": "The scan started date time",
+      "type": "string"
+    },
+    "completedDateTime": {
+      "format": "date-time",
+      "description": "The scan completed date time",
+      "type": "string"
+    },
+    "totalIssues": {
+      "format": "int32",
+      "description": "Total number of issues",
+      "type": "integer"
+    },
+    "issueCountCritical": {
+      "format": "int32",
+      "description": "Total number of critical issues",
+      "type": "integer"
+    },
+    "issueCountHigh": {
+      "format": "int32",
+      "description": "Total number of high issues",
+      "type": "integer"
+    },
+    "issueCountMedium": {
+      "format": "int32",
+      "description": "Total number of medium issues",
+      "type": "integer"
+    },
+    "issueCountLow": {
+      "format": "int32",
+      "description": "Total number of low issues",
+      "type": "integer"
+    },
+    "starRating": {
+      "format": "int32",
+      "description": "The star rating",
+      "type": "integer"
+    },
+    "notes": {
+      "description": "Scan notes",
+      "type": "string"
+    },
+    "isFalsePositiveChallenge": {
+      "description": "Indicates if the scan is a false positive challenge",
+      "type": "boolean"
+    },
+    "isRemediationScan": {
+      "description": "Indicates if the scan is a remediation scan",
+      "type": "boolean"
+    },
+    "entitlementId": {
+      "format": "int32",
+      "description": "The entitlement id used for the given scan",
+      "type": "integer"
+    },
+    "entitlementUnitsConsumed": {
+      "format": "int32",
+      "description": "The number of entitlement units used for the given scan",
+      "type": "integer"
+    },
+    "isSubscriptionEntitlement": {
+      "description": "Indicates if the entitlement used for the given scan is a subscription entitlement",
+      "type": "boolean"
+    },
+    "pauseDetails": {
+      "description": "The details for each time the scan has been paused/resumed.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ScanPauseDetail"
+      }
+    },
+    "cancelReason": {
+      "description": "Cancel Reason",
+      "type": "string"
+    },
+    "analysisStatusReasonNotes": {
+      "description": "The Analysis Status Reason Notes",
+      "type": "string"
+    },
+    "scanMethodTypeId": {
+      "format": "int32",
+      "description": "The scan method type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanMethodTypes",
+      "type": "integer"
+    },
+    "scanMethodTypeName": {
+      "description": "The scan method type name. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanMethodTypes",
+      "type": "string"
+    },
+    "scanPolicyTypeId": {
+      "format": "int32",
+      "description": "The scan policy type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanPolicyTypes",
+      "type": "integer"
+    },
+    "scanPolicyTypeName": {
+      "description": "The scan policy type name. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanPolicyTypes",
+      "type": "string"
+    },
+    "scanTool": {
+      "description": "The tool used for scanning",
+      "type": "string"
+    },
+    "scanToolVersion": {
+      "description": "The version for the scan tool used for scanning",
+      "type": "string"
+    },
+    "attributes": {
+      "description": "Scan attributes",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ApplicationAttributeExtended"
+      }
+    }
+  },
+  "$defs": {
+    "ApplicationAttributeExtended": {
+      "description": "Application Attribute Extended",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the attribute",
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "description": "Id of the attribute",
+          "type": "integer"
+        },
+        "value": {
+          "description": "Value of the attribute",
+          "type": "string"
+        }
+      }
+    },
+    "DynamicScanSummaryDetails": {
+      "type": "object",
+      "properties": {
+        "dynamicSiteURL": {
+          "description": "The dynamic site url",
+          "type": "string"
+        },
+        "restrictToDirectoryAndSubdirectories": {
+          "description": "True to restrict to directory and subdirectories, otherwise false",
+          "type": "boolean"
+        },
+        "allowSameHostRedirects": {
+          "description": "True to allow HTTP (:80) and HTTPS (:443) of the specified scan host (default), otherwise false.",
+          "type": "boolean"
+        },
+        "allowFormSubmissions": {
+          "description": "True to allow form submissions (default), otherwise false..",
+          "type": "boolean"
+        },
+        "timeZone": {
+          "description": "The timezone. Values can be obtained by calling GET /api/v3/lookup-items?type=TimeZones",
+          "type": "string"
+        },
+        "dynamicScanEnvironmentFacingType": {
+          "description": "Type of environment the server is running in",
+          "enum": [
+            "Internal",
+            "External"
+          ],
+          "type": "string"
+        },
+        "hasAvailabilityRestrictions": {
+          "description": "Indicates if there are any availability restrictions",
+          "type": "boolean"
+        },
+        "requestCall": {
+          "description": "True if client requests a call prior to assessment",
+          "type": "boolean"
+        },
+        "hasFormsAuthentication": {
+          "description": "True if Forms Authentication is required to scan the site",
+          "type": "boolean"
+        },
+        "requiresNetworkAuthentication": {
+          "description": "True if network connection is required to scan the site",
+          "type": "boolean"
+        },
+        "isWebService": {
+          "description": "True if this a web service scan",
+          "type": "boolean"
+        },
+        "webServiceType": {
+          "description": "The web service type",
+          "enum": [
+            "SOAP",
+            "REST",
+            "PostmanCollectionFile",
+            "PostmanCollectionURL",
+            "OpenApiFile",
+            "OpenApiUrl",
+            "Grpc",
+            "GraphQlFile",
+            "GraphQlUrl",
+            "PostmanAuthFile",
+            "PostmanEnvironmentFile",
+            "PostmanGlobalsFile"
+          ],
+          "type": "string"
+        },
+        "userAgentType": {
+          "description": "The user agent type",
+          "enum": [
+            "Desktop",
+            "Mobile"
+          ],
+          "type": "string"
+        },
+        "notes": {
+          "description": "Additional notes that will help with running a scan",
+          "type": "string"
+        },
+        "concurrentRequestThreadsType": {
+          "description": "The concurrent request threads type",
+          "enum": [
+            "Standard",
+            "Limited"
+          ],
+          "type": "string"
+        },
+        "elapsedTimeSpan": {
+          "description": "The Elapsed Time Scan Span",
+          "type": "string"
+        },
+        "policyName": {
+          "description": "WebInspect Policy",
+          "type": "string"
+        },
+        "crawlSessions": {
+          "format": "int32",
+          "description": "Crawl Sessions",
+          "type": "integer"
+        },
+        "failedRequests": {
+          "format": "int32",
+          "description": "Network Failed Requests",
+          "type": "integer"
+        },
+        "logouts": {
+          "format": "int32",
+          "description": "Network Logouts",
+          "type": "integer"
+        },
+        "macroPlaybacks": {
+          "format": "int32",
+          "description": "Network Macro Playbacks",
+          "type": "integer"
+        },
+        "scanType": {
+          "description": "The DAST Automated scan type. Values can be obtained by calling GET /api/v3/lookup-items?type=DastAutomatedScanTypes",
+          "type": "string"
+        },
+        "timeBoxInHours": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "FortifyAviatorError": {
+      "type": "object",
+      "properties": {
+        "exitCode": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "MobileScanSummaryDetails": {
+      "type": "object",
+      "properties": {
+        "frameworkType": {
+          "description": "The framework type",
+          "enum": [
+            "iOS",
+            "Android"
+          ],
+          "type": "string"
+        },
+        "auditPreferenceType": {
+          "description": "The audit preference type",
+          "enum": [
+            "Manual",
+            "Automated"
+          ],
+          "type": "string"
+        },
+        "platformType": {
+          "description": "The platform type",
+          "enum": [
+            "Phone",
+            "Tablet",
+            "Both"
+          ],
+          "type": "string"
+        },
+        "identifier": {
+          "description": "Identifier",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version",
+          "type": "string"
+        },
+        "userAccountsRequried": {
+          "description": "Indicates if user accounts are required",
+          "type": "boolean"
+        },
+        "accessToWebServices": {
+          "description": "Indicates if there is access to web services",
+          "type": "boolean"
+        },
+        "hasExclusions": {
+          "description": "Indicates if there are any exclusions",
+          "type": "boolean"
+        },
+        "hasAvailabilityRestrictions": {
+          "description": "Indicates if there are any availability restrictions",
+          "type": "boolean"
+        }
+      }
+    },
+    "ScanPauseDetail": {
+      "description": "Scan Pause Details",
+      "type": "object",
+      "properties": {
+        "pausedOn": {
+          "format": "date-time",
+          "description": "The scan paused date/time.",
+          "type": "string"
+        },
+        "reason": {
+          "description": "The reason the scan was paused.",
+          "type": "string"
+        },
+        "notes": {
+          "description": "Optional notes regarding the scan paused.",
+          "type": "string"
+        }
+      }
+    },
+    "StaticScanSummaryDetails": {
+      "type": "object",
+      "properties": {
+        "technologyStack": {
+          "description": "The technology stack",
+          "type": "string"
+        },
+        "languageLevel": {
+          "description": "The language level",
+          "type": "string"
+        },
+        "doSonatypeScan": {
+          "description": "Indicates if a sonatype scan should be included",
+          "type": "boolean"
+        },
+        "auditPreferenceType": {
+          "description": "The audit preference type",
+          "enum": [
+            "Manual",
+            "Automated"
+          ],
+          "type": "string"
+        },
+        "excludeThirdPartyLibs": {
+          "description": "Indicates if third party libraries should be excluded",
+          "type": "boolean"
+        },
+        "buildDate": {
+          "format": "date-time",
+          "description": "The build date",
+          "type": "string"
+        },
+        "engineVersion": {
+          "description": "The engine version",
+          "type": "string"
+        },
+        "rulePackVersion": {
+          "description": "The rule pack version",
+          "type": "string"
+        },
+        "fileCount": {
+          "format": "int32",
+          "description": "The file count",
+          "type": "integer"
+        },
+        "totalLinesOfCode": {
+          "format": "int32",
+          "description": "The total lines of code",
+          "type": "integer"
+        },
+        "payLoadSize": {
+          "description": "The size in KB of the payload",
+          "type": "string"
+        },
+        "staticVulnerabilityFilter": {
+          "description": "The selected Static Vulnerability Filter",
+          "type": "string"
+        },
+        "includeFortifyAviator": {
+          "description": "Indicates whether Aviator Addon Service is enabled",
+          "type": "boolean"
+        },
+        "fortifyAviatorError": {
+          "$ref": "#/$defs/FortifyAviatorError",
+          "description": "Aviator information on validation error and exit error code"
+        },
+        "scanPolicy": {
+          "description": "The selected Static Vulnerability Filter",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

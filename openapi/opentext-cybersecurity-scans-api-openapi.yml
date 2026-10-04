@@ -548,66 +548,14 @@ paths:
         required: true
 components:
   schemas:
-    MobileScanSummaryDetails:
+    MobileValidationCheckItem:
       type: object
       properties:
-        frameworkType:
-          description: The framework type
-          enum:
-          - iOS
-          - Android
+        result:
+          description: The result property (Ok, Fail, etc.)
           type: string
-        auditPreferenceType:
-          description: The audit preference type
-          enum:
-          - Manual
-          - Automated
-          type: string
-        platformType:
-          description: The platform type
-          enum:
-          - Phone
-          - Tablet
-          - Both
-          type: string
-        identifier:
-          description: Identifier
-          type: string
-        version:
-          description: Version
-          type: string
-        userAccountsRequried:
-          description: Indicates if user accounts are required
-          type: boolean
-        accessToWebServices:
-          description: Indicates if there is access to web services
-          type: boolean
-        hasExclusions:
-          description: Indicates if there are any exclusions
-          type: boolean
-        hasAvailabilityRestrictions:
-          description: Indicates if there are any availability restrictions
-          type: boolean
-    MobileValidationStatus:
-      type: object
-      properties:
-        validationStatus:
-          description: The validationStatus property (ScanId not found, Processing, OK, etc.)
-          type: string
-        Items:
-          type: array
-          items:
-            $ref: '#/components/schemas/MobileValidationCheckItem'
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
         message:
-          description: The error message
+          description: The message as reported from mobius property
           type: string
     Scan:
       description: Scan
@@ -740,38 +688,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApplicationAttributeExtended'
-    ApplicationAttribute:
-      description: Attribute
+    ScanPauseDetail:
+      description: Scan Pause Details
       type: object
       properties:
-        id:
-          format: int32
-          description: Id of the attribute
-          type: integer
-        value:
-          description: Value of the attribute
+        pausedOn:
+          format: date-time
+          description: The scan paused date/time.
           type: string
-    PutScanResponse:
-      description: Put Scan Response
+        reason:
+          description: The reason the scan was paused.
+          type: string
+        notes:
+          description: Optional notes regarding the scan paused.
+          type: string
+    Error:
+      description: Error
       type: object
       properties:
-        success:
-          description: Indicates if the scan was updated
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
-    PutScanRequest:
-      description: Put Scan Request
-      type: object
-      properties:
-        attributes:
-          description: 'Scan attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationAttribute'
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
     ScanSummary:
       description: ScanSummary
       type: object
@@ -919,13 +860,55 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApplicationAttributeExtended'
-    FortifyAviatorError:
+    MobileScanSummaryDetails:
       type: object
       properties:
-        exitCode:
+        frameworkType:
+          description: The framework type
+          enum:
+          - iOS
+          - Android
           type: string
-        error:
+        auditPreferenceType:
+          description: The audit preference type
+          enum:
+          - Manual
+          - Automated
           type: string
+        platformType:
+          description: The platform type
+          enum:
+          - Phone
+          - Tablet
+          - Both
+          type: string
+        identifier:
+          description: Identifier
+          type: string
+        version:
+          description: Version
+          type: string
+        userAccountsRequried:
+          description: Indicates if user accounts are required
+          type: boolean
+        accessToWebServices:
+          description: Indicates if there is access to web services
+          type: boolean
+        hasExclusions:
+          description: Indicates if there are any exclusions
+          type: boolean
+        hasAvailabilityRestrictions:
+          description: Indicates if there are any availability restrictions
+          type: boolean
+    PutScanRequest:
+      description: Put Scan Request
+      type: object
+      properties:
+        attributes:
+          description: 'Scan attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
     SiteTree:
       description: Site Tree
       type: object
@@ -960,44 +943,59 @@ components:
         spaDisplaySelector:
           description: The selector for the SPA (e.g. a[@id="Submit"])
           type: string
-    SiteTreeListResponse:
-      description: Generic List Response
+    StaticScanSummaryDetails:
       type: object
       properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/SiteTree'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    MobileValidationCheckItem:
-      type: object
-      properties:
-        result:
-          description: The result property (Ok, Fail, etc.)
+        technologyStack:
+          description: The technology stack
           type: string
-        message:
-          description: The message as reported from mobius property
+        languageLevel:
+          description: The language level
+          type: string
+        doSonatypeScan:
+          description: Indicates if a sonatype scan should be included
+          type: boolean
+        auditPreferenceType:
+          description: The audit preference type
+          enum:
+          - Manual
+          - Automated
+          type: string
+        excludeThirdPartyLibs:
+          description: Indicates if third party libraries should be excluded
+          type: boolean
+        buildDate:
+          format: date-time
+          description: The build date
+          type: string
+        engineVersion:
+          description: The engine version
+          type: string
+        rulePackVersion:
+          description: The rule pack version
+          type: string
+        fileCount:
+          format: int32
+          description: The file count
+          type: integer
+        totalLinesOfCode:
+          format: int32
+          description: The total lines of code
+          type: integer
+        payLoadSize:
+          description: The size in KB of the payload
+          type: string
+        staticVulnerabilityFilter:
+          description: The selected Static Vulnerability Filter
+          type: string
+        includeFortifyAviator:
+          description: Indicates whether Aviator Addon Service is enabled
+          type: boolean
+        fortifyAviatorError:
+          $ref: '#/components/schemas/FortifyAviatorError'
+          description: Aviator information on validation error and exit error code
+        scanPolicy:
+          description: The selected Static Vulnerability Filter
           type: string
     DynamicScanSummaryDetails:
       type: object
@@ -1097,6 +1095,36 @@ components:
         timeBoxInHours:
           format: int32
           type: integer
+    SiteTreeListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/SiteTree'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     ScanListResponse:
       description: Generic List Response
       type: object
@@ -1118,60 +1146,6 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
-    StaticScanSummaryDetails:
-      type: object
-      properties:
-        technologyStack:
-          description: The technology stack
-          type: string
-        languageLevel:
-          description: The language level
-          type: string
-        doSonatypeScan:
-          description: Indicates if a sonatype scan should be included
-          type: boolean
-        auditPreferenceType:
-          description: The audit preference type
-          enum:
-          - Manual
-          - Automated
-          type: string
-        excludeThirdPartyLibs:
-          description: Indicates if third party libraries should be excluded
-          type: boolean
-        buildDate:
-          format: date-time
-          description: The build date
-          type: string
-        engineVersion:
-          description: The engine version
-          type: string
-        rulePackVersion:
-          description: The rule pack version
-          type: string
-        fileCount:
-          format: int32
-          description: The file count
-          type: integer
-        totalLinesOfCode:
-          format: int32
-          description: The total lines of code
-          type: integer
-        payLoadSize:
-          description: The size in KB of the payload
-          type: string
-        staticVulnerabilityFilter:
-          description: The selected Static Vulnerability Filter
-          type: string
-        includeFortifyAviator:
-          description: Indicates whether Aviator Addon Service is enabled
-          type: boolean
-        fortifyAviatorError:
-          $ref: '#/components/schemas/FortifyAviatorError'
-          description: Aviator information on validation error and exit error code
-        scanPolicy:
-          description: The selected Static Vulnerability Filter
-          type: string
     ApplicationAttributeExtended:
       description: Application Attribute Extended
       type: object
@@ -1186,17 +1160,43 @@ components:
         value:
           description: Value of the attribute
           type: string
-    ScanPauseDetail:
-      description: Scan Pause Details
+    ApplicationAttribute:
+      description: Attribute
       type: object
       properties:
-        pausedOn:
-          format: date-time
-          description: The scan paused date/time.
+        id:
+          format: int32
+          description: Id of the attribute
+          type: integer
+        value:
+          description: Value of the attribute
           type: string
-        reason:
-          description: The reason the scan was paused.
+    MobileValidationStatus:
+      type: object
+      properties:
+        validationStatus:
+          description: The validationStatus property (ScanId not found, Processing, OK, etc.)
           type: string
-        notes:
-          description: Optional notes regarding the scan paused.
+        Items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MobileValidationCheckItem'
+    FortifyAviatorError:
+      type: object
+      properties:
+        exitCode:
           type: string
+        error:
+          type: string
+    PutScanResponse:
+      description: Put Scan Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the scan was updated
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string

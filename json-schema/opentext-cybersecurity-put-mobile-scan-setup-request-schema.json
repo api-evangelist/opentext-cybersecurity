@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-put-mobile-scan-setup-request-schema.json",
+  "title": "PutMobileScanSetupRequest",
+  "description": "Put Mobile Scan Setup Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-mobile-scans-api-openapi.yml#/components/schemas/PutMobileScanSetupRequest",
+  "required": [
+    "assessmentTypeId",
+    "frameworkType",
+    "timeZone"
+  ],
+  "type": "object",
+  "properties": {
+    "assessmentTypeId": {
+      "format": "int32",
+      "description": "The assessment type id. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types",
+      "type": "integer"
+    },
+    "frameworkType": {
+      "description": "The framework type",
+      "enum": [
+        "iOS",
+        "Android"
+      ],
+      "type": "string"
+    },
+    "timeZone": {
+      "description": "The timezone. Values can be obtained by calling GET /api/v3/lookup-items?type=TimeZones",
+      "type": "string"
+    },
+    "userAccountsRequried": {
+      "description": "Indicates if user accounts are required",
+      "type": "boolean"
+    },
+    "userAccounts": {
+      "description": "List of user accounts",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/MobileScanUserAccount"
+      }
+    },
+    "notes": {
+      "description": "Notes",
+      "type": "string"
+    },
+    "vpnRequired": {
+      "description": "Indicates if VPN is required",
+      "type": "boolean"
+    },
+    "vpnUserName": {
+      "description": "The VPN username",
+      "type": "string"
+    },
+    "vpnPassword": {
+      "description": "The VPN password",
+      "type": "string"
+    },
+    "hasMultiFactorAuthentication": {
+      "description": "Indicates if multi-factor authentication is used",
+      "type": "boolean"
+    },
+    "multiFactorAuthenticationNotes": {
+      "description": "Multi-factor authentication notes",
+      "type": "string"
+    },
+    "intrusionDetectionSystem": {
+      "description": "Indicates if intrusion detection system is used",
+      "type": "boolean"
+    },
+    "intrusionPreventionSystem": {
+      "description": "Indicates if intrusion prevention system is used",
+      "type": "boolean"
+    },
+    "webApplicationFirewall": {
+      "description": "Indicates if web application firewall is used",
+      "type": "boolean"
+    },
+    "proxyServers": {
+      "description": "Indicates if proxy servers are used",
+      "type": "boolean"
+    },
+    "loadBalancer": {
+      "description": "Indicates if load balancer is used",
+      "type": "boolean"
+    },
+    "preAssessmentCall": {
+      "description": "Indicates if the customer should be contacted prior to beginning the assessment",
+      "type": "boolean"
+    },
+    "auditPreferenceType": {
+      "description": "The audit preference type",
+      "enum": [
+        "Manual",
+        "None"
+      ],
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "MobileScanUserAccount": {
+      "description": "Mobile Scan User Account",
+      "type": "object",
+      "properties": {
+        "username": {
+          "description": "The username",
+          "type": "string"
+        },
+        "password": {
+          "description": "The password",
+          "type": "string"
+        },
+        "roleType": {
+          "description": "The role type",
+          "enum": [
+            "User",
+            "Guest",
+            "Admin",
+            "Other"
+          ],
+          "type": "string"
+        },
+        "oneTimePassword": {
+          "description": "The one time password",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-patch-user-group-membership-request-schema.json",
+  "title": "PatchUserGroupMembershipRequest",
+  "description": "Post group Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-user-management-api-openapi.yml#/components/schemas/PatchUserGroupMembershipRequest",
+  "type": "object",
+  "properties": {
+    "removeUsers": {
+      "description": "Optional - list of users' Id to remove from the group",
+      "type": "array",
+      "items": {
+        "format": "int32",
+        "type": "integer"
+      }
+    },
+    "addUsers": {
+      "description": "Optional - list of users' Id to add to the group",
+      "type": "array",
+      "items": {
+        "format": "int32",
+        "type": "integer"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-get-tenant-response-schema.json",
+  "title": "GetTenantResponse",
+  "description": "Get Tenant Response",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-tenants-api-openapi.yml#/components/schemas/GetTenantResponse",
+  "type": "object",
+  "properties": {
+    "tenantName": {
+      "description": "The tenant name",
+      "type": "string"
+    },
+    "tenantCode": {
+      "description": "The tenant code",
+      "type": "string"
+    },
+    "timeZone": {
+      "description": "The tenant timezone. Values can be obtained by calling GET /api/v3/lookup-items?type=TimeZones",
+      "type": "string"
+    }
+  }
+}

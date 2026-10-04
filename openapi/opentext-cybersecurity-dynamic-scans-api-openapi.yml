@@ -525,78 +525,32 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    PutTwoFactor:
+    Error:
+      description: Error
       type: object
       properties:
-        hasTwoFactorAuthentication:
-          default: false
-          type: boolean
-        twoFactorAuthenticationType:
-          enum:
-          - Email
-          - TOTP
-          type: string
-        primaryUserTwoFactorEmail:
-          type: string
-        secondaryUserTwoFactorEmail:
-          type: string
-        otherUserTwoFactorEmail:
-          type: string
-        primaryUserTotpSecret:
-          type: string
-        secondaryUserTotpSecret:
-          type: string
-        otherUserTotpSecret:
-          type: string
-        otherTwoFactorUsers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PutOtherTwoFactorUser'
-    PutDynamicToDastAutomatedResponse:
-      type: object
-      properties:
-        success:
-          description: Indicates Success response
-          type: boolean
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
         message:
-          description: Details about the initiation of DAST automated scans.
+          description: The error message
           type: string
-    Subdomain:
+    PutOtherTwoFactorUser:
       type: object
       properties:
-        value:
-          description: URL subdomain to include in scanning.
+        totpSecret:
           type: string
-    GetTwoFactor:
-      type: object
-      properties:
-        hasTwoFactorAuthentication:
-          default: false
-          type: boolean
-        twoFactorAuthenticationType:
-          enum:
-          - Email
-          - TOTP
+        userPassword:
           type: string
-        primaryUserTwoFactorEmail:
+        userIndex:
+          format: int32
+          default: 1
+          type: integer
+        twoFactorEmail:
           type: string
-        secondaryUserTwoFactorEmail:
+        userName:
           type: string
-        otherUserTwoFactorEmail:
-          type: string
-        primaryUserHasTotpConfigured:
-          default: false
-          type: boolean
-        secondaryUserHasTotpConfigured:
-          default: false
-          type: boolean
-        otherUserHasTotpConfigured:
-          default: false
-          type: boolean
-        otherTwoFactorUsers:
-          type: array
-          items:
-            $ref: '#/components/schemas/GetOtherTwoFactorUser'
     GetDynamicScanSetupResponse:
       description: GetDynamicScanSetupResponse
       required:
@@ -800,58 +754,6 @@ components:
         twoFactorAuthentication:
           $ref: '#/components/schemas/GetTwoFactor'
           description: Gets or sets the two-factor authentication settings for the GET response.
-    PutOtherTwoFactorUser:
-      type: object
-      properties:
-        totpSecret:
-          type: string
-        userPassword:
-          type: string
-        userIndex:
-          format: int32
-          default: 1
-          type: integer
-        twoFactorEmail:
-          type: string
-        userName:
-          type: string
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    Exclusion:
-      type: object
-      properties:
-        value:
-          description: URL fragment to exclude from scanning.
-          type: string
-    PutImportScanResponse:
-      description: PutImportScanResponse
-      type: object
-      properties:
-        referenceId:
-          description: Reference Id
-          type: string
-        scanId:
-          format: int32
-          description: The scan id
-          type: integer
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
-        message:
-          description: The error message
-          type: string
     StartDynamicScanResponse:
       description: Start dynamic scan response
       type: object
@@ -860,26 +762,33 @@ components:
           format: int32
           description: The id of the scan that was started
           type: integer
-    BlackoutDay:
-      description: Blockout day option
+    PutTwoFactor:
       type: object
       properties:
-        day:
-          description: Day of week the hour blocks are associated with
+        hasTwoFactorAuthentication:
+          default: false
+          type: boolean
+        twoFactorAuthenticationType:
           enum:
-          - Sunday
-          - Monday
-          - Tuesday
-          - Wednesday
-          - Thursday
-          - Friday
-          - Saturday
+          - Email
+          - TOTP
           type: string
-        hourBlocks:
-          description: The list of hours and their blockout states
+        primaryUserTwoFactorEmail:
+          type: string
+        secondaryUserTwoFactorEmail:
+          type: string
+        otherUserTwoFactorEmail:
+          type: string
+        primaryUserTotpSecret:
+          type: string
+        secondaryUserTotpSecret:
+          type: string
+        otherUserTotpSecret:
+          type: string
+        otherTwoFactorUsers:
           type: array
           items:
-            $ref: '#/components/schemas/BlackoutHour'
+            $ref: '#/components/schemas/PutOtherTwoFactorUser'
     WebServiceManifestFile:
       type: object
       properties:
@@ -910,6 +819,11 @@ components:
           - Environment
           - Globals
           type: string
+    ParseTotpQrResponse:
+      type: object
+      properties:
+        totpSecret:
+          type: string
     BlackoutHour:
       description: Blockout hour option
       type: object
@@ -921,6 +835,19 @@ components:
         checked:
           description: Checked is true when this hour is blocked out. It is false when clear to scan
           type: boolean
+    ScanDocument:
+      type: object
+      properties:
+        fileId:
+          format: int32
+          description: The id of the scan document and additional details files
+          type: integer
+        fileName:
+          description: The name of the scan document and additional details files
+          type: string
+        createdDate:
+          description: The creation date of the scan document and additional details files
+          type: string
     StartDynamicScanRequest:
       description: Options for starting the scan
       required:
@@ -976,18 +903,45 @@ components:
         scanToolVersion:
           description: The version for the scan tool used for scanning
           type: string
-    PutDynamicScanSetupResponse:
-      description: Put Dynamic Scan Setup Response
+    PutDynamicToDastAutomatedResponse:
       type: object
       properties:
         success:
-          description: Indicates if the mobile scan was updated
+          description: Indicates Success response
           type: boolean
-        errors:
-          description: A list of errors encountered
+        message:
+          description: Details about the initiation of DAST automated scans.
+          type: string
+    GetTwoFactor:
+      type: object
+      properties:
+        hasTwoFactorAuthentication:
+          default: false
+          type: boolean
+        twoFactorAuthenticationType:
+          enum:
+          - Email
+          - TOTP
+          type: string
+        primaryUserTwoFactorEmail:
+          type: string
+        secondaryUserTwoFactorEmail:
+          type: string
+        otherUserTwoFactorEmail:
+          type: string
+        primaryUserHasTotpConfigured:
+          default: false
+          type: boolean
+        secondaryUserHasTotpConfigured:
+          default: false
+          type: boolean
+        otherUserHasTotpConfigured:
+          default: false
+          type: boolean
+        otherTwoFactorUsers:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/GetOtherTwoFactorUser'
     GetOtherTwoFactorUser:
       type: object
       properties:
@@ -1002,24 +956,63 @@ components:
           type: string
         userName:
           type: string
-    ScanDocument:
+    Exclusion:
       type: object
       properties:
+        value:
+          description: URL fragment to exclude from scanning.
+          type: string
+    PutDynamicScanSetupResponse:
+      description: Put Dynamic Scan Setup Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the mobile scan was updated
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    Subdomain:
+      type: object
+      properties:
+        value:
+          description: URL subdomain to include in scanning.
+          type: string
+    PatchDynamicScanSetupManifestResponse:
+      type: object
+      properties:
+        success:
+          description: Indicates if the mobile scan was updated
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
         fileId:
-          format: int32
-          description: The id of the scan document and additional details files
-          type: integer
-        fileName:
-          description: The name of the scan document and additional details files
           type: string
-        createdDate:
-          description: The creation date of the scan document and additional details files
-          type: string
-    ParseTotpQrResponse:
+    BlackoutDay:
+      description: Blockout day option
       type: object
       properties:
-        totpSecret:
+        day:
+          description: Day of week the hour blocks are associated with
+          enum:
+          - Sunday
+          - Monday
+          - Tuesday
+          - Wednesday
+          - Thursday
+          - Friday
+          - Saturday
           type: string
+        hourBlocks:
+          description: The list of hours and their blockout states
+          type: array
+          items:
+            $ref: '#/components/schemas/BlackoutHour'
     PutDynamicScanSetupRequest:
       description: PutDynamic Scan Setup Request
       required:
@@ -1213,16 +1206,23 @@ components:
         twoFactorAuthentication:
           $ref: '#/components/schemas/PutTwoFactor'
           description: Gets or sets the two-factor authentication settings
-    PatchDynamicScanSetupManifestResponse:
+    ErrorResponse:
+      description: Error Response
       type: object
       properties:
-        success:
-          description: Indicates if the mobile scan was updated
-          type: boolean
         errors:
-          description: A list of errors encountered
+          description: List of errors
           type: array
           items:
-            type: string
-        fileId:
+            $ref: '#/components/schemas/Error'
+    PutImportScanResponse:
+      description: PutImportScanResponse
+      type: object
+      properties:
+        referenceId:
+          description: Reference Id
           type: string
+        scanId:
+          format: int32
+          description: The scan id
+          type: integer

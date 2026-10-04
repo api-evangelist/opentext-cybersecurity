@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-start-dynamic-scan-request-schema.json",
+  "title": "StartDynamicScanRequest",
+  "description": "Options for starting the scan",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-dynamic-scans-api-openapi.yml#/components/schemas/StartDynamicScanRequest",
+  "required": [
+    "startDate",
+    "assessmentTypeId",
+    "entitlementId",
+    "entitlementFrequencyType",
+    "isRemediationScan"
+  ],
+  "type": "object",
+  "properties": {
+    "startDate": {
+      "format": "date-time",
+      "description": "Date when the scan should start, in MM/dd/yyyy HH:mm format",
+      "type": "string"
+    },
+    "assessmentTypeId": {
+      "format": "int32",
+      "description": "The assessment type id to use for the scan. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types",
+      "type": "integer"
+    },
+    "entitlementId": {
+      "format": "int32",
+      "description": "The entitlement id to consume for the scan",
+      "type": "integer"
+    },
+    "entitlementFrequencyType": {
+      "description": "The entitlement frequency type to use for the scan",
+      "enum": [
+        "SingleScan",
+        "Subscription"
+      ],
+      "type": "string"
+    },
+    "isRemediationScan": {
+      "description": "Indicates if the scan is a remediation scan. If not supplied the default value is false",
+      "type": "boolean"
+    },
+    "isBundledAssessment": {
+      "description": "Indicates if the assessment is a bundled assessment. If not supplied legacy behavior will apply",
+      "type": "boolean"
+    },
+    "parentAssessmentTypeId": {
+      "format": "int32",
+      "description": "The parent assessment type id for the bundled assessment. If not supplied legacy behavior will apply",
+      "type": "integer"
+    },
+    "applyPreviousScanSettings": {
+      "description": "Indicates if the previous scan settings should be applied to the remediation scan. This value is ignored if isRemediationScan = false. If not supplied the default value is false.",
+      "type": "boolean"
+    },
+    "scanMethodType": {
+      "description": "The method of starting a scan",
+      "enum": [
+        "IDE",
+        "CICD",
+        "Other",
+        "API"
+      ],
+      "type": "string"
+    },
+    "scanTool": {
+      "description": "The tool used for scanning",
+      "type": "string"
+    },
+    "scanToolVersion": {
+      "description": "The version for the scan tool used for scanning",
+      "type": "string"
+    }
+  }
+}

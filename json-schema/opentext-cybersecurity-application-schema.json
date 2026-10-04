@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-application-schema.json",
+  "title": "Application",
+  "description": "Application",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/Application",
+  "type": "object",
+  "properties": {
+    "applicationId": {
+      "format": "int32",
+      "description": "The application id",
+      "type": "integer"
+    },
+    "applicationName": {
+      "description": "The name of the application",
+      "type": "string"
+    },
+    "applicationDescription": {
+      "description": "Description of the application that will help you manage multiple applications",
+      "type": "string"
+    },
+    "applicationCreatedDate": {
+      "format": "date-time",
+      "description": "The date the application was created",
+      "type": "string"
+    },
+    "businessCriticalityTypeId": {
+      "format": "int32",
+      "description": "The business criticality type id. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes",
+      "type": "integer"
+    },
+    "businessCriticalityType": {
+      "description": "The business criticality type name. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes",
+      "type": "string"
+    },
+    "emailList": {
+      "description": "List the email addresses of additional people who should be informed of activity related to this release",
+      "type": "string"
+    },
+    "applicationTypeId": {
+      "format": "int32",
+      "description": "The application type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ApplicationTypes",
+      "type": "integer"
+    },
+    "applicationType": {
+      "description": "The application type name. Values can be obtained by calling GET /api/v3/lookup-items?type=ApplicationTypes",
+      "type": "string"
+    },
+    "hasMicroservices": {
+      "description": "Determines if the application has microservices",
+      "type": "boolean"
+    },
+    "attributes": {
+      "description": "Application attributes",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ApplicationAttributeExtended"
+      }
+    }
+  },
+  "$defs": {
+    "ApplicationAttributeExtended": {
+      "description": "Application Attribute Extended",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the attribute",
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "description": "Id of the attribute",
+          "type": "integer"
+        },
+        "value": {
+          "description": "Value of the attribute",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

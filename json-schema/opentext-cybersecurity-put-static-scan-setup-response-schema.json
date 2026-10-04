@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-put-static-scan-setup-response-schema.json",
+  "title": "PutStaticScanSetupResponse",
+  "description": "Put Static Scan Setup Response",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-static-scans-api-openapi.yml#/components/schemas/PutStaticScanSetupResponse",
+  "type": "object",
+  "properties": {
+    "success": {
+      "description": "Indicates if the static scan settings were updated",
+      "type": "boolean"
+    },
+    "bsiToken": {
+      "description": "The build server integration token",
+      "type": "string"
+    },
+    "errors": {
+      "description": "A list of errors encountered",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "messages": {
+      "description": "List of informational messages",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "legalMessage": {
+      "description": "Legal messages",
+      "type": "string"
+    }
+  }
+}

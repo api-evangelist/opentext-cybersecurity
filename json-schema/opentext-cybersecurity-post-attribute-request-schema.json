@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-post-attribute-request-schema.json",
+  "title": "PostAttributeRequest",
+  "description": "Post Attrbute Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-attributes-api-openapi.yml#/components/schemas/PostAttributeRequest",
+  "required": [
+    "name",
+    "attributeType",
+    "attributeDataType"
+  ],
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "Attribute name",
+      "type": "string"
+    },
+    "attributeType": {
+      "description": "Attribute type",
+      "type": "string"
+    },
+    "attributeDataType": {
+      "description": "Attribute data name",
+      "enum": [
+        "Picklist",
+        "Text",
+        "Boolean",
+        "Date",
+        "User"
+      ],
+      "type": "string"
+    },
+    "isRequired": {
+      "description": "Is attribute required",
+      "type": "boolean"
+    },
+    "isRestricted": {
+      "description": "Is attribute editable only by SecLeads",
+      "type": "boolean"
+    },
+    "defaultValue": {
+      "description": "Default value for the attribute. Required when both isRequired and isRestricted are true.",
+      "type": "string"
+    },
+    "picklistValues": {
+      "description": "Picklist Values",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/AttributeValueItem"
+      }
+    }
+  },
+  "$defs": {
+    "AttributeValueItem": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "SortOrder": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

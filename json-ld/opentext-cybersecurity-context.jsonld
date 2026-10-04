@@ -1,0 +1,1472 @@
+{
+  "@context": {
+    "@vocab": "https://opentext.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "opentext": "https://opentext.com/schema#",
+    "ApiKeyApplication": "opentext:ApiKeyApplication",
+    "applicationId": {
+      "@id": "opentext:applicationId",
+      "@type": "xsd:integer"
+    },
+    "applicationName": {
+      "@id": "opentext:applicationName",
+      "@type": "xsd:string"
+    },
+    "PostApiKeyResponse": "opentext:PostApiKeyResponse",
+    "apiKeyId": {
+      "@id": "opentext:apiKeyId",
+      "@type": "xsd:integer"
+    },
+    "apiKey": {
+      "@id": "opentext:apiKey",
+      "@type": "xsd:string"
+    },
+    "secret": {
+      "@id": "opentext:secret",
+      "@type": "xsd:string"
+    },
+    "Error": "opentext:Error",
+    "errorCode": {
+      "@id": "opentext:errorCode",
+      "@type": "xsd:integer"
+    },
+    "message": {
+      "@id": "opentext:message",
+      "@type": "xsd:string"
+    },
+    "ApiKeyApplicationListResponse": "opentext:ApiKeyApplicationListResponse",
+    "items": {
+      "@id": "opentext:items",
+      "@container": "@list"
+    },
+    "totalCount": {
+      "@id": "opentext:totalCount",
+      "@type": "xsd:integer"
+    },
+    "offset": {
+      "@id": "opentext:offset",
+      "@type": "xsd:integer"
+    },
+    "limit": {
+      "@id": "opentext:limit",
+      "@type": "xsd:integer"
+    },
+    "ApiKeyRequest": "opentext:ApiKeyRequest",
+    "name": {
+      "@id": "opentext:name",
+      "@type": "xsd:string"
+    },
+    "isAuthorized": {
+      "@id": "opentext:isAuthorized",
+      "@type": "xsd:boolean"
+    },
+    "roleId": {
+      "@id": "opentext:roleId",
+      "@type": "xsd:string"
+    },
+    "DeleteApiKeyResponse": "opentext:DeleteApiKeyResponse",
+    "success": {
+      "@id": "opentext:success",
+      "@type": "xsd:boolean"
+    },
+    "errors": {
+      "@id": "opentext:errors",
+      "@container": "@list"
+    },
+    "ApiKeyApplicationAccessRequest": "opentext:ApiKeyApplicationAccessRequest",
+    "assignAllApplications": {
+      "@id": "opentext:assignAllApplications",
+      "@type": "xsd:boolean"
+    },
+    "ApiKeyListResponse": "opentext:ApiKeyListResponse",
+    "ErrorResponse": "opentext:ErrorResponse",
+    "ApiKeyResponse": "opentext:ApiKeyResponse",
+    "ApiKeyUnassignApplicationsRequest": "opentext:ApiKeyUnassignApplicationsRequest",
+    "unassignAllApplications": {
+      "@id": "opentext:unassignAllApplications",
+      "@type": "xsd:boolean"
+    },
+    "ApiKey": "opentext:ApiKey",
+    "grantType": {
+      "@id": "opentext:grantType",
+      "@type": "xsd:string"
+    },
+    "role": {
+      "@id": "opentext:role",
+      "@type": "xsd:string"
+    },
+    "lastLoginIpAddress": {
+      "@id": "opentext:lastLoginIpAddress",
+      "@type": "xsd:string"
+    },
+    "lastLoginDate": {
+      "@id": "opentext:lastLoginDate",
+      "@type": "xsd:dateTime"
+    },
+    "AuditTemplateCondition": "opentext:AuditTemplateCondition",
+    "field": {
+      "@id": "opentext:field",
+      "@type": "xsd:string"
+    },
+    "conditionType": {
+      "@id": "opentext:conditionType",
+      "@type": "xsd:string"
+    },
+    "fieldValue": {
+      "@id": "opentext:fieldValue",
+      "@type": "xsd:string"
+    },
+    "operationType": {
+      "@id": "opentext:operationType",
+      "@type": "xsd:string"
+    },
+    "GetApplicationUserGroupsResponse": "opentext:GetApplicationUserGroupsResponse",
+    "userGroups": {
+      "@id": "opentext:userGroups",
+      "@container": "@list"
+    },
+    "Microservice": "opentext:Microservice",
+    "microserviceId": {
+      "@id": "opentext:microserviceId",
+      "@type": "xsd:integer"
+    },
+    "microserviceName": {
+      "@id": "opentext:microserviceName",
+      "@type": "xsd:string"
+    },
+    "releaseId": {
+      "@id": "opentext:releaseId",
+      "@type": "xsd:integer"
+    },
+    "attributes": {
+      "@id": "opentext:attributes",
+      "@container": "@list"
+    },
+    "ApplicationUserPermissions": "opentext:ApplicationUserPermissions",
+    "startDynamicScan": {
+      "@id": "opentext:startDynamicScan",
+      "@type": "xsd:boolean"
+    },
+    "startMobileScan": {
+      "@id": "opentext:startMobileScan",
+      "@type": "xsd:boolean"
+    },
+    "startStaticScan": {
+      "@id": "opentext:startStaticScan",
+      "@type": "xsd:boolean"
+    },
+    "configureDynamicScan": {
+      "@id": "opentext:configureDynamicScan",
+      "@type": "xsd:boolean"
+    },
+    "configureMobileScan": {
+      "@id": "opentext:configureMobileScan",
+      "@type": "xsd:boolean"
+    },
+    "configureStaticScan": {
+      "@id": "opentext:configureStaticScan",
+      "@type": "xsd:boolean"
+    },
+    "createRelease": {
+      "@id": "opentext:createRelease",
+      "@type": "xsd:boolean"
+    },
+    "auditIssues": {
+      "@id": "opentext:auditIssues",
+      "@type": "xsd:boolean"
+    },
+    "challengeIssues": {
+      "@id": "opentext:challengeIssues",
+      "@type": "xsd:boolean"
+    },
+    "editIssues": {
+      "@id": "opentext:editIssues",
+      "@type": "xsd:boolean"
+    },
+    "downloadFPR": {
+      "@id": "opentext:downloadFPR",
+      "@type": "xsd:boolean"
+    },
+    "AuditTemplateAction": "opentext:AuditTemplateAction",
+    "actionType": {
+      "@id": "opentext:actionType",
+      "@type": "xsd:string"
+    },
+    "severity": {
+      "@id": "opentext:severity",
+      "@type": "xsd:string"
+    },
+    "severityId": {
+      "@id": "opentext:severityId",
+      "@type": "xsd:integer"
+    },
+    "suppressedStatus": {
+      "@id": "opentext:suppressedStatus",
+      "@type": "xsd:string"
+    },
+    "ApplicationUserListResponse": "opentext:ApplicationUserListResponse",
+    "ApplicationUser": "opentext:ApplicationUser",
+    "userId": {
+      "@id": "opentext:userId",
+      "@type": "xsd:integer"
+    },
+    "firstName": {
+      "@id": "opentext:firstName",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "opentext:lastName",
+      "@type": "xsd:string"
+    },
+    "emailId": {
+      "@id": "opentext:emailId",
+      "@type": "xsd:string"
+    },
+    "roleName": {
+      "@id": "opentext:roleName",
+      "@type": "xsd:string"
+    },
+    "accessMethod": {
+      "@id": "opentext:accessMethod",
+      "@type": "xsd:string"
+    },
+    "PutApplicationResponse": "opentext:PutApplicationResponse",
+    "DeleteApplicationResponse": "opentext:DeleteApplicationResponse",
+    "AuditTemplateResponse": "opentext:AuditTemplateResponse",
+    "MicroserviceListResponse": "opentext:MicroserviceListResponse",
+    "PostApplicationResponse": "opentext:PostApplicationResponse",
+    "ApplicationAttribute": "opentext:ApplicationAttribute",
+    "id": {
+      "@id": "opentext:id",
+      "@type": "xsd:integer"
+    },
+    "value": {
+      "@id": "opentext:value",
+      "@type": "xsd:string"
+    },
+    "PostMicroserviceResponse": "opentext:PostMicroserviceResponse",
+    "GetAutoReportResponse": "opentext:GetAutoReportResponse",
+    "staticScanReportId": {
+      "@id": "opentext:staticScanReportId",
+      "@type": "xsd:integer"
+    },
+    "staticScanReportName": {
+      "@id": "opentext:staticScanReportName",
+      "@type": "xsd:string"
+    },
+    "dynamicScanReportId": {
+      "@id": "opentext:dynamicScanReportId",
+      "@type": "xsd:integer"
+    },
+    "dynamicScanReportName": {
+      "@id": "opentext:dynamicScanReportName",
+      "@type": "xsd:string"
+    },
+    "PostAutoReportRequest": "opentext:PostAutoReportRequest",
+    "emailReport": {
+      "@id": "opentext:emailReport",
+      "@type": "xsd:boolean"
+    },
+    "reportFormat": {
+      "@id": "opentext:reportFormat",
+      "@type": "xsd:string"
+    },
+    "emailNotificationList": {
+      "@id": "opentext:emailNotificationList",
+      "@type": "xsd:string"
+    },
+    "projectSDLCStatusTypes": {
+      "@id": "opentext:projectSDLCStatusTypes",
+      "@container": "@list"
+    },
+    "PutAuditTemplateFilterRequest": "opentext:PutAuditTemplateFilterRequest",
+    "scanType": {
+      "@id": "opentext:scanType",
+      "@type": "xsd:string"
+    },
+    "scanTypeId": {
+      "@id": "opentext:scanTypeId",
+      "@type": "xsd:integer"
+    },
+    "action": {
+      "@id": "opentext:action",
+      "@type": "@id"
+    },
+    "conditions": {
+      "@id": "opentext:conditions",
+      "@container": "@list"
+    },
+    "ApplicationUserGroup": "opentext:ApplicationUserGroup",
+    "userGroupId": {
+      "@id": "opentext:userGroupId",
+      "@type": "xsd:integer"
+    },
+    "userGroupName": {
+      "@id": "opentext:userGroupName",
+      "@type": "xsd:string"
+    },
+    "GetApplicationUsersResponse": "opentext:GetApplicationUsersResponse",
+    "users": {
+      "@id": "opentext:users",
+      "@container": "@list"
+    },
+    "FieldFilterValue": "opentext:FieldFilterValue",
+    "count": {
+      "@id": "opentext:count",
+      "@type": "xsd:integer"
+    },
+    "PutApplicationRequest": "opentext:PutApplicationRequest",
+    "applicationDescription": {
+      "@id": "opentext:applicationDescription",
+      "@type": "xsd:string"
+    },
+    "emailList": {
+      "@id": "opentext:emailList",
+      "@type": "xsd:string"
+    },
+    "businessCriticalityType": {
+      "@id": "opentext:businessCriticalityType",
+      "@type": "xsd:string"
+    },
+    "ScanListResponse": "opentext:ScanListResponse",
+    "ScanPauseDetail": "opentext:ScanPauseDetail",
+    "pausedOn": {
+      "@id": "opentext:pausedOn",
+      "@type": "xsd:dateTime"
+    },
+    "reason": {
+      "@id": "opentext:reason",
+      "@type": "xsd:string"
+    },
+    "notes": {
+      "@id": "opentext:notes",
+      "@type": "xsd:string"
+    },
+    "ApplicationListResponse": "opentext:ApplicationListResponse",
+    "PostApplicationRequest": "opentext:PostApplicationRequest",
+    "applicationType": {
+      "@id": "opentext:applicationType",
+      "@type": "xsd:string"
+    },
+    "releaseName": {
+      "@id": "opentext:releaseName",
+      "@type": "xsd:string"
+    },
+    "releaseDescription": {
+      "@id": "opentext:releaseDescription",
+      "@type": "xsd:string"
+    },
+    "ownerId": {
+      "@id": "opentext:ownerId",
+      "@type": "xsd:integer"
+    },
+    "sdlcStatusType": {
+      "@id": "opentext:sdlcStatusType",
+      "@type": "xsd:string"
+    },
+    "hasMicroservices": {
+      "@id": "opentext:hasMicroservices",
+      "@type": "xsd:boolean"
+    },
+    "microservices": {
+      "@id": "opentext:microservices",
+      "@container": "@list"
+    },
+    "releaseMicroserviceName": {
+      "@id": "opentext:releaseMicroserviceName",
+      "@type": "xsd:string"
+    },
+    "userGroupIds": {
+      "@id": "opentext:userGroupIds",
+      "@container": "@list"
+    },
+    "VulnerabilityDTOLight": "opentext:VulnerabilityDTOLight",
+    "vulnId": {
+      "@id": "opentext:vulnId",
+      "@type": "xsd:string"
+    },
+    "ReleaseListResponse": "opentext:ReleaseListResponse",
+    "AuditTemplateListResponse": "opentext:AuditTemplateListResponse",
+    "ApplicationIssueCountListResponse": "opentext:ApplicationIssueCountListResponse",
+    "PostMicroserviceRequest": "opentext:PostMicroserviceRequest",
+    "ApplicationAttributeExtended": "opentext:ApplicationAttributeExtended",
+    "ApplicationBugTracker": "opentext:ApplicationBugTracker",
+    "bugTrackerTypeId": {
+      "@id": "opentext:bugTrackerTypeId",
+      "@type": "xsd:integer"
+    },
+    "bugTrackerType": {
+      "@id": "opentext:bugTrackerType",
+      "@type": "xsd:string"
+    },
+    "bugTrackerUrl": {
+      "@id": "opentext:bugTrackerUrl",
+      "@type": "xsd:string"
+    },
+    "enabled": {
+      "@id": "opentext:enabled",
+      "@type": "xsd:boolean"
+    },
+    "autoClose": {
+      "@id": "opentext:autoClose",
+      "@type": "xsd:boolean"
+    },
+    "levelOneProjectName": {
+      "@id": "opentext:levelOneProjectName",
+      "@type": "xsd:string"
+    },
+    "levelTwoProjectName": {
+      "@id": "opentext:levelTwoProjectName",
+      "@type": "xsd:string"
+    },
+    "AuditTemplate": "opentext:AuditTemplate",
+    "ApplicationIssueCount": "opentext:ApplicationIssueCount",
+    "applicationCreatedDate": {
+      "@id": "opentext:applicationCreatedDate",
+      "@type": "xsd:dateTime"
+    },
+    "businessCriticalityTypeId": {
+      "@id": "opentext:businessCriticalityTypeId",
+      "@type": "xsd:integer"
+    },
+    "critical": {
+      "@id": "opentext:critical",
+      "@type": "xsd:integer"
+    },
+    "high": {
+      "@id": "opentext:high",
+      "@type": "xsd:integer"
+    },
+    "medium": {
+      "@id": "opentext:medium",
+      "@type": "xsd:integer"
+    },
+    "low": {
+      "@id": "opentext:low",
+      "@type": "xsd:integer"
+    },
+    "Scan": "opentext:Scan",
+    "scanId": {
+      "@id": "opentext:scanId",
+      "@type": "xsd:integer"
+    },
+    "assessmentTypeId": {
+      "@id": "opentext:assessmentTypeId",
+      "@type": "xsd:integer"
+    },
+    "assessmentTypeName": {
+      "@id": "opentext:assessmentTypeName",
+      "@type": "xsd:string"
+    },
+    "analysisStatusTypeId": {
+      "@id": "opentext:analysisStatusTypeId",
+      "@type": "xsd:integer"
+    },
+    "analysisStatusType": {
+      "@id": "opentext:analysisStatusType",
+      "@type": "xsd:string"
+    },
+    "startedDateTime": {
+      "@id": "opentext:startedDateTime",
+      "@type": "xsd:dateTime"
+    },
+    "completedDateTime": {
+      "@id": "opentext:completedDateTime",
+      "@type": "xsd:dateTime"
+    },
+    "totalIssues": {
+      "@id": "opentext:totalIssues",
+      "@type": "xsd:integer"
+    },
+    "issueCountCritical": {
+      "@id": "opentext:issueCountCritical",
+      "@type": "xsd:integer"
+    },
+    "issueCountHigh": {
+      "@id": "opentext:issueCountHigh",
+      "@type": "xsd:integer"
+    },
+    "issueCountMedium": {
+      "@id": "opentext:issueCountMedium",
+      "@type": "xsd:integer"
+    },
+    "issueCountLow": {
+      "@id": "opentext:issueCountLow",
+      "@type": "xsd:integer"
+    },
+    "starRating": {
+      "@id": "opentext:starRating",
+      "@type": "xsd:integer"
+    },
+    "isFalsePositiveChallenge": {
+      "@id": "opentext:isFalsePositiveChallenge",
+      "@type": "xsd:boolean"
+    },
+    "isRemediationScan": {
+      "@id": "opentext:isRemediationScan",
+      "@type": "xsd:boolean"
+    },
+    "entitlementId": {
+      "@id": "opentext:entitlementId",
+      "@type": "xsd:integer"
+    },
+    "entitlementUnitsConsumed": {
+      "@id": "opentext:entitlementUnitsConsumed",
+      "@type": "xsd:integer"
+    },
+    "isSubscriptionEntitlement": {
+      "@id": "opentext:isSubscriptionEntitlement",
+      "@type": "xsd:boolean"
+    },
+    "pauseDetails": {
+      "@id": "opentext:pauseDetails",
+      "@container": "@list"
+    },
+    "cancelReason": {
+      "@id": "opentext:cancelReason",
+      "@type": "xsd:string"
+    },
+    "analysisStatusReasonNotes": {
+      "@id": "opentext:analysisStatusReasonNotes",
+      "@type": "xsd:string"
+    },
+    "scanMethodTypeId": {
+      "@id": "opentext:scanMethodTypeId",
+      "@type": "xsd:integer"
+    },
+    "scanMethodTypeName": {
+      "@id": "opentext:scanMethodTypeName",
+      "@type": "xsd:string"
+    },
+    "scanPolicyTypeId": {
+      "@id": "opentext:scanPolicyTypeId",
+      "@type": "xsd:integer"
+    },
+    "scanPolicyTypeName": {
+      "@id": "opentext:scanPolicyTypeName",
+      "@type": "xsd:string"
+    },
+    "scanTool": {
+      "@id": "opentext:scanTool",
+      "@type": "xsd:string"
+    },
+    "scanToolVersion": {
+      "@id": "opentext:scanToolVersion",
+      "@type": "xsd:string"
+    },
+    "PutAuditTemplateAction": "opentext:PutAuditTemplateAction",
+    "GetVulnerabilitiesResponseVulnerabilityDTOLight": "opentext:GetVulnerabilitiesResponseVulnerabilityDTOLight",
+    "filters": {
+      "@id": "opentext:filters",
+      "@container": "@list"
+    },
+    "isRepositoryUpdating": {
+      "@id": "opentext:isRepositoryUpdating",
+      "@type": "xsd:boolean"
+    },
+    "PutAuditTemplateCondition": "opentext:PutAuditTemplateCondition",
+    "PostAutoReportResponse": "opentext:PostAutoReportResponse",
+    "Release": "opentext:Release",
+    "suspended": {
+      "@id": "opentext:suspended",
+      "@type": "xsd:boolean"
+    },
+    "releaseCreatedDate": {
+      "@id": "opentext:releaseCreatedDate",
+      "@type": "xsd:dateTime"
+    },
+    "currentAnalysisStatusTypeId": {
+      "@id": "opentext:currentAnalysisStatusTypeId",
+      "@type": "xsd:integer"
+    },
+    "currentAnalysisStatusType": {
+      "@id": "opentext:currentAnalysisStatusType",
+      "@type": "xsd:string"
+    },
+    "rating": {
+      "@id": "opentext:rating",
+      "@type": "xsd:integer"
+    },
+    "staticCritical": {
+      "@id": "opentext:staticCritical",
+      "@type": "xsd:integer"
+    },
+    "staticHigh": {
+      "@id": "opentext:staticHigh",
+      "@type": "xsd:integer"
+    },
+    "staticMedium": {
+      "@id": "opentext:staticMedium",
+      "@type": "xsd:integer"
+    },
+    "staticLow": {
+      "@id": "opentext:staticLow",
+      "@type": "xsd:integer"
+    },
+    "dynamicCritical": {
+      "@id": "opentext:dynamicCritical",
+      "@type": "xsd:integer"
+    },
+    "dynamicHigh": {
+      "@id": "opentext:dynamicHigh",
+      "@type": "xsd:integer"
+    },
+    "dynamicMedium": {
+      "@id": "opentext:dynamicMedium",
+      "@type": "xsd:integer"
+    },
+    "dynamicLow": {
+      "@id": "opentext:dynamicLow",
+      "@type": "xsd:integer"
+    },
+    "mobileCritical": {
+      "@id": "opentext:mobileCritical",
+      "@type": "xsd:integer"
+    },
+    "mobileHigh": {
+      "@id": "opentext:mobileHigh",
+      "@type": "xsd:integer"
+    },
+    "mobileMedium": {
+      "@id": "opentext:mobileMedium",
+      "@type": "xsd:integer"
+    },
+    "mobileLow": {
+      "@id": "opentext:mobileLow",
+      "@type": "xsd:integer"
+    },
+    "openSourceCritical": {
+      "@id": "opentext:openSourceCritical",
+      "@type": "xsd:integer"
+    },
+    "openSourceHigh": {
+      "@id": "opentext:openSourceHigh",
+      "@type": "xsd:integer"
+    },
+    "openSourceMedium": {
+      "@id": "opentext:openSourceMedium",
+      "@type": "xsd:integer"
+    },
+    "openSourceLow": {
+      "@id": "opentext:openSourceLow",
+      "@type": "xsd:integer"
+    },
+    "currentStaticScanId": {
+      "@id": "opentext:currentStaticScanId",
+      "@type": "xsd:integer"
+    },
+    "currentDynamicScanId": {
+      "@id": "opentext:currentDynamicScanId",
+      "@type": "xsd:integer"
+    },
+    "currentMobileScanId": {
+      "@id": "opentext:currentMobileScanId",
+      "@type": "xsd:integer"
+    },
+    "staticAnalysisStatusType": {
+      "@id": "opentext:staticAnalysisStatusType",
+      "@type": "xsd:string"
+    },
+    "dynamicAnalysisStatusType": {
+      "@id": "opentext:dynamicAnalysisStatusType",
+      "@type": "xsd:string"
+    },
+    "mobileAnalysisStatusType": {
+      "@id": "opentext:mobileAnalysisStatusType",
+      "@type": "xsd:string"
+    },
+    "staticAnalysisStatusTypeId": {
+      "@id": "opentext:staticAnalysisStatusTypeId",
+      "@type": "xsd:integer"
+    },
+    "dynamicAnalysisStatusTypeId": {
+      "@id": "opentext:dynamicAnalysisStatusTypeId",
+      "@type": "xsd:integer"
+    },
+    "mobileAnalysisStatusTypeId": {
+      "@id": "opentext:mobileAnalysisStatusTypeId",
+      "@type": "xsd:integer"
+    },
+    "staticScanDate": {
+      "@id": "opentext:staticScanDate",
+      "@type": "xsd:dateTime"
+    },
+    "dynamicScanDate": {
+      "@id": "opentext:dynamicScanDate",
+      "@type": "xsd:dateTime"
+    },
+    "mobileScanDate": {
+      "@id": "opentext:mobileScanDate",
+      "@type": "xsd:dateTime"
+    },
+    "issueCount": {
+      "@id": "opentext:issueCount",
+      "@type": "xsd:integer"
+    },
+    "isPassed": {
+      "@id": "opentext:isPassed",
+      "@type": "xsd:boolean"
+    },
+    "passFailReasonTypeId": {
+      "@id": "opentext:passFailReasonTypeId",
+      "@type": "xsd:integer"
+    },
+    "passFailReasonType": {
+      "@id": "opentext:passFailReasonType",
+      "@type": "xsd:string"
+    },
+    "sdlcStatusTypeId": {
+      "@id": "opentext:sdlcStatusTypeId",
+      "@type": "xsd:integer"
+    },
+    "IsDebrickedScanEnabled": {
+      "@id": "opentext:IsDebrickedScanEnabled",
+      "@type": "xsd:boolean"
+    },
+    "FieldFilter": "opentext:FieldFilter",
+    "fieldName": {
+      "@id": "opentext:fieldName",
+      "@type": "xsd:string"
+    },
+    "fieldFilterValues": {
+      "@id": "opentext:fieldFilterValues",
+      "@container": "@list"
+    },
+    "displayName": {
+      "@id": "opentext:displayName",
+      "@type": "xsd:string"
+    },
+    "Application": "opentext:Application",
+    "applicationTypeId": {
+      "@id": "opentext:applicationTypeId",
+      "@type": "xsd:integer"
+    },
+    "PutAttributeResponse": "opentext:PutAttributeResponse",
+    "AttributeValueItem": "opentext:AttributeValueItem",
+    "Name": {
+      "@id": "opentext:Name",
+      "@type": "xsd:string"
+    },
+    "SortOrder": {
+      "@id": "opentext:SortOrder",
+      "@type": "xsd:integer"
+    },
+    "AttributeItemValue": "opentext:AttributeItemValue",
+    "PutAttributeRequest": "opentext:PutAttributeRequest",
+    "isRequired": {
+      "@id": "opentext:isRequired",
+      "@type": "xsd:boolean"
+    },
+    "isRestricted": {
+      "@id": "opentext:isRestricted",
+      "@type": "xsd:boolean"
+    },
+    "defaultValue": {
+      "@id": "opentext:defaultValue",
+      "@type": "xsd:string"
+    },
+    "overwriteExistingValues": {
+      "@id": "opentext:overwriteExistingValues",
+      "@type": "xsd:boolean"
+    },
+    "picklistValues": {
+      "@id": "opentext:picklistValues",
+      "@container": "@list"
+    },
+    "PostAttributeRequest": "opentext:PostAttributeRequest",
+    "attributeType": {
+      "@id": "opentext:attributeType",
+      "@type": "xsd:string"
+    },
+    "attributeDataType": {
+      "@id": "opentext:attributeDataType",
+      "@type": "xsd:string"
+    },
+    "AttributeItemListResponse": "opentext:AttributeItemListResponse",
+    "AttributeItem": "opentext:AttributeItem",
+    "attributeTypeId": {
+      "@id": "opentext:attributeTypeId",
+      "@type": "xsd:integer"
+    },
+    "attributeDataTypeId": {
+      "@id": "opentext:attributeDataTypeId",
+      "@type": "xsd:integer"
+    },
+    "PostAttributeResponse": "opentext:PostAttributeResponse",
+    "attributeId": {
+      "@id": "opentext:attributeId",
+      "@type": "xsd:integer"
+    },
+    "PutDastAutomatedOpenApiScanSetupRequest": "opentext:PutDastAutomatedOpenApiScanSetupRequest",
+    "sourceType": {
+      "@id": "opentext:sourceType",
+      "@type": "xsd:string"
+    },
+    "sourceUrn": {
+      "@id": "opentext:sourceUrn",
+      "@type": "xsd:string"
+    },
+    "timeBoxInHours": {
+      "@id": "opentext:timeBoxInHours",
+      "@type": "xsd:integer"
+    },
+    "entitlementFrequencyType": {
+      "@id": "opentext:entitlementFrequencyType",
+      "@type": "xsd:string"
+    },
+    "dynamicScanEnvironmentFacingType": {
+      "@id": "opentext:dynamicScanEnvironmentFacingType",
+      "@type": "xsd:string"
+    },
+    "timeZone": {
+      "@id": "opentext:timeZone",
+      "@type": "xsd:string"
+    },
+    "requiresNetworkAuthentication": {
+      "@id": "opentext:requiresNetworkAuthentication",
+      "@type": "xsd:boolean"
+    },
+    "networkAuthenticationSettings": {
+      "@id": "opentext:networkAuthenticationSettings",
+      "@type": "@id"
+    },
+    "requestFalsePositiveRemoval": {
+      "@id": "opentext:requestFalsePositiveRemoval",
+      "@type": "xsd:boolean"
+    },
+    "networkName": {
+      "@id": "opentext:networkName",
+      "@type": "xsd:string"
+    },
+    "OpenApi": "opentext:OpenApi",
+    "WorkflowDriven": "opentext:WorkflowDriven",
+    "workflowDrivenMacro": {
+      "@id": "opentext:workflowDrivenMacro",
+      "@container": "@list"
+    },
+    "Grpc": "opentext:Grpc",
+    "fileId": {
+      "@id": "opentext:fileId",
+      "@type": "xsd:integer"
+    },
+    "schemeType": {
+      "@id": "opentext:schemeType",
+      "@type": "xsd:string"
+    },
+    "host": {
+      "@id": "opentext:host",
+      "@type": "xsd:string"
+    },
+    "servicePath": {
+      "@id": "opentext:servicePath",
+      "@type": "xsd:string"
+    },
+    "LoginMacroFileCreationDetails": "opentext:LoginMacroFileCreationDetails",
+    "primaryUsername": {
+      "@id": "opentext:primaryUsername",
+      "@type": "xsd:string"
+    },
+    "primaryPassword": {
+      "@id": "opentext:primaryPassword",
+      "@type": "xsd:string"
+    },
+    "secondaryUsername": {
+      "@id": "opentext:secondaryUsername",
+      "@type": "xsd:string"
+    },
+    "secondaryPassword": {
+      "@id": "opentext:secondaryPassword",
+      "@type": "xsd:string"
+    },
+    "PutDastAutomatedWebsiteScanSetupRequest": "opentext:PutDastAutomatedWebsiteScanSetupRequest",
+    "dynamicSiteUrl": {
+      "@id": "opentext:dynamicSiteUrl",
+      "@type": "xsd:string"
+    },
+    "enableRedundantPageDetection": {
+      "@id": "opentext:enableRedundantPageDetection",
+      "@type": "xsd:boolean"
+    },
+    "loginMacroFileId": {
+      "@id": "opentext:loginMacroFileId",
+      "@type": "xsd:integer"
+    },
+    "requiresSiteAuthentication": {
+      "@id": "opentext:requiresSiteAuthentication",
+      "@type": "xsd:boolean"
+    },
+    "exclusionsList": {
+      "@id": "opentext:exclusionsList",
+      "@container": "@list"
+    },
+    "restrictToDirectoryAndSubdirectories": {
+      "@id": "opentext:restrictToDirectoryAndSubdirectories",
+      "@type": "xsd:boolean"
+    },
+    "policy": {
+      "@id": "opentext:policy",
+      "@type": "xsd:string"
+    },
+    "requestLoginMacroFileCreation": {
+      "@id": "opentext:requestLoginMacroFileCreation",
+      "@type": "xsd:boolean"
+    },
+    "loginMacroFileCreationDetails": {
+      "@id": "opentext:loginMacroFileCreationDetails",
+      "@type": "@id"
+    },
+    "PutDastAutomatedPostmanScanSetupRequest": "opentext:PutDastAutomatedPostmanScanSetupRequest",
+    "collectionFileIds": {
+      "@id": "opentext:collectionFileIds",
+      "@container": "@list"
+    },
+    "GetDastAutomatedScanSetupResponse": "opentext:GetDastAutomatedScanSetupResponse",
+    "websiteAssessment": {
+      "@id": "opentext:websiteAssessment",
+      "@type": "@id"
+    },
+    "apiAssessment": {
+      "@id": "opentext:apiAssessment",
+      "@type": "@id"
+    },
+    "workflowdrivenAssessment": {
+      "@id": "opentext:workflowdrivenAssessment",
+      "@type": "@id"
+    },
+    "allowFormSubmissions": {
+      "@id": "opentext:allowFormSubmissions",
+      "@type": "xsd:boolean"
+    },
+    "allowSameHostRedirects": {
+      "@id": "opentext:allowSameHostRedirects",
+      "@type": "xsd:boolean"
+    },
+    "fileDetails": {
+      "@id": "opentext:fileDetails",
+      "@container": "@list"
+    },
+    "hasUtilizedAdditionalServices": {
+      "@id": "opentext:hasUtilizedAdditionalServices",
+      "@type": "xsd:boolean"
+    },
+    "PutDastAutomatedGrpcScanSetupRequest": "opentext:PutDastAutomatedGrpcScanSetupRequest",
+    "GraphQl": "opentext:GraphQl",
+    "Postman": "opentext:Postman",
+    "NetworkAuthenticationSettings": "opentext:NetworkAuthenticationSettings",
+    "networkAuthenticationType": {
+      "@id": "opentext:networkAuthenticationType",
+      "@type": "xsd:string"
+    },
+    "userName": {
+      "@id": "opentext:userName",
+      "@type": "xsd:string"
+    },
+    "password": {
+      "@id": "opentext:password",
+      "@type": "xsd:string"
+    },
+    "PutDastAutomatedWorkflowScanSetupRequest": "opentext:PutDastAutomatedWorkflowScanSetupRequest",
+    "Exclusion": "opentext:Exclusion",
+    "PutDastAutomatedGraphQLScanSetupRequest": "opentext:PutDastAutomatedGraphQLScanSetupRequest",
+    "PatchDastAutomatedScanManifestResponse": "opentext:PatchDastAutomatedScanManifestResponse",
+    "hosts": {
+      "@id": "opentext:hosts",
+      "@container": "@list"
+    },
+    "Website": "opentext:Website",
+    "FileDetails": "opentext:FileDetails",
+    "fileName": {
+      "@id": "opentext:fileName",
+      "@type": "xsd:string"
+    },
+    "fileType": {
+      "@id": "opentext:fileType",
+      "@type": "xsd:string"
+    },
+    "StartDastAutomatedScanResponse": "opentext:StartDastAutomatedScanResponse",
+    "API": "opentext:API",
+    "apiType": {
+      "@id": "opentext:apiType",
+      "@type": "xsd:string"
+    },
+    "openAPI": {
+      "@id": "opentext:openAPI",
+      "@type": "@id"
+    },
+    "graphQL": {
+      "@id": "opentext:graphQL",
+      "@type": "@id"
+    },
+    "gRPC": {
+      "@id": "opentext:gRPC",
+      "@type": "@id"
+    },
+    "postman": {
+      "@id": "opentext:postman",
+      "@type": "@id"
+    },
+    "WorkflowDrivenMacrosResponse": "opentext:WorkflowDrivenMacrosResponse",
+    "allowedHosts": {
+      "@id": "opentext:allowedHosts",
+      "@container": "@list"
+    },
+    "WorkflowDrivenMacrosRequest": "opentext:WorkflowDrivenMacrosRequest",
+    "PutTwoFactor": "opentext:PutTwoFactor",
+    "hasTwoFactorAuthentication": {
+      "@id": "opentext:hasTwoFactorAuthentication",
+      "@type": "xsd:boolean"
+    },
+    "twoFactorAuthenticationType": {
+      "@id": "opentext:twoFactorAuthenticationType",
+      "@type": "xsd:string"
+    },
+    "primaryUserTwoFactorEmail": {
+      "@id": "opentext:primaryUserTwoFactorEmail",
+      "@type": "xsd:string"
+    },
+    "secondaryUserTwoFactorEmail": {
+      "@id": "opentext:secondaryUserTwoFactorEmail",
+      "@type": "xsd:string"
+    },
+    "otherUserTwoFactorEmail": {
+      "@id": "opentext:otherUserTwoFactorEmail",
+      "@type": "xsd:string"
+    },
+    "primaryUserTotpSecret": {
+      "@id": "opentext:primaryUserTotpSecret",
+      "@type": "xsd:string"
+    },
+    "secondaryUserTotpSecret": {
+      "@id": "opentext:secondaryUserTotpSecret",
+      "@type": "xsd:string"
+    },
+    "otherUserTotpSecret": {
+      "@id": "opentext:otherUserTotpSecret",
+      "@type": "xsd:string"
+    },
+    "otherTwoFactorUsers": {
+      "@id": "opentext:otherTwoFactorUsers",
+      "@container": "@list"
+    },
+    "PutDynamicToDastAutomatedResponse": "opentext:PutDynamicToDastAutomatedResponse",
+    "Subdomain": "opentext:Subdomain",
+    "GetTwoFactor": "opentext:GetTwoFactor",
+    "primaryUserHasTotpConfigured": {
+      "@id": "opentext:primaryUserHasTotpConfigured",
+      "@type": "xsd:boolean"
+    },
+    "secondaryUserHasTotpConfigured": {
+      "@id": "opentext:secondaryUserHasTotpConfigured",
+      "@type": "xsd:boolean"
+    },
+    "otherUserHasTotpConfigured": {
+      "@id": "opentext:otherUserHasTotpConfigured",
+      "@type": "xsd:boolean"
+    },
+    "GetDynamicScanSetupResponse": "opentext:GetDynamicScanSetupResponse",
+    "webServiceManifestFiles": {
+      "@id": "opentext:webServiceManifestFiles",
+      "@container": "@list"
+    },
+    "scanDocument": {
+      "@id": "opentext:scanDocument",
+      "@container": "@list"
+    },
+    "geoLocationId": {
+      "@id": "opentext:geoLocationId",
+      "@type": "xsd:integer"
+    },
+    "exclusions": {
+      "@id": "opentext:exclusions",
+      "@type": "xsd:string"
+    },
+    "includeUrls": {
+      "@id": "opentext:includeUrls",
+      "@container": "@list"
+    },
+    "dynamicScanAuthenticationType": {
+      "@id": "opentext:dynamicScanAuthenticationType",
+      "@type": "xsd:string"
+    },
+    "hasFormsAuthentication": {
+      "@id": "opentext:hasFormsAuthentication",
+      "@type": "xsd:boolean"
+    },
+    "primaryUserName": {
+      "@id": "opentext:primaryUserName",
+      "@type": "xsd:string"
+    },
+    "primaryUserPassword": {
+      "@id": "opentext:primaryUserPassword",
+      "@type": "xsd:string"
+    },
+    "secondaryUserName": {
+      "@id": "opentext:secondaryUserName",
+      "@type": "xsd:string"
+    },
+    "secondaryUserPassword": {
+      "@id": "opentext:secondaryUserPassword",
+      "@type": "xsd:string"
+    },
+    "otherUserName": {
+      "@id": "opentext:otherUserName",
+      "@type": "xsd:string"
+    },
+    "otherUserPassword": {
+      "@id": "opentext:otherUserPassword",
+      "@type": "xsd:string"
+    },
+    "networkUserName": {
+      "@id": "opentext:networkUserName",
+      "@type": "xsd:string"
+    },
+    "networkPassword": {
+      "@id": "opentext:networkPassword",
+      "@type": "xsd:string"
+    },
+    "dynamicSiteURL": {
+      "@id": "opentext:dynamicSiteURL",
+      "@type": "xsd:string"
+    },
+    "blockout": {
+      "@id": "opentext:blockout",
+      "@container": "@list"
+    },
+    "repeatScheduleType": {
+      "@id": "opentext:repeatScheduleType",
+      "@type": "xsd:string"
+    },
+    "generateWAFVirtualPatch": {
+      "@id": "opentext:generateWAFVirtualPatch",
+      "@type": "xsd:boolean"
+    },
+    "isWebService": {
+      "@id": "opentext:isWebService",
+      "@type": "xsd:boolean"
+    },
+    "webServiceType": {
+      "@id": "opentext:webServiceType",
+      "@type": "xsd:string"
+    },
+    "webServiceDescriptorURL": {
+      "@id": "opentext:webServiceDescriptorURL",
+      "@type": "xsd:string"
+    },
+    "webServiceUserName": {
+      "@id": "opentext:webServiceUserName",
+      "@type": "xsd:string"
+    },
+    "webServicePassword": {
+      "@id": "opentext:webServicePassword",
+      "@type": "xsd:string"
+    },
+    "webServiceAPIKey": {
+      "@id": "opentext:webServiceAPIKey",
+      "@type": "xsd:string"
+    },
+    "webServiceAPIPassword": {
+      "@id": "opentext:webServiceAPIPassword",
+      "@type": "xsd:string"
+    },
+    "concurrentRequestThreadsType": {
+      "@id": "opentext:concurrentRequestThreadsType",
+      "@type": "xsd:string"
+    },
+    "postmanCollectionURL": {
+      "@id": "opentext:postmanCollectionURL",
+      "@type": "xsd:string"
+    },
+    "openApiURL": {
+      "@id": "opentext:openApiURL",
+      "@type": "xsd:string"
+    },
+    "remoteManifestAuthorizationHeaderName": {
+      "@id": "opentext:remoteManifestAuthorizationHeaderName",
+      "@type": "xsd:string"
+    },
+    "remoteManifestAuthorizationHeaderValue": {
+      "@id": "opentext:remoteManifestAuthorizationHeaderValue",
+      "@type": "xsd:string"
+    },
+    "graphqlUrl": {
+      "@id": "opentext:graphqlUrl",
+      "@type": "xsd:string"
+    },
+    "apiSchemeType": {
+      "@id": "opentext:apiSchemeType",
+      "@type": "xsd:string"
+    },
+    "apiHost": {
+      "@id": "opentext:apiHost",
+      "@type": "xsd:string"
+    },
+    "apiServicePath": {
+      "@id": "opentext:apiServicePath",
+      "@type": "xsd:string"
+    },
+    "twoFactorAuthentication": {
+      "@id": "opentext:twoFactorAuthentication",
+      "@type": "@id"
+    },
+    "PutOtherTwoFactorUser": "opentext:PutOtherTwoFactorUser",
+    "totpSecret": {
+      "@id": "opentext:totpSecret",
+      "@type": "xsd:string"
+    },
+    "userPassword": {
+      "@id": "opentext:userPassword",
+      "@type": "xsd:string"
+    },
+    "userIndex": {
+      "@id": "opentext:userIndex",
+      "@type": "xsd:integer"
+    },
+    "twoFactorEmail": {
+      "@id": "opentext:twoFactorEmail",
+      "@type": "xsd:string"
+    },
+    "PutImportScanResponse": "opentext:PutImportScanResponse",
+    "referenceId": {
+      "@id": "opentext:referenceId",
+      "@type": "xsd:string"
+    },
+    "StartDynamicScanResponse": "opentext:StartDynamicScanResponse",
+    "BlackoutDay": "opentext:BlackoutDay",
+    "day": {
+      "@id": "opentext:day",
+      "@type": "xsd:string"
+    },
+    "hourBlocks": {
+      "@id": "opentext:hourBlocks",
+      "@container": "@list"
+    },
+    "WebServiceManifestFile": "opentext:WebServiceManifestFile",
+    "webServiceFileType": {
+      "@id": "opentext:webServiceFileType",
+      "@type": "xsd:string"
+    },
+    "filename": {
+      "@id": "opentext:filename",
+      "@type": "xsd:string"
+    },
+    "dateCreated": {
+      "@id": "opentext:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "postmanFileType": {
+      "@id": "opentext:postmanFileType",
+      "@type": "xsd:string"
+    },
+    "BlackoutHour": "opentext:BlackoutHour",
+    "hour": {
+      "@id": "opentext:hour",
+      "@type": "xsd:integer"
+    },
+    "checked": {
+      "@id": "opentext:checked",
+      "@type": "xsd:boolean"
+    },
+    "StartDynamicScanRequest": "opentext:StartDynamicScanRequest",
+    "startDate": {
+      "@id": "opentext:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "isBundledAssessment": {
+      "@id": "opentext:isBundledAssessment",
+      "@type": "xsd:boolean"
+    },
+    "parentAssessmentTypeId": {
+      "@id": "opentext:parentAssessmentTypeId",
+      "@type": "xsd:integer"
+    },
+    "applyPreviousScanSettings": {
+      "@id": "opentext:applyPreviousScanSettings",
+      "@type": "xsd:boolean"
+    },
+    "scanMethodType": {
+      "@id": "opentext:scanMethodType",
+      "@type": "xsd:string"
+    },
+    "PutDynamicScanSetupResponse": "opentext:PutDynamicScanSetupResponse",
+    "GetOtherTwoFactorUser": "opentext:GetOtherTwoFactorUser",
+    "hasTotpConfigured": {
+      "@id": "opentext:hasTotpConfigured",
+      "@type": "xsd:boolean"
+    },
+    "ScanDocument": "opentext:ScanDocument",
+    "createdDate": {
+      "@id": "opentext:createdDate",
+      "@type": "xsd:string"
+    },
+    "ParseTotpQrResponse": "opentext:ParseTotpQrResponse",
+    "PutDynamicScanSetupRequest": "opentext:PutDynamicScanSetupRequest",
+    "PatchDynamicScanSetupManifestResponse": "opentext:PatchDynamicScanSetupManifestResponse",
+    "FortifyConnectApiNetworkListResponse": "opentext:FortifyConnectApiNetworkListResponse",
+    "FortifyConnectApiNetwork": "opentext:FortifyConnectApiNetwork",
+    "LookupItem": "opentext:LookupItem",
+    "text": {
+      "@id": "opentext:text",
+      "@type": "xsd:string"
+    },
+    "group": {
+      "@id": "opentext:group",
+      "@type": "xsd:string"
+    },
+    "LookupItemListResponse": "opentext:LookupItemListResponse",
+    "PutMobileScanSetupResponse": "opentext:PutMobileScanSetupResponse",
+    "PutMobileScanSetupRequest": "opentext:PutMobileScanSetupRequest",
+    "frameworkType": {
+      "@id": "opentext:frameworkType",
+      "@type": "xsd:string"
+    },
+    "userAccountsRequried": {
+      "@id": "opentext:userAccountsRequried",
+      "@type": "xsd:boolean"
+    },
+    "userAccounts": {
+      "@id": "opentext:userAccounts",
+      "@container": "@list"
+    },
+    "vpnRequired": {
+      "@id": "opentext:vpnRequired",
+      "@type": "xsd:boolean"
+    },
+    "vpnUserName": {
+      "@id": "opentext:vpnUserName",
+      "@type": "xsd:string"
+    },
+    "vpnPassword": {
+      "@id": "opentext:vpnPassword",
+      "@type": "xsd:string"
+    },
+    "hasMultiFactorAuthentication": {
+      "@id": "opentext:hasMultiFactorAuthentication",
+      "@type": "xsd:boolean"
+    },
+    "multiFactorAuthenticationNotes": {
+      "@id": "opentext:multiFactorAuthenticationNotes",
+      "@type": "xsd:string"
+    },
+    "intrusionDetectionSystem": {
+      "@id": "opentext:intrusionDetectionSystem",
+      "@type": "xsd:boolean"
+    },
+    "intrusionPreventionSystem": {
+      "@id": "opentext:intrusionPreventionSystem",
+      "@type": "xsd:boolean"
+    },
+    "webApplicationFirewall": {
+      "@id": "opentext:webApplicationFirewall",
+      "@type": "xsd:boolean"
+    },
+    "proxyServers": {
+      "@id": "opentext:proxyServers",
+      "@type": "xsd:boolean"
+    },
+    "loadBalancer": {
+      "@id": "opentext:loadBalancer",
+      "@type": "xsd:boolean"
+    },
+    "preAssessmentCall": {
+      "@id": "opentext:preAssessmentCall",
+      "@type": "xsd:boolean"
+    },
+    "auditPreferenceType": {
+      "@id": "opentext:auditPreferenceType",
+      "@type": "xsd:string"
+    },
+    "PostMobileScanResponse": "opentext:PostMobileScanResponse",
+    "MobileScanSetup": "opentext:MobileScanSetup",
+    "MobileScanUserAccount": "opentext:MobileScanUserAccount",
+    "username": {
+      "@id": "opentext:username",
+      "@type": "xsd:string"
+    },
+    "roleType": {
+      "@id": "opentext:roleType",
+      "@type": "xsd:string"
+    },
+    "oneTimePassword": {
+      "@id": "opentext:oneTimePassword",
+      "@type": "xsd:string"
+    },
+    "PostMultiFactorAuthorizationCodeRequest": "opentext:PostMultiFactorAuthorizationCodeRequest",
+    "multiFactorAuthorizationType": {
+      "@id": "opentext:multiFactorAuthorizationType",
+      "@type": "xsd:string"
+    },
+    "NotificationListResponse": "opentext:NotificationListResponse",
+    "MarkNotificaitonsAsReadRequest": "opentext:MarkNotificaitonsAsReadRequest",
+    "messageIds": {
+      "@id": "opentext:messageIds",
+      "@container": "@list"
+    },
+    "Notification": "opentext:Notification",
+    "messageId": {
+      "@id": "opentext:messageId",
+      "@type": "xsd:integer"
+    },
+    "subject": {
+      "@id": "opentext:subject",
+      "@type": "xsd:string"
+    },
+    "triggerType": {
+      "@id": "opentext:triggerType",
+      "@type": "xsd:string"
+    },
+    "triggerTypeId": {
+      "@id": "opentext:triggerTypeId",
+      "@type": "xsd:integer"
+    },
+    "read": {
+      "@id": "opentext:read",
+      "@type": "xsd:boolean"
+    },
+    "OpenSourceComponentRelease": "opentext:OpenSourceComponentRelease",
+    "OpenSourceComponentListResponse": "opentext:OpenSourceComponentListResponse",
+    "OpenSourceComponent": "opentext:OpenSourceComponent",
+    "componentHash": {
+      "@id": "opentext:componentHash",
+      "@type": "xsd:string"
+    },
+    "componentName": {
+      "@id": "opentext:componentName",
+      "@type": "xsd:string"
+    },
+    "componentVersionName": {
+      "@id": "opentext:componentVersionName",
+      "@type": "xsd:string"
+    },
+    "licenses": {
+      "@id": "opentext:licenses",
+      "@container": "@list"
+    },
+    "vulnerabilityCounts": {
+      "@id": "opentext:vulnerabilityCounts",
+      "@container": "@list"
+    },
+    "releases": {
+      "@id": "opentext:releases",
+      "@container": "@list"
+    },
+    "packageUrl": {
+      "@id": "opentext:packageUrl",
+      "@type": "xsd:string"
+    },
+    "OpenSourceComponentLicense": "opentext:OpenSourceComponentLicense",
+    "VulnerabilityCount": "opentext:VulnerabilityCount"
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "OpenText Cybersecurity API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects OpenText Cybersecurity's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-03) from openapi/opentext-cybersecurity-api-key-management-api-openapi.yml, openapi/opentext-cybersecurity-applications-api-openapi.yml, openapi/opentext-cybersecurity-attributes-api-openapi.yml.",
+  "dcterms:created": "2026-10-03",
+  "dcterms:source": [
+    "openapi/opentext-cybersecurity-api-key-management-api-openapi.yml",
+    "openapi/opentext-cybersecurity-applications-api-openapi.yml",
+    "openapi/opentext-cybersecurity-attributes-api-openapi.yml",
+    "openapi/opentext-cybersecurity-audittemplate-api-openapi.yml",
+    "openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml"
+  ]
+}

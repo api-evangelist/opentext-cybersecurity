@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-post-application-request-schema.json",
+  "title": "PostApplicationRequest",
+  "description": "Post Application Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/PostApplicationRequest",
+  "required": [
+    "applicationName",
+    "applicationType",
+    "releaseName",
+    "businessCriticalityType",
+    "sdlcStatusType"
+  ],
+  "type": "object",
+  "properties": {
+    "applicationName": {
+      "description": "The application title",
+      "type": "string"
+    },
+    "applicationDescription": {
+      "description": "Description of the application that will help you manage multiple applications",
+      "type": "string"
+    },
+    "applicationType": {
+      "description": "Indicates if the application is a mobile application",
+      "enum": [
+        "Web_Thick_Client",
+        "Mobile"
+      ],
+      "type": "string"
+    },
+    "releaseName": {
+      "description": "The release name",
+      "type": "string"
+    },
+    "releaseDescription": {
+      "description": "Description to add additional details that help describe the release",
+      "type": "string"
+    },
+    "emailList": {
+      "description": "List the email addresses of additional people who should be informed of activity related to this release. Separate multiple email addresses with a semicolon or comma",
+      "type": "string"
+    },
+    "ownerId": {
+      "format": "int32",
+      "description": "Select an Owner from the list of registered users in your tenant. The \"Owner\" receives all email notifications related to this application",
+      "type": "integer"
+    },
+    "attributes": {
+      "description": "Application attributes. This is an array of key/value objects. Example, [{\"Attribute 1\": \"value 1\"}, {\"Attribute 2\": \"value 2\"}, {\"Attribute 3\": \"value 3\"} ]",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ApplicationAttribute"
+      }
+    },
+    "businessCriticalityType": {
+      "description": "The business criticality id",
+      "enum": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "type": "string"
+    },
+    "sdlcStatusType": {
+      "description": "The SDLC status id",
+      "enum": [
+        "Production",
+        "QA",
+        "Development",
+        "Retired"
+      ],
+      "type": "string"
+    },
+    "hasMicroservices": {
+      "description": "Determines if this is a Microservices application",
+      "type": "boolean"
+    },
+    "microservices": {
+      "description": "A list of microservice names for all releases associated with this application",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "releaseMicroserviceName": {
+      "description": "The name of the Microservice to be associated with the newly created version",
+      "type": "string"
+    },
+    "userGroupIds": {
+      "description": "List of user group ids that have access to the application. Values can be obtained by calling GET /api/v3/user-management/user-groups",
+      "type": "array",
+      "items": {
+        "format": "int32",
+        "type": "integer"
+      }
+    }
+  },
+  "$defs": {
+    "ApplicationAttribute": {
+      "description": "Attribute",
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "description": "Id of the attribute",
+          "type": "integer"
+        },
+        "value": {
+          "description": "Value of the attribute",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

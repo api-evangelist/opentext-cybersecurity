@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-notification-list-response-schema.json",
+  "title": "NotificationListResponse",
+  "description": "Generic List Response",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-notifications-api-openapi.yml#/components/schemas/NotificationListResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "description": "The list of items",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Notification"
+      }
+    },
+    "totalCount": {
+      "format": "int32",
+      "description": "Total count of items",
+      "type": "integer"
+    },
+    "offset": {
+      "format": "int32",
+      "description": "Offset of the starting record. 0 indicates the first record.",
+      "type": "integer"
+    },
+    "limit": {
+      "format": "int32",
+      "description": "Maximum records to return.",
+      "type": "integer"
+    }
+  },
+  "$defs": {
+    "Notification": {
+      "description": "Notification",
+      "type": "object",
+      "properties": {
+        "messageId": {
+          "format": "int32",
+          "description": "The message id",
+          "type": "integer"
+        },
+        "subject": {
+          "description": "The subject",
+          "type": "string"
+        },
+        "message": {
+          "description": "The message",
+          "type": "string"
+        },
+        "triggerType": {
+          "description": "The NotificationTriggerType. Values can be obtained by calling GET /api/v3/lookup-items?type=NotificationTriggerTypes",
+          "type": "string"
+        },
+        "triggerTypeId": {
+          "format": "int32",
+          "description": "The NotificationTriggerType id. Values can be obtained by calling GET /api/v3/lookup-items?type=NotificationTriggerTypes",
+          "type": "integer"
+        },
+        "createdDate": {
+          "format": "date-time",
+          "description": "The created date",
+          "type": "string"
+        },
+        "read": {
+          "description": "Indicates if the message has been marked read",
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

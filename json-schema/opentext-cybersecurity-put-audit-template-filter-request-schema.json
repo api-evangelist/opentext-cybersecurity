@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-put-audit-template-filter-request-schema.json",
+  "title": "PutAuditTemplateFilterRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-audittemplate-api-openapi.yml#/components/schemas/PutAuditTemplateFilterRequest",
+  "required": [
+    "scanType",
+    "action"
+  ],
+  "type": "object",
+  "properties": {
+    "scanType": {
+      "description": "The scan type",
+      "enum": [
+        "Static",
+        "Dynamic",
+        "Mobile",
+        "Monitoring",
+        "Network",
+        "OpenSource",
+        "SASTAviator"
+      ],
+      "type": "string"
+    },
+    "scanTypeId": {
+      "format": "int32",
+      "description": "Scan Type Id. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanTypes",
+      "type": "integer"
+    },
+    "action": {
+      "$ref": "#/$defs/PutAuditTemplateAction",
+      "description": "The action"
+    },
+    "conditions": {
+      "description": "The conditions",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PutAuditTemplateCondition"
+      }
+    }
+  },
+  "$defs": {
+    "PutAuditTemplateAction": {
+      "description": "AuditTemplateAction",
+      "required": [
+        "actionType"
+      ],
+      "type": "object",
+      "properties": {
+        "actionType": {
+          "description": "The Action type",
+          "enum": [
+            "Suppress",
+            "SetSeverity"
+          ],
+          "type": "string"
+        },
+        "severity": {
+          "description": "Severity Needs to be set if the Action is Set Severity",
+          "enum": [
+            "Critical",
+            "High",
+            "Medium",
+            "Low"
+          ],
+          "type": "string"
+        },
+        "severityId": {
+          "format": "int32",
+          "description": "Severity Id",
+          "type": "integer"
+        },
+        "suppressedStatus": {
+          "type": "string"
+        }
+      }
+    },
+    "PutAuditTemplateCondition": {
+      "description": "AuditTemplateCondition",
+      "type": "object",
+      "properties": {
+        "conditionType": {
+          "description": "The condition type",
+          "enum": [
+            "Contains",
+            "DoesNotContain",
+            "Equals",
+            "DoesNotEqual",
+            "Regex"
+          ],
+          "type": "string"
+        },
+        "field": {
+          "description": "The field",
+          "type": "string"
+        },
+        "fieldValue": {
+          "description": "The field value",
+          "type": "string"
+        },
+        "operationType": {
+          "description": "The Operation type",
+          "enum": [
+            "And",
+            "Or"
+          ],
+          "type": "string"
+        }
+      }
+    }
+  }
+}

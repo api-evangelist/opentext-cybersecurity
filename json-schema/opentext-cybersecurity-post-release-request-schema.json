@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-post-release-request-schema.json",
+  "title": "PostReleaseRequest",
+  "description": "Post Release Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-releases-api-openapi.yml#/components/schemas/PostReleaseRequest",
+  "required": [
+    "applicationId",
+    "releaseName",
+    "sdlcStatusType"
+  ],
+  "type": "object",
+  "properties": {
+    "applicationId": {
+      "format": "int32",
+      "description": "The application id",
+      "type": "integer"
+    },
+    "releaseName": {
+      "description": "The release name",
+      "type": "string"
+    },
+    "releaseDescription": {
+      "description": "The release description",
+      "type": "string"
+    },
+    "copyState": {
+      "description": "Indicates if copy state is used",
+      "type": "boolean"
+    },
+    "copyStateReleaseId": {
+      "format": "int32",
+      "description": "The release id to use if CopyState is trueS",
+      "type": "integer"
+    },
+    "sdlcStatusType": {
+      "description": "The release SDLC status type",
+      "enum": [
+        "Production",
+        "QA",
+        "Development",
+        "Retired"
+      ],
+      "type": "string"
+    },
+    "microserviceId": {
+      "format": "int32",
+      "description": "The id of the Microservice to be associated with this version",
+      "type": "integer"
+    },
+    "attributes": {
+      "description": "Release attributes. This is an array of key/value objects. Example, [{\"Attribute 1\": \"value 1\"}, {\"Attribute 2\": \"value 2\"}, {\"Attribute 3\": \"value 3\"} ]",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ApplicationAttribute"
+      }
+    }
+  },
+  "$defs": {
+    "ApplicationAttribute": {
+      "description": "Attribute",
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "description": "Id of the attribute",
+          "type": "integer"
+        },
+        "value": {
+          "description": "Value of the attribute",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

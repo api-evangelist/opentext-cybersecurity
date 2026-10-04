@@ -1,0 +1,21 @@
+generated: '2026-10-03'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Api/GET-api-notifications-subscriptions-eventtypes
+sources:
+- https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Api/GET-api-notifications-subscriptions-eventtypes
+- https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Api/GET-api-notifications-subscriptions
+- https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Api/GET-api-notifications-subscriptions-subscriptionId
+- https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Api/GET-api-notifications-subscriptions-subscriptionId-fetch_position
+description: OpenText Cybersecurity provides webhook notifications for various event types.
+events:
+- event: Endpoint.FileDetection
+  description: Endpoint.FileDetection events are delivered via webhook.
+- event: WebThreatShield.UrlAction
+  description: WebThreatShield.UrlAction events are delivered via webhook.
+- event: CRSB.Backup
+  description: CRSB.Backup events are delivered via webhook.
+- event: CRSB.Restore
+  description: CRSB.Restore events are delivered via webhook.
+delivery: {}
+docs: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/Api/GET-api-notifications-subscriptions-eventtypes

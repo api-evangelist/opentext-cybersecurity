@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-get-audit-options-response-schema.json",
+  "title": "GetAuditOptionsResponse",
+  "description": "Get Audit Options Response",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-releases-api-openapi.yml#/components/schemas/GetAuditOptionsResponse",
+  "type": "object",
+  "properties": {
+    "releaseId": {
+      "format": "int32",
+      "description": "The release id",
+      "type": "integer"
+    },
+    "auditProcessing": {
+      "description": "Indicates if an audit is current processing",
+      "type": "boolean"
+    },
+    "canAudit": {
+      "description": "Indicates if the user can audit",
+      "type": "boolean"
+    },
+    "canChallenge": {
+      "description": "Indicates if the user can challenge",
+      "type": "boolean"
+    },
+    "canEdit": {
+      "description": "Indicates if the user can edit",
+      "type": "boolean"
+    },
+    "inAuditMode": {
+      "description": "Indicates if the release is in audit mode",
+      "type": "boolean"
+    }
+  }
+}

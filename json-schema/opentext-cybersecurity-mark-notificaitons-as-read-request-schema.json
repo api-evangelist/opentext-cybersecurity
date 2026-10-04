@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-mark-notificaitons-as-read-request-schema.json",
+  "title": "MarkNotificaitonsAsReadRequest",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-notifications-api-openapi.yml#/components/schemas/MarkNotificaitonsAsReadRequest",
+  "required": [
+    "messageIds"
+  ],
+  "type": "object",
+  "properties": {
+    "messageIds": {
+      "description": "The list of message ids to mark as read",
+      "type": "array",
+      "items": {
+        "format": "int32",
+        "type": "integer"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-put-user-group-request-schema.json",
+  "title": "PutUserGroupRequest",
+  "description": "Put Group Request",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-user-management-api-openapi.yml#/components/schemas/PutUserGroupRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "The group name",
+      "type": "string"
+    },
+    "removeAllUsers": {
+      "description": "Optional - if true remove all users from the group. Default is false",
+      "type": "boolean"
+    },
+    "addAllUsers": {
+      "description": "Optional - if true add all tenant users to the group. Default is false",
+      "type": "boolean"
+    }
+  }
+}

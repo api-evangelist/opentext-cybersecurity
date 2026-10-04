@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-api-key-schema.json",
+  "title": "ApiKey",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-api-key-management-api-openapi.yml#/components/schemas/ApiKey",
+  "type": "object",
+  "properties": {
+    "apiKeyId": {
+      "format": "int32",
+      "description": "API Key Id",
+      "type": "integer"
+    },
+    "name": {
+      "description": "API Key Name",
+      "type": "string"
+    },
+    "isAuthorized": {
+      "description": "Indicates whether or not the api key is authorized",
+      "type": "boolean"
+    },
+    "apiKey": {
+      "description": "API Key",
+      "type": "string"
+    },
+    "grantType": {
+      "description": "Authorization Grant Type",
+      "enum": [
+        "Authorization_Code",
+        "Implicit",
+        "Resource_Owner_Password_Credentials",
+        "Client_Credentials"
+      ],
+      "type": "string"
+    },
+    "role": {
+      "description": "The API key role",
+      "type": "string"
+    },
+    "lastLoginIpAddress": {
+      "description": "The last Successful Login IpAddress",
+      "type": "string"
+    },
+    "lastLoginDate": {
+      "format": "date-time",
+      "description": "The last Successful Login Date",
+      "type": "string"
+    }
+  }
+}

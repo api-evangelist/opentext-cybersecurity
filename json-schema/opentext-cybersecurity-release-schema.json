@@ -1,0 +1,288 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-release-schema.json",
+  "title": "Release",
+  "description": "Release",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-releases-api-openapi.yml#/components/schemas/Release",
+  "type": "object",
+  "properties": {
+    "releaseId": {
+      "format": "int32",
+      "description": "Release identifier",
+      "type": "integer"
+    },
+    "releaseName": {
+      "description": "Name of the release",
+      "type": "string"
+    },
+    "releaseDescription": {
+      "description": "Description of the release",
+      "type": "string"
+    },
+    "suspended": {
+      "description": "Indicates whether or not the release is suspended",
+      "type": "boolean"
+    },
+    "releaseCreatedDate": {
+      "format": "date-time",
+      "description": "The date the release was created",
+      "type": "string"
+    },
+    "microserviceName": {
+      "description": "Name of the microservice",
+      "type": "string"
+    },
+    "microserviceId": {
+      "format": "int32",
+      "description": "ID of the microservice",
+      "type": "integer"
+    },
+    "applicationId": {
+      "format": "int32",
+      "description": "Application id",
+      "type": "integer"
+    },
+    "applicationName": {
+      "description": "Name of the application",
+      "type": "string"
+    },
+    "currentAnalysisStatusTypeId": {
+      "format": "int32",
+      "description": "Current ananlysis status type id. Values can be obtained by calling GET /api/v3/lookup-items?type=AnalysisStatusTypes",
+      "type": "integer"
+    },
+    "currentAnalysisStatusType": {
+      "description": "Current ananlysis status type. Values can be obtained by calling GET /api/v3/lookup-items?type=AnalysisStatusTypes",
+      "type": "string"
+    },
+    "rating": {
+      "format": "int32",
+      "description": "The current star rating (1-5)",
+      "type": "integer"
+    },
+    "critical": {
+      "format": "int32",
+      "description": "Number of critical vulnerabilities",
+      "type": "integer"
+    },
+    "high": {
+      "format": "int32",
+      "description": "Number of high vulnerabilities",
+      "type": "integer"
+    },
+    "medium": {
+      "format": "int32",
+      "description": "Number of medium vulnerabilities",
+      "type": "integer"
+    },
+    "low": {
+      "format": "int32",
+      "description": "Number of low vulnerabilities",
+      "type": "integer"
+    },
+    "staticCritical": {
+      "format": "int32",
+      "description": "Number of critical vulnerabilities from static scans",
+      "type": "integer"
+    },
+    "staticHigh": {
+      "format": "int32",
+      "description": "Number of high vulnerabilities from static scans",
+      "type": "integer"
+    },
+    "staticMedium": {
+      "format": "int32",
+      "description": "Number of medium vulnerabilities from static scans",
+      "type": "integer"
+    },
+    "staticLow": {
+      "format": "int32",
+      "description": "Number of low vulnerabilities from static scans",
+      "type": "integer"
+    },
+    "dynamicCritical": {
+      "format": "int32",
+      "description": "Number of critical vulnerabilities from dynamic scans",
+      "type": "integer"
+    },
+    "dynamicHigh": {
+      "format": "int32",
+      "description": "Number of high vulnerabilities from dynamic scans",
+      "type": "integer"
+    },
+    "dynamicMedium": {
+      "format": "int32",
+      "description": "Number of medium vulnerabilities from dynamic scans",
+      "type": "integer"
+    },
+    "dynamicLow": {
+      "format": "int32",
+      "description": "Number of low vulnerabilities from dynamic scans",
+      "type": "integer"
+    },
+    "mobileCritical": {
+      "format": "int32",
+      "description": "Number of critical vulnerabilities from mobile scans",
+      "type": "integer"
+    },
+    "mobileHigh": {
+      "format": "int32",
+      "description": "Number of high vulnerabilities from mobile scans",
+      "type": "integer"
+    },
+    "mobileMedium": {
+      "format": "int32",
+      "description": "Number of medium vulnerabilities from mobile scans",
+      "type": "integer"
+    },
+    "mobileLow": {
+      "format": "int32",
+      "description": "Number of low vulnerabilities from mobile scans",
+      "type": "integer"
+    },
+    "openSourceCritical": {
+      "format": "int32",
+      "description": "Number of critical vulnerabilities for open source scans.",
+      "type": "integer"
+    },
+    "openSourceHigh": {
+      "format": "int32",
+      "description": "Number of high vulnerabilities for open source scans.",
+      "type": "integer"
+    },
+    "openSourceMedium": {
+      "format": "int32",
+      "description": "Number of medium vulnerabilities for open source scans.",
+      "type": "integer"
+    },
+    "openSourceLow": {
+      "format": "int32",
+      "description": "Number of low vulnerabilities for open source scans.",
+      "type": "integer"
+    },
+    "currentStaticScanId": {
+      "format": "int32",
+      "description": "Current static scan identifier",
+      "type": "integer"
+    },
+    "currentDynamicScanId": {
+      "format": "int32",
+      "description": "Current dynamic scan identifier",
+      "type": "integer"
+    },
+    "currentMobileScanId": {
+      "format": "int32",
+      "description": "Current Mobile Scan Id",
+      "type": "integer"
+    },
+    "staticAnalysisStatusType": {
+      "description": "Current status of the static scan on this release (null if no static scan). Values can be obtained by calling GET /api/v3/lookup-items?type=AnalysisStatusTypes",
+      "type": "string"
+    },
+    "dynamicAnalysisStatusType": {
+      "description": "Current status of the dynamic scan on this release (null if no dynamic scan). Values can be obtained by calling GET /api/v3/lookup-items?type=AnalysisStatusTypes",
+      "type": "string"
+    },
+    "mobileAnalysisStatusType": {
+      "description": "Current status of the mobile scan on this release (null if no mobile scan). Values can be obtained by calling GET /api/v3/lookup-items?type=AnalysisStatusTypes",
+      "type": "string"
+    },
+    "staticAnalysisStatusTypeId": {
+      "format": "int32",
+      "description": "Current status of the static scan as a numberic identifier. Values can be obtained by calling GET /api/v3/lookup-items?type=AnalysisStatusTypes",
+      "type": "integer"
+    },
+    "dynamicAnalysisStatusTypeId": {
+      "format": "int32",
+      "description": "Current status of the dynamic scan as a numberic identifier. Values can be obtained by calling GET /api/v3/lookup-items?type=AnalysisStatusTypes",
+      "type": "integer"
+    },
+    "mobileAnalysisStatusTypeId": {
+      "format": "int32",
+      "description": "Current status of the mobile scan as a numberic identifier. Values can be obtained by calling GET /api/v3/lookup-items?type=AnalysisStatusTypes",
+      "type": "integer"
+    },
+    "staticScanDate": {
+      "format": "date-time",
+      "description": "Static scan completed date",
+      "type": "string"
+    },
+    "dynamicScanDate": {
+      "format": "date-time",
+      "description": "Dynamic scan completed date",
+      "type": "string"
+    },
+    "mobileScanDate": {
+      "format": "date-time",
+      "description": "Mobile scan completed date",
+      "type": "string"
+    },
+    "issueCount": {
+      "format": "int32",
+      "description": "Total number of issues",
+      "type": "integer"
+    },
+    "isPassed": {
+      "description": "Pass/Failed status",
+      "type": "boolean"
+    },
+    "passFailReasonTypeId": {
+      "format": "int32",
+      "description": "Reason for the scan pass/fail id. Values can be obtained by calling GET /api/v3/lookup-items?type=PassFailReasonTypes",
+      "type": "integer"
+    },
+    "passFailReasonType": {
+      "description": "Reason for the scan pass/fail. Values can be obtained by calling GET /api/v3/lookup-items?type=PassFailReasonTypes",
+      "type": "string"
+    },
+    "sdlcStatusTypeId": {
+      "format": "int32",
+      "description": "SDLC Status Type Id. Values can be obtained by calling GET /api/v3/lookup-items?type=SDLCStatusTypes",
+      "type": "integer"
+    },
+    "sdlcStatusType": {
+      "description": "SDLC Status Type. Values can be obtained by calling GET /api/v3/lookup-items?type=SDLCStatusTypes",
+      "type": "string"
+    },
+    "ownerId": {
+      "format": "int32",
+      "description": "Owner Id",
+      "type": "integer"
+    },
+    "IsDebrickedScanEnabled": {
+      "description": "Is Debricked Scan Enabled",
+      "type": "boolean"
+    },
+    "attributes": {
+      "description": "Release attributes",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ApplicationAttributeExtended"
+      }
+    }
+  },
+  "$defs": {
+    "ApplicationAttributeExtended": {
+      "description": "Application Attribute Extended",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the attribute",
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "description": "Id of the attribute",
+          "type": "integer"
+        },
+        "value": {
+          "description": "Value of the attribute",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-polling-scan-summary-schema.json",
+  "title": "PollingScanSummary",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-releases-api-openapi.yml#/components/schemas/PollingScanSummary",
+  "type": "object",
+  "properties": {
+    "ScanId": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "OpenSourceScanId": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "TenantId": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "AnalysisStatusId": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "OpenSourceStatusId": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "QueuePositionWithinApplication": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "AnalysisStatusTypeValue": {
+      "type": "string"
+    },
+    "AnalysisStatusReasonId": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "AnalysisStatusReason": {
+      "type": "string"
+    },
+    "AnalysisStatusReasonNotes": {
+      "type": "string"
+    },
+    "IssueCountCritical": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "IssueCountHigh": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "IssueCountMedium": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "IssueCountLow": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "PassFailStatus": {
+      "type": "boolean"
+    },
+    "PassFailReasonType": {
+      "type": "string"
+    },
+    "PauseDetails": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ScanPauseDetailPolling"
+      }
+    },
+    "ScanType": {
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "$defs": {
+    "ScanPauseDetailPolling": {
+      "type": "object",
+      "properties": {
+        "Reason": {
+          "type": "string"
+        },
+        "Notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

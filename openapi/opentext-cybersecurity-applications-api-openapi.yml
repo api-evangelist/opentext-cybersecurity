@@ -1429,50 +1429,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    AuditTemplateCondition:
-      type: object
-      properties:
-        field:
-          type: string
-        conditionType:
-          type: string
-        fieldValue:
-          type: string
-        operationType:
-          type: string
-    GetApplicationUserGroupsResponse:
-      description: Get Application User Groups Response
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          description: The application id
-          type: integer
-        userGroups:
-          description: A list of user groups that have access to the application
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationUserGroup'
-    Microservice:
-      description: Microservice
-      type: object
-      properties:
-        microserviceId:
-          format: int32
-          description: The microservice id
-          type: integer
-        microserviceName:
-          description: The microservice name
-          type: string
-        releaseId:
-          format: int32
-          description: The associated release for this microservice, if one exists
-          type: integer
-        attributes:
-          description: 'Microservice attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationAttributeExtended'
     ApplicationUserPermissions:
       description: Application User Permissions
       type: object
@@ -1510,72 +1466,51 @@ components:
         downloadFPR:
           description: Indicates if the user can download the FPR
           type: boolean
-    AuditTemplateAction:
+    ScanPauseDetail:
+      description: Scan Pause Details
       type: object
       properties:
-        actionType:
+        pausedOn:
+          format: date-time
+          description: The scan paused date/time.
           type: string
-        severity:
+        reason:
+          description: The reason the scan was paused.
           type: string
-        severityId:
-          format: int32
-          type: integer
-        suppressedStatus:
+        notes:
+          description: Optional notes regarding the scan paused.
           type: string
-    ApplicationUserListResponse:
-      description: Generic List Response
+    Error:
+      description: Error
       type: object
       properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationUser'
-        totalCount:
+        errorCode:
           format: int32
-          description: Total count of items
+          description: The error code
           type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    ApplicationUser:
-      description: Application User
+        message:
+          description: The error message
+          type: string
+    FieldFilterValue:
+      description: Field Filter Value
       type: object
       properties:
-        userId:
+        value:
+          description: The value property
+          type: string
+        count:
           format: int32
-          description: The user id
+          description: Count of items in the filter
           type: integer
-        firstName:
-          description: The user first name
-          type: string
-        lastName:
-          description: The user last name
-          type: string
-        emailId:
-          description: The user email id
-          type: string
-        roleId:
-          format: int32
-          description: The user role id
-          type: integer
-        roleName:
-          description: The user role name
-          type: string
-        accessMethod:
-          description: The user access method
-          type: string
-    PutApplicationResponse:
-      description: Put Application Response
+    AuditTemplateResponse:
       type: object
       properties:
+        applicationId:
+          format: int32
+          description: The id of the application that was created
+          type: integer
         success:
-          description: Indicates if the application was updated
+          description: Indicates if the application was created
           type: boolean
         errors:
           description: A list of errors encountered
@@ -1594,445 +1529,6 @@ components:
           type: array
           items:
             type: string
-    AuditTemplateResponse:
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          description: The id of the application that was created
-          type: integer
-        success:
-          description: Indicates if the application was created
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
-    MicroserviceListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/Microservice'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    PostApplicationResponse:
-      description: Post Application Response
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          description: The id of the application that was created
-          type: integer
-        releaseId:
-          format: int32
-          type: integer
-        microserviceId:
-          format: int32
-          type: integer
-        success:
-          description: Indicates if the application was created
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
-    ApplicationAttribute:
-      description: Attribute
-      type: object
-      properties:
-        id:
-          format: int32
-          description: Id of the attribute
-          type: integer
-        value:
-          description: Value of the attribute
-          type: string
-    PostMicroserviceResponse:
-      description: Post Microservice Response
-      type: object
-      properties:
-        microserviceId:
-          format: int32
-          description: The id of the application that was created
-          type: integer
-        success:
-          description: Indicates if the item was created
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
-    GetAutoReportResponse:
-      description: Get Auto Report Response
-      type: object
-      properties:
-        staticScanReportId:
-          format: int32
-          description: The report id for static scans
-          type: integer
-        staticScanReportName:
-          description: The report name for static scans
-          type: string
-        dynamicScanReportId:
-          format: int32
-          description: The report id for dynamic scans
-          type: integer
-        dynamicScanReportName:
-          description: The report name for dynamic scans
-          type: string
-    PostAutoReportRequest:
-      description: Post Auto Report Request
-      required:
-      - emailReport
-      - reportFormat
-      type: object
-      properties:
-        staticScanReportId:
-          format: int32
-          description: The report id used for Static Scans
-          type: integer
-        dynamicScanReportId:
-          format: int32
-          description: The report id used for Dynamic Scans
-          type: integer
-        emailReport:
-          description: Enable/Disable email reporting
-          type: boolean
-        reportFormat:
-          description: The report format
-          enum:
-          - Pdf
-          - Html
-          type: string
-        emailNotificationList:
-          description: List of emails separated by semicolon
-          type: string
-        projectSDLCStatusTypes:
-          description: SDLC Status IDs
-          type: array
-          items:
-            enum:
-            - Production
-            - QA
-            - Development
-            - Retired
-            type: string
-    PutAuditTemplateFilterRequest:
-      required:
-      - scanType
-      - action
-      type: object
-      properties:
-        scanType:
-          description: The scan type
-          enum:
-          - Static
-          - Dynamic
-          - Mobile
-          - Monitoring
-          - Network
-          - OpenSource
-          - SASTAviator
-          type: string
-        scanTypeId:
-          format: int32
-          description: Scan Type Id. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanTypes
-          type: integer
-        action:
-          $ref: '#/components/schemas/PutAuditTemplateAction'
-          description: The action
-        conditions:
-          description: The conditions
-          type: array
-          items:
-            $ref: '#/components/schemas/PutAuditTemplateCondition'
-    ApplicationUserGroup:
-      description: Application User
-      type: object
-      properties:
-        userGroupId:
-          format: int32
-          description: The group id
-          type: integer
-        userGroupName:
-          description: The group name
-          type: string
-    GetApplicationUsersResponse:
-      description: Get Application Users Response
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          description: The application id
-          type: integer
-        users:
-          description: A list of users that have access to the application
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationUser'
-    FieldFilterValue:
-      description: Field Filter Value
-      type: object
-      properties:
-        value:
-          description: The value property
-          type: string
-        count:
-          format: int32
-          description: Count of items in the filter
-          type: integer
-    PutApplicationRequest:
-      description: Put Application Request
-      required:
-      - applicationName
-      - businessCriticalityType
-      type: object
-      properties:
-        applicationName:
-          description: The application title
-          type: string
-        applicationDescription:
-          description: Description of the application that will help you manage multiple applications
-          type: string
-        emailList:
-          description: List the email addresses of additional people who should be informed of activity related to this release. Separate multiple email addresses with a semicolon or comma
-          type: string
-        attributes:
-          description: 'Application attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationAttribute'
-        businessCriticalityType:
-          description: The business criticality type
-          enum:
-          - High
-          - Medium
-          - Low
-          type: string
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
-    ScanListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/Scan'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    ScanPauseDetail:
-      description: Scan Pause Details
-      type: object
-      properties:
-        pausedOn:
-          format: date-time
-          description: The scan paused date/time.
-          type: string
-        reason:
-          description: The reason the scan was paused.
-          type: string
-        notes:
-          description: Optional notes regarding the scan paused.
-          type: string
-    ApplicationListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
-        message:
-          description: The error message
-          type: string
-    PostApplicationRequest:
-      description: Post Application Request
-      required:
-      - applicationName
-      - applicationType
-      - releaseName
-      - businessCriticalityType
-      - sdlcStatusType
-      type: object
-      properties:
-        applicationName:
-          description: The application title
-          type: string
-        applicationDescription:
-          description: Description of the application that will help you manage multiple applications
-          type: string
-        applicationType:
-          description: Indicates if the application is a mobile application
-          enum:
-          - Web_Thick_Client
-          - Mobile
-          type: string
-        releaseName:
-          description: The release name
-          type: string
-        releaseDescription:
-          description: Description to add additional details that help describe the release
-          type: string
-        emailList:
-          description: List the email addresses of additional people who should be informed of activity related to this release. Separate multiple email addresses with a semicolon or comma
-          type: string
-        ownerId:
-          format: int32
-          description: Select an Owner from the list of registered users in your tenant. The "Owner" receives all email notifications related to this application
-          type: integer
-        attributes:
-          description: 'Application attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationAttribute'
-        businessCriticalityType:
-          description: The business criticality id
-          enum:
-          - High
-          - Medium
-          - Low
-          type: string
-        sdlcStatusType:
-          description: The SDLC status id
-          enum:
-          - Production
-          - QA
-          - Development
-          - Retired
-          type: string
-        hasMicroservices:
-          description: Determines if this is a Microservices application
-          type: boolean
-        microservices:
-          description: A list of microservice names for all releases associated with this application
-          type: array
-          items:
-            type: string
-        releaseMicroserviceName:
-          description: The name of the Microservice to be associated with the newly created version
-          type: string
-        userGroupIds:
-          description: List of user group ids that have access to the application. Values can be obtained by calling GET /api/v3/user-management/user-groups
-          type: array
-          items:
-            format: int32
-            type: integer
-    VulnerabilityDTOLight:
-      type: object
-      properties:
-        id:
-          format: int32
-          description: Id
-          type: integer
-        vulnId:
-          description: Vulnerability id
-          type: string
-        releaseId:
-          format: int32
-          description: Release id
-          type: integer
-        releaseName:
-          description: Release Name
-          type: string
-    ReleaseListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/Release'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    AuditTemplateListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/AuditTemplate'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
     ApplicationIssueCountListResponse:
       description: Generic List Response
       type: object
@@ -2054,115 +1550,17 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
-    PostMicroserviceRequest:
-      description: Post Microservice Request
+    ApplicationUserGroup:
+      description: Application User
       type: object
       properties:
-        microserviceName:
-          description: The microservice name
-          type: string
-        attributes:
-          description: 'Microservice attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationAttribute'
-    ApplicationAttributeExtended:
-      description: Application Attribute Extended
-      type: object
-      properties:
-        name:
-          description: Name of the attribute
-          type: string
-        id:
+        userGroupId:
           format: int32
-          description: Id of the attribute
+          description: The group id
           type: integer
-        value:
-          description: Value of the attribute
+        userGroupName:
+          description: The group name
           type: string
-    ApplicationBugTracker:
-      description: Application Bug Tracker Settings
-      type: object
-      properties:
-        bugTrackerTypeId:
-          format: int32
-          description: The Bug Tracker Type Id
-          type: integer
-        bugTrackerType:
-          description: The Bug Tracker Type name
-          type: string
-        bugTrackerUrl:
-          description: The Bug Tracker Url
-          type: string
-        enabled:
-          description: Whether the Bug Tracker is enabled
-          type: boolean
-        autoClose:
-          description: Whether to auto-close bug when the issue is fix-validated
-          type: boolean
-        levelOneProjectName:
-          description: The Bug Tracker's Domain/Product
-          type: string
-        levelTwoProjectName:
-          description: The Bug Tracker' Component
-          type: string
-    AuditTemplate:
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          type: integer
-        scanType:
-          type: string
-        scanTypeId:
-          format: int32
-          type: integer
-        conditions:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuditTemplateCondition'
-        action:
-          $ref: '#/components/schemas/AuditTemplateAction'
-    ApplicationIssueCount:
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          description: The application id
-          type: integer
-        applicationName:
-          description: The name of the application
-          type: string
-        applicationDescription:
-          description: Description of the application that will help you manage multiple applications
-          type: string
-        applicationCreatedDate:
-          format: date-time
-          description: The date the application was created
-          type: string
-        businessCriticalityTypeId:
-          format: int32
-          description: The business criticality type id. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
-          type: integer
-        businessCriticalityType:
-          description: The business criticality type name. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
-          type: string
-        critical:
-          format: int32
-          description: The business criticality type id. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
-          type: integer
-        high:
-          format: int32
-          description: The business criticality type id. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
-          type: integer
-        medium:
-          format: int32
-          description: The business criticality type id. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
-          type: integer
-        low:
-          format: int32
-          description: The business criticality type id. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
-          type: integer
     Scan:
       description: Scan
       type: object
@@ -2294,53 +1692,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApplicationAttributeExtended'
-    PutAuditTemplateAction:
-      description: AuditTemplateAction
-      required:
-      - actionType
-      type: object
-      properties:
-        actionType:
-          description: The Action type
-          enum:
-          - Suppress
-          - SetSeverity
-          type: string
-        severity:
-          description: Severity Needs to be set if the Action is Set Severity
-          enum:
-          - Critical
-          - High
-          - Medium
-          - Low
-          type: string
-        severityId:
-          format: int32
-          description: Severity Id
-          type: integer
-        suppressedStatus:
-          type: string
-    GetVulnerabilitiesResponseVulnerabilityDTOLight:
-      description: Get Vulnerabilities Response
+    AuditTemplateListResponse:
+      description: Generic List Response
       type: object
       properties:
         items:
           description: The list of items
           type: array
           items:
-            $ref: '#/components/schemas/VulnerabilityDTOLight'
-        filters:
-          description: The list of filters
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldFilter'
+            $ref: '#/components/schemas/AuditTemplate'
         totalCount:
           format: int32
-          description: The total count of items
+          description: Total count of items
           type: integer
-        isRepositoryUpdating:
-          description: Indicates if the repository is being updated
-          type: boolean
         offset:
           format: int32
           description: Offset of the starting record. 0 indicates the first record.
@@ -2349,43 +1713,49 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
-    PutAuditTemplateCondition:
-      description: AuditTemplateCondition
+    Application:
+      description: Application
       type: object
       properties:
-        conditionType:
-          description: The condition type
-          enum:
-          - Contains
-          - DoesNotContain
-          - Equals
-          - DoesNotEqual
-          - Regex
+        applicationId:
+          format: int32
+          description: The application id
+          type: integer
+        applicationName:
+          description: The name of the application
           type: string
-        field:
-          description: The field
+        applicationDescription:
+          description: Description of the application that will help you manage multiple applications
           type: string
-        fieldValue:
-          description: The field value
+        applicationCreatedDate:
+          format: date-time
+          description: The date the application was created
           type: string
-        operationType:
-          description: The Operation type
-          enum:
-          - And
-          - Or
+        businessCriticalityTypeId:
+          format: int32
+          description: The business criticality type id. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
+          type: integer
+        businessCriticalityType:
+          description: The business criticality type name. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
           type: string
-    PostAutoReportResponse:
-      description: Post Auto Report Response
-      type: object
-      properties:
-        success:
-          description: Indicates if the auto report was created
+        emailList:
+          description: List the email addresses of additional people who should be informed of activity related to this release
+          type: string
+        applicationTypeId:
+          format: int32
+          description: The application type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ApplicationTypes
+          type: integer
+        applicationType:
+          description: The application type name. Values can be obtained by calling GET /api/v3/lookup-items?type=ApplicationTypes
+          type: string
+        hasMicroservices:
+          description: Determines if the application has microservices
           type: boolean
-        errors:
-          description: A list of errors encountered
+        attributes:
+          description: Application attributes
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/ApplicationAttributeExtended'
     Release:
       description: Release
       type: object
@@ -2590,23 +1960,180 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApplicationAttributeExtended'
-    FieldFilter:
-      description: Field Filter
+    PostApplicationRequest:
+      description: Post Application Request
+      required:
+      - applicationName
+      - applicationType
+      - releaseName
+      - businessCriticalityType
+      - sdlcStatusType
       type: object
       properties:
-        fieldName:
-          description: The field name
+        applicationName:
+          description: The application title
           type: string
-        fieldFilterValues:
-          description: List of field filter values
+        applicationDescription:
+          description: Description of the application that will help you manage multiple applications
+          type: string
+        applicationType:
+          description: Indicates if the application is a mobile application
+          enum:
+          - Web_Thick_Client
+          - Mobile
+          type: string
+        releaseName:
+          description: The release name
+          type: string
+        releaseDescription:
+          description: Description to add additional details that help describe the release
+          type: string
+        emailList:
+          description: List the email addresses of additional people who should be informed of activity related to this release. Separate multiple email addresses with a semicolon or comma
+          type: string
+        ownerId:
+          format: int32
+          description: Select an Owner from the list of registered users in your tenant. The "Owner" receives all email notifications related to this application
+          type: integer
+        attributes:
+          description: 'Application attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
           type: array
           items:
-            $ref: '#/components/schemas/FieldFilterValue'
-        displayName:
-          description: The display name
+            $ref: '#/components/schemas/ApplicationAttribute'
+        businessCriticalityType:
+          description: The business criticality id
+          enum:
+          - High
+          - Medium
+          - Low
           type: string
-    Application:
-      description: Application
+        sdlcStatusType:
+          description: The SDLC status id
+          enum:
+          - Production
+          - QA
+          - Development
+          - Retired
+          type: string
+        hasMicroservices:
+          description: Determines if this is a Microservices application
+          type: boolean
+        microservices:
+          description: A list of microservice names for all releases associated with this application
+          type: array
+          items:
+            type: string
+        releaseMicroserviceName:
+          description: The name of the Microservice to be associated with the newly created version
+          type: string
+        userGroupIds:
+          description: List of user group ids that have access to the application. Values can be obtained by calling GET /api/v3/user-management/user-groups
+          type: array
+          items:
+            format: int32
+            type: integer
+    PutApplicationResponse:
+      description: Put Application Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the application was updated
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    PutAuditTemplateAction:
+      description: AuditTemplateAction
+      required:
+      - actionType
+      type: object
+      properties:
+        actionType:
+          description: The Action type
+          enum:
+          - Suppress
+          - SetSeverity
+          type: string
+        severity:
+          description: Severity Needs to be set if the Action is Set Severity
+          enum:
+          - Critical
+          - High
+          - Medium
+          - Low
+          type: string
+        severityId:
+          format: int32
+          description: Severity Id
+          type: integer
+        suppressedStatus:
+          type: string
+    VulnerabilityDTOLight:
+      type: object
+      properties:
+        id:
+          format: int32
+          description: Id
+          type: integer
+        vulnId:
+          description: Vulnerability id
+          type: string
+        releaseId:
+          format: int32
+          description: Release id
+          type: integer
+        releaseName:
+          description: Release Name
+          type: string
+    ApplicationUserListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationUser'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    PutAuditTemplateCondition:
+      description: AuditTemplateCondition
+      type: object
+      properties:
+        conditionType:
+          description: The condition type
+          enum:
+          - Contains
+          - DoesNotContain
+          - Equals
+          - DoesNotEqual
+          - Regex
+          type: string
+        field:
+          description: The field
+          type: string
+        fieldValue:
+          description: The field value
+          type: string
+        operationType:
+          description: The Operation type
+          enum:
+          - And
+          - Or
+          type: string
+    ApplicationIssueCount:
       type: object
       properties:
         applicationId:
@@ -2630,21 +2157,494 @@ components:
         businessCriticalityType:
           description: The business criticality type name. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
           type: string
-        emailList:
-          description: List the email addresses of additional people who should be informed of activity related to this release
-          type: string
-        applicationTypeId:
+        critical:
           format: int32
-          description: The application type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ApplicationTypes
+          description: The business criticality type id. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
           type: integer
-        applicationType:
-          description: The application type name. Values can be obtained by calling GET /api/v3/lookup-items?type=ApplicationTypes
-          type: string
-        hasMicroservices:
-          description: Determines if the application has microservices
+        high:
+          format: int32
+          description: The business criticality type id. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
+          type: integer
+        medium:
+          format: int32
+          description: The business criticality type id. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
+          type: integer
+        low:
+          format: int32
+          description: The business criticality type id. Values can be obtained by calling GET /api/v3/lookup-items?type=BusinessCriticalityTypes
+          type: integer
+    GetVulnerabilitiesResponseVulnerabilityDTOLight:
+      description: Get Vulnerabilities Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/VulnerabilityDTOLight'
+        filters:
+          description: The list of filters
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldFilter'
+        totalCount:
+          format: int32
+          description: The total count of items
+          type: integer
+        isRepositoryUpdating:
+          description: Indicates if the repository is being updated
           type: boolean
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    FieldFilter:
+      description: Field Filter
+      type: object
+      properties:
+        fieldName:
+          description: The field name
+          type: string
+        fieldFilterValues:
+          description: List of field filter values
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldFilterValue'
+        displayName:
+          description: The display name
+          type: string
+    PutApplicationRequest:
+      description: Put Application Request
+      required:
+      - applicationName
+      - businessCriticalityType
+      type: object
+      properties:
+        applicationName:
+          description: The application title
+          type: string
+        applicationDescription:
+          description: Description of the application that will help you manage multiple applications
+          type: string
+        emailList:
+          description: List the email addresses of additional people who should be informed of activity related to this release. Separate multiple email addresses with a semicolon or comma
+          type: string
         attributes:
-          description: Application attributes
+          description: 'Application attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+        businessCriticalityType:
+          description: The business criticality type
+          enum:
+          - High
+          - Medium
+          - Low
+          type: string
+    MicroserviceListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/Microservice'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    GetApplicationUsersResponse:
+      description: Get Application Users Response
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          description: The application id
+          type: integer
+        users:
+          description: A list of users that have access to the application
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationUser'
+    AuditTemplateAction:
+      type: object
+      properties:
+        actionType:
+          type: string
+        severity:
+          type: string
+        severityId:
+          format: int32
+          type: integer
+        suppressedStatus:
+          type: string
+    PutAuditTemplateFilterRequest:
+      required:
+      - scanType
+      - action
+      type: object
+      properties:
+        scanType:
+          description: The scan type
+          enum:
+          - Static
+          - Dynamic
+          - Mobile
+          - Monitoring
+          - Network
+          - OpenSource
+          - SASTAviator
+          type: string
+        scanTypeId:
+          format: int32
+          description: Scan Type Id. Values can be obtained by calling GET /api/v3/lookup-items?type=ScanTypes
+          type: integer
+        action:
+          $ref: '#/components/schemas/PutAuditTemplateAction'
+          description: The action
+        conditions:
+          description: The conditions
+          type: array
+          items:
+            $ref: '#/components/schemas/PutAuditTemplateCondition'
+    ApplicationListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    PostMicroserviceRequest:
+      description: Post Microservice Request
+      type: object
+      properties:
+        microserviceName:
+          description: The microservice name
+          type: string
+        attributes:
+          description: 'Microservice attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+    GetApplicationUserGroupsResponse:
+      description: Get Application User Groups Response
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          description: The application id
+          type: integer
+        userGroups:
+          description: A list of user groups that have access to the application
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationUserGroup'
+    Microservice:
+      description: Microservice
+      type: object
+      properties:
+        microserviceId:
+          format: int32
+          description: The microservice id
+          type: integer
+        microserviceName:
+          description: The microservice name
+          type: string
+        releaseId:
+          format: int32
+          description: The associated release for this microservice, if one exists
+          type: integer
+        attributes:
+          description: 'Microservice attributes. This is an array of key/value objects. Example, [{"Attribute 1": "value 1"}, {"Attribute 2": "value 2"}, {"Attribute 3": "value 3"} ]'
           type: array
           items:
             $ref: '#/components/schemas/ApplicationAttributeExtended'
+    ApplicationAttribute:
+      description: Attribute
+      type: object
+      properties:
+        id:
+          format: int32
+          description: Id of the attribute
+          type: integer
+        value:
+          description: Value of the attribute
+          type: string
+    ScanListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/Scan'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    ApplicationBugTracker:
+      description: Application Bug Tracker Settings
+      type: object
+      properties:
+        bugTrackerTypeId:
+          format: int32
+          description: The Bug Tracker Type Id
+          type: integer
+        bugTrackerType:
+          description: The Bug Tracker Type name
+          type: string
+        bugTrackerUrl:
+          description: The Bug Tracker Url
+          type: string
+        enabled:
+          description: Whether the Bug Tracker is enabled
+          type: boolean
+        autoClose:
+          description: Whether to auto-close bug when the issue is fix-validated
+          type: boolean
+        levelOneProjectName:
+          description: The Bug Tracker's Domain/Product
+          type: string
+        levelTwoProjectName:
+          description: The Bug Tracker' Component
+          type: string
+    ApplicationAttributeExtended:
+      description: Application Attribute Extended
+      type: object
+      properties:
+        name:
+          description: Name of the attribute
+          type: string
+        id:
+          format: int32
+          description: Id of the attribute
+          type: integer
+        value:
+          description: Value of the attribute
+          type: string
+    PostAutoReportResponse:
+      description: Post Auto Report Response
+      type: object
+      properties:
+        success:
+          description: Indicates if the auto report was created
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    AuditTemplateCondition:
+      type: object
+      properties:
+        field:
+          type: string
+        conditionType:
+          type: string
+        fieldValue:
+          type: string
+        operationType:
+          type: string
+    ApplicationUser:
+      description: Application User
+      type: object
+      properties:
+        userId:
+          format: int32
+          description: The user id
+          type: integer
+        firstName:
+          description: The user first name
+          type: string
+        lastName:
+          description: The user last name
+          type: string
+        emailId:
+          description: The user email id
+          type: string
+        roleId:
+          format: int32
+          description: The user role id
+          type: integer
+        roleName:
+          description: The user role name
+          type: string
+        accessMethod:
+          description: The user access method
+          type: string
+    GetAutoReportResponse:
+      description: Get Auto Report Response
+      type: object
+      properties:
+        staticScanReportId:
+          format: int32
+          description: The report id for static scans
+          type: integer
+        staticScanReportName:
+          description: The report name for static scans
+          type: string
+        dynamicScanReportId:
+          format: int32
+          description: The report id for dynamic scans
+          type: integer
+        dynamicScanReportName:
+          description: The report name for dynamic scans
+          type: string
+    AuditTemplate:
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          type: integer
+        scanType:
+          type: string
+        scanTypeId:
+          format: int32
+          type: integer
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditTemplateCondition'
+        action:
+          $ref: '#/components/schemas/AuditTemplateAction'
+    ReleaseListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/Release'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
+    PostApplicationResponse:
+      description: Post Application Response
+      type: object
+      properties:
+        applicationId:
+          format: int32
+          description: The id of the application that was created
+          type: integer
+        releaseId:
+          format: int32
+          type: integer
+        microserviceId:
+          format: int32
+          type: integer
+        success:
+          description: Indicates if the application was created
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
+    PostAutoReportRequest:
+      description: Post Auto Report Request
+      required:
+      - emailReport
+      - reportFormat
+      type: object
+      properties:
+        staticScanReportId:
+          format: int32
+          description: The report id used for Static Scans
+          type: integer
+        dynamicScanReportId:
+          format: int32
+          description: The report id used for Dynamic Scans
+          type: integer
+        emailReport:
+          description: Enable/Disable email reporting
+          type: boolean
+        reportFormat:
+          description: The report format
+          enum:
+          - Pdf
+          - Html
+          type: string
+        emailNotificationList:
+          description: List of emails separated by semicolon
+          type: string
+        projectSDLCStatusTypes:
+          description: SDLC Status IDs
+          type: array
+          items:
+            enum:
+            - Production
+            - QA
+            - Development
+            - Retired
+            type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+    PostMicroserviceResponse:
+      description: Post Microservice Response
+      type: object
+      properties:
+        microserviceId:
+          format: int32
+          description: The id of the application that was created
+          type: integer
+        success:
+          description: Indicates if the item was created
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string

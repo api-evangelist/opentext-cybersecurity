@@ -101,19 +101,6 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    LookupItem:
-      description: Lookup Item
-      type: object
-      properties:
-        value:
-          description: The value property
-          type: string
-        text:
-          description: The text property
-          type: string
-        group:
-          description: The group property
-          type: string
     LookupItemListResponse:
       description: Generic List Response
       type: object
@@ -135,3 +122,16 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
+    LookupItem:
+      description: Lookup Item
+      type: object
+      properties:
+        value:
+          description: The value property
+          type: string
+        text:
+          description: The text property
+          type: string
+        group:
+          description: The group property
+          type: string

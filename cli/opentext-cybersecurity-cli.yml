@@ -78,6 +78,7 @@ key_flows:
     OpenText's own fcli-common skill ships a dedicated references/mutating-operations.md guardrail file
     telling agents which commands change state. Recorded here because it is the closest thing to a
     write-safety contract this provider publishes, and it lives in the CLI rather than in the API.
+commands: []
 related:
   mcp: mcp/opentext-cybersecurity-mcp.yml
   skills: skills/_index.yml

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-application-user-permissions-schema.json",
+  "title": "ApplicationUserPermissions",
+  "description": "Application User Permissions",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-applications-api-openapi.yml#/components/schemas/ApplicationUserPermissions",
+  "type": "object",
+  "properties": {
+    "startDynamicScan": {
+      "description": "Indicates if the user can start a dynamic scan",
+      "type": "boolean"
+    },
+    "startMobileScan": {
+      "description": "Indicates if the user can start a mobile scan",
+      "type": "boolean"
+    },
+    "startStaticScan": {
+      "description": "Indicates if the user can start a static scan",
+      "type": "boolean"
+    },
+    "configureDynamicScan": {
+      "description": "Indicates if the user can configure a dynamic scan",
+      "type": "boolean"
+    },
+    "configureMobileScan": {
+      "description": "Indicates if the user can configure a mobile scan",
+      "type": "boolean"
+    },
+    "configureStaticScan": {
+      "description": "Indicates if the user can configure a static scan",
+      "type": "boolean"
+    },
+    "createRelease": {
+      "description": "Indicates if the user can create a release",
+      "type": "boolean"
+    },
+    "auditIssues": {
+      "description": "Indicates if the user can audit issues",
+      "type": "boolean"
+    },
+    "challengeIssues": {
+      "description": "Indicates if the user can challenge issues",
+      "type": "boolean"
+    },
+    "editIssues": {
+      "description": "Indicates if the user can edit issues",
+      "type": "boolean"
+    },
+    "downloadFPR": {
+      "description": "Indicates if the user can download the FPR",
+      "type": "boolean"
+    }
+  }
+}

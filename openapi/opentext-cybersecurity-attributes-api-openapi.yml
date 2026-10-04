@@ -281,18 +281,6 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    PutAttributeResponse:
-      description: Put Attrbute Response
-      type: object
-      properties:
-        success:
-          description: Indicates if the attribute was updated
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
     AttributeValueItem:
       type: object
       properties:
@@ -312,35 +300,15 @@ components:
         message:
           description: The error message
           type: string
-    AttributeItemValue:
-      description: Attribute Item Value
+    DeleteApplicationResponse:
+      description: Delete Application Response
       type: object
       properties:
-        id:
-          format: int32
-          description: The id of the attribute item value
-          type: integer
-        name:
-          description: The name of the attribute item value
-          type: string
-    PutAttributeRequest:
-      description: Put Attrbute Request
-      type: object
-      properties:
-        isRequired:
-          description: Is attribute required
+        success:
+          description: Indicates if the application was deleted
           type: boolean
-        isRestricted:
-          description: Is attribute editable only by SecLeads
-          type: boolean
-        defaultValue:
-          description: Default value for the attribute. Required when both isRequired and isRestricted are true.
-          type: string
-        overwriteExistingValues:
-          description: Overwrite existing picklist values
-          type: boolean
-        picklistValues:
-          description: Picklist Values
+        errors:
+          description: A list of errors encountered
           type: array
           items:
             type: string
@@ -381,27 +349,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AttributeValueItem'
-    AttributeItemListResponse:
-      description: Generic List Response
+    PostAttributeResponse:
+      description: Post Attrbute Response
       type: object
       properties:
-        items:
-          description: The list of items
+        attributeId:
+          format: int32
+          description: The id of the attribute that was created
+          type: integer
+        success:
+          description: Indicates if the application was created
+          type: boolean
+        errors:
+          description: A list of errors encountered
           type: array
           items:
-            $ref: '#/components/schemas/AttributeItem'
-        totalCount:
+            type: string
+    AttributeItemValue:
+      description: Attribute Item Value
+      type: object
+      properties:
+        id:
           format: int32
-          description: Total count of items
+          description: The id of the attribute item value
           type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
+        name:
+          description: The name of the attribute item value
+          type: string
     AttributeItem:
       description: Attribute Item
       type: object
@@ -441,18 +415,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AttributeItemValue'
-    DeleteApplicationResponse:
-      description: Delete Application Response
-      type: object
-      properties:
-        success:
-          description: Indicates if the application was deleted
-          type: boolean
-        errors:
-          description: A list of errors encountered
-          type: array
-          items:
-            type: string
     ErrorResponse:
       description: Error Response
       type: object
@@ -462,19 +424,57 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Error'
-    PostAttributeResponse:
-      description: Post Attrbute Response
+    PutAttributeResponse:
+      description: Put Attrbute Response
       type: object
       properties:
-        attributeId:
-          format: int32
-          description: The id of the attribute that was created
-          type: integer
         success:
-          description: Indicates if the application was created
+          description: Indicates if the attribute was updated
           type: boolean
         errors:
           description: A list of errors encountered
           type: array
           items:
             type: string
+    PutAttributeRequest:
+      description: Put Attrbute Request
+      type: object
+      properties:
+        isRequired:
+          description: Is attribute required
+          type: boolean
+        isRestricted:
+          description: Is attribute editable only by SecLeads
+          type: boolean
+        defaultValue:
+          description: Default value for the attribute. Required when both isRequired and isRestricted are true.
+          type: string
+        overwriteExistingValues:
+          description: Overwrite existing picklist values
+          type: boolean
+        picklistValues:
+          description: Picklist Values
+          type: array
+          items:
+            type: string
+    AttributeItemListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeItem'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer

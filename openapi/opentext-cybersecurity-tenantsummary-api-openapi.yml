@@ -72,15 +72,17 @@ paths:
           description: InternalServerError
 components:
   schemas:
-    ErrorResponse:
-      description: Error Response
+    Error:
+      description: Error
       type: object
       properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
     TenantSummary:
       description: Tenant Summary
       type: object
@@ -193,17 +195,15 @@ components:
           format: int64
           description: The five star rating dvidx
           type: integer
-    Error:
-      description: Error
+    ErrorResponse:
+      description: Error Response
       type: object
       properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
-        message:
-          description: The error message
-          type: string
+        errors:
+          description: List of errors
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
     TenantSummaryListResponse:
       description: Generic List Response
       type: object

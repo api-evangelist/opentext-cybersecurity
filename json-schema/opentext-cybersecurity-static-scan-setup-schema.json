@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-static-scan-setup-schema.json",
+  "title": "StaticScanSetup",
+  "description": "StaticScanSetup",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-static-scans-api-openapi.yml#/components/schemas/StaticScanSetup",
+  "type": "object",
+  "properties": {
+    "assessmentTypeId": {
+      "format": "int32",
+      "description": "The AssessmentTypeId. Values can be obtained by calling GET /api/v3/releases/{releaseId}/assessment-types",
+      "type": "integer"
+    },
+    "entitlementId": {
+      "format": "int32",
+      "description": "The assigned entitlementId",
+      "type": "integer"
+    },
+    "entitlementFrequencyType": {
+      "description": "The EntitlementFrequencyType.",
+      "enum": [
+        "SingleScan",
+        "Subscription"
+      ],
+      "type": "string"
+    },
+    "releaseId": {
+      "format": "int32",
+      "description": "The ReleaseId",
+      "type": "integer"
+    },
+    "technologyStackId": {
+      "format": "int32",
+      "description": "The TechnologyStackId. Values can be obtained by calling GET /api/v3/lookup-items?type=TechnologyTypes",
+      "type": "integer"
+    },
+    "technologyStack": {
+      "description": "The TechnologyStack. Values can be obtained by calling GET /api/v3/lookup-items?type=TechnologyTypes",
+      "type": "string"
+    },
+    "languageLevelId": {
+      "format": "int32",
+      "description": "The LanguageLevelId. Values can be obtained by calling GET /api/v3/lookup-items?type=LanguageLevels",
+      "type": "integer"
+    },
+    "languageLevel": {
+      "description": "The LanguageLevel. Values can be obtained by calling GET /api/v3/lookup-items?type=LanguageLevels",
+      "type": "string"
+    },
+    "performOpenSourceAnalysis": {
+      "description": "Indicates if open source analysis should be performed",
+      "type": "boolean"
+    },
+    "auditPreferenceType": {
+      "description": "The AuditPreferenceType.",
+      "enum": [
+        "Manual",
+        "Automated"
+      ],
+      "type": "string"
+    },
+    "includeThirdPartyLibraries": {
+      "description": "Indicates if third party libraries should be included",
+      "type": "boolean"
+    },
+    "useSourceControl": {
+      "description": "Indicates if source control should be used",
+      "type": "boolean"
+    },
+    "scanBinary": {
+      "description": "Indicates if binary files should be scanned. AKA \"Mixed Mode\" scanning",
+      "type": "boolean"
+    },
+    "bsiToken": {
+      "description": "The build server integration token",
+      "type": "string"
+    },
+    "includeFortifyAviator": {
+      "description": "Indicates whether FortifyAviator Addon Service is enabled",
+      "type": "boolean"
+    },
+    "scanPolicy": {
+      "description": "The Scan Policy.",
+      "type": "string"
+    }
+  }
+}

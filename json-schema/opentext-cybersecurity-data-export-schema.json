@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-data-export-schema.json",
+  "title": "DataExport",
+  "description": "DataExport",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-reports-api-openapi.yml#/components/schemas/DataExport",
+  "type": "object",
+  "properties": {
+    "dataExportId": {
+      "format": "int32",
+      "description": "The data export id",
+      "type": "integer"
+    },
+    "dataExportName": {
+      "description": "The data export name",
+      "type": "string"
+    },
+    "dataExportType": {
+      "description": "The data export type",
+      "enum": [
+        "IssuesExport",
+        "ScansExport",
+        "ReleasesExport",
+        "ApplicationsExport",
+        "EntitlementConsumptionExport"
+      ],
+      "type": "string"
+    },
+    "createdBy": {
+      "description": "The username that created the data export",
+      "type": "string"
+    },
+    "createdDate": {
+      "format": "date-time",
+      "description": "The created date",
+      "type": "string"
+    },
+    "dataExportStatusType": {
+      "description": "The data export status type",
+      "enum": [
+        "Started",
+        "Completed",
+        "Failed",
+        "Queued",
+        "Canceled"
+      ],
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-site-tree-list-response-schema.json",
+  "title": "SiteTreeListResponse",
+  "description": "Generic List Response",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-scans-api-openapi.yml#/components/schemas/SiteTreeListResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "description": "The list of items",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SiteTree"
+      }
+    },
+    "totalCount": {
+      "format": "int32",
+      "description": "Total count of items",
+      "type": "integer"
+    },
+    "offset": {
+      "format": "int32",
+      "description": "Offset of the starting record. 0 indicates the first record.",
+      "type": "integer"
+    },
+    "limit": {
+      "format": "int32",
+      "description": "Maximum records to return.",
+      "type": "integer"
+    }
+  },
+  "$defs": {
+    "SiteTree": {
+      "description": "Site Tree",
+      "type": "object",
+      "properties": {
+        "requestTime": {
+          "description": "The request time",
+          "type": "string"
+        },
+        "scheme": {
+          "description": "The scheme",
+          "type": "string"
+        },
+        "host": {
+          "description": "The host name",
+          "type": "string"
+        },
+        "port": {
+          "description": "The port",
+          "type": "string"
+        },
+        "method": {
+          "description": "The method",
+          "type": "string"
+        },
+        "path": {
+          "description": "The site path",
+          "type": "string"
+        },
+        "statusCode": {
+          "description": "The status code returned on the response",
+          "type": "string"
+        },
+        "responseTimeDelta": {
+          "description": "The delta for the response time",
+          "type": "string"
+        },
+        "spaDisplayName": {
+          "description": "The display name for the SPA",
+          "type": "string"
+        },
+        "spaDisplaySelector": {
+          "description": "The selector for the SPA (e.g. a[@id=\"Submit\"])",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/main/json-schema/opentext-cybersecurity-report-schema.json",
+  "title": "Report",
+  "description": "Report",
+  "x-generated": "2026-10-03",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/opentext-cybersecurity-reports-api-openapi.yml#/components/schemas/Report",
+  "type": "object",
+  "properties": {
+    "reportId": {
+      "format": "int32",
+      "description": "The report id",
+      "type": "integer"
+    },
+    "reportName": {
+      "description": "The report name",
+      "type": "string"
+    },
+    "reportNotes": {
+      "description": "The report notes",
+      "type": "string"
+    },
+    "reportStatusTypeId": {
+      "format": "int32",
+      "description": "The report status type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportStatusType",
+      "type": "integer"
+    },
+    "reportStatusType": {
+      "description": "The report status type. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportStatusType",
+      "type": "string"
+    },
+    "reportTypeId": {
+      "format": "int32",
+      "description": "The report type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportTypes",
+      "type": "integer"
+    },
+    "reportType": {
+      "description": "The report type. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportTypes",
+      "type": "string"
+    },
+    "customReportTypeName": {
+      "description": "The custom report type name",
+      "type": "string"
+    },
+    "isReceived": {
+      "description": "Is received",
+      "type": "boolean"
+    },
+    "language": {
+      "description": "The report language",
+      "type": "string"
+    },
+    "applicationId": {
+      "format": "int32",
+      "description": "The application id",
+      "type": "integer"
+    },
+    "releaseId": {
+      "format": "int32",
+      "description": "The release id",
+      "type": "integer"
+    },
+    "userId": {
+      "format": "int32",
+      "description": "The user id",
+      "type": "integer"
+    }
+  }
+}

@@ -1,19 +1,16 @@
 aid: opentext-cybersecurity
 name: OpenText Cybersecurity
-description: >-
-  OpenText Cybersecurity is the security business of OpenText, assembled from the Micro Focus security
-  portfolio (Fortify application security, ArcSight threat detection and response, NetIQ identity and
-  access management, Voltage data privacy) and the SMB/MSP brands OpenText acquired through Webroot,
-  Carbonite and Zix — endpoint protection, DNS protection, EDR/MDR, email threat protection and
-  encryption, security awareness training, backup and disaster recovery. Two product lines expose a
-  public developer surface. OpenText Core Application Security (Fortify on Demand) publishes a live
-  Swagger 2.0 contract with 159 operations across applications, releases, static/dynamic/mobile scans,
-  vulnerabilities, reports and tenant administration, served per region from api.ams / api.emea /
-  api.apac.fortify.com. The Webroot Unity API is the multi-tenant REST platform managed service
-  providers use to run Secure Cloud sites, endpoints, policies, licensing and near-real-time event
-  notifications. Fortify also ships a first-party CLI (fcli), a first-party MCP server inside that CLI,
-  and a published set of Agent Skills for Claude Code, GitHub Copilot, Codex and Gemini CLI.
+description: OpenText Cybersecurity is the security business of OpenText, assembled from the Micro Focus security portfolio (Fortify application
+  security, ArcSight threat detection and response, NetIQ identity and access management, Voltage data privacy) and the SMB/MSP brands OpenText
+  acquired through Webroot, Carbonite and Zix — endpoint protection, DNS protection, EDR/MDR, email threat protection and encryption, security
+  awareness training, backup and disaster recovery. Two product lines expose a public developer surface. OpenText Core Application Security (Fortify
+  on Demand) publishes a live Swagger 2.0 contract with 159 operations across applications, releases, static/dynamic/mobile scans, vulnerabilities,
+  reports and tenant administration, served per region from api.ams / api.emea / api.apac.fortify.com. The Webroot Unity API is the multi-tenant
+  REST platform managed service providers use to run Secure Cloud sites, endpoints, policies, licensing and near-real-time event notifications.
+  Fortify also ships a first-party CLI (fcli), a first-party MCP server inside that CLI, and a published set of Agent Skills for Claude Code,
+  GitHub Copilot, Codex and Gemini CLI.
 image: https://cari01mstrop62eprod.dxcloud.episerver.net/globalassets/smb-media/images/banners/csot-homepage-hero-2.webp
+website: https://cybersecurity.opentext.com
 url: https://raw.githubusercontent.com/api-evangelist/opentext-cybersecurity/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:absent-parent
@@ -54,565 +51,23 @@ maintainers:
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
-apis:
-- aid: opentext-cybersecurity:webroot-unity-api
-  name: Webroot Unity API
-  description: >-
-    The Webroot Unity API is the multi-tenant REST platform OpenText Cybersecurity partners and managed
-    service providers use to reach Webroot and Secure Cloud services — endpoint status, Global Site Manager
-    console site/user/policy/endpoint/group management, DNS Protection, Web Threat Shield, security awareness
-    training reporting, usage reporting, eCommerce licensing, and Secure Cloud customers and usage. It
-    also carries a documented event-notification surface with fetch and webhook delivery. Access is OAuth
-    2.0 and credentials must be issued by a Webroot representative or enabled from a GSM console, so no
-    machine-readable contract is published anonymously.
-  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-  baseURL: https://unityapi.webrootcloudav.com
-  tags:
-  - Endpoint Security
-  - DNS Protection
-  - Managed Service Providers
-  - Licensing
-  - Webhook
-  tags_raw:
-  - Endpoint Security
-  - DNS Protection
-  - Managed Service Providers
-  - Licensing
-  - Webhooks
-  properties:
-  - url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/APIReference
-    type: APIReference
-  - url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-    type: Documentation
-  - url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/GettingStarted
-    type: GettingStarted
-  - url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/ChangeHistory
-    type: ChangeLog
-  - url: asyncapi/opentext-cybersecurity-webroot-unity-webhooks.yml
-    type: Webhooks
-- aid: opentext-cybersecurity:opentext-cybersecurity-applications-api
-  name: OpenText Cybersecurity Applications API
-  description: The Applications API from OpenText Cybersecurity — 15 operation(s) for applications.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - Application
-  tags_raw:
-  - Applications
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-applications-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-attributes-api
-  name: OpenText Cybersecurity Attributes API
-  description: The Attributes API from OpenText Cybersecurity — 2 operation(s) for attributes.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - Attributes
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-attributes-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-audittemplate-api
-  name: OpenText Cybersecurity Audit Template API
-  description: The AuditTemplate API from OpenText Cybersecurity — 1 operation(s) for audittemplate.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - AuditTemplate
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-audittemplate-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-fortifyondemandconnectnetworks-api
-  name: OpenText Cybersecurity Fortify On Demand Connect Networks API
-  description: >-
-    The FortifyOnDemandConnectNetworks API from OpenText Cybersecurity — 1 operation(s) for fortifyondemandconnectnetworks.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - FortifyOnDemandConnectNetworks
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-fortifyondemandconnectnetworks-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-multifactorauthorizationcode-api
-  name: OpenText Cybersecurity Multi Factor Authorization Code API
-  description: >-
-    The MultiFactorAuthorizationCode API from OpenText Cybersecurity — 1 operation(s) for multifactorauthorizationcode.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - MultiFactorAuthorizationCode
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-multifactorauthorizationcode-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-notifications-api
-  name: OpenText Cybersecurity Notifications API
-  description: The Notifications API from OpenText Cybersecurity — 3 operation(s) for notifications.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - Notification
-  tags_raw:
-  - Notifications
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-notifications-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-releases-api
-  name: OpenText Cybersecurity Releases API
-  description: The Releases API from OpenText Cybersecurity — 15 operation(s) for releases.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - Releases
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-releases-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-reports-api
-  name: OpenText Cybersecurity Reports API
-  description: The Reports API from OpenText Cybersecurity — 7 operation(s) for reports.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - Reports
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-reports-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-scans-api
-  name: OpenText Cybersecurity Scans API
-  description: The Scans API from OpenText Cybersecurity — 8 operation(s) for scans.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - Scans
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-scans-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-tenantentitlements-api
-  name: OpenText Cybersecurity Tenant Entitlements API
-  description: >-
-    The TenantEntitlements API from OpenText Cybersecurity — 2 operation(s) for tenantentitlements.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - TenantEntitlements
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-tenantentitlements-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-tenantheatmaps-api
-  name: OpenText Cybersecurity Tenant Heat Maps API
-  description: The TenantHeatMaps API from OpenText Cybersecurity — 1 operation(s) for tenantheatmaps.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - TenantHeatMaps
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-tenantheatmaps-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-tenants-api
-  name: OpenText Cybersecurity Tenants API
-  description: The Tenants API from OpenText Cybersecurity — 2 operation(s) for tenants.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - Tenants
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-tenants-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-tenantsummary-api
-  name: OpenText Cybersecurity Tenant Summary API
-  description: The TenantSummary API from OpenText Cybersecurity — 1 operation(s) for tenantsummary.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - TenantSummary
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-tenantsummary-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-userapplicationaccess-api
-  name: OpenText Cybersecurity User Application Access API
-  description: >-
-    The UserApplicationAccess API from OpenText Cybersecurity — 2 operation(s) for userapplicationaccess.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - UserApplicationAccess
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-userapplicationaccess-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-usergroupapplicationaccess-api
-  name: OpenText Cybersecurity User Group Application Access API
-  description: >-
-    The UserGroupApplicationAccess API from OpenText Cybersecurity — 2 operation(s) for usergroupapplicationaccess.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - UserGroupApplicationAccess
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-usergroupapplicationaccess-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-users-api
-  name: OpenText Cybersecurity Users API
-  description: The Users API from OpenText Cybersecurity — 2 operation(s) for users.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - User
-  tags_raw:
-  - Users
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-users-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-vulnerabilities-api
-  name: OpenText Cybersecurity Vulnerabilities API
-  description: >-
-    The Vulnerabilities API from OpenText Cybersecurity — 20 operation(s) for vulnerabilities.
-  humanURL: https://api.ams.fortify.com/swagger/ui/index
-  baseURL: https://api.ams.fortify.com
-  tags:
-  - Vulnerabilities
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-vulnerabilities-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-api-key-management-api
-  name: OpenText Cybersecurity API Key Management API
-  description: >-
-    The API Key Management API from OpenText Cybersecurity — 5 operation(s) for api key management.
-  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-  baseURL: https://unityapi.webrootcloudav.com
-  tags:
-  - API Key Management
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-dast-automated-scans-api
-  name: OpenText Cybersecurity DAST Automated Scans API
-  description: >-
-    The DAST Automated Scans API from OpenText Cybersecurity — 9 operation(s) for dast automated scans.
-  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-  baseURL: https://unityapi.webrootcloudav.com
-  tags:
-  - DAST Automated Scans
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-dynamic-scans-api
-  name: OpenText Cybersecurity Dynamic Scans API
-  description: The Dynamic Scans API from OpenText Cybersecurity — 6 operation(s) for dynamic scans.
-  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-  baseURL: https://unityapi.webrootcloudav.com
-  tags:
-  - Dynamic Scans
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-dynamic-scans-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-event-logs-api
-  name: OpenText Cybersecurity Event Logs API
-  description: The Event Logs API from OpenText Cybersecurity — 1 operation(s) for event logs.
-  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-  baseURL: https://unityapi.webrootcloudav.com
-  tags:
-  - Event Logs
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-event-logs-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-lookup-items-api
-  name: OpenText Cybersecurity Lookup Items API
-  description: The Lookup Items API from OpenText Cybersecurity — 1 operation(s) for lookup items.
-  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-  baseURL: https://unityapi.webrootcloudav.com
-  tags:
-  - Lookup Items
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-lookup-items-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-mobile-scans-api
-  name: OpenText Cybersecurity Mobile Scans API
-  description: The Mobile Scans API from OpenText Cybersecurity — 3 operation(s) for mobile scans.
-  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-  baseURL: https://unityapi.webrootcloudav.com
-  tags:
-  - Mobile Scans
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-mobile-scans-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-open-source-components-api
-  name: OpenText Cybersecurity Open Source Components API
-  description: >-
-    The Open Source Components API from OpenText Cybersecurity — 2 operation(s) for open source components.
-  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-  baseURL: https://unityapi.webrootcloudav.com
-  tags:
-  - Open Source Components
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-open-source-components-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-open-source-scans-api
-  name: OpenText Cybersecurity Open Source Scans API
-  description: >-
-    The Open Source Scans API from OpenText Cybersecurity — 1 operation(s) for open source scans.
-  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-  baseURL: https://unityapi.webrootcloudav.com
-  tags:
-  - Open Source Scans
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-open-source-scans-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-personal-access-tokens-api
-  name: OpenText Cybersecurity Personal Access Tokens API
-  description: >-
-    The Personal Access Tokens API from OpenText Cybersecurity — 3 operation(s) for personal access tokens.
-  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-  baseURL: https://unityapi.webrootcloudav.com
-  tags:
-  - Personal Access Tokens
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-personal-access-tokens-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-static-scans-api
-  name: OpenText Cybersecurity Static Scans API
-  description: The Static Scans API from OpenText Cybersecurity — 6 operation(s) for static scans.
-  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-  baseURL: https://unityapi.webrootcloudav.com
-  tags:
-  - Static Scans
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-static-scans-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
-- aid: opentext-cybersecurity:opentext-cybersecurity-user-management-api
-  name: OpenText Cybersecurity User Management API
-  description: >-
-    The User Management API from OpenText Cybersecurity — 3 operation(s) for user management.
-  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
-  baseURL: https://unityapi.webrootcloudav.com
-  tags:
-  - User Management
-  properties:
-  - type: OpenAPI
-    url: openapi/opentext-cybersecurity-user-management-api-openapi.yml
-  - type: APIReference
-    url: https://api.ams.fortify.com/swagger/ui/index
-  - type: Documentation
-    url: https://community.opentext.com/cybersec/fortify/productdocs
-  - type: DeveloperPortal
-    url: https://community.opentext.com/cybersec/fortify
-  - type: StatusPage
-    url: https://status.fortify.com/
 common:
+- type: AgenticAccess
+  url: agentic-access/opentext-cybersecurity-agentic-access.yml
+- type: Spectral
+  url: rules/opentext-cybersecurity-rules.yml
+- type: JSONLD
+  url: json-ld/opentext-cybersecurity-context.jsonld
+- type: Vocabulary
+  url: vocabulary/opentext-cybersecurity-vocabulary.yml
+- type: Webhooks
+  url: asyncapi/opentext-cybersecurity-webhooks.yml
+- type: Hosts
+  url: hosts/opentext-cybersecurity-hosts.yml
+- type: Vendors
+  url: vendors/opentext-cybersecurity-vendors.yml
+- type: Newsroom
+  url: https://www.opentext.com/en/media/solution-overview/opentext-secure-cloud-slo-en.pdf
 - type: Overlay
   url: overlays/opentext-cybersecurity-fortify-on-demand-overlay.yaml
 - type: DomainSecurity
@@ -701,17 +156,1556 @@ common:
   type: Protobuf
 - url: grpc/opentext-cybersecurity-aviator-accesstoken.proto
   type: Protobuf
-
-x-enrichment:
-  date: '2026-09-13'
-  status: enriched
-  artifacts_added: 40
-  pass: local-v3
+apis:
+- aid: opentext-cybersecurity:webroot-unity-api
+  name: Webroot Unity API
+  description: >-
+    The Webroot Unity API is the multi-tenant REST platform OpenText Cybersecurity partners and managed
+    service providers use to reach Webroot and Secure Cloud services — endpoint status, Global Site Manager
+    console site/user/policy/endpoint/group management, DNS Protection, Web Threat Shield, security awareness
+    training reporting, usage reporting, eCommerce licensing, and Secure Cloud customers and usage. It
+    also carries a documented event-notification surface with fetch and webhook delivery. Access is OAuth
+    2.0 and credentials must be issued by a Webroot representative or enabled from a GSM console, so no
+    machine-readable contract is published anonymously.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Endpoint Security
+  - DNS Protection
+  - Managed Service Providers
+  - Licensing
+  - Webhook
+  tags_raw:
+  - Endpoint Security
+  - DNS Protection
+  - Managed Service Providers
+  - Licensing
+  - Webhooks
+  properties:
+  - url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/APIReference
+    type: APIReference
+  - url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+    type: Documentation
+  - url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/GettingStarted
+    type: GettingStarted
+  - url: https://unityapi.webrootcloudav.com/Docs/en/APIDoc/ChangeHistory
+    type: ChangeLog
+  - url: asyncapi/opentext-cybersecurity-webroot-unity-webhooks.yml
+    type: Webhooks
+- aid: opentext-cybersecurity:opentext-cybersecurity-applications-api
+  name: OpenText Cybersecurity Applications API
+  description: The Applications API from OpenText Cybersecurity — 15 operation(s) for applications.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Application
+  tags_raw:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-applications-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-application-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-application-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-application-user-permissions-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-application-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-auto-report-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-get-vulnerabilities-response-vulnerability-dtolight-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-attributes-api
+  name: OpenText Cybersecurity Attributes API
+  description: The Attributes API from OpenText Cybersecurity — 2 operation(s) for attributes.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Attributes
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-attributes-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-attribute-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-attribute-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-attribute-item-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-attribute-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-delete-application-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-attribute-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-audittemplate-api
+  name: OpenText Cybersecurity Audit Template API
+  description: The AuditTemplate API from OpenText Cybersecurity — 1 operation(s) for audittemplate.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - AuditTemplate
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-audittemplate-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-audit-template-filter-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-audit-template-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-audit-template-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-fortifyondemandconnectnetworks-api
+  name: OpenText Cybersecurity Fortify On Demand Connect Networks API
+  description: >-
+    The FortifyOnDemandConnectNetworks API from OpenText Cybersecurity — 1 operation(s) for fortifyondemandconnectnetworks.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - FortifyOnDemandConnectNetworks
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-fortifyondemandconnectnetworks-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-fortify-connect-api-network-list-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-multifactorauthorizationcode-api
+  name: OpenText Cybersecurity Multi Factor Authorization Code API
+  description: >-
+    The MultiFactorAuthorizationCode API from OpenText Cybersecurity — 1 operation(s) for multifactorauthorizationcode.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - MultiFactorAuthorizationCode
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-multifactorauthorizationcode-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-post-multi-factor-authorization-code-request-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-notifications-api
+  name: OpenText Cybersecurity Notifications API
+  description: The Notifications API from OpenText Cybersecurity — 3 operation(s) for notifications.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Notification
+  tags_raw:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-notifications-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-notification-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mark-notificaitons-as-read-request-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-releases-api
+  name: OpenText Cybersecurity Releases API
+  description: The Releases API from OpenText Cybersecurity — 15 operation(s) for releases.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Releases
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-releases-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-release-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-scan-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-release-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-polling-scan-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-release-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-audit-options-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-reports-api
+  name: OpenText Cybersecurity Reports API
+  description: The Reports API from OpenText Cybersecurity — 7 operation(s) for reports.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-reports-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-report-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-data-export-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-report-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-data-export-template-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-data-export-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-report-list-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-scans-api
+  name: OpenText Cybersecurity Scans API
+  description: The Scans API from OpenText Cybersecurity — 8 operation(s) for scans.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-scans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-scan-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-site-tree-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-scan-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mobile-validation-status-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-scan-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-tenantentitlements-api
+  name: OpenText Cybersecurity Tenant Entitlements API
+  description: >-
+    The TenantEntitlements API from OpenText Cybersecurity — 2 operation(s) for tenantentitlements.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - TenantEntitlements
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-tenantentitlements-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-tenant-entitlement-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-get-tenant-open-source-entitlements-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-tenantheatmaps-api
+  name: OpenText Cybersecurity Tenant Heat Maps API
+  description: The TenantHeatMaps API from OpenText Cybersecurity — 1 operation(s) for tenantheatmaps.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - TenantHeatMaps
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-tenantheatmaps-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-tenant-heat-map-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-tenants-api
+  name: OpenText Cybersecurity Tenants API
+  description: The Tenants API from OpenText Cybersecurity — 2 operation(s) for tenants.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Tenants
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-tenants-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-tenant-feature-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-tenant-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-tenantsummary-api
+  name: OpenText Cybersecurity Tenant Summary API
+  description: The TenantSummary API from OpenText Cybersecurity — 1 operation(s) for tenantsummary.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - TenantSummary
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-tenantsummary-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-tenant-summary-list-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-userapplicationaccess-api
+  name: OpenText Cybersecurity User Application Access API
+  description: >-
+    The UserApplicationAccess API from OpenText Cybersecurity — 2 operation(s) for userapplicationaccess.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - UserApplicationAccess
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-userapplicationaccess-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-application-access-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-application-access-request-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-usergroupapplicationaccess-api
+  name: OpenText Cybersecurity User Group Application Access API
+  description: >-
+    The UserGroupApplicationAccess API from OpenText Cybersecurity — 2 operation(s) for usergroupapplicationaccess.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - UserGroupApplicationAccess
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-usergroupapplicationaccess-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-user-group-application-access-list-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-post-user-group-application-access-request-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-users-api
+  name: OpenText Cybersecurity Users API
+  description: The Users API from OpenText Cybersecurity — 2 operation(s) for users.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - User
+  tags_raw:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-users-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-delete-user-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-vulnerabilities-api
+  name: OpenText Cybersecurity Vulnerabilities API
+  description: >-
+    The Vulnerabilities API from OpenText Cybersecurity — 20 operation(s) for vulnerabilities.
+  humanURL: https://api.ams.fortify.com/swagger/ui/index
+  baseURL: https://api.ams.fortify.com
+  tags:
+  - Vulnerabilities
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-vulnerabilities-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-vulnerability-all-data-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-vulnerability-details-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-vulnerability-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-vulnerability-audit-options-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-vulnerability-bulk-edit-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-get-vulnerabilities-response-vulnerability-list-item-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-api-key-management-api
+  name: OpenText Cybersecurity API Key Management API
+  description: >-
+    The API Key Management API from OpenText Cybersecurity — 5 operation(s) for api key management.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - API Key Management
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-api-key-management-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-start-dynamic-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-lookup-item-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mobile-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-mobile-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-open-source-component-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-secret-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-create-personal-access-token-result-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-static-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-import-sarif-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-group-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-patch-user-group-membership-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-dast-automated-scans-api
+  name: OpenText Cybersecurity DAST Automated Scans API
+  description: >-
+    The DAST Automated Scans API from OpenText Cybersecurity — 9 operation(s) for dast automated scans.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - DAST Automated Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-dast-automated-scans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-start-dynamic-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-lookup-item-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mobile-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-mobile-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-open-source-component-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-secret-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-create-personal-access-token-result-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-static-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-import-sarif-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-group-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-patch-user-group-membership-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-dynamic-scans-api
+  name: OpenText Cybersecurity Dynamic Scans API
+  description: The Dynamic Scans API from OpenText Cybersecurity — 6 operation(s) for dynamic scans.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Dynamic Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-dynamic-scans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-start-dynamic-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-lookup-item-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mobile-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-mobile-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-open-source-component-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-secret-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-create-personal-access-token-result-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-static-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-import-sarif-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-group-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-patch-user-group-membership-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-event-logs-api
+  name: OpenText Cybersecurity Event Logs API
+  description: The Event Logs API from OpenText Cybersecurity — 1 operation(s) for event logs.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Event Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-event-logs-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-start-dynamic-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-lookup-item-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mobile-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-mobile-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-open-source-component-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-secret-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-create-personal-access-token-result-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-static-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-import-sarif-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-group-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-patch-user-group-membership-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-lookup-items-api
+  name: OpenText Cybersecurity Lookup Items API
+  description: The Lookup Items API from OpenText Cybersecurity — 1 operation(s) for lookup items.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Lookup Items
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-lookup-items-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-start-dynamic-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-lookup-item-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mobile-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-mobile-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-open-source-component-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-secret-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-create-personal-access-token-result-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-static-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-import-sarif-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-group-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-patch-user-group-membership-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-mobile-scans-api
+  name: OpenText Cybersecurity Mobile Scans API
+  description: The Mobile Scans API from OpenText Cybersecurity — 3 operation(s) for mobile scans.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Mobile Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-mobile-scans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-start-dynamic-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-lookup-item-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mobile-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-mobile-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-open-source-component-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-secret-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-create-personal-access-token-result-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-static-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-import-sarif-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-group-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-patch-user-group-membership-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-open-source-components-api
+  name: OpenText Cybersecurity Open Source Components API
+  description: >-
+    The Open Source Components API from OpenText Cybersecurity — 2 operation(s) for open source components.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Open Source Components
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-open-source-components-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-start-dynamic-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-lookup-item-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mobile-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-mobile-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-open-source-component-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-secret-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-create-personal-access-token-result-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-static-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-import-sarif-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-group-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-patch-user-group-membership-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-open-source-scans-api
+  name: OpenText Cybersecurity Open Source Scans API
+  description: >-
+    The Open Source Scans API from OpenText Cybersecurity — 1 operation(s) for open source scans.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Open Source Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-open-source-scans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-start-dynamic-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-lookup-item-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mobile-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-mobile-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-open-source-component-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-secret-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-create-personal-access-token-result-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-static-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-import-sarif-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-group-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-patch-user-group-membership-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-personal-access-tokens-api
+  name: OpenText Cybersecurity Personal Access Tokens API
+  description: >-
+    The Personal Access Tokens API from OpenText Cybersecurity — 3 operation(s) for personal access tokens.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Personal Access Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-personal-access-tokens-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-start-dynamic-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-lookup-item-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mobile-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-mobile-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-open-source-component-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-secret-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-create-personal-access-token-result-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-static-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-import-sarif-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-group-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-patch-user-group-membership-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-static-scans-api
+  name: OpenText Cybersecurity Static Scans API
+  description: The Static Scans API from OpenText Cybersecurity — 6 operation(s) for static scans.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - Static Scans
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-static-scans-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-start-dynamic-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-lookup-item-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mobile-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-mobile-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-open-source-component-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-secret-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-create-personal-access-token-result-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-static-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-import-sarif-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-group-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-patch-user-group-membership-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
+- aid: opentext-cybersecurity:opentext-cybersecurity-user-management-api
+  name: OpenText Cybersecurity User Management API
+  description: >-
+    The User Management API from OpenText Cybersecurity — 3 operation(s) for user management.
+  humanURL: https://unityapi.webrootcloudav.com/Docs/en/APIDoc
+  baseURL: https://unityapi.webrootcloudav.com
+  tags:
+  - User Management
+  properties:
+  - type: OpenAPI
+    url: openapi/opentext-cybersecurity-user-management-api-openapi.yml
+  - type: APIReference
+    url: https://api.ams.fortify.com/swagger/ui/index
+  - type: Documentation
+    url: https://community.opentext.com/cybersec/fortify/productdocs
+  - type: DeveloperPortal
+    url: https://community.opentext.com/cybersec/fortify
+  - type: StatusPage
+    url: https://status.fortify.com/
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-api-key-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dast-automated-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-website-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-graph-qlscan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-grpc-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-workflow-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-put-dast-automated-open-api-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-get-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-start-dynamic-scan-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-dynamic-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/opentext-cybersecurity-patch-dynamic-scan-setup-manifest-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-import-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-lookup-item-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-mobile-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-mobile-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-mobile-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-open-source-component-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-start-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-personal-access-token-model-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-personal-access-token-secret-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-create-personal-access-token-result-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-static-scan-setup-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-static-scan-setup-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-import-sarif-scan-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-group-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-user-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-put-user-group-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-patch-user-group-membership-request-schema.json
+  - type: JSONSchema
+    url: json-schema/opentext-cybersecurity-post-user-group-response-schema.json
 x-coverage:
   state: covered
   reason: null
-  detail: >-
-    Live first-party contract found and saved: a Swagger 2.0 document with 159 operations served
-    unauthenticated from every Fortify on Demand regional API host, plus six first-party Aviator .proto
-    service definitions, a provider-published llms.txt, and a provider-published Agent Skills package.
+  detail: 'Live first-party contract found and saved: a Swagger 2.0 document with 159 operations served unauthenticated from every Fortify on
+    Demand regional API host, plus six first-party Aviator .proto service definitions, a provider-published llms.txt, and a provider-published
+    Agent Skills package.'
   checked: '2026-09-13'
+x-enrichment:
+  date: '2026-10-03'
+  status: enriched
+  artifacts_added: 130
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

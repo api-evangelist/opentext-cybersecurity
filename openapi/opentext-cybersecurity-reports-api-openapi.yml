@@ -669,6 +669,27 @@ paths:
           description: InternalServerError
 components:
   schemas:
+    DataExportTemplateListResponse:
+      description: Generic List Response
+      type: object
+      properties:
+        items:
+          description: The list of items
+          type: array
+          items:
+            $ref: '#/components/schemas/DataExportTemplate'
+        totalCount:
+          format: int32
+          description: Total count of items
+          type: integer
+        offset:
+          format: int32
+          description: Offset of the starting record. 0 indicates the first record.
+          type: integer
+        limit:
+          format: int32
+          description: Maximum records to return.
+          type: integer
     Report:
       description: Report
       type: object
@@ -718,6 +739,33 @@ components:
           format: int32
           description: The user id
           type: integer
+    Error:
+      description: Error
+      type: object
+      properties:
+        errorCode:
+          format: int32
+          description: The error code
+          type: integer
+        message:
+          description: The error message
+          type: string
+    PostReportResponse:
+      description: Post Report Response
+      type: object
+      properties:
+        reportId:
+          format: int32
+          description: The id of the report that was created
+          type: integer
+        success:
+          description: Indicates if the application was created
+          type: boolean
+        errors:
+          description: A list of errors encountered
+          type: array
+          items:
+            type: string
     DataExportListResponse:
       description: Generic List Response
       type: object
@@ -739,37 +787,6 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
-    Error:
-      description: Error
-      type: object
-      properties:
-        errorCode:
-          format: int32
-          description: The error code
-          type: integer
-        message:
-          description: The error message
-          type: string
-    DataExportTemplate:
-      description: DataExportTemplate
-      type: object
-      properties:
-        dataExportTemplateId:
-          format: int32
-          description: The data export template id
-          type: integer
-        dataExportTemplateName:
-          description: The data export template name
-          type: string
-        dataExportTemplateType:
-          description: The data export template type
-          enum:
-          - IssuesExport
-          - ScansExport
-          - ReleasesExport
-          - ApplicationsExport
-          - EntitlementConsumptionExport
-          type: string
     PostDataExportResponse:
       description: Response model for creating a new data export
       type: object
@@ -781,69 +798,6 @@ components:
         links:
           $ref: '#/components/schemas/DataExportLinks'
           description: Links for tracking and downloading the export
-    PostReportRequest:
-      description: Post Report Request
-      required:
-      - applicationId
-      - releaseId
-      - reportTemplateTypeId
-      - reportFormat
-      type: object
-      properties:
-        applicationId:
-          format: int32
-          description: The application id
-          type: integer
-        releaseId:
-          format: int32
-          description: The release id
-          type: integer
-        reportTemplateTypeId:
-          format: int32
-          description: The report template type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportTemplateTypes
-          type: integer
-        reportName:
-          description: The report name
-          type: string
-        reportFormat:
-          description: The report format
-          enum:
-          - Pdf
-          - Html
-          type: string
-        notes:
-          description: The report notes
-          type: string
-    DataExportTemplateListResponse:
-      description: Generic List Response
-      type: object
-      properties:
-        items:
-          description: The list of items
-          type: array
-          items:
-            $ref: '#/components/schemas/DataExportTemplate'
-        totalCount:
-          format: int32
-          description: Total count of items
-          type: integer
-        offset:
-          format: int32
-          description: Offset of the starting record. 0 indicates the first record.
-          type: integer
-        limit:
-          format: int32
-          description: Maximum records to return.
-          type: integer
-    ErrorResponse:
-      description: Error Response
-      type: object
-      properties:
-        errors:
-          description: List of errors
-          type: array
-          items:
-            $ref: '#/components/schemas/Error'
     PostDataExportRequest:
       description: Request model for creating a new data export
       type: object
@@ -888,22 +842,48 @@ components:
           - Queued
           - Canceled
           type: string
-    PostReportResponse:
-      description: Post Report Response
+    PostReportRequest:
+      description: Post Report Request
+      required:
+      - applicationId
+      - releaseId
+      - reportTemplateTypeId
+      - reportFormat
       type: object
       properties:
-        reportId:
+        applicationId:
           format: int32
-          description: The id of the report that was created
+          description: The application id
           type: integer
-        success:
-          description: Indicates if the application was created
-          type: boolean
+        releaseId:
+          format: int32
+          description: The release id
+          type: integer
+        reportTemplateTypeId:
+          format: int32
+          description: The report template type id. Values can be obtained by calling GET /api/v3/lookup-items?type=ReportTemplateTypes
+          type: integer
+        reportName:
+          description: The report name
+          type: string
+        reportFormat:
+          description: The report format
+          enum:
+          - Pdf
+          - Html
+          type: string
+        notes:
+          description: The report notes
+          type: string
+    ErrorResponse:
+      description: Error Response
+      type: object
+      properties:
         errors:
-          description: A list of errors encountered
+          description: List of errors
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Error'
     DeleteReportResponse:
       description: Delete Application Response
       type: object
@@ -916,15 +896,25 @@ components:
           type: array
           items:
             type: string
-    DataExportLinks:
-      description: Links for data export
+    DataExportTemplate:
+      description: DataExportTemplate
       type: object
       properties:
-        status:
-          description: URL for checking the status of the data export
+        dataExportTemplateId:
+          format: int32
+          description: The data export template id
+          type: integer
+        dataExportTemplateName:
+          description: The data export template name
           type: string
-        download:
-          description: URL for downloading the completed data export
+        dataExportTemplateType:
+          description: The data export template type
+          enum:
+          - IssuesExport
+          - ScansExport
+          - ReleasesExport
+          - ApplicationsExport
+          - EntitlementConsumptionExport
           type: string
     ReportListResponse:
       description: Generic List Response
@@ -947,3 +937,13 @@ components:
           format: int32
           description: Maximum records to return.
           type: integer
+    DataExportLinks:
+      description: Links for data export
+      type: object
+      properties:
+        status:
+          description: URL for checking the status of the data export
+          type: string
+        download:
+          description: URL for downloading the completed data export
+          type: string
